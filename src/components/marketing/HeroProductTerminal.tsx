@@ -10,8 +10,6 @@ import {
   Layers, 
   TrendingUp, 
   Compass, 
-  Calendar,
-  ChevronRight,
   Shield,
   Eye,
   Crosshair
@@ -590,22 +588,30 @@ export const HeroProductTerminal: React.FC = () => {
             </div>
           </div>
 
-          {/* 3-Day Session Callout in Light Mode */}
-          <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200/80 flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
-              <Calendar className="size-4 text-brand-blue shrink-0" />
-              <span>Learn This System in the 3-Day Session</span>
+          {/* Authentic Analytical Telemetry Panel */}
+          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col gap-2.5 font-mono text-[11px]">
+            <div className="flex items-center justify-between text-[10px] text-slate-500 uppercase tracking-wider">
+              <span>Operational Regime</span>
+              <span className="text-emerald-700 font-bold flex items-center gap-1">
+                <span className="size-1.5 rounded-full bg-signal-bull" />
+                Active
+              </span>
             </div>
-            <p className="text-[11px] text-slate-600 leading-normal">
-              Learn the complete methodology, risk framework, and indicator workflow with interactive chart audits.
-            </p>
-            <a
-              href="#session"
-              className="mt-1 w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold text-white bg-brand-blue hover:bg-brand-cobalt transition-colors shadow-xs"
-            >
-              <span>Join 3-Day Session</span>
-              <ChevronRight className="size-3.5" />
-            </a>
+
+            <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-black/[0.04]">
+              <span className="text-slate-500">Structural Invalidation:</span>
+              <span className="text-red-700 font-bold font-mono">$66,180.00</span>
+            </div>
+
+            <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-black/[0.04]">
+              <span className="text-slate-500">Resting Liquidity Pool:</span>
+              <span className="text-brand-blue font-bold font-mono">$68,900.00</span>
+            </div>
+
+            <div className="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-black/[0.04]">
+              <span>Pine Script Engine v4.2</span>
+              <span className="text-slate-700 font-medium">Bar-Close Only</span>
+            </div>
           </div>
 
         </div>

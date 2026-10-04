@@ -114,38 +114,46 @@ export const FaqSection: React.FC = () => {
 
           </div>
 
-          {/* Right Column: Accordion List */}
-          <div className="lg:col-span-7 space-y-3.5 w-full">
-            {faqs.map((faq) => {
+          {/* Right Column: Editorial Accordion List (Unboxed, Hairline Dividers) */}
+          <div className="lg:col-span-7 w-full border-t border-black/[0.1] divide-y divide-black/[0.08]">
+            {faqs.map((faq, index) => {
               const isOpen = openId === faq.id;
 
               return (
                 <div
                   key={faq.id}
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden text-left ${
-                    isOpen
-                      ? 'bg-white border-brand-blue/50 shadow-sm ring-1 ring-brand-blue/15'
-                      : 'bg-white/80 hover:bg-white border-black/[0.08] hover:border-black/[0.14]'
+                  className={`transition-colors duration-200 text-left ${
+                    isOpen ? 'bg-black/[0.015]' : 'hover:bg-black/[0.008]'
                   }`}
                 >
                   <button
                     onClick={() => toggle(faq.id)}
                     aria-expanded={isOpen}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                    className="w-full py-6 sm:py-7 px-2 text-left flex items-start justify-between gap-6 cursor-pointer focus:outline-none group"
                   >
-                    <span className="font-display font-bold text-base sm:text-lg text-slate-900 tracking-tight leading-snug">
-                      {faq.question}
-                    </span>
-                    <span className={`p-1.5 rounded-lg border transition-transform duration-200 shrink-0 ${
-                      isOpen ? 'bg-blue-50 text-brand-blue border-blue-200 rotate-180' : 'bg-slate-50 text-slate-400 border-black/[0.06]'
-                    }`}>
-                      <ChevronDown className="size-4" />
-                    </span>
+                    <div className="flex items-start gap-4 sm:gap-6 min-w-0">
+                      <span className="font-mono text-xs text-slate-400 font-semibold pt-1 shrink-0">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="font-display font-bold text-lg sm:text-xl text-slate-900 tracking-tight leading-snug group-hover:text-brand-blue transition-colors">
+                        {faq.question}
+                      </span>
+                    </div>
+
+                    <div className="pt-1 shrink-0">
+                      <span className={`size-7 rounded-full flex items-center justify-center border transition-all duration-200 ${
+                        isOpen 
+                          ? 'bg-brand-blue text-white border-brand-blue rotate-180 shadow-xs' 
+                          : 'bg-white text-slate-400 border-black/[0.1] group-hover:border-black/[0.2] group-hover:text-slate-700'
+                      }`}>
+                        <ChevronDown className="size-3.5" />
+                      </span>
+                    </div>
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-black/[0.04]">
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <div className="pl-8 sm:pl-12 pr-4 pb-7 pt-1">
+                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl font-normal">
                         {faq.answer}
                       </p>
                     </div>

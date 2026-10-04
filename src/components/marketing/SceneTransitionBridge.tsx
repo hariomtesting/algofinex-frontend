@@ -96,7 +96,7 @@ export const SceneTransitionBridge: React.FC = () => {
   const activeStage = CONTINUOUS_STAGES[activeStageIndex];
 
   return (
-    <section id="workflow" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#F8FAFC] border-t border-black/[0.06]">
+    <section id="workflow" className="relative py-20 sm:py-28 lg:py-32 overflow-hidden bg-[#F8FAFC] border-t border-black/[0.06]">
       
       {/* Dynamic Ambient Trace Path Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -106,7 +106,7 @@ export const SceneTransitionBridge: React.FC = () => {
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
         
         {/* Asymmetric Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 sm:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12 sm:mb-16">
           
           <div className="lg:col-span-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
@@ -368,10 +368,20 @@ export const SceneTransitionBridge: React.FC = () => {
 
         </div>
 
-        {/* Transition into 3-Day Session */}
-        <div className="mt-14 flex flex-col items-center gap-2 text-slate-400 text-xs font-mono">
-          <span className="tracking-wider uppercase">The Resulting Operational Routine</span>
-          <ArrowDown className="size-4 text-brand-blue animate-bounce" />
+        {/* Continuous Runway Transition into 3-Day Session */}
+        <div className="mt-12 flex flex-col items-center gap-2.5 text-slate-500 text-xs font-mono">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-10 bg-slate-300" />
+            <span className="tracking-wider uppercase text-[11px] font-semibold text-slate-600">The Resulting Operational Routine</span>
+            <span className="h-px w-10 bg-slate-300" />
+          </div>
+          <a
+            href="#session"
+            className="group inline-flex items-center gap-1.5 text-xs text-brand-blue font-semibold hover:text-blue-800 transition-colors pt-1"
+          >
+            <span>Proceed to 3-Day Session Experience</span>
+            <ArrowDown className="size-3.5 transition-transform group-hover:translate-y-0.5" />
+          </a>
         </div>
 
       </div>

@@ -76,139 +76,129 @@ export const PrinciplesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 4 Distinct Principles - Editorial Staggered Layout (No generic 4-card grid) */}
-        <div className="space-y-10 sm:space-y-16">
-          {principles.map((p, idx) => {
-            const isEven = idx % 2 === 0;
-
+        {/* 4 Distinct Principles - Editorial Manifesto Flow (Unboxed, Hairline Separators) */}
+        <div className="border-t border-black/[0.08]">
+          {principles.map((p) => {
             return (
               <div
                 key={p.num}
-                className="rounded-3xl border border-black/[0.08] bg-white p-6 sm:p-10 lg:p-12 shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="py-12 sm:py-16 lg:py-20 border-b border-black/[0.08] transition-colors"
               >
-                <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
-                  isEven ? '' : 'lg:flex-row-reverse'
-                }`}>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
                   
-                  {/* Text Column */}
-                  <div className={`lg:col-span-7 text-left ${isEven ? '' : 'lg:order-2'}`}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-slate-100 text-brand-blue border border-black/[0.06]">
-                        PRINCIPLE {p.num}
-                      </span>
-                      <span className="font-mono text-xs tracking-widest text-slate-400 font-bold uppercase">
-                        {p.keyword}
-                      </span>
-                    </div>
+                  {/* Left Column: Number & Principle Keyword */}
+                  <div className="lg:col-span-2 text-left">
+                    <span className="font-mono text-3xl sm:text-4xl font-extrabold text-slate-300 block mb-1">
+                      {p.num}
+                    </span>
+                    <span className="font-mono text-xs tracking-widest text-brand-blue font-bold uppercase">
+                      {p.keyword}
+                    </span>
+                  </div>
 
+                  {/* Middle Column: Monumental Typographic Statement & Editorial Copy */}
+                  <div className="lg:col-span-6 text-left">
                     <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-slate-900 tracking-tight leading-snug mb-5">
                       "{p.statement}"
                     </h3>
 
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                       {p.description}
                     </p>
                   </div>
 
-                  {/* Visual / Product Fragment Column */}
-                  <div className={`lg:col-span-5 w-full ${isEven ? '' : 'lg:order-1'}`}>
-                    <div className="rounded-2xl border border-black/[0.08] bg-[#F8FAFC] p-5 sm:p-7 relative overflow-hidden">
+                  {/* Right Column: Minimalist Visual Fragment */}
+                  <div className="lg:col-span-4 w-full">
+                    <div className="rounded-2xl border border-black/[0.07] bg-white p-5 sm:p-6 shadow-2xs">
                       
                       {/* Fragment Header */}
-                      <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-black/[0.06] pb-3 mb-4">
-                        <span className="text-slate-700 font-semibold uppercase">{p.keyword} SPECIFICATION</span>
-                        <span>DETERMINISTIC</span>
+                      <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 border-b border-black/[0.05] pb-2.5 mb-3.5">
+                        <span className="text-slate-800 font-bold uppercase">{p.keyword} SPECIFICATION</span>
+                        <span className="text-brand-blue font-semibold">DETERMINISTIC</span>
                       </div>
 
-                      {/* Visual Fragment 1: Clarity (Isolated Structural Geometry) */}
+                      {/* Visual Fragment 1: Clarity */}
                       {p.visualType === 'clarity' && (
                         <div className="space-y-3">
-                          <svg viewBox="0 0 320 100" className="w-full h-auto select-none">
-                            <line x1="20" y1="80" x2="100" y2="30" stroke="#1D4ED8" strokeWidth="2" strokeDasharray="3 3" />
-                            <line x1="100" y1="30" x2="180" y2="70" stroke="#059669" strokeWidth="2" strokeDasharray="3 3" />
-                            <line x1="180" y1="70" x2="280" y2="20" stroke="#1D4ED8" strokeWidth="2" />
-                            <circle cx="100" cy="30" r="4" fill="#1D4ED8" />
-                            <text x="100" y="20" textAnchor="middle" fill="#1D4ED8" fontSize="8" fontFamily="monospace" fontWeight="700">HH 67,400</text>
-                            <circle cx="180" cy="70" r="4" fill="#059669" />
-                            <text x="180" y="90" textAnchor="middle" fill="#059669" fontSize="8" fontFamily="monospace" fontWeight="700">HL 66,100</text>
-                            <circle cx="280" cy="20" r="4" fill="#1D4ED8" />
-                            <text x="280" y="14" textAnchor="middle" fill="#1D4ED8" fontSize="8" fontFamily="monospace" fontWeight="700">BOS ▲</text>
+                          <svg viewBox="0 0 320 85" className="w-full h-auto select-none">
+                            <line x1="20" y1="70" x2="100" y2="25" stroke="#1D4ED8" strokeWidth="2" strokeDasharray="3 3" />
+                            <line x1="100" y1="25" x2="180" y2="60" stroke="#059669" strokeWidth="2" strokeDasharray="3 3" />
+                            <line x1="180" y1="60" x2="280" y2="15" stroke="#1D4ED8" strokeWidth="2" />
+                            <circle cx="100" cy="25" r="3.5" fill="#1D4ED8" />
+                            <text x="100" y="16" textAnchor="middle" fill="#1D4ED8" fontSize="8" fontFamily="monospace" fontWeight="700">HH 67,400</text>
+                            <circle cx="180" cy="60" r="3.5" fill="#059669" />
+                            <text x="180" y="78" textAnchor="middle" fill="#059669" fontSize="8" fontFamily="monospace" fontWeight="700">HL 66,100</text>
+                            <circle cx="280" cy="15" r="3.5" fill="#1D4ED8" />
+                            <text x="280" y="10" textAnchor="middle" fill="#1D4ED8" fontSize="8" fontFamily="monospace" fontWeight="700">BOS ▲</text>
                           </svg>
-                          <div className="text-[11px] font-mono text-slate-500 bg-white p-2.5 rounded-lg border border-black/[0.06] flex items-center justify-between">
+                          <div className="text-[10px] font-mono text-slate-500 bg-slate-50 p-2 rounded border border-black/[0.04] flex items-center justify-between">
                             <span>Visual Clutter Reduction:</span>
                             <span className="font-semibold text-slate-800">100% Price-Native</span>
                           </div>
                         </div>
                       )}
 
-                      {/* Visual Fragment 2: Context (Multi-Timeframe Horizon) */}
+                      {/* Visual Fragment 2: Context */}
                       {p.visualType === 'context' && (
-                        <div className="space-y-2.5 font-mono text-xs">
-                          <div className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-black/[0.06]">
+                        <div className="space-y-2 font-mono text-[11px]">
+                          <div className="flex items-center justify-between p-2 rounded bg-slate-50 border border-black/[0.04]">
                             <span className="text-slate-500">1D Trend Frame</span>
                             <span className="text-signal-bull font-bold flex items-center gap-1.5">
                               <span className="size-1.5 rounded-full bg-signal-bull" />
-                              BULLISH EXPANSION
+                              BULLISH
                             </span>
                           </div>
-                          <div className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-black/[0.06]">
+                          <div className="flex items-center justify-between p-2 rounded bg-slate-50 border border-black/[0.04]">
                             <span className="text-slate-500">4H Order Flow</span>
                             <span className="text-brand-blue font-bold flex items-center gap-1.5">
                               <span className="size-1.5 rounded-full bg-brand-blue" />
                               DEMAND RETEST
                             </span>
                           </div>
-                          <div className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-black/[0.06]">
-                            <span className="text-slate-500">15M Execution</span>
-                            <span className="text-slate-800 font-bold flex items-center gap-1.5">
-                              <span className="size-1.5 rounded-full bg-slate-800" />
-                              WAITING TRIGGER
+                          <div className="flex items-center justify-between p-2 rounded bg-slate-50 border border-black/[0.04]">
+                            <span className="text-slate-500">15M Trigger</span>
+                            <span className="text-slate-700 font-bold flex items-center gap-1.5">
+                              <span className="size-1.5 rounded-full bg-slate-700" />
+                              ALIGNED
                             </span>
                           </div>
                         </div>
                       )}
 
-                      {/* Visual Fragment 3: Discipline (Bar Close Non-Repainting Lock) */}
+                      {/* Visual Fragment 3: Discipline */}
                       {p.visualType === 'discipline' && (
-                        <div className="space-y-3 font-mono text-xs">
-                          <div className="p-3 rounded-lg bg-white border border-black/[0.06] space-y-2">
-                            <div className="flex items-center justify-between text-[11px]">
-                              <span className="text-slate-400">Signal Verification State:</span>
+                        <div className="space-y-2.5 font-mono text-[11px]">
+                          <div className="p-2.5 rounded bg-slate-50 border border-black/[0.04] space-y-1.5">
+                            <div className="flex items-center justify-between text-[10px]">
+                              <span className="text-slate-400">Signal Verification:</span>
                               <span className="text-signal-bull font-bold">LOCKED &amp; VERIFIED</span>
                             </div>
-                            <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                              <div className="bg-signal-bull h-full rounded-full w-full" />
-                            </div>
-                            <div className="flex items-center justify-between text-[10px] text-slate-500">
+                            <div className="flex items-center justify-between text-[10px] text-slate-500 pt-0.5">
                               <span>Candle Status: CLOSED</span>
-                              <span>Non-repainting guaranteed</span>
+                              <span className="text-brand-blue">Non-repainting</span>
                             </div>
                           </div>
-                          <div className="p-2.5 rounded-lg bg-red-50/60 border border-red-200/60 text-[11px] text-red-800 flex items-center justify-between">
+                          <div className="p-2 rounded bg-red-50/70 border border-red-200/60 text-[10px] text-red-800 flex items-center justify-between">
                             <span>Hard Stop Invalidation:</span>
                             <span className="font-bold font-mono">$66,180.00</span>
                           </div>
                         </div>
                       )}
 
-                      {/* Visual Fragment 4: Consistency (Routine Checklist) */}
+                      {/* Visual Fragment 4: Consistency */}
                       {p.visualType === 'consistency' && (
-                        <div className="space-y-2 font-mono text-[11px]">
-                          <div className="p-2 rounded bg-white border border-black/[0.06] flex items-center gap-2 text-slate-700">
-                            <CheckCircle className="size-3.5 text-signal-bull shrink-0" />
+                        <div className="space-y-1.5 font-mono text-[10px]">
+                          <div className="p-1.5 rounded bg-slate-50 border border-black/[0.04] flex items-center gap-2 text-slate-700">
+                            <CheckCircle className="size-3 text-signal-bull shrink-0" />
                             <span>Step 01 • Macro Structure Mapped</span>
                           </div>
-                          <div className="p-2 rounded bg-white border border-black/[0.06] flex items-center gap-2 text-slate-700">
-                            <CheckCircle className="size-3.5 text-signal-bull shrink-0" />
+                          <div className="p-1.5 rounded bg-slate-50 border border-black/[0.04] flex items-center gap-2 text-slate-700">
+                            <CheckCircle className="size-3 text-signal-bull shrink-0" />
                             <span>Step 02 • Resting Liquidity Identified</span>
                           </div>
-                          <div className="p-2 rounded bg-white border border-black/[0.06] flex items-center gap-2 text-slate-700">
-                            <CheckCircle className="size-3.5 text-signal-bull shrink-0" />
+                          <div className="p-1.5 rounded bg-blue-50/70 border border-blue-200/60 flex items-center gap-2 text-brand-blue font-semibold">
+                            <span className="size-1.5 rounded-full bg-brand-blue animate-pulse" />
                             <span>Step 03 • Invalidation Coordinate Fixed</span>
-                          </div>
-                          <div className="p-2 rounded bg-blue-50 border border-blue-200 flex items-center gap-2 text-brand-blue font-semibold">
-                            <span className="size-2 rounded-full bg-brand-blue animate-pulse" />
-                            <span>Step 04 • Ready for Execution Trigger</span>
                           </div>
                         </div>
                       )}

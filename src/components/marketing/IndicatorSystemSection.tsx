@@ -155,43 +155,59 @@ export const IndicatorSystemSection: React.FC = () => {
           </button>
         </div>
 
-        {/* ONE LARGE CENTRAL TRADING INTERFACE (White Analytical Canvas) */}
-        <div className="relative rounded-2xl md:rounded-3xl border border-black/[0.09] bg-white shadow-workstation overflow-hidden w-full min-w-0">
+        {/* Spatial Architecture Framing: 4 Analytical Dimensions surrounding the Instrument */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
+            isStructureVisible ? 'bg-white border-blue-300 shadow-xs' : 'bg-white/50 border-black/[0.05] opacity-60'
+          }`}>
+            <span className="text-[10px] font-mono font-bold text-brand-blue block mb-0.5">DIMENSION 01</span>
+            <div className="font-display font-bold text-slate-900 text-sm">Market Structure</div>
+            <div className="text-[11px] text-slate-500 font-mono mt-1">Swing Pivots &amp; Breaks</div>
+          </div>
+
+          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
+            isLiquidityVisible ? 'bg-white border-purple-300 shadow-xs' : 'bg-white/50 border-black/[0.05] opacity-60'
+          }`}>
+            <span className="text-[10px] font-mono font-bold text-purple-700 block mb-0.5">DIMENSION 02</span>
+            <div className="font-display font-bold text-slate-900 text-sm">Liquidity Pools</div>
+            <div className="text-[11px] text-slate-500 font-mono mt-1">Resting Orders &amp; Imbalance</div>
+          </div>
+
+          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
+            isTrendVisible ? 'bg-white border-emerald-300 shadow-xs' : 'bg-white/50 border-black/[0.05] opacity-60'
+          }`}>
+            <span className="text-[10px] font-mono font-bold text-emerald-700 block mb-0.5">DIMENSION 03</span>
+            <div className="font-display font-bold text-slate-900 text-sm">Trend Corridor</div>
+            <div className="text-[11px] text-slate-500 font-mono mt-1">Multi-Period Dynamic Ribbon</div>
+          </div>
+
+          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
+            isConfirmationVisible ? 'bg-white border-amber-300 shadow-xs' : 'bg-white/50 border-black/[0.05] opacity-60'
+          }`}>
+            <span className="text-[10px] font-mono font-bold text-amber-700 block mb-0.5">DIMENSION 04</span>
+            <div className="font-display font-bold text-slate-900 text-sm">Execution Trigger</div>
+            <div className="text-[11px] text-slate-500 font-mono mt-1">Bar-Close Non-Repainting Lock</div>
+          </div>
+        </div>
+
+        {/* ONE LARGE CENTRAL TRADING INTERFACE (Unboxed Analytical Canvas) */}
+        <div className="relative rounded-2xl md:rounded-3xl border border-black/[0.08] bg-white shadow-workstation overflow-hidden w-full min-w-0">
           
           {/* Top Interface Status Strip */}
-          <div className="flex flex-wrap items-center justify-between border-b border-black/[0.07] bg-slate-50/80 px-4 sm:px-8 py-3 gap-3 text-xs font-mono">
+          <div className="flex flex-wrap items-center justify-between border-b border-black/[0.06] bg-slate-50/90 px-4 sm:px-8 py-3 gap-3 text-xs font-mono">
             <div className="flex items-center gap-3">
               <span className="size-2 rounded-full bg-brand-blue animate-pulse" />
               <span className="font-bold text-slate-900 tracking-wide">
-                AlgoFinex Composite Instrument
+                AlgoFinex Integrated Analytical Instrument
               </span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-white text-slate-600 border border-black/[0.08] uppercase shadow-2xs">
-                {activeLayer === 'all' ? 'All 4 Strata Active' : `Strata: ${activeLayer.toUpperCase()}`}
+                {activeLayer === 'all' ? '4 Dimensions Synchronized' : `Viewing: ${activeLayer}`}
               </span>
             </div>
 
-            {/* Active Layers Pill Indicators */}
-            <div className="flex items-center gap-2 text-[10px]">
-              <span className={`px-2 py-0.5 rounded border transition-colors ${
-                isStructureVisible ? 'bg-blue-50 text-brand-blue border-blue-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
-              }`}>
-                01. Structure
-              </span>
-              <span className={`px-2 py-0.5 rounded border transition-colors ${
-                isLiquidityVisible ? 'bg-purple-50 text-purple-700 border-purple-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
-              }`}>
-                02. Liquidity
-              </span>
-              <span className={`px-2 py-0.5 rounded border transition-colors ${
-                isTrendVisible ? 'bg-emerald-50 text-emerald-700 border-emerald-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
-              }`}>
-                03. Trend
-              </span>
-              <span className={`px-2 py-0.5 rounded border transition-colors ${
-                isConfirmationVisible ? 'bg-amber-50 text-amber-700 border-amber-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
-              }`}>
-                04. Confirmation
-              </span>
+            {/* Quick status */}
+            <div className="text-[11px] text-slate-500 font-mono hidden sm:inline">
+              Pine Script v4.2 • Deterministic Logic
             </div>
           </div>
 

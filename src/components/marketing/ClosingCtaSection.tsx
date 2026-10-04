@@ -16,7 +16,7 @@ export const ClosingCtaSection: React.FC = () => {
   };
 
   return (
-    <section className="relative py-28 sm:py-36 lg:py-48 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden text-center">
+    <section className="relative py-32 sm:py-44 lg:py-56 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden text-center">
       
       {/* Directional Atmospheric Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -25,17 +25,23 @@ export const ClosingCtaSection: React.FC = () => {
 
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
         
-        {/* Proprietary Brand Glyph Display */}
-        <div className="flex justify-center mb-8">
-          <div className="size-16 rounded-2xl bg-brand-blue flex items-center justify-center shadow-md">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-              {/* Intersecting technical coordinates */}
-              <line x1="3" y1="20" x2="21" y2="20" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
-              <line x1="4" y1="20" x2="4" y2="4" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
-              {/* Upward 45-degree structural ray */}
-              <path d="M4 17L11 10L15 14L20 6" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="20" cy="6" r="2.2" fill="#FFFFFF" />
-            </svg>
+        {/* Proprietary Brand Glyph Display with Concentric Technical Reticle */}
+        <div className="relative flex justify-center mb-10">
+          <div className="relative flex items-center justify-center">
+            {/* Concentric hairline rings */}
+            <div className="absolute size-32 rounded-full border border-brand-blue/15 animate-pulse" />
+            <div className="absolute size-24 rounded-full border border-black/[0.06]" />
+            
+            <div className="relative size-16 rounded-2xl bg-brand-blue flex items-center justify-center shadow-lg shadow-brand-blue/20">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                {/* Intersecting technical coordinates */}
+                <line x1="3" y1="20" x2="21" y2="20" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
+                <line x1="4" y1="20" x2="4" y2="4" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
+                {/* Upward 45-degree structural ray */}
+                <path d="M4 17L11 10L15 14L20 6" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="20" cy="6" r="2.2" fill="#FFFFFF" />
+              </svg>
+            </div>
           </div>
         </div>
 

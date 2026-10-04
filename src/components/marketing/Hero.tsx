@@ -2,9 +2,7 @@ import React from 'react';
 import { HeroProductTerminal } from './HeroProductTerminal';
 import { 
   ChevronRight, 
-  BarChart3,
-  Sliders,
-  ShieldCheck
+  BarChart3 
 } from 'lucide-react';
 
 export const Hero: React.FC = () => {
@@ -80,40 +78,11 @@ export const Hero: React.FC = () => {
               </button>
             </div>
 
-            {/* Micro Technical Telemetry Strip */}
-            <div className="mt-10 pt-6 border-t border-black/[0.07] flex flex-wrap items-center gap-4 sm:gap-6 text-[11px] font-mono text-slate-500">
-              <div className="flex items-center gap-2">
-                <span className="size-1.5 rounded-full bg-signal-bull animate-ping" />
-                <span className="text-slate-900 font-semibold">BTC/USDT 68,220.50</span>
-              </div>
-              <span className="text-slate-300">•</span>
-              <span>Order Flow: <strong className="text-signal-bull font-medium">Bullish</strong></span>
-              <span className="text-slate-300 hidden sm:inline">•</span>
-              <span className="hidden sm:inline">Logic: <strong className="text-slate-800 font-medium">Bar-Close Only</strong></span>
-            </div>
-
-            {/* Subtle Operational Badge */}
-            <div className="mt-4 flex items-center gap-2 text-[10px] font-mono text-slate-500">
-              <ShieldCheck className="size-3.5 text-brand-blue shrink-0" />
-              <span>Non-repainting algorithmic geometry • Multi-timeframe synchronized</span>
-            </div>
-
           </div>
 
           {/* Right Column: Visual Protagonist Terminal */}
           <div className="lg:col-span-7 relative z-10 w-full min-w-0 lg:-mr-4 xl:-mr-10 2xl:-mr-16">
             
-            {/* Top Indicator Header Strip */}
-            <div className="mb-3 flex items-center justify-between text-xs font-mono text-slate-500 px-2">
-              <div className="flex items-center gap-2">
-                <Sliders className="size-3.5 text-brand-blue" />
-                <span className="text-slate-900 font-semibold">Interactive Workstation Preview</span>
-              </div>
-              <div className="text-[11px] text-slate-400 hidden sm:inline">
-                Select analytical mode to inspect chart overlays
-              </div>
-            </div>
-
             {/* Centerpiece Trading Terminal Protagonist */}
             <div className="relative group">
               <div className="relative">

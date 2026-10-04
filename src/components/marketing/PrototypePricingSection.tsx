@@ -142,86 +142,168 @@ export const PrototypePricingSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 3 Tier Cards - Clean Hairline Editorial Architecture */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-          {plans.map((p) => {
-            const isFeatured = p.id === 'all-access';
+        {/* Bespoke Architectural Pricing Layout: Software Suite + Live Cohort + All-Access Confluence */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          
+          {/* Pillar 1 & 2 Left Column: The 2 Core Pillars */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-left">
+            
+            {/* Pillar A: Indicator Suite Software */}
+            <div className="rounded-3xl border border-black/[0.08] bg-[#F8FAFC] p-6 sm:p-8 flex flex-col justify-between shadow-2xs hover:border-black/[0.14] transition-all">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-brand-blue font-bold px-2 py-0.5 rounded bg-blue-50 border border-blue-200">
+                    Software Instrumentation
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-400">TradingView Pine Script v4.2</span>
+                </div>
 
-            return (
-              <div
-                key={p.id}
-                className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-200 relative text-left ${
-                  isFeatured
-                    ? 'bg-[#F8FAFC] border-2 border-brand-blue shadow-lg ring-1 ring-brand-blue/30'
-                    : 'bg-white border border-black/[0.08] shadow-sm hover:shadow-md hover:border-black/[0.14]'
-                }`}
-              >
-                {/* Featured Badge */}
-                {p.badge && (
-                  <div className="mb-4">
-                    <span className={`inline-block text-[11px] font-mono font-bold px-2.5 py-0.5 rounded uppercase tracking-wider ${
-                      isFeatured 
-                        ? 'bg-brand-blue text-white shadow-2xs' 
-                        : 'bg-blue-50 text-brand-blue border border-blue-200'
-                    }`}>
-                      {p.badge}
-                    </span>
-                  </div>
-                )}
-
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-slate-900 tracking-tight">
-                    {p.name}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+                  <h3 className="text-2xl font-display font-bold text-slate-900 tracking-tight">
+                    {plans[0].name}
                   </h3>
-
-                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed min-h-[44px]">
-                    {p.description}
-                  </p>
-
-                  {/* Pricing Display */}
-                  <div className="mt-6 pt-6 border-t border-black/[0.06] flex items-baseline gap-2">
-                    <span className="text-4xl sm:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-                      {p.price}
+                  <div className="flex items-baseline gap-1.5 shrink-0">
+                    <span className="text-3xl font-display font-extrabold text-slate-900">
+                      {plans[0].price}
                     </span>
                     <span className="text-xs font-mono text-slate-500">
-                      / {p.billingPeriod}
+                      / {plans[0].billingPeriod}
                     </span>
-                  </div>
-
-                  {/* Feature Checklist */}
-                  <div className="mt-8 space-y-3 pb-8">
-                    <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">
-                      Included Capabilities:
-                    </span>
-                    {p.features.map((feat, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                        <Check className="size-4 text-signal-bull shrink-0 mt-0.5" />
-                        <span className="leading-snug">{feat}</span>
-                      </div>
-                    ))}
                   </div>
                 </div>
 
-                {/* Card CTA Button */}
-                <div className="pt-4 border-t border-black/[0.06]">
-                  <button
-                    onClick={() => handleSelectPlan(p)}
-                    className={`w-full py-3.5 px-6 rounded-xl font-semibold text-sm transition-all duration-150 flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] ${
-                      isFeatured
-                        ? 'bg-brand-blue text-white hover:bg-blue-800'
-                        : 'bg-white text-slate-800 hover:bg-slate-50 border border-black/[0.12] hover:border-black/[0.22]'
-                    }`}
-                  >
-                    <span>Select {p.name.split(' ')[0]}</span>
-                    <ArrowRight className="size-4" />
-                  </button>
-                  <span className="block text-[10px] font-mono text-slate-400 text-center mt-2">
-                    UX Simulation • No real charge
-                  </span>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                  {plans[0].description}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 mb-6 font-mono text-[11px]">
+                  {plans[0].features.slice(0, 4).map((f, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="size-1.5 rounded-full bg-brand-blue shrink-0" />
+                      <span className="truncate">{f}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            );
-          })}
+
+              <div className="pt-4 border-t border-black/[0.06] flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-400">Includes updates &amp; alerts</span>
+                <button
+                  onClick={() => handleSelectPlan(plans[0])}
+                  className="py-2.5 px-5 rounded-xl font-semibold text-xs font-mono text-slate-800 bg-white hover:bg-slate-100 border border-black/[0.12] transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>Select Suite</span>
+                  <ArrowRight className="size-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Pillar B: 3-Day Live Cohort */}
+            <div className="rounded-3xl border border-black/[0.08] bg-[#F4F2EC] p-6 sm:p-8 flex flex-col justify-between shadow-2xs hover:border-black/[0.14] transition-all">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-amber-800 font-bold px-2 py-0.5 rounded bg-amber-100/60 border border-amber-300">
+                    Live Operational Masterclass
+                  </span>
+                  <span className="text-[10px] font-mono text-slate-500">Limited to 12 Traders</span>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+                  <h3 className="text-2xl font-display font-bold text-slate-900 tracking-tight">
+                    {plans[1].name}
+                  </h3>
+                  <div className="flex items-baseline gap-1.5 shrink-0">
+                    <span className="text-3xl font-display font-extrabold text-slate-900">
+                      {plans[1].price}
+                    </span>
+                    <span className="text-xs font-mono text-slate-500">
+                      / cohort fee
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                  {plans[1].description}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 mb-6 font-mono text-[11px]">
+                  {plans[1].features.slice(0, 4).map((f, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="size-1.5 rounded-full bg-amber-600 shrink-0" />
+                      <span className="truncate">{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-black/[0.06] flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-500">30-day indicator access included</span>
+                <button
+                  onClick={() => handleSelectPlan(plans[1])}
+                  className="py-2.5 px-5 rounded-xl font-semibold text-xs font-mono text-slate-800 bg-white hover:bg-slate-100 border border-black/[0.12] transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>Reserve Seat</span>
+                  <ArrowRight className="size-3.5" />
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: Hero All-Access Master Pass Unit */}
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-brand-blue bg-white p-7 sm:p-9 shadow-lg ring-1 ring-brand-blue/20 text-left relative">
+            
+            {/* Top Recommended Tag */}
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-brand-blue text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-4 shadow-2xs">
+                <span>Recommended System Confluence</span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                {plans[2].name}
+              </h3>
+
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {plans[2].description}
+              </p>
+
+              <div className="mt-6 pt-5 border-t border-black/[0.06] flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+                  {plans[2].price}
+                </span>
+                <span className="text-xs font-mono text-slate-500">
+                  / combined pass (PROTOTYPE)
+                </span>
+              </div>
+
+              <div className="mt-6 space-y-3 font-mono text-xs text-slate-700">
+                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold block font-sans">
+                  Complete System Entitlements:
+                </span>
+                {plans[2].features.map((feat, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <Check className="size-4 text-signal-bull shrink-0 mt-0.5" />
+                    <span className="leading-snug">{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-8 border-t border-black/[0.06] mt-8">
+              <button
+                onClick={() => handleSelectPlan(plans[2])}
+                className="w-full py-4 px-6 rounded-xl font-semibold text-sm text-white bg-brand-blue hover:bg-blue-800 transition-all duration-150 flex items-center justify-center gap-2 shadow-sm active:scale-[0.99] cursor-pointer"
+              >
+                <span>Select All-Access Pass</span>
+                <ArrowRight className="size-4" />
+              </button>
+              <div className="text-[10px] font-mono text-slate-400 text-center mt-2">
+                UX Prototype Simulation • No real charge
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
         {/* Prototype Disclaimer Footer */}

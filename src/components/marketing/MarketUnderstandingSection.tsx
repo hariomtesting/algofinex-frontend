@@ -68,71 +68,49 @@ export const MarketUnderstandingSection: React.FC = () => {
 
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
         
-        {/* Section Header: Asymmetric Editorial Framing */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-14 sm:mb-20">
-          <div className="lg:col-span-8 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
-              <Compass className="size-3.5 text-brand-blue shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">
-                Core Conceptual Framework
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.04]">
-              What AlgoFinex actually does:<br />
-              <span className="text-brand-blue">
-                Organize charts into three disciplined decisions.
-              </span>
-            </h2>
+        {/* Section Header: Varied Editorial Pacing */}
+        <div className="max-w-3xl text-left mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
+            <Compass className="size-3.5 text-brand-blue shrink-0" />
+            <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">
+              The Three-Phase Discipline
+            </span>
           </div>
 
-          <div className="lg:col-span-4 text-left flex flex-col justify-end">
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Trading success is not about predicting the future. It is about systematically parsing market information so you never commit capital without structural justification and predetermined risk.
-            </p>
-          </div>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.04]">
+            How AlgoFinex organizes market information:<br />
+            <span className="text-brand-blue">
+              Three sequential decisions.
+            </span>
+          </h2>
+
+          <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+            Trading is not about predicting the future. It is about systematically parsing market structure so you never commit capital without architectural justification and predetermined risk.
+          </p>
         </div>
 
-        {/* The 3-Stage Interactive Stepper Navigation */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-12">
+        {/* Sleek Architectural Stage Switcher */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-8 w-full border-b border-black/[0.06]">
           {steps.map((s, idx) => {
             const isActive = activeStep === idx;
             return (
               <button
                 key={s.id}
                 onClick={() => setActiveStep(idx as 0 | 1 | 2)}
-                className={`text-left p-5 sm:p-6 rounded-2xl border transition-all duration-200 relative flex flex-col justify-between ${
+                className={`text-left py-3 px-5 sm:px-6 rounded-t-xl transition-all duration-150 relative flex items-center gap-3 shrink-0 cursor-pointer ${
                   isActive
-                    ? 'bg-white border-brand-blue shadow-sm ring-1 ring-brand-blue/20'
-                    : 'bg-white/60 hover:bg-white border-black/[0.08] hover:border-black/[0.14]'
+                    ? 'bg-white text-slate-900 font-bold border-t-2 border-brand-blue shadow-xs'
+                    : 'text-slate-500 hover:text-slate-800 font-medium hover:bg-white/50'
                 }`}
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
-                    isActive ? 'bg-blue-50 text-brand-blue border border-blue-200' : 'bg-slate-100 text-slate-500'
-                  }`}>
-                    PHASE {s.num}
-                  </span>
-                  <span className={`text-[11px] font-mono ${isActive ? 'text-brand-blue font-semibold' : 'text-slate-400'}`}>
-                    {idx === 0 ? 'Foundation' : idx === 1 ? 'Validation' : 'Execution'}
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className={`font-display text-lg sm:text-xl font-bold tracking-tight mb-1 ${
-                    isActive ? 'text-slate-900' : 'text-slate-700'
-                  }`}>
-                    {s.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 line-clamp-1">
-                    {s.subtitle}
-                  </p>
-                </div>
-
-                {/* Active indicator underline */}
-                {isActive && (
-                  <div className="absolute bottom-0 inset-x-6 h-0.5 bg-brand-blue rounded-full" />
-                )}
+                <span className={`text-[11px] font-mono px-2 py-0.5 rounded font-bold ${
+                  isActive ? 'bg-blue-50 text-brand-blue border border-blue-200' : 'bg-slate-100 text-slate-400'
+                }`}>
+                  {s.num}
+                </span>
+                <span className="font-display text-sm sm:text-base tracking-tight whitespace-nowrap">
+                  {s.title}
+                </span>
               </button>
             );
           })}
