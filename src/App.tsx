@@ -14,24 +14,24 @@ export const App: React.FC = () => {
 
       {/* Main Experience Flow */}
       <main className="flex-1 w-full min-w-0">
-        {/* Phase 1 Approved Hero */}
+        {/* Phase 1 Approved Hero (Refined with generous whitespace & card reduction) */}
         <Hero />
 
-        {/* Phase 2: Section A — Product Reveal & Interactive Lens */}
+        {/* Phase 2: Section A — Product Reveal (Dominant Interactive Workstation) */}
         <ProductRevealSection />
 
-        {/* Phase 2: Section B — Indicator System Ecosystem */}
+        {/* Phase 2: Section B — Unified Indicator System (4 Analytical Layers) */}
         <IndicatorSystemSection />
 
-        {/* Phase 2: Scene Transition / Visual Transformation Bridge */}
+        {/* Phase 2: Stepped Visual Workflow Transformation Pipeline */}
         <SceneTransitionBridge />
 
-        {/* Phase 2: Section C — 3-Day Session Storytelling & Transformation */}
+        {/* Phase 2: Section C — 3-Day Session Storytelling & 7-Step Routine */}
         <SessionSection />
       </main>
 
       {/* Persistent Landing Footer */}
-      <footer className="border-t border-white/[0.08] bg-canvas/90 py-10 px-5 sm:px-8 text-xs font-mono text-text-muted">
+      <footer className="border-t border-white/[0.08] bg-[#07090E] py-10 px-5 sm:px-8 text-xs font-mono text-text-muted">
         <div className="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2">
@@ -41,19 +41,19 @@ export const App: React.FC = () => {
             </div>
             <span className="hidden sm:inline text-border-medium">•</span>
             <div className="text-text-secondary text-[11px]">
-              Non-Repainting Bar-Close Logic • Multi-Timeframe Alignment
+              Multi-Layered Market Structure • 7-Step Trading Workflow
             </div>
           </div>
 
           <div className="flex items-center gap-6 text-[11px]">
-            <a href="#product-experience" className="hover:text-white transition-colors">Experience</a>
             <a href="#indicator-system" className="hover:text-white transition-colors">Indicators</a>
+            <a href="#workflow" className="hover:text-white transition-colors">Methodology</a>
             <a href="#session" className="hover:text-white transition-colors">3-Day Session</a>
             <a href="#signin" className="hover:text-white transition-colors">Client Portal</a>
           </div>
 
           <div className="text-text-dim text-[10px] text-center md:text-right">
-            © 2026 AlgoFinex. Illustrative educational market demonstration. Not financial advice.
+            © 2026 AlgoFinex. Educational market structure analysis. Not financial advice.
           </div>
         </div>
       </footer>
@@ -62,4 +62,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-

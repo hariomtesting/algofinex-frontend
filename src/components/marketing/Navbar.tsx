@@ -5,11 +5,11 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-xl bg-background/80 border-b border-white/[0.06] w-full overflow-hidden">
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 h-18 flex items-center justify-between gap-4 w-full min-w-0">
+    <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-xl bg-background/85 border-b border-white/[0.06] w-full overflow-hidden">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 h-18 flex items-center justify-between gap-6 w-full min-w-0">
         
         {/* Brand Mark */}
-        <a href="/" className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-md">
+        <a href="/" className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-md shrink-0">
           <div className="relative size-9 rounded-lg bg-surface-elevated border border-white/[0.12] flex items-center justify-center overflow-hidden shadow-panel group-hover:border-brand-blue/50 transition-colors">
             <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 to-transparent opacity-60" />
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="relative z-10">
@@ -27,13 +27,19 @@ export const Navbar: React.FC = () => {
           </div>
         </a>
 
-        {/* Desktop Navigation */}
+        {/* Streamlined Desktop Navigation (Preferred Hierarchy) */}
         <nav className="hidden lg:flex items-center gap-8">
           <a
-            href="#indicators"
+            href="#indicator-system"
             className="text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200"
           >
             Indicators
+          </a>
+          <a
+            href="#workflow"
+            className="text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200"
+          >
+            Methodology
           </a>
           <a
             href="#session"
@@ -45,18 +51,6 @@ export const Navbar: React.FC = () => {
             </span>
           </a>
           <a
-            href="#market-structure"
-            className="text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200"
-          >
-            Market Structure
-          </a>
-          <a
-            href="#methodology"
-            className="text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200"
-          >
-            Methodology
-          </a>
-          <a
             href="#pricing"
             className="text-sm font-medium text-text-secondary hover:text-white transition-colors duration-200"
           >
@@ -65,16 +59,10 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center gap-5">
-          {/* Status Badge */}
-          <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-white/[0.06] text-xs font-mono text-text-muted">
-            <span className="size-2 rounded-full bg-signal-bull animate-pulse" />
-            <span className="text-text-secondary">3-Day Session Enrolling</span>
-          </div>
-
+        <div className="hidden lg:flex items-center gap-6">
           <a
             href="#signin"
-            className="text-sm font-medium text-text-secondary hover:text-white transition-colors px-2 py-1"
+            className="text-sm font-medium text-text-secondary hover:text-white transition-colors"
           >
             Client Portal
           </a>
@@ -101,19 +89,21 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-18 bg-surface-elevated/95 backdrop-blur-2xl border-b border-white/[0.1] px-6 py-8 flex flex-col gap-6 animate-in slide-in-from-top-4 duration-200">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-surface border border-white/[0.06] text-xs font-mono text-text-secondary w-fit">
-            <span className="size-2 rounded-full bg-signal-bull animate-pulse" />
-            <span>Next 3-Day Session: Enrolling</span>
-          </div>
-
+        <div className="lg:hidden fixed inset-x-0 top-18 bg-surface-elevated/98 backdrop-blur-2xl border-b border-white/[0.1] px-6 py-8 flex flex-col gap-6 animate-in slide-in-from-top-4 duration-200 shadow-terminal">
           <nav className="flex flex-col gap-4 text-base font-medium">
             <a
-              href="#indicators"
+              href="#indicator-system"
               onClick={() => setMobileMenuOpen(false)}
               className="text-text-secondary hover:text-white py-1"
             >
-              Indicators &amp; Suite
+              Indicators
+            </a>
+            <a
+              href="#workflow"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-text-secondary hover:text-white py-1"
+            >
+              Methodology
             </a>
             <a
               href="#session"
@@ -122,20 +112,6 @@ export const Navbar: React.FC = () => {
             >
               <span>3-Day Session</span>
               <span className="text-xs font-mono text-brand-accent bg-brand-blue/15 px-2 py-0.5 rounded">LIVE</span>
-            </a>
-            <a
-              href="#market-structure"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-text-secondary hover:text-white py-1"
-            >
-              Market Structure
-            </a>
-            <a
-              href="#methodology"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-text-secondary hover:text-white py-1"
-            >
-              Indicator Methodology
             </a>
             <a
               href="#pricing"
@@ -158,7 +134,7 @@ export const Navbar: React.FC = () => {
             <a
               href="#signin"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-2.5 text-sm font-medium text-text-secondary hover:text-white"
+              className="w-full py-2.5 text-center text-sm font-medium text-text-secondary hover:text-white"
             >
               Client Portal
             </a>

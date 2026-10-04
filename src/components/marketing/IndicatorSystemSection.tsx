@@ -1,213 +1,205 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { INDICATOR_PRODUCTS } from '../../data/productExperienceData';
+import { SYSTEM_LAYERS } from '../../data/productExperienceData';
 import { 
   Layers, 
-  TrendingUp, 
-  Check, 
-  ShieldCheck, 
-  Terminal, 
-  BellRing
+  CheckCircle2, 
+  Eye, 
+  Workflow, 
+  Sliders
 } from 'lucide-react';
 
 export const IndicatorSystemSection: React.FC = () => {
-  const [selectedProductIndex, setSelectedProductIndex] = useState(0);
-  const currentProduct = INDICATOR_PRODUCTS[selectedProductIndex];
+  const [activeLayerId, setActiveLayerId] = useState<string>('all');
+
+  const selectedLayer = SYSTEM_LAYERS.find(l => l.id === activeLayerId) || SYSTEM_LAYERS[0];
 
   return (
-    <section id="indicator-system" className="relative py-24 sm:py-32 overflow-hidden bg-tech-grid border-t border-white/[0.06]">
+    <section id="indicator-system" className="relative py-28 sm:py-36 overflow-hidden bg-[#05070B] border-t border-white/[0.06]">
       
-      {/* Subtle Radial Environment Lighting */}
+      {/* Subtle Atmospheric Lighting */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-3xl opacity-60" />
-        <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[140px] opacity-50" />
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[140px] opacity-40" />
       </div>
 
       <div className="relative max-w-[1360px] mx-auto px-4 sm:px-8 w-full min-w-0">
         
-        {/* Section Header */}
+        {/* Section Header - Serious, Minimal, Art-Directed */}
         <div className="max-w-3xl mb-12 sm:mb-16 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated/90 border border-white/[0.1] text-xs font-mono text-brand-accent mb-4">
             <Layers className="size-3 text-brand-accent shrink-0" />
-            <span>INDICATOR ECOSYSTEM</span>
+            <span>THE UNIFIED INDICATOR SYSTEM</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight mb-4">
-            Three specialized tools.<br />
+            One unified system.<br />
             <span className="bg-gradient-to-r from-white via-text-primary to-text-muted bg-clip-text text-transparent">
-              One coherent trading system.
+              Four analytical layers.
             </span>
           </h2>
 
           <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
-            Rather than overloading charts with redundant indicators, AlgoFinex delivers three harmonized tools. Each serves a distinct phase in your analysis: defining structural bias, filtering trend health, and validating bar-close execution.
+            Rather than loading isolated indicators that generate contradictory signals, AlgoFinex operates as a single coordinated system. Each layer isolates a distinct structural dimension, stacking into a clean, decisive market picture.
           </p>
         </div>
 
-        {/* Large-Scale Interactive Showcase Canvas (FinanceX Inspiration) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-14 w-full min-w-0">
+        {/* Multi-Layer System Control Bar */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 w-full">
+          <button
+            onClick={() => setActiveLayerId('all')}
+            className={`px-4 sm:px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 whitespace-nowrap shrink-0 ${
+              activeLayerId === 'all'
+                ? 'bg-brand-blue text-white shadow-glow-blue border border-brand-blue'
+                : 'bg-surface-elevated text-text-secondary hover:text-white border border-white/[0.08]'
+            }`}
+          >
+            <Sliders className="size-4 shrink-0" />
+            <span>Full Composite System (All Layers)</span>
+          </button>
+
+          {SYSTEM_LAYERS.map((layer) => (
+            <button
+              key={layer.id}
+              onClick={() => setActiveLayerId(layer.id)}
+              className={`px-4 sm:px-5 py-2.5 rounded-xl font-mono text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 whitespace-nowrap shrink-0 ${
+                activeLayerId === layer.id
+                  ? 'bg-brand-blue text-white shadow-glow-blue border border-brand-blue'
+                  : 'bg-surface-elevated text-text-secondary hover:text-white border border-white/[0.08]'
+              }`}
+            >
+              <span className="size-2 rounded-full" style={{ backgroundColor: layer.color }} />
+              <span>{layer.number}. {layer.name}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Large-Scale System Architectural Showcase */}
+        <div className="rounded-2xl md:rounded-3xl border border-white/[0.1] bg-[#080C14] shadow-terminal overflow-hidden grid grid-cols-1 lg:grid-cols-12 w-full min-w-0 mb-12">
           
-          {/* Left Column: Product Selector Tabs (4 cols on lg) */}
-          <div className="lg:col-span-4 flex flex-col gap-3 justify-center">
-            {INDICATOR_PRODUCTS.map((prod, idx) => {
-              const isSelected = idx === selectedProductIndex;
-              return (
-                <button
-                  key={prod.id}
-                  onClick={() => setSelectedProductIndex(idx)}
-                  className={`p-4 sm:p-5 rounded-2xl text-left transition-all duration-200 border relative overflow-hidden group ${
-                    isSelected
-                      ? 'bg-surface-elevated/90 border-brand-blue/50 shadow-panel'
-                      : 'bg-surface/40 border-white/[0.06] hover:bg-surface-elevated/50 hover:border-white/[0.14]'
-                  }`}
-                >
-                  {/* Active Indicator Left Accent Line */}
-                  {isSelected && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-blue" />
-                  )}
+          {/* Left Column: Visual Layer Stack Schematic (7 cols on lg) */}
+          <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08] relative min-h-[460px]">
+            
+            {/* Schematic Top Status Strip */}
+            <div className="flex items-center justify-between text-xs font-mono text-text-muted pb-4 border-b border-white/[0.06] mb-6">
+              <div className="flex items-center gap-2">
+                <span className="size-2 rounded-full bg-signal-bull animate-pulse" />
+                <span className="text-white font-bold">SYSTEM ARCHITECTURE SCHEMATIC</span>
+              </div>
+              <span className="text-text-dim hidden sm:inline">Modular Confluence Engine</span>
+            </div>
 
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-brand-accent font-semibold">
-                      {prod.badge}
-                    </span>
-                    <span className="text-[11px] font-mono text-text-dim">
-                      0{idx + 1}
-                    </span>
+            {/* Interactive Layer Visualizer */}
+            <div className="space-y-3.5 my-auto">
+              {SYSTEM_LAYERS.map((layer) => {
+                const isFocused = activeLayerId === 'all' || activeLayerId === layer.id;
+
+                return (
+                  <div
+                    key={layer.id}
+                    onClick={() => setActiveLayerId(layer.id)}
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-200 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                      isFocused
+                        ? 'bg-surface-elevated/90 border-white/[0.16] shadow-panel'
+                        : 'bg-surface/30 border-white/[0.04] opacity-40 hover:opacity-80'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div 
+                        className="size-9 rounded-xl flex items-center justify-center font-mono font-bold text-xs shrink-0"
+                        style={{ backgroundColor: `${layer.color}20`, color: layer.color, border: `1px solid ${layer.color}40` }}
+                      >
+                        {layer.number}
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm sm:text-base font-display font-bold text-white tracking-tight">
+                            {layer.name}
+                          </h4>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-text-dim uppercase">
+                            {layer.badge}
+                          </span>
+                        </div>
+                        <p className="text-xs text-text-secondary mt-0.5 line-clamp-1">
+                          {layer.tagline}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="text-[11px] font-mono text-right text-text-muted shrink-0 flex items-center sm:flex-col sm:items-end justify-between">
+                      <span className="text-text-dim text-[10px]">CHART ELEMENT:</span>
+                      <span className="text-white font-semibold">{layer.inChartElement}</span>
+                    </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <h3 className="text-base sm:text-lg font-display font-bold text-white group-hover:text-brand-accent transition-colors">
-                    {prod.name}
-                  </h3>
-
-                  <p className="text-xs text-text-muted mt-1 leading-normal line-clamp-2">
-                    {prod.tagline}
-                  </p>
-                </button>
-              );
-            })}
+            {/* Schematic Footer Principle */}
+            <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-text-muted mt-6">
+              <span>Confluence Principle:</span>
+              <span className="text-text-primary">Signals validate only when all active layers agree</span>
+            </div>
           </div>
 
-          {/* Right Column: Dominant Interactive Visual & Feature Deep Dive (8 cols on lg) */}
-          <div className="lg:col-span-8 rounded-2xl md:rounded-3xl border border-white/[0.1] bg-canvas/90 backdrop-blur-xl shadow-terminal p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[460px]">
-            
+          {/* Right Column: Layer Technical Inspector (5 cols on lg) */}
+          <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-[#06080E] gap-6">
             <AnimatePresence mode="wait">
               <motion.div
-                key={currentProduct.id}
-                initial={{ opacity: 0, y: 10 }}
+                key={activeLayerId}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2 }}
-                className="flex flex-col justify-between h-full gap-6"
+                className="flex flex-col gap-6"
               >
-                {/* Product Detail Top Header */}
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-brand-blue/15 text-brand-accent border border-brand-blue/30">
-                      {currentProduct.badge}
-                    </span>
-                    <span className="text-xs font-mono text-text-muted">
-                      Native TradingView Script (Pine Script v5)
-                    </span>
+                  <div className="flex items-center gap-2 text-xs font-mono text-brand-accent uppercase tracking-wider font-semibold mb-2">
+                    <Eye className="size-3.5" />
+                    <span>Layer {selectedLayer.number} • {selectedLayer.badge}</span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight">
-                    {currentProduct.name}
+                  <h3 className="text-2xl font-display font-bold text-white tracking-tight">
+                    {activeLayerId === 'all' ? 'Unified Composite Engine' : selectedLayer.name}
                   </h3>
 
-                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed mt-2">
-                    {currentProduct.description}
+                  <p className="text-sm text-text-secondary leading-relaxed mt-3">
+                    {activeLayerId === 'all' 
+                      ? 'The complete AlgoFinex indicator system layers market structure, resting liquidity, adaptive trend clouds, and bar-close execution confirmation into one clean charting interface.'
+                      : selectedLayer.description}
                   </p>
                 </div>
 
-                {/* Simulated Product Visual Snapshot */}
-                <div className="p-4 sm:p-5 rounded-xl bg-surface-elevated/80 border border-white/[0.08] relative overflow-hidden">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-text-muted mb-3 pb-2 border-b border-white/[0.06]">
-                    <div className="flex items-center gap-2">
-                      <span className="size-2 rounded-full bg-signal-bull" />
-                      <span className="text-white font-semibold">Workflow Role:</span>
-                      <span className="text-text-secondary">{currentProduct.role}</span>
-                    </div>
-                    <span className="text-brand-accent hidden sm:inline">Active Suite Layer</span>
+                {/* Core Capabilities */}
+                <div className="p-4 rounded-xl bg-surface/70 border border-white/[0.06]">
+                  <div className="text-[11px] font-mono text-text-muted uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                    <Workflow className="size-3.5 text-brand-accent" />
+                    <span>Analytical Capabilities:</span>
                   </div>
-
-                  {/* Feature Check Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    {currentProduct.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-text-primary font-mono">
-                        <div className="p-1 rounded bg-brand-blue/15 text-brand-accent shrink-0">
-                          <Check className="size-3" />
-                        </div>
-                        <span>{feat}</span>
-                      </div>
+                  <ul className="flex flex-col gap-2">
+                    {selectedLayer.capabilities.map((cap, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-text-primary leading-normal">
+                        <CheckCircle2 className="size-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{cap}</span>
+                      </li>
                     ))}
+                  </ul>
+                </div>
+
+                {/* Decision Role */}
+                <div className="p-4 rounded-xl bg-surface-elevated/70 border border-white/[0.06] text-xs font-mono">
+                  <div className="text-[10px] text-text-dim uppercase tracking-wider mb-1">
+                    Workflow Role
+                  </div>
+                  <div className="text-white font-medium leading-relaxed">
+                    {selectedLayer.role}
                   </div>
                 </div>
-
-                {/* Technical Specifications Strip */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
-                  {currentProduct.techSpecs.map((spec, idx) => (
-                    <div key={idx} className="p-3 rounded-lg bg-surface/60 border border-white/[0.04]">
-                      <div className="text-[10px] text-text-muted uppercase">{spec.label}</div>
-                      <div className="font-semibold text-white mt-0.5 text-[11px] truncate">{spec.value}</div>
-                    </div>
-                  ))}
-                </div>
-
               </motion.div>
             </AnimatePresence>
 
-          </div>
-
-        </div>
-
-        {/* Secondary Architectural Foundation Modules */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-          
-          <div className="p-5 rounded-2xl bg-surface/40 border border-white/[0.06] flex flex-col justify-between gap-3">
-            <div className="p-2.5 rounded-xl bg-brand-blue/10 text-brand-blue w-fit">
-              <ShieldCheck className="size-5" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-white font-mono">Zero Repaint Logic</h4>
-              <p className="text-xs text-text-secondary mt-1 leading-normal">
-                Every calculation executes strictly at candle close. Markers will never shift or disappear retroactively.
-              </p>
-            </div>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-surface/40 border border-white/[0.06] flex flex-col justify-between gap-3">
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 w-fit">
-              <Terminal className="size-5" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-white font-mono">Pine Script v5 Engine</h4>
-              <p className="text-xs text-text-secondary mt-1 leading-normal">
-                Written natively in optimized Pine Script v5 for instantaneous chart rendering with zero browser overhead.
-              </p>
-            </div>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-surface/40 border border-white/[0.06] flex flex-col justify-between gap-3">
-            <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 w-fit">
-              <TrendingUp className="size-5" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-white font-mono">Multi-Asset Agnostic</h4>
-              <p className="text-xs text-text-secondary mt-1 leading-normal">
-                Calculates structural order flow identically across Crypto, Forex, Stock Indices, and Commodities.
-              </p>
-            </div>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-surface/40 border border-white/[0.06] flex flex-col justify-between gap-3">
-            <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 w-fit">
-              <BellRing className="size-5" />
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-white font-mono">Instant Alert Webhooks</h4>
-              <p className="text-xs text-text-secondary mt-1 leading-normal">
-                Deploy automated webhooks to Discord, Telegram, or custom execution bots on verified bar-close alerts.
-              </p>
+            <div className="pt-4 border-t border-white/[0.06] text-[11px] font-mono text-text-dim">
+              Integrated indicator system. No contradictory standalone scripts.
             </div>
           </div>
 

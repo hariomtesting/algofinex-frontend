@@ -16,19 +16,36 @@ export interface ExperienceModeData {
   }[];
 }
 
-export interface IndicatorProduct {
-  id: string;
+export interface SystemLayer {
+  id: 'structure' | 'liquidity' | 'trend' | 'confirmation';
+  number: string;
   name: string;
   badge: string;
   tagline: string;
   description: string;
   role: string;
-  features: string[];
-  techSpecs: {
-    label: string;
-    value: string;
-  }[];
-  accentColor: string;
+  capabilities: string[];
+  inChartElement: string;
+  color: string;
+}
+
+export interface WorkflowJourneyStep {
+  step: string;
+  phase: string;
+  title: string;
+  tagline: string;
+  description: string;
+  traderMindset: string;
+  visualState: 'noise' | 'structure' | 'context' | 'setup' | 'execution';
+}
+
+export interface RoutineStep {
+  num: string;
+  phase: string;
+  title: string;
+  objective: string;
+  rule: string;
+  status: string;
 }
 
 export interface SessionPillar {
@@ -38,13 +55,4 @@ export interface SessionPillar {
   description: string;
   focusItems: string[];
   outcome: string;
-}
-
-export interface WorkflowStage {
-  step: string;
-  label: string;
-  title: string;
-  description: string;
-  badge: string;
-  status: 'noise' | 'structure' | 'signal' | 'execution';
 }
