@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import { ChevronRight, Menu, X } from 'lucide-react';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  onOpenPortal?: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handlePortalClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onOpenPortal) {
+      onOpenPortal();
+    }
+  };
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-md bg-white/90 border-b border-black/[0.06] w-full">
@@ -37,7 +48,7 @@ export const Navbar: React.FC = () => {
             Indicators
           </a>
           <a
-            href="#workflow"
+            href="#methodology"
             className="hover:text-slate-900 transition-colors duration-150"
           >
             Methodology
@@ -61,15 +72,15 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-5">
-          <a
-            href="#signin"
-            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          <button
+            onClick={handlePortalClick}
+            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
           >
             Client Portal
-          </a>
+          </button>
 
           <a
-            href="#session"
+            href="#pricing"
             className="group inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white bg-brand-blue hover:bg-brand-cobalt transition-all duration-150 shadow-sm"
           >
             <span>Join 3-Day Session</span>
@@ -125,20 +136,22 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-3 border-t border-slate-200 flex flex-col gap-2.5">
             <a
-              href="#session"
+              href="#pricing"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold text-white bg-brand-blue hover:bg-brand-cobalt transition-colors"
             >
               <span>Join 3-Day Session</span>
               <ChevronRight className="size-4" />
             </a>
-            <a
-              href="#signin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-2 text-center text-sm font-medium text-slate-600 hover:text-slate-900"
+            <button
+              onClick={(e) => {
+                setMobileMenuOpen(false);
+                handlePortalClick(e);
+              }}
+              className="w-full py-2 text-center text-sm font-medium text-slate-600 hover:text-slate-900 cursor-pointer"
             >
               Client Portal
-            </a>
+            </button>
           </div>
         </div>
       )}

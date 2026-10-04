@@ -44,8 +44,11 @@ export const IndicatorSystemSection: React.FC = () => {
   const isConfirmationVisible = activeLayer === 'all' || activeLayer === 'confirmation';
 
   return (
-    <section id="indicator-system" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#EDF2F7] border-t border-black/[0.06] bg-blueprint-grid">
+    <section id="methodology" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#EDF2F7] border-t border-black/[0.06] bg-blueprint-grid">
       
+      {/* Anchor for alternate nav link */}
+      <span id="indicator-system" className="absolute -top-20" />
+
       {/* Architectural Blueprint Ambience */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/3 right-1/4 w-[800px] h-[800px] bg-blue-100/40 rounded-full blur-[180px] opacity-60" />
@@ -62,20 +65,22 @@ export const IndicatorSystemSection: React.FC = () => {
           <div className="lg:col-span-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
               <Layers className="size-3 text-brand-blue shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">Coordinated System Architecture</span>
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">
+                SECTION 04 • THE ALGOFINEX METHODOLOGY
+              </span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.05]">
               Four analytical layers.<br />
               <span className="text-brand-blue">
-                One unified instrument.
+                One unified visual method.
               </span>
             </h2>
           </div>
 
           <div className="lg:col-span-5 text-left flex flex-col justify-end">
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
-              Instead of loading disjointed indicators that contradict one another, AlgoFinex operates as a single coordinated instrument. Every layer isolates one structural dimension and validates before execution.
+              Instead of loading disjointed indicators that contradict one another, the AlgoFinex method operates as a single coordinated system. Four spatial concepts intersect on one chart: Structure establishes boundaries, Liquidity reveals resting orders, Trend measures momentum, and Confirmation locks execution.
             </p>
 
             {/* Layer Confluence Principle */}
