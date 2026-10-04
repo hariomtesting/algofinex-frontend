@@ -61,12 +61,8 @@ export const Hero: React.FC = () => {
 
             {/* Explicit Product Deliverable Badge */}
             <div className="mt-3 text-[11px] font-mono text-slate-500 flex items-center gap-2 flex-wrap">
-              <span className="px-2 py-0.5 rounded bg-white border border-black/[0.08] text-slate-800 font-semibold shadow-2xs">
-                TradingView Pine Script v5
-              </span>
-              <span>+</span>
-              <span className="px-2 py-0.5 rounded bg-white border border-black/[0.08] text-brand-blue font-semibold shadow-2xs">
-                Live 3-Day Masterclass
+              <span className="px-2.5 py-1 rounded bg-white border border-black/[0.08] text-slate-800 font-semibold shadow-2xs tracking-wide">
+                TRADINGVIEW INDICATOR SUITE &middot; 3-DAY LIVE SESSION
               </span>
             </div>
 

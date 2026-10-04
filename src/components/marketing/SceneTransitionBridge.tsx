@@ -355,8 +355,8 @@ export const SceneTransitionBridge: React.FC = () => {
                         <g>
                           <path d="M 20 65 L 120 55 L 200 65 L 280 35 L 380 20" fill="none" stroke="#059669" strokeWidth="3" />
                           <circle cx="280" cy="35" r="5" fill="#059669" />
-                          <rect x="230" y="46" width="100" height="22" rx="4" fill="#ECFDF5" stroke="#059669" strokeWidth="1.2" />
-                          <text x="280" y="60" fill="#047857" fontSize="9" textAnchor="middle" fontWeight="bold">▲ ENTRY CONFIRMED</text>
+                          <rect x="225" y="46" width="110" height="22" rx="4" fill="#ECFDF5" stroke="#059669" strokeWidth="1.2" />
+                          <text x="280" y="60" fill="#047857" fontSize="9" textAnchor="middle" fontWeight="bold">CONFIRMATION</text>
                         </g>
                       )}
                     </svg>
@@ -386,14 +386,14 @@ export const SceneTransitionBridge: React.FC = () => {
         <div className="mt-12 flex flex-col items-center gap-2.5 text-slate-500 text-xs font-mono">
           <div className="flex items-center gap-3">
             <span className="h-px w-10 bg-slate-300" />
-            <span className="tracking-wider uppercase text-[11px] font-semibold text-slate-600">The Resulting Operational Routine</span>
+            <span className="tracking-wider uppercase text-[11px] font-semibold text-slate-600">From Understanding Market Structure to Applying a Disciplined Routine</span>
             <span className="h-px w-10 bg-slate-300" />
           </div>
           <a
             href="#session"
             className="group inline-flex items-center gap-1.5 text-xs text-brand-blue font-semibold hover:text-blue-800 transition-colors pt-1"
           >
-            <span>Proceed to 3-Day Session Experience</span>
+            <span>Apply the Process in the 3-Day Session</span>
             <ArrowDown className="size-3.5 transition-transform group-hover:translate-y-0.5" />
           </a>
         </div>

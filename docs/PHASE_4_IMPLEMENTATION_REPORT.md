@@ -26,7 +26,7 @@ Phase 4 completes the **Conversion + Experience Architecture Pass** for the Algo
 
 | Section | Key Experience & UX Enhancements Applied |
 | :--- | :--- |
-| **Section 01 — Hero** | Added explicit deliverable badge (`TradingView Pine Script v5 + Live 3-Day Masterclass`) directly below subhead to immediately answer *"What do I receive?"* within the first 5 seconds. |
+| **Section 01 — Hero** | Added concise deliverable descriptor (`TRADINGVIEW INDICATOR SUITE · 3-DAY LIVE SESSION`) directly below subhead to immediately answer *"What do I receive?"* within the first 5 seconds without technical clutter or 'Invite-Only' claims. |
 | **Section 02 — Product Reveal** | Sharpened progressive lens filters (`RAW` → `STRUCTURE` → `LIQUIDITY` → `TREND` → `CONFIRMATION`). Clarified that overlays demonstrate analytical context rather than guaranteed trading instructions. |
 | **Section 03 — Market Understanding** | Refined 3-phase discipline stepper (`Read the Market` → `Build Context` → `Make a Plan`) with smooth tab transitions and clear deliverables output list. |
 | **Section 04 — Methodology** | Focused blue-print canvas workspace on integrating all 4 analytical strata into ONE unified instrument. |
@@ -88,3 +88,22 @@ dist/assets/index-UKFssFQe.js   431.66 kB │ gzip: 124.01 kB
 - **TypeScript Compilation:** Zero errors under strict mode (`tsc`).
 - **Asset Optimization:** Production bundle minified and gzip-optimized.
 - **Console Audit:** Zero runtime console errors.
+
+---
+
+## 6. UI Director Review & Corrections Applied
+
+1. **Hero Deliverable Micro-Copy**:
+   - Approved clean descriptor: `TRADINGVIEW INDICATOR SUITE · 3-DAY LIVE SESSION`.
+   - Removed technical implementation details (`Pine Script v5`) and unnecessary terms (`Invite-Only`) from primary marketing copy.
+
+2. **Section Role Preservation**:
+   - **Product Reveal**: Demonstrates *progressive revelation* of 5 clarity lenses.
+   - **Methodology**: Shows *one integrated analytical instrument* on blueprint canvas.
+   - **Principles**: Unboxed, monumental manifesto communicating *operational discipline*.
+
+3. **Workflow → Session Transition Bridge**:
+   - Strengthened transition copy: *"From understanding market structure to applying a disciplined execution routine"* leading into the 3-Day Session.
+
+4. **Prototype Pricing Disclaimer**:
+   - Prototype prices (`$69/mo`, `$89/mo`, `$495`, `$645`) are designated as prototype data (`// PROTOTYPE DATA — REPLACE BEFORE PRODUCTION`). No fake scarcity or fake commercial urgency introduced.
