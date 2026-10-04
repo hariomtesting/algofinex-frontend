@@ -8,21 +8,23 @@ export const Navbar: React.FC = () => {
     <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-md bg-white/90 border-b border-black/[0.06] w-full">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between gap-6 w-full min-w-0">
         
-        {/* Brand Mark */}
+        {/* Brand Mark: Proprietary Geometric Coordinate Glyph + Tight Editorial Wordmark */}
         <a href="/" className="flex items-center gap-2.5 group focus:outline-none rounded-md shrink-0">
-          <div className="size-8 rounded-lg bg-slate-900 flex items-center justify-center overflow-hidden shadow-sm">
+          <div className="size-7 sm:size-8 rounded-lg bg-brand-blue flex items-center justify-center shadow-xs transition-transform duration-200 group-hover:scale-[1.03]">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M4 18L10 8L14 14L20 6" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="20" cy="6" r="2.2" fill="#059669" />
+              {/* Intersecting technical coordinates */}
+              <line x1="3" y1="20" x2="21" y2="20" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
+              <line x1="4" y1="20" x2="4" y2="4" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
+              {/* Upward 45-degree structural ray */}
+              <path d="M4 17L11 10L15 14L20 6" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="20" cy="6" r="2.2" fill="#FFFFFF" />
             </svg>
           </div>
-          <div className="flex flex-col">
-            <span className="font-display font-bold tracking-tight text-slate-900 text-base leading-none group-hover:text-brand-blue transition-colors">
-              ALGOFINEX
+          <div className="flex items-baseline">
+            <span className="font-display font-bold tracking-[-0.03em] text-slate-900 text-lg leading-none">
+              Algo<span className="text-slate-600 font-semibold">Finex</span>
             </span>
-            <span className="text-[9px] font-mono tracking-widest text-slate-500 mt-1 uppercase font-semibold">
-              INDICATORS &amp; WORKFLOW
-            </span>
+            <span className="size-1 rounded-full bg-brand-blue ml-0.5" />
           </div>
         </a>
 

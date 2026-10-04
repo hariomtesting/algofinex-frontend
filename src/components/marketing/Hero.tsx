@@ -37,12 +37,12 @@ export const Hero: React.FC = () => {
             {/* Editorial Eyebrow Tag */}
             <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-6 w-fit shadow-xs">
               <span className="size-2 rounded-full bg-brand-blue animate-pulse shrink-0" />
-              <span className="tracking-widest uppercase font-semibold text-[10px] sm:text-[11px] text-slate-600">
-                ALGOFINEX // ANALYTICAL SUITE
+              <span className="tracking-wider uppercase font-semibold text-[10px] sm:text-[11px] text-slate-600">
+                ALGOFINEX • ANALYTICAL SUITE
               </span>
               <span className="text-slate-300 shrink-0">•</span>
-              <span className="text-slate-900 text-[11px] font-medium truncate">
-                3-Day Session Open
+              <span className="text-brand-blue text-[11px] font-semibold truncate">
+                October Cohort Open
               </span>
             </div>
 
@@ -107,7 +107,7 @@ export const Hero: React.FC = () => {
             <div className="mb-3 flex items-center justify-between text-xs font-mono text-slate-500 px-2">
               <div className="flex items-center gap-2">
                 <Sliders className="size-3.5 text-brand-blue" />
-                <span className="text-slate-800 font-semibold">LIVE INTERACTIVE WORKSTATION</span>
+                <span className="text-slate-900 font-semibold">Interactive Workstation Preview</span>
               </div>
               <div className="text-[11px] text-slate-400 hidden sm:inline">
                 Select analytical mode to inspect chart overlays

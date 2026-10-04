@@ -62,7 +62,7 @@ export const IndicatorSystemSection: React.FC = () => {
           <div className="lg:col-span-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
               <Layers className="size-3 text-brand-blue shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">COORDINATED SYSTEM ARCHITECTURE</span>
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">Coordinated System Architecture</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.05]">
@@ -158,7 +158,7 @@ export const IndicatorSystemSection: React.FC = () => {
             <div className="flex items-center gap-3">
               <span className="size-2 rounded-full bg-brand-blue animate-pulse" />
               <span className="font-bold text-slate-900 tracking-wide">
-                ALGOFINEX COMPOSITE INSTRUMENT
+                AlgoFinex Composite Instrument
               </span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-white text-slate-600 border border-black/[0.08] uppercase shadow-2xs">
                 {activeLayer === 'all' ? 'All 4 Strata Active' : `Strata: ${activeLayer.toUpperCase()}`}
@@ -170,22 +170,22 @@ export const IndicatorSystemSection: React.FC = () => {
               <span className={`px-2 py-0.5 rounded border transition-colors ${
                 isStructureVisible ? 'bg-blue-50 text-brand-blue border-blue-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
               }`}>
-                01. STRUCTURE
+                01. Structure
               </span>
               <span className={`px-2 py-0.5 rounded border transition-colors ${
                 isLiquidityVisible ? 'bg-purple-50 text-purple-700 border-purple-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
               }`}>
-                02. LIQUIDITY
+                02. Liquidity
               </span>
               <span className={`px-2 py-0.5 rounded border transition-colors ${
                 isTrendVisible ? 'bg-emerald-50 text-emerald-700 border-emerald-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
               }`}>
-                03. TREND
+                03. Trend
               </span>
               <span className={`px-2 py-0.5 rounded border transition-colors ${
                 isConfirmationVisible ? 'bg-amber-50 text-amber-700 border-amber-200 font-semibold' : 'bg-slate-50 text-slate-400 border-transparent'
               }`}>
-                04. CONFIRMATION
+                04. Confirmation
               </span>
             </div>
           </div>
@@ -251,11 +251,11 @@ export const IndicatorSystemSection: React.FC = () => {
                           x={150}
                           y={yTop + 14}
                           fill={isDemand ? '#1D4ED8' : '#B91C1C'}
-                          fontSize="9.5"
+                          fontSize="9"
                           fontFamily="monospace"
                           fontWeight="700"
                         >
-                          {ob.label} [Institutional Liquidity Zone]
+                          {ob.label} [Resting Pool]
                         </text>
                       </g>
                     );
@@ -273,8 +273,8 @@ export const IndicatorSystemSection: React.FC = () => {
                   <path
                     d={`M ${ema21Points}`}
                     fill="none"
-                    stroke="#2563EB"
-                    strokeWidth="2.5"
+                    stroke="#1D4ED8"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                   />
                   <path
@@ -320,35 +320,96 @@ export const IndicatorSystemSection: React.FC = () => {
                       strokeWidth={isBull ? '1.2' : '1'}
                     />
 
-                    {/* Layer 1: Structure Overlays */}
+                    {/* Layer 1: Structure Overlays - Precision Pins */}
                     {isStructureVisible && (
                       <>
                         {isHighPivot && (
                           <g>
-                            <circle cx={x} cy={yHigh - 8} r="3" fill="#2563EB" />
-                            <text x={x} y={yHigh - 14} textAnchor="middle" fill="#1D4ED8" fontSize="8.5" fontFamily="monospace" fontWeight="700">
-                              HH
+                            <circle cx={x} cy={yHigh - 6} r="3" fill="#1D4ED8" />
+                            <line x1={x} y1={yHigh - 16} x2={x} y2={yHigh - 6} stroke="#1D4ED8" strokeWidth="1.2" />
+                            <rect
+                              x={x - 26}
+                              y={yHigh - 28}
+                              width="52"
+                              height="14"
+                              rx="3"
+                              fill="#FFFFFF"
+                              stroke="#1D4ED8"
+                              strokeWidth="1"
+                            />
+                            <text
+                              x={x}
+                              y={yHigh - 18}
+                              textAnchor="middle"
+                              fill="#1D4ED8"
+                              fontSize="8"
+                              fontFamily="monospace"
+                              fontWeight="700"
+                            >
+                              HH 67,400
                             </text>
                           </g>
                         )}
                         {isLowPivot && (
                           <g>
-                            <circle cx={x} cy={yLow + 8} r="3" fill="#059669" />
-                            <text x={x} y={yLow + 18} textAnchor="middle" fill="#047857" fontSize="8.5" fontFamily="monospace" fontWeight="700">
-                              HL
+                            <circle cx={x} cy={yLow + 6} r="3" fill="#059669" />
+                            <line x1={x} y1={yLow + 6} x2={x} y2={yLow + 16} stroke="#059669" strokeWidth="1.2" />
+                            <rect
+                              x={x - 26}
+                              y={yLow + 16}
+                              width="52"
+                              height="14"
+                              rx="3"
+                              fill="#FFFFFF"
+                              stroke="#059669"
+                              strokeWidth="1"
+                            />
+                            <text
+                              x={x}
+                              y={yLow + 26}
+                              textAnchor="middle"
+                              fill="#047857"
+                              fontSize="8"
+                              fontFamily="monospace"
+                              fontWeight="700"
+                            >
+                              HL 66,100
                             </text>
                           </g>
                         )}
                         {isBOSCandle && (
-                          <line
-                            x1={x - 80}
-                            y1={getY(67400)}
-                            x2={x + 80}
-                            y2={getY(67400)}
-                            stroke="#2563EB"
-                            strokeWidth="1.5"
-                            strokeDasharray="4 2"
-                          />
+                          <g>
+                            <line
+                              x1={x - 90}
+                              y1={getY(67400)}
+                              x2={x + 50}
+                              y2={getY(67400)}
+                              stroke="#1D4ED8"
+                              strokeWidth="1.5"
+                              strokeDasharray="4 2"
+                            />
+                            <rect
+                              x={x - 30}
+                              y={getY(67400) - 18}
+                              width="60"
+                              height="15"
+                              rx="3"
+                              fill="#FFFFFF"
+                              stroke="#1D4ED8"
+                              strokeWidth="1"
+                            />
+                            <text
+                              x={x}
+                              y={getY(67400) - 7}
+                              textAnchor="middle"
+                              fill="#1D4ED8"
+                              fontSize="8"
+                              fontFamily="monospace"
+                              fontWeight="700"
+                            >
+                              BOS ▲
+                            </text>
+                          </g>
                         )}
                       </>
                     )}
@@ -410,6 +471,55 @@ export const IndicatorSystemSection: React.FC = () => {
                     </g>
                   );
                 })}
+
+              {/* Right Price Scale Axis Divider */}
+              <line
+                x1={chartWidth - 50}
+                y1="0"
+                x2={chartWidth - 50}
+                y2={chartHeight - 20}
+                stroke="rgba(15, 23, 42, 0.08)"
+                strokeWidth="1"
+              />
+
+              {/* Bottom Time Axis Baseline */}
+              <line
+                x1="0"
+                y1={chartHeight - 20}
+                x2={chartWidth - 50}
+                y2={chartHeight - 20}
+                stroke="rgba(15, 23, 42, 0.08)"
+                strokeWidth="1"
+              />
+
+              {/* Bottom Time Axis Ticks */}
+              {[0, 4, 8, 12, 16, 19].map((candleIdx) => {
+                const candle = BTC_15M_CANDLES[candleIdx];
+                if (!candle) return null;
+                const x = (candleIdx + 1) * stepX;
+                return (
+                  <g key={candleIdx}>
+                    <line
+                      x1={x}
+                      y1={chartHeight - 20}
+                      x2={x}
+                      y2={chartHeight - 15}
+                      stroke="rgba(15, 23, 42, 0.2)"
+                      strokeWidth="1"
+                    />
+                    <text
+                      x={x}
+                      y={chartHeight - 6}
+                      textAnchor="middle"
+                      fill="#94A3B8"
+                      fontSize="9"
+                      fontFamily="monospace"
+                    >
+                      {candle.time}
+                    </text>
+                  </g>
+                );
+              })}
             </svg>
 
           </div>
@@ -419,7 +529,7 @@ export const IndicatorSystemSection: React.FC = () => {
             
             <div className="lg:col-span-7 flex flex-col gap-2 text-left">
               <div className="text-[11px] font-mono text-brand-blue uppercase tracking-wider font-semibold">
-                {activeLayer === 'all' ? 'FULL SYSTEM CONFLUENCE' : `LAYER ${selectedLayerData.number}: ${selectedLayerData.name.toUpperCase()}`}
+                {activeLayer === 'all' ? 'Full System Confluence' : `Layer ${selectedLayerData.number}: ${selectedLayerData.name}`}
               </div>
               <h3 className="text-xl sm:text-2xl font-display font-bold text-slate-900 tracking-tight">
                 {activeLayer === 'all' ? 'All analytical layers working in strict alignment.' : selectedLayerData.tagline}

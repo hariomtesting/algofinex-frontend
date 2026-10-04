@@ -31,8 +31,8 @@ export const SessionSection: React.FC = () => {
             
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-6 w-fit shadow-xs">
               <Calendar className="size-3.5 text-brand-blue shrink-0" />
-              <span className="tracking-widest uppercase font-semibold text-[10px] sm:text-[11px] text-slate-600">
-                INTENSIVE COHORT // MASTERCLASS
+              <span className="tracking-wider uppercase font-semibold text-[10px] sm:text-[11px] text-slate-600">
+                Intensive Cohort Masterclass
               </span>
             </div>
 
@@ -54,7 +54,7 @@ export const SessionSection: React.FC = () => {
             <div className="mt-10 p-6 rounded-2xl bg-white border border-black/[0.08] shadow-sm flex flex-col gap-4 max-w-md">
               
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-500 uppercase tracking-wider">Cohort Intake</span>
+                <span className="text-slate-500 uppercase tracking-wider font-medium">Cohort Intake</span>
                 <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
                   <span className="size-1.5 rounded-full bg-signal-bull animate-ping" />
                   October Cohort Open
@@ -97,8 +97,8 @@ export const SessionSection: React.FC = () => {
               {/* Sculptural Object Title */}
               <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-black/[0.07] mb-6">
                 <div>
-                  <span className="text-[10px] font-mono text-brand-blue uppercase tracking-widest font-semibold block">
-                    THE SCULPTURAL PROTOCOL
+                  <span className="text-[10px] font-mono text-brand-blue uppercase tracking-wider font-semibold block">
+                    The Operational Protocol
                   </span>
                   <h3 className="text-xl sm:text-2xl font-display font-bold text-slate-900 tracking-tight mt-0.5">
                     The 7-Step Trader Routine Object
@@ -169,7 +169,7 @@ export const SessionSection: React.FC = () => {
                 >
                   <div className="flex items-center justify-between text-xs font-mono">
                     <span className="text-brand-blue font-semibold">
-                      STEP {activeStep.num} // {activeStep.phase.toUpperCase()}
+                      Step {activeStep.num} • {activeStep.phase}
                     </span>
                     <span className="text-emerald-700 font-bold text-[11px]">
                       {activeStep.status}
@@ -185,7 +185,7 @@ export const SessionSection: React.FC = () => {
                   </p>
 
                   <div className="mt-1 pt-3 border-t border-black/[0.06] text-xs font-mono">
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] text-slate-500 block mb-1 font-sans">
                       Non-Negotiable Execution Rule:
                     </span>
                     <div className="text-slate-900 font-semibold">

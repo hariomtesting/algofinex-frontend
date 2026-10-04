@@ -111,7 +111,7 @@ export const SceneTransitionBridge: React.FC = () => {
           <div className="lg:col-span-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
               <Workflow className="size-3 text-brand-blue shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">THE CONTINUOUS EXECUTION JOURNEY</span>
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">The Continuous Execution Journey</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.05]">
@@ -220,8 +220,8 @@ export const SceneTransitionBridge: React.FC = () => {
                 <div className="lg:col-span-7 flex flex-col gap-4 text-left">
                   
                   <div className="flex items-center gap-2.5 text-xs font-mono">
-                    <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold">
-                      STAGE {activeStage.step} // 07
+                    <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">
+                      Stage {activeStage.step} of 07
                     </span>
                     <span className="text-slate-300">•</span>
                     <span className="font-semibold uppercase tracking-wider" style={{ color: activeStage.statusColor }}>
@@ -239,7 +239,7 @@ export const SceneTransitionBridge: React.FC = () => {
 
                   {/* Non-Negotiable Cognitive Rule Box */}
                   <div className="mt-2 p-4 rounded-xl bg-slate-50 border border-black/[0.06] text-xs font-mono">
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-1">
+                    <span className="text-[10px] text-slate-500 block mb-1 font-sans">
                       Trader Cognitive Rule:
                     </span>
                     <div className="text-slate-900 font-semibold leading-relaxed text-sm">
@@ -253,7 +253,7 @@ export const SceneTransitionBridge: React.FC = () => {
                 <div className="lg:col-span-5 p-6 rounded-2xl bg-slate-50 border border-black/[0.06] font-mono text-xs flex flex-col gap-4">
                   
                   <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] text-[11px] text-slate-500">
-                    <span>SIGNAL ENTROPY LEVEL</span>
+                    <span>Signal Resolution State</span>
                     <span className="font-bold uppercase" style={{ color: activeStage.statusColor }}>
                       {activeStage.stateName}
                     </span>
@@ -370,7 +370,7 @@ export const SceneTransitionBridge: React.FC = () => {
 
         {/* Transition into 3-Day Session */}
         <div className="mt-14 flex flex-col items-center gap-2 text-slate-400 text-xs font-mono">
-          <span className="tracking-widest uppercase">THE RESULTING OPERATIONAL ROUTINE</span>
+          <span className="tracking-wider uppercase">The Resulting Operational Routine</span>
           <ArrowDown className="size-4 text-brand-blue animate-bounce" />
         </div>
 

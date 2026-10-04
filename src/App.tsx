@@ -35,13 +35,18 @@ export const App: React.FC = () => {
         <div className="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-brand-blue" />
-              <span className="font-semibold text-slate-900 tracking-wide">ALGOFINEX</span>
-              <span className="text-slate-500 text-[11px]">INDICATORS &amp; ANALYSIS</span>
+              <div className="size-5 rounded-md bg-brand-blue flex items-center justify-center shadow-2xs">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 17L11 10L15 14L20 6" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <span className="font-display font-bold text-slate-900 tracking-[-0.03em] text-sm">
+                Algo<span className="text-slate-600 font-medium">Finex</span>
+              </span>
             </div>
             <span className="hidden sm:inline text-slate-300">•</span>
-            <div className="text-slate-600 text-[11px]">
-              Multi-Layered Market Structure • 7-Step Trading Workflow
+            <div className="text-slate-500 text-[11px]">
+              Multi-Layered Market Structure &amp; 7-Step Trading Workflow
             </div>
           </div>
 

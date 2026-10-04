@@ -128,9 +128,11 @@ export const HeroProductTerminal: React.FC = () => {
 
         {/* Right Status Tag */}
         <div className="hidden lg:flex items-center gap-2">
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-[11px] font-mono text-slate-700">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            <span>SUITE v4.2 // SYNCHRONIZED</span>
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-[11px] font-mono text-slate-700 shadow-2xs">
+            <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-semibold text-slate-900">Synchronized</span>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-500">v4.2</span>
           </div>
         </div>
       </div>
@@ -138,9 +140,9 @@ export const HeroProductTerminal: React.FC = () => {
       {/* Layer Toggles Secondary Ribbon */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200/70 bg-slate-50/40 px-4 md:px-6 py-2 text-xs font-mono text-slate-600 gap-2">
         <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
-          <span className="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider flex items-center gap-1">
+          <span className="text-[10px] sm:text-[11px] text-slate-500 tracking-wide flex items-center gap-1 font-medium">
             <Eye className="size-3 text-slate-400" />
-            Overlays:
+            Active Lenses:
           </span>
           
           <button
@@ -418,13 +420,62 @@ export const HeroProductTerminal: React.FC = () => {
                   );
                 })}
 
+              {/* Right Price Scale Axis Divider */}
+              <line
+                x1={chartWidth - 58}
+                y1="0"
+                x2={chartWidth - 58}
+                y2={chartHeight - 20}
+                stroke="rgba(15, 23, 42, 0.08)"
+                strokeWidth="1"
+              />
+
+              {/* Bottom Time Axis Baseline */}
+              <line
+                x1="0"
+                y1={chartHeight - 20}
+                x2={chartWidth - 58}
+                y2={chartHeight - 20}
+                stroke="rgba(15, 23, 42, 0.08)"
+                strokeWidth="1"
+              />
+
+              {/* Bottom Time Axis Ticks */}
+              {[0, 4, 8, 12, 16, 19].map((candleIdx) => {
+                const candle = BTC_15M_CANDLES[candleIdx];
+                if (!candle) return null;
+                const x = (candleIdx + 1) * stepX;
+                return (
+                  <g key={candleIdx}>
+                    <line
+                      x1={x}
+                      y1={chartHeight - 20}
+                      x2={x}
+                      y2={chartHeight - 15}
+                      stroke="rgba(15, 23, 42, 0.2)"
+                      strokeWidth="1"
+                    />
+                    <text
+                      x={x}
+                      y={chartHeight - 6}
+                      textAnchor="middle"
+                      fill="#94A3B8"
+                      fontSize="9"
+                      fontFamily="monospace"
+                    >
+                      {candle.time}
+                    </text>
+                  </g>
+                );
+              })}
+
               {/* Price Beacon Line */}
               <line
                 x1="0"
                 y1={getY(68220)}
                 x2={chartWidth - 58}
                 y2={getY(68220)}
-                stroke="#2563EB"
+                stroke="#1D4ED8"
                 strokeWidth="1.5"
                 strokeDasharray="5 3"
               />
@@ -434,7 +485,7 @@ export const HeroProductTerminal: React.FC = () => {
                 width="56"
                 height="20"
                 rx="3"
-                fill="#2563EB"
+                fill="#1D4ED8"
               />
               <text
                 x={chartWidth - 30}
@@ -458,7 +509,8 @@ export const HeroProductTerminal: React.FC = () => {
               <span className="hidden sm:inline text-slate-400">• {indicatorData.trendContext}</span>
             </div>
             <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
-              <span>Interactive Analytical Workstation</span>
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              <span>Real-Time Analytical Canvas</span>
             </div>
           </div>
         </div>
@@ -468,11 +520,11 @@ export const HeroProductTerminal: React.FC = () => {
           
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold">
-                INDICATOR ANALYSIS
+              <span className="text-xs font-mono text-slate-500 tracking-wide font-medium">
+                Indicator Analysis
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-50 text-brand-blue border border-blue-200">
-                ACTIVE
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-blue-50 text-brand-blue border border-blue-200">
+                Active Lens
               </span>
             </div>
 
@@ -481,7 +533,7 @@ export const HeroProductTerminal: React.FC = () => {
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed">
-              Real-time structural mapping showing clean trend support, resting liquidity reclaim levels, and verified bar-close signals.
+              Structural mapping showing clean trend support, resting liquidity reclaim levels, and verified bar-close signals.
             </p>
           </div>
 
@@ -490,37 +542,37 @@ export const HeroProductTerminal: React.FC = () => {
             
             <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-slate-400 uppercase block">Market Structure</span>
+                <span className="text-[10px] text-slate-400 block font-sans">Market Structure</span>
                 <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.marketStructure}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                VALIDATED
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Validated
               </span>
             </div>
 
             <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-slate-400 uppercase block">Liquidity State</span>
+                <span className="text-[10px] text-slate-400 block font-sans">Liquidity State</span>
                 <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.liquidityState}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-brand-blue border border-blue-200">
-                SWEPT &amp; HELD
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-brand-blue border border-blue-200">
+                Swept &amp; Held
               </span>
             </div>
 
             <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-slate-400 uppercase block">Trend Context</span>
+                <span className="text-[10px] text-slate-400 block font-sans">Trend Context</span>
                 <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.trendContext}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
-                SUPPORT
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+                Support
               </span>
             </div>
 
             {/* Multi-Timeframe Alignment */}
             <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs">
-              <span className="text-[10px] text-slate-400 uppercase block mb-1.5">Multi-Timeframe Context</span>
+              <span className="text-[10px] text-slate-400 block mb-1.5 font-sans">Multi-Timeframe Context</span>
               <div className="grid grid-cols-3 gap-1.5 text-center text-[10px]">
                 <div className="p-1.5 rounded bg-slate-50 border border-slate-200/60">
                   <div className="text-slate-400 text-[9px]">4H Macro</div>

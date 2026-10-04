@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { EXPERIENCE_MODES } from '../../data/productExperienceData';
 import { BTC_15M_CANDLES, DEMO_ORDER_BLOCKS, DEMO_SIGNALS } from '../../data/mockChartData';
 import { ExperienceMode } from '../../types/productExperience';
@@ -8,11 +7,10 @@ import {
   Compass, 
   TrendingUp, 
   CheckCircle2, 
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
-  Activity,
-  Crosshair
+  Sparkles, 
+  ArrowRight, 
+  ShieldCheck, 
+  Activity 
 } from 'lucide-react';
 
 export const ProductRevealSection: React.FC = () => {
@@ -72,7 +70,7 @@ export const ProductRevealSection: React.FC = () => {
           <div className="lg:col-span-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
               <Sparkles className="size-3 text-brand-blue shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">THE PROGRESSIVE CLARITY SEQUENCE</span>
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">The Progressive Clarity Sequence</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.05]">
@@ -197,77 +195,7 @@ export const ProductRevealSection: React.FC = () => {
               <span>$65,800</span>
             </div>
 
-            {/* Floating Spatial Annotation HUD Badges (Positioned over key coordinates) */}
-            <AnimatePresence>
-              {activeMode === 'STRUCTURE' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25 }}
-                  className="pointer-events-none absolute inset-0 z-30"
-                >
-                  {/* High Pivot Callout */}
-                  <div className="absolute top-[22%] left-[28%] -translate-x-1/2 p-2 rounded-lg bg-white/95 border border-blue-200 shadow-md text-[11px] font-mono flex items-center gap-1.5 text-slate-800">
-                    <span className="size-1.5 rounded-full bg-brand-blue animate-ping" />
-                    <span className="text-brand-blue font-bold">HH:</span>
-                    <span>$67,400 Validated</span>
-                  </div>
-
-                  {/* Low Pivot Callout */}
-                  <div className="absolute bottom-[28%] left-[38%] -translate-x-1/2 p-2 rounded-lg bg-white/95 border border-emerald-300 shadow-md text-[11px] font-mono flex items-center gap-1.5 text-slate-800">
-                    <span className="size-1.5 rounded-full bg-emerald-600" />
-                    <span className="text-emerald-700 font-bold">HL:</span>
-                    <span>$66,100 Structural Support</span>
-                  </div>
-
-                  {/* BOS Callout */}
-                  <div className="absolute top-[22%] left-[58%] -translate-x-1/2 p-2 rounded-lg bg-white border border-brand-blue shadow-md text-[11px] font-mono flex items-center gap-1.5 text-slate-900">
-                    <Crosshair className="size-3 text-brand-blue" />
-                    <span className="font-extrabold text-brand-blue">BOS ▲</span>
-                    <span className="text-slate-500 text-[10px]">Break of Structure</span>
-                  </div>
-                </motion.div>
-              )}
-
-              {activeMode === 'LIQUIDITY' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25 }}
-                  className="pointer-events-none absolute inset-0 z-30"
-                >
-                  <div className="absolute bottom-[20%] left-[36%] -translate-x-1/2 p-2.5 rounded-xl bg-white border border-purple-300 shadow-md text-[11px] font-mono flex items-center gap-2 text-slate-900">
-                    <span className="size-2 rounded-full bg-purple-600 animate-pulse" />
-                    <span className="text-purple-700 font-bold">Sell-Side Swept &amp; Reclaimed</span>
-                  </div>
-
-                  <div className="absolute top-[32%] right-[22%] p-2 rounded-lg bg-white border border-black/[0.1] shadow-sm text-[10px] font-mono text-slate-600">
-                    <span>Unmitigated Resting Pool: </span>
-                    <strong className="text-slate-900">$68,200</strong>
-                  </div>
-                </motion.div>
-              )}
-
-              {activeMode === 'CONFIRMATION' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25 }}
-                  className="pointer-events-none absolute inset-0 z-30"
-                >
-                  <div className="absolute bottom-[35%] left-[54%] p-2.5 rounded-xl bg-white border border-emerald-400 shadow-md text-xs font-mono flex items-center gap-2 text-slate-900">
-                    <CheckCircle2 className="size-4 text-emerald-600" />
-                    <span className="text-emerald-700 font-bold">Bar-Close Trigger Confirmed</span>
-                    <span className="text-slate-500 text-[10px]">| Stop: $66,180</span>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* SVG Chart Drawing */}
+            {/* SVG Chart Drawing with Exact Mathematical Coordinate Pins */}
             <svg
               viewBox={`0 0 ${chartWidth} ${chartHeight}`}
               className="w-full h-auto max-w-[980px] overflow-visible select-none relative z-10"
@@ -314,11 +242,11 @@ export const ProductRevealSection: React.FC = () => {
                           x={170}
                           y={yTop + 14}
                           fill={isDemand ? '#1D4ED8' : '#B91C1C'}
-                          fontSize="9.5"
+                          fontSize="9"
                           fontFamily="monospace"
                           fontWeight="700"
                         >
-                          {ob.label} [Institutional Liquidity Anchor]
+                          {ob.label} [Resting Pool]
                         </text>
                       </g>
                     );
@@ -340,11 +268,11 @@ export const ProductRevealSection: React.FC = () => {
                     x={310}
                     y={getY(67250) + 14}
                     fill="#6D28D9"
-                    fontSize="9.5"
+                    fontSize="9"
                     fontFamily="monospace"
                     fontWeight="700"
                   >
-                    Fair Value Gap (FVG) Imbalance Zone
+                    Fair Value Gap (FVG) Imbalance
                   </text>
                 </g>
               )}
@@ -359,8 +287,8 @@ export const ProductRevealSection: React.FC = () => {
                   <path
                     d={`M ${ema21Points}`}
                     fill="none"
-                    stroke="#2563EB"
-                    strokeWidth="2.5"
+                    stroke="#1D4ED8"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                   />
                   <path
@@ -420,31 +348,96 @@ export const ProductRevealSection: React.FC = () => {
                       strokeWidth={isBull ? '1.2' : '1'}
                     />
 
-                    {/* Structure Overlays on Chart */}
+                    {/* Structure Overlays on Chart: Precision Architectural Pins */}
                     {activeMode === 'STRUCTURE' && (
                       <>
                         {isHighPivot && (
                           <g>
-                            <circle cx={x} cy={yHigh - 8} r="3" fill="#2563EB" />
-                            <line x1={x} y1={yHigh - 16} x2={x} y2={yHigh - 6} stroke="#2563EB" strokeWidth="1.5" />
+                            <circle cx={x} cy={yHigh - 6} r="3" fill="#1D4ED8" />
+                            <line x1={x} y1={yHigh - 16} x2={x} y2={yHigh - 6} stroke="#1D4ED8" strokeWidth="1.2" />
+                            <rect
+                              x={x - 28}
+                              y={yHigh - 30}
+                              width="56"
+                              height="15"
+                              rx="3"
+                              fill="#FFFFFF"
+                              stroke="#1D4ED8"
+                              strokeWidth="1"
+                            />
+                            <text
+                              x={x}
+                              y={yHigh - 19}
+                              textAnchor="middle"
+                              fill="#1D4ED8"
+                              fontSize="8.5"
+                              fontFamily="monospace"
+                              fontWeight="700"
+                            >
+                              HH 67,400
+                            </text>
                           </g>
                         )}
                         {isLowPivot && (
                           <g>
-                            <circle cx={x} cy={yLow + 8} r="3" fill="#059669" />
-                            <line x1={x} y1={yLow + 6} x2={x} y2={yLow + 16} stroke="#059669" strokeWidth="1.5" />
+                            <circle cx={x} cy={yLow + 6} r="3" fill="#059669" />
+                            <line x1={x} y1={yLow + 6} x2={x} y2={yLow + 16} stroke="#059669" strokeWidth="1.2" />
+                            <rect
+                              x={x - 28}
+                              y={yLow + 16}
+                              width="56"
+                              height="15"
+                              rx="3"
+                              fill="#FFFFFF"
+                              stroke="#059669"
+                              strokeWidth="1"
+                            />
+                            <text
+                              x={x}
+                              y={yLow + 27}
+                              textAnchor="middle"
+                              fill="#047857"
+                              fontSize="8.5"
+                              fontFamily="monospace"
+                              fontWeight="700"
+                            >
+                              HL 66,100
+                            </text>
                           </g>
                         )}
                         {isBOSCandle && (
-                          <line
-                            x1={x - 90}
-                            y1={getY(67400)}
-                            x2={x + 90}
-                            y2={getY(67400)}
-                            stroke="#2563EB"
-                            strokeWidth="1.5"
-                            strokeDasharray="4 2"
-                          />
+                          <g>
+                            <line
+                              x1={x - 110}
+                              y1={getY(67400)}
+                              x2={x + 60}
+                              y2={getY(67400)}
+                              stroke="#1D4ED8"
+                              strokeWidth="1.5"
+                              strokeDasharray="4 3"
+                            />
+                            <rect
+                              x={x - 34}
+                              y={getY(67400) - 18}
+                              width="68"
+                              height="15"
+                              rx="3"
+                              fill="#FFFFFF"
+                              stroke="#1D4ED8"
+                              strokeWidth="1"
+                            />
+                            <text
+                              x={x}
+                              y={getY(67400) - 7}
+                              textAnchor="middle"
+                              fill="#1D4ED8"
+                              fontSize="8.5"
+                              fontFamily="monospace"
+                              fontWeight="700"
+                            >
+                              BOS ▲ 67,400
+                            </text>
+                          </g>
                         )}
                       </>
                     )}
@@ -465,7 +458,7 @@ export const ProductRevealSection: React.FC = () => {
                         x={x - 48}
                         y={y + 16}
                         width="96"
-                        height="24"
+                        height="22"
                         rx="4"
                         fill="#FFFFFF"
                         stroke="#059669"
@@ -474,10 +467,10 @@ export const ProductRevealSection: React.FC = () => {
                       />
                       <text
                         x={x}
-                        y={y + 32}
+                        y={y + 30}
                         textAnchor="middle"
                         fill="#059669"
-                        fontSize="9.5"
+                        fontSize="9"
                         fontWeight="700"
                         fontFamily="monospace"
                       >
@@ -488,14 +481,14 @@ export const ProductRevealSection: React.FC = () => {
                       <line
                         x1={x}
                         y1={getY(sig.invalidation)}
-                        x2={chartWidth - 40}
+                        x2={chartWidth - 58}
                         y2={getY(sig.invalidation)}
                         stroke="#DC2626"
                         strokeWidth="1.5"
                         strokeDasharray="4 2"
                       />
                       <text
-                        x={chartWidth - 36}
+                        x={chartWidth - 52}
                         y={getY(sig.invalidation) + 4}
                         fill="#DC2626"
                         fontSize="9"
@@ -507,6 +500,55 @@ export const ProductRevealSection: React.FC = () => {
                     </g>
                   );
                 })}
+
+              {/* Right Price Scale Axis Divider */}
+              <line
+                x1={chartWidth - 58}
+                y1="0"
+                x2={chartWidth - 58}
+                y2={chartHeight - 20}
+                stroke="rgba(15, 23, 42, 0.08)"
+                strokeWidth="1"
+              />
+
+              {/* Bottom Time Axis Baseline */}
+              <line
+                x1="0"
+                y1={chartHeight - 20}
+                x2={chartWidth - 58}
+                y2={chartHeight - 20}
+                stroke="rgba(15, 23, 42, 0.08)"
+                strokeWidth="1"
+              />
+
+              {/* Bottom Time Axis Ticks */}
+              {[0, 4, 8, 12, 16, 19].map((candleIdx) => {
+                const candle = BTC_15M_CANDLES[candleIdx];
+                if (!candle) return null;
+                const x = (candleIdx + 1) * stepX;
+                return (
+                  <g key={candleIdx}>
+                    <line
+                      x1={x}
+                      y1={chartHeight - 20}
+                      x2={x}
+                      y2={chartHeight - 15}
+                      stroke="rgba(15, 23, 42, 0.2)"
+                      strokeWidth="1"
+                    />
+                    <text
+                      x={x}
+                      y={chartHeight - 6}
+                      textAnchor="middle"
+                      fill="#94A3B8"
+                      fontSize="9"
+                      fontFamily="monospace"
+                    >
+                      {candle.time}
+                    </text>
+                  </g>
+                );
+              })}
             </svg>
 
           </div>
@@ -516,7 +558,7 @@ export const ProductRevealSection: React.FC = () => {
             
             <div className="flex flex-col gap-1 max-w-xl text-left">
               <div className="text-[11px] font-mono text-brand-blue uppercase tracking-wider font-semibold">
-                ACTIVE COGNITIVE LENS: {currentMode.label}
+                Active Lens: {currentMode.label}
               </div>
               <div className="text-base sm:text-lg font-display font-bold text-slate-900 tracking-tight">
                 {currentMode.headline}
