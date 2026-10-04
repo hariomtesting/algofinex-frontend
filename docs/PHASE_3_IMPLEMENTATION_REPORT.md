@@ -3,8 +3,10 @@
 
 **Document Date:** October 2026  
 **Status:** PROTOTYPE IMPLEMENTATION (Not Production Commerce / Subscriptions)  
-**Repository:** `hariomtesting/algofinex-ui`  
+**Repository:** `hariomtesting/algofinex-ui` (Commit: `74a68b9`)  
 **Deployment Target:** Cloudflare Pages Preview  
+**Preview URL:** [https://preview.algofinex-ui.pages.dev](https://preview.algofinex-ui.pages.dev)  
+**Direct Build URL:** [https://69099cc9.algofinex-ui.pages.dev](https://69099cc9.algofinex-ui.pages.dev)  
 
 ---
 
