@@ -190,7 +190,7 @@ export const HeroProductTerminal: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[420px] w-full min-w-0">
         
         {/* Left Chart Canvas (8 cols on lg) */}
-        <div className="lg:col-span-8 p-3 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08] relative overflow-hidden bg-tech-grid w-full min-w-0">
+        <div className="lg:col-span-8 p-3 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08] relative overflow-hidden bg-[#070A10] w-full min-w-0">
           
           {/* Subtle Chart Watermark Background */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.03] select-none">

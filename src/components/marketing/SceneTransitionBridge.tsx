@@ -1,241 +1,376 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { WORKFLOW_JOURNEY_STEPS } from '../../data/productExperienceData';
 import { 
-  ArrowDown, 
   Workflow, 
-  ChevronRight 
+  ChevronRight,
+  ArrowDown
 } from 'lucide-react';
 
-export const SceneTransitionBridge: React.FC = () => {
-  const [activeStepIndex, setActiveStepIndex] = useState(4); // Default to DECISION / WORKFLOW
+interface ContinuousStage {
+  id: string;
+  step: string;
+  title: string;
+  stateName: string;
+  tagline: string;
+  cognitiveRule: string;
+  statusColor: string;
+  waveformType: 'chaotic' | 'dampened' | 'pivoted' | 'cloud' | 'zone' | 'boundary' | 'trigger';
+}
 
-  const currentStep = WORKFLOW_JOURNEY_STEPS[activeStepIndex];
+const CONTINUOUS_STAGES: ContinuousStage[] = [
+  {
+    id: 'raw',
+    step: '01',
+    title: 'Raw Market',
+    stateName: 'Unfiltered Noise',
+    tagline: 'Erratic candlestick wicks & emotional volatility',
+    cognitiveRule: 'Do not react to isolated candles. Most intraday moves are predatory churn.',
+    statusColor: '#EF4444',
+    waveformType: 'chaotic'
+  },
+  {
+    id: 'observe',
+    step: '02',
+    title: 'Observe',
+    stateName: 'Noise Dampening',
+    tagline: 'Filter false breakouts through higher-timeframe alignment',
+    cognitiveRule: 'Wait for the current bar to mature before evaluating directional intent.',
+    statusColor: '#F59E0B',
+    waveformType: 'dampened'
+  },
+  {
+    id: 'structure',
+    step: '03',
+    title: 'Structure',
+    stateName: 'Pivot Mapping',
+    tagline: 'Identify validated Higher-High and Higher-Low swing boundaries',
+    cognitiveRule: 'Trend direction is defined strictly by swing geometry, not personal sentiment.',
+    statusColor: '#3B82F6',
+    waveformType: 'pivoted'
+  },
+  {
+    id: 'context',
+    step: '04',
+    title: 'Context',
+    stateName: 'Adaptive Cloud',
+    tagline: 'Align entry momentum with dynamic multi-period ribbon support',
+    cognitiveRule: 'Trades taken against the adaptive cloud carry inherently higher drawdown risk.',
+    statusColor: '#60A5FA',
+    waveformType: 'cloud'
+  },
+  {
+    id: 'setup',
+    step: '05',
+    title: 'Setup',
+    stateName: 'Liquidity Anchor',
+    tagline: 'Detect resting order blocks and mitigated imbalance voids',
+    cognitiveRule: 'Execute only where institutional resting liquidity has been swept and defended.',
+    statusColor: '#A855F7',
+    waveformType: 'zone'
+  },
+  {
+    id: 'invalidation',
+    step: '06',
+    title: 'Invalidation',
+    stateName: 'Risk Boundary',
+    tagline: 'Hard mathematical price level that invalidates the setup',
+    cognitiveRule: 'Know your exact exit before your finger touches the entry button. No mental stops.',
+    statusColor: '#EF4444',
+    waveformType: 'boundary'
+  },
+  {
+    id: 'decision',
+    step: '07',
+    title: 'Decision',
+    stateName: 'Execution Confirmed',
+    tagline: 'Non-repainting bar-close confirmation with calibrated size',
+    cognitiveRule: 'Trade size is derived from stop distance, keeping capital variance strictly controlled.',
+    statusColor: '#10B981',
+    waveformType: 'trigger'
+  }
+];
+
+export const SceneTransitionBridge: React.FC = () => {
+  const [activeStageIndex, setActiveStageIndex] = useState(6); // Default to DECISION
+
+  const activeStage = CONTINUOUS_STAGES[activeStageIndex];
 
   return (
-    <section id="workflow" className="relative py-28 sm:py-36 overflow-hidden bg-[#070A0F] border-t border-white/[0.06]">
+    <section id="workflow" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#04060A] border-t border-white/[0.06]">
       
-      {/* Dynamic Background Atmosphere */}
+      {/* Dynamic Ambient Trace Path Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-brand-blue/5 rounded-full blur-[140px] opacity-70" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[350px] bg-brand-blue/5 rounded-full blur-[160px] opacity-60" />
       </div>
 
-      <div className="relative max-w-[1360px] mx-auto px-4 sm:px-8 text-center flex flex-col items-center w-full min-w-0">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
         
-        {/* Bridge Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated border border-white/[0.1] text-xs font-mono text-brand-accent mb-6">
-          <Workflow className="size-3.5 text-brand-accent shrink-0" />
-          <span>THE EXECUTION TRANSFORMATION</span>
-        </div>
-
-        {/* Narrative Scale Transition Typography */}
-        <h2 className="max-w-4xl text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight leading-[1.15] mb-6">
-          An indicator reveals where the market is.{' '}
-          <span className="block mt-2 bg-gradient-to-r from-brand-accent via-white to-text-secondary bg-clip-text text-transparent">
-            Your workflow determines what you do.
-          </span>
-        </h2>
-
-        <p className="max-w-2xl text-sm sm:text-base text-text-secondary leading-relaxed mb-14 sm:mb-20">
-          Indicators alone do not create consistent trading. Consistency comes from knowing how to synthesize chart signals into a repeatable execution habit.
-        </p>
-
-        {/* Stepped Visual Journey Pipeline (Horizontal on desktop, vertical on mobile) */}
-        <div className="w-full mb-12">
+        {/* Asymmetric Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 sm:mb-20">
           
-          {/* Conduit Track Line */}
-          <div className="relative hidden lg:flex items-center justify-between max-w-5xl mx-auto mb-10 px-6">
-            <div className="absolute left-10 right-10 top-1/2 -translate-y-1/2 h-[2px] bg-white/[0.08]" />
-            <div 
-              className="absolute left-10 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-brand-blue to-brand-accent transition-all duration-300"
-              style={{ width: `${(activeStepIndex / (WORKFLOW_JOURNEY_STEPS.length - 1)) * 90}%` }}
-            />
+          <div className="lg:col-span-7 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated/90 border border-white/[0.1] text-xs font-mono text-brand-accent mb-4 shadow-panel">
+              <Workflow className="size-3 text-brand-accent shrink-0" />
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px]">THE CONTINUOUS EXECUTION JOURNEY</span>
+            </div>
 
-            {WORKFLOW_JOURNEY_STEPS.map((step, idx) => {
-              const isActive = idx === activeStepIndex;
-              const isPast = idx < activeStepIndex;
-
-              return (
-                <button
-                  key={step.step}
-                  onClick={() => setActiveStepIndex(idx)}
-                  className="relative z-10 flex flex-col items-center group focus:outline-none"
-                >
-                  <div className={`size-10 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 ${
-                    isActive
-                      ? 'bg-brand-blue text-white ring-4 ring-brand-blue/20 scale-110 shadow-glow-blue'
-                      : isPast
-                      ? 'bg-surface-elevated text-brand-accent border border-brand-blue/40'
-                      : 'bg-[#0B0F17] text-text-muted border border-white/[0.1] hover:border-white/[0.2]'
-                  }`}>
-                    {step.step}
-                  </div>
-                  <span className={`text-[11px] font-mono mt-2 tracking-wider uppercase transition-colors whitespace-nowrap ${
-                    isActive ? 'text-white font-bold' : 'text-text-muted group-hover:text-text-secondary'
-                  }`}>
-                    {step.phase}
-                  </span>
-                </button>
-              );
-            })}
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-white leading-[1.05]">
+              An indicator is an input.<br />
+              <span className="bg-gradient-to-r from-brand-accent via-white to-text-secondary bg-clip-text text-transparent">
+                Your routine is the outcome.
+              </span>
+            </h2>
           </div>
 
-          {/* Mobile Step Buttons */}
-          <div className="flex lg:hidden items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6 w-full">
-            {WORKFLOW_JOURNEY_STEPS.map((step, idx) => (
+          <div className="lg:col-span-5 text-left flex flex-col justify-end">
+            <p className="text-sm sm:text-base text-text-secondary leading-relaxed mb-4">
+              Watch how chaotic market noise resolves into absolute geometric clarity through the seven stages of the AlgoFinex execution journey.
+            </p>
+            <div className="text-xs font-mono text-text-muted">
+              Interactive transformation: Click any stage along the path to trace clarity.
+            </div>
+          </div>
+
+        </div>
+
+        {/* CONTINUOUS VISUAL PATH / CHART RIBBON (No repeated card boxes) */}
+        <div className="w-full">
+          
+          {/* Continuous Journey Ribbon Track (Desktop & Tablet) */}
+          <div className="relative hidden md:block w-full mb-12">
+            
+            {/* The Continuous Glowing Trace Line */}
+            <div className="relative h-20 w-full flex items-center">
+              
+              {/* Background Datum Conduit */}
+              <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 h-[2px] bg-white/[0.08]" />
+              
+              {/* Active Trace Line */}
+              <div 
+                className="absolute left-8 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-brand-blue via-brand-accent to-emerald-400 transition-all duration-300 shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+                style={{ width: `${(activeStageIndex / (CONTINUOUS_STAGES.length - 1)) * 92}%` }}
+              />
+
+              {/* Stage Waypoints along the continuous path */}
+              <div className="relative z-10 w-full flex items-center justify-between px-4">
+                {CONTINUOUS_STAGES.map((stg, idx) => {
+                  const isActive = idx === activeStageIndex;
+                  const isPassed = idx < activeStageIndex;
+
+                  return (
+                    <button
+                      key={stg.id}
+                      onClick={() => setActiveStageIndex(idx)}
+                      className="group flex flex-col items-center focus:outline-none cursor-pointer"
+                    >
+                      <div className={`size-10 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 ${
+                        isActive
+                          ? 'bg-brand-blue text-white ring-4 ring-brand-blue/30 scale-125 shadow-glow-blue'
+                          : isPassed
+                          ? 'bg-surface-elevated text-brand-accent border border-brand-blue/40'
+                          : 'bg-[#0B0F17] text-text-muted border border-white/[0.1] group-hover:border-white/[0.25]'
+                      }`}>
+                        {stg.step}
+                      </div>
+
+                      <span className={`text-[11px] font-mono mt-3 uppercase tracking-wider transition-colors whitespace-nowrap ${
+                        isActive ? 'text-white font-bold' : 'text-text-muted group-hover:text-text-secondary'
+                      }`}>
+                        {stg.title}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Mobile Horizontal Stage Scroller */}
+          <div className="flex md:hidden items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-8 w-full">
+            {CONTINUOUS_STAGES.map((stg, idx) => (
               <button
-                key={step.step}
-                onClick={() => setActiveStepIndex(idx)}
-                className={`px-3 py-2 rounded-lg font-mono text-xs whitespace-nowrap shrink-0 border ${
-                  idx === activeStepIndex
-                    ? 'bg-brand-blue text-white border-brand-blue'
-                    : 'bg-surface-elevated text-text-muted border-white/[0.08]'
+                key={stg.id}
+                onClick={() => setActiveStageIndex(idx)}
+                className={`px-3 py-2 rounded-xl font-mono text-xs whitespace-nowrap shrink-0 border transition-all ${
+                  idx === activeStageIndex
+                    ? 'bg-brand-blue text-white border-brand-blue font-bold shadow-glow-blue'
+                    : 'bg-surface-elevated/70 text-text-muted border-white/[0.08]'
                 }`}
               >
-                {step.step}. {step.phase}
+                {stg.step}. {stg.title}
               </button>
             ))}
           </div>
 
-          {/* Active Step Visual Showcase Stage (Editorial Diagrammatic View) */}
-          <div className="max-w-5xl mx-auto rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#0A0D15] p-6 sm:p-10 text-left shadow-terminal">
+          {/* THE STAGE TRANSFORMATION STAGE (One unified architectural visual) */}
+          <div className="rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#070A11] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.9)]">
+            
             <AnimatePresence mode="wait">
               <motion.div
-                key={currentStep.step}
-                initial={{ opacity: 0, y: 10 }}
+                key={activeStage.id}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2 }}
-                className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
               >
-                {/* Left Side: Step Narrative & Cognitive State (7 cols on md) */}
-                <div className="md:col-span-7 flex flex-col gap-4">
-                  <div className="flex items-center gap-2 text-xs font-mono text-brand-accent uppercase tracking-wider">
-                    <span>STAGE {currentStep.step} OF 05</span>
-                    <span>•</span>
-                    <span className="text-white font-bold">{currentStep.phase}</span>
+                {/* Left Side: Cognitive Rule & Narrative (7 cols on lg) */}
+                <div className="lg:col-span-7 flex flex-col gap-4 text-left">
+                  
+                  <div className="flex items-center gap-2.5 text-xs font-mono">
+                    <span className="px-2 py-0.5 rounded bg-white/[0.06] text-white font-bold">
+                      STAGE {activeStage.step} // 07
+                    </span>
+                    <span className="text-border-medium">•</span>
+                    <span className="font-semibold uppercase tracking-wider" style={{ color: activeStage.statusColor }}>
+                      {activeStage.stateName}
+                    </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight">
-                    {currentStep.title}
+                  <h3 className="text-2xl sm:text-4xl font-display font-extrabold text-white tracking-tight leading-tight">
+                    {activeStage.title} Phase
                   </h3>
 
-                  <div className="text-xs sm:text-sm font-mono text-text-muted">
-                    {currentStep.tagline}
+                  <div className="text-sm font-mono text-text-muted">
+                    {activeStage.tagline}
                   </div>
 
-                  <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
-                    {currentStep.description}
-                  </p>
-
-                  {/* Trader Mindset Box */}
-                  <div className="mt-2 p-3.5 rounded-xl bg-surface/70 border border-white/[0.06] text-xs font-mono">
+                  {/* Non-Negotiable Cognitive Rule Box */}
+                  <div className="mt-2 p-4 rounded-xl bg-surface-elevated/80 border border-white/[0.08] text-xs font-mono">
                     <span className="text-[10px] text-text-dim uppercase tracking-wider block mb-1">
-                      Trader Mental State:
+                      Trader Cognitive Rule:
                     </span>
-                    <span className="text-white font-medium">
-                      {currentStep.traderMindset}
-                    </span>
+                    <div className="text-brand-accent font-semibold leading-relaxed text-sm">
+                      "{activeStage.cognitiveRule}"
+                    </div>
                   </div>
+
                 </div>
 
-                {/* Right Side: Step Diagrammatic Schematic (5 cols on md) */}
-                <div className="md:col-span-5 p-5 sm:p-6 rounded-2xl bg-[#06080D] border border-white/[0.08] font-mono text-xs flex flex-col gap-3">
+                {/* Right Side: Continuous Waveform Transformation Graphic (5 cols on lg) */}
+                <div className="lg:col-span-5 p-6 rounded-2xl bg-[#05070C] border border-white/[0.08] font-mono text-xs flex flex-col gap-4">
+                  
                   <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] text-[11px] text-text-muted">
-                    <span>PROGRESSION MONITOR</span>
-                    <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold ${
-                      currentStep.visualState === 'noise' 
-                        ? 'bg-red-500/10 text-red-400 border border-red-500/20'
-                        : currentStep.visualState === 'execution'
-                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
-                        : 'bg-brand-blue/15 text-brand-accent border border-brand-blue/30'
-                    }`}>
-                      {currentStep.visualState.toUpperCase()}
+                    <span>SIGNAL ENTROPY LEVEL</span>
+                    <span className="font-bold uppercase" style={{ color: activeStage.statusColor }}>
+                      {activeStage.stateName}
                     </span>
                   </div>
 
-                  {/* Diagram Representation */}
-                  <div className="py-4 flex flex-col items-center justify-center text-center gap-2">
-                    {currentStep.visualState === 'noise' && (
-                      <div className="space-y-2 w-full">
-                        <div className="flex justify-between text-[10px] text-text-dim">
-                          <span>Raw Candlestick Noise</span>
-                          <span className="text-red-400 font-bold">Unfiltered</span>
-                        </div>
-                        <div className="h-10 border border-dashed border-red-500/30 rounded flex items-center justify-center text-red-400/80 text-[11px]">
-                          ⚡ Erratic Wicks &amp; Emotional Chopping
-                        </div>
-                      </div>
-                    )}
+                  {/* Graphic Waveform Metaphor */}
+                  <div className="h-28 flex items-center justify-center relative overflow-hidden">
+                    <svg viewBox="0 0 400 100" className="w-full h-full">
+                      {activeStage.waveformType === 'chaotic' && (
+                        <path
+                          d="M 10 50 Q 30 10, 50 80 T 90 20 T 130 90 T 170 30 T 210 85 T 250 15 T 290 75 T 330 25 T 370 70 T 390 50"
+                          fill="none"
+                          stroke="#EF4444"
+                          strokeWidth="2.5"
+                          className="animate-pulse"
+                        />
+                      )}
 
-                    {currentStep.visualState === 'structure' && (
-                      <div className="space-y-2 w-full">
-                        <div className="flex justify-between text-[10px] text-text-dim">
-                          <span>Market Geometry Filter</span>
-                          <span className="text-brand-accent font-bold">Active</span>
-                        </div>
-                        <div className="h-10 border border-brand-blue/30 bg-brand-blue/5 rounded flex items-center justify-center text-brand-accent text-[11px]">
-                          Higher-High Sequences • Swing Levels Identified
-                        </div>
-                      </div>
-                    )}
+                      {activeStage.waveformType === 'dampened' && (
+                        <path
+                          d="M 10 50 Q 50 35, 90 60 T 170 42 T 250 56 T 330 46 T 390 50"
+                          fill="none"
+                          stroke="#F59E0B"
+                          strokeWidth="2"
+                        />
+                      )}
 
-                    {currentStep.visualState === 'context' && (
-                      <div className="space-y-2 w-full">
-                        <div className="flex justify-between text-[10px] text-text-dim">
-                          <span>Adaptive Trend Cloud</span>
-                          <span className="text-signal-bull font-bold">In Agreement</span>
-                        </div>
-                        <div className="h-10 border border-emerald-500/30 bg-emerald-500/5 rounded flex items-center justify-center text-emerald-400 text-[11px]">
-                          Trend Momentum Synchronized • Chop Filtered
-                        </div>
-                      </div>
-                    )}
+                      {activeStage.waveformType === 'pivoted' && (
+                        <g>
+                          <path
+                            d="M 10 70 L 100 25 L 200 65 L 300 15 L 390 50"
+                            fill="none"
+                            stroke="#3B82F6"
+                            strokeWidth="2.5"
+                          />
+                          <circle cx="100" cy="25" r="4" fill="#60A5FA" />
+                          <circle cx="200" cy="65" r="4" fill="#10B981" />
+                          <circle cx="300" cy="15" r="4" fill="#60A5FA" />
+                          <text x="100" y="16" fill="#93C5FD" fontSize="9" textAnchor="middle">HH</text>
+                          <text x="200" y="80" fill="#6EE7B7" fontSize="9" textAnchor="middle">HL</text>
+                          <text x="300" y="8" fill="#93C5FD" fontSize="9" textAnchor="middle">BOS</text>
+                        </g>
+                      )}
 
-                    {currentStep.visualState === 'setup' && (
-                      <div className="space-y-2 w-full">
-                        <div className="flex justify-between text-[10px] text-text-dim">
-                          <span>Liquidity Sweep &amp; Order Block</span>
-                          <span className="text-purple-400 font-bold">Mitigated</span>
-                        </div>
-                        <div className="h-10 border border-purple-500/30 bg-purple-500/5 rounded flex items-center justify-center text-purple-300 text-[11px]">
-                          Sell-Side Swept • Demand Block Defended
-                        </div>
-                      </div>
-                    )}
+                      {activeStage.waveformType === 'cloud' && (
+                        <g>
+                          <path
+                            d="M 10 65 Q 100 45, 200 55 T 390 30 L 390 55 Q 290 75, 190 70 T 10 80 Z"
+                            fill="rgba(59, 130, 246, 0.2)"
+                          />
+                          <path
+                            d="M 10 65 Q 100 45, 200 55 T 390 30"
+                            fill="none"
+                            stroke="#3B82F6"
+                            strokeWidth="2"
+                          />
+                          <path
+                            d="M 10 80 Q 100 60, 200 70 T 390 45"
+                            fill="none"
+                            stroke="#10B981"
+                            strokeWidth="1.5"
+                            strokeDasharray="4 2"
+                          />
+                        </g>
+                      )}
 
-                    {currentStep.visualState === 'execution' && (
-                      <div className="space-y-2 w-full">
-                        <div className="flex justify-between text-[10px] text-text-dim">
-                          <span>Bar-Close Trigger + Stop Locked</span>
-                          <span className="text-signal-bull font-bold">Execution Ready</span>
-                        </div>
-                        <div className="h-10 border border-emerald-500/40 bg-emerald-500/10 rounded flex items-center justify-center text-emerald-300 text-[11px] font-bold">
-                          ✓ Stop: $66,180 • Strict Size: 1.5% • Signal Confirmed
-                        </div>
-                      </div>
-                    )}
+                      {activeStage.waveformType === 'zone' && (
+                        <g>
+                          <rect x="60" y="35" width="280" height="32" fill="rgba(168, 85, 247, 0.15)" stroke="#A855F7" strokeWidth="1.2" strokeDasharray="4 2" rx="3" />
+                          <path d="M 20 80 L 100 80 L 160 40 L 260 40 L 340 20 L 380 20" fill="none" stroke="#C084FC" strokeWidth="2" />
+                          <text x="200" y="55" fill="#E9D5FF" fontSize="9" textAnchor="middle" fontWeight="bold">INSTITUTIONAL DEMAND DEFENDED</text>
+                        </g>
+                      )}
+
+                      {activeStage.waveformType === 'boundary' && (
+                        <g>
+                          <line x1="20" y1="75" x2="380" y2="75" stroke="#EF4444" strokeWidth="2" strokeDasharray="5 3" />
+                          <path d="M 20 60 L 120 40 L 220 50 L 320 25 L 380 30" fill="none" stroke="#60A5FA" strokeWidth="2" />
+                          <rect x="220" y="65" width="150" height="20" rx="3" fill="#3B1214" stroke="#EF4444" strokeWidth="1" />
+                          <text x="295" y="79" fill="#FCA5A5" fontSize="9" textAnchor="middle" fontWeight="bold">HARD STOP: $66,180</text>
+                        </g>
+                      )}
+
+                      {activeStage.waveformType === 'trigger' && (
+                        <g>
+                          <path d="M 20 65 L 120 55 L 200 65 L 280 35 L 380 20" fill="none" stroke="#10B981" strokeWidth="3" />
+                          <circle cx="280" cy="35" r="5" fill="#10B981" />
+                          <rect x="230" y="46" width="100" height="22" rx="4" fill="#0C2018" stroke="#10B981" strokeWidth="1.2" />
+                          <text x="280" y="60" fill="#34D399" fontSize="9" textAnchor="middle" fontWeight="bold">▲ ENTRY CONFIRMED</text>
+                        </g>
+                      )}
+                    </svg>
                   </div>
 
-                  <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[10px] text-text-dim">
-                    <span>Workflow Stage {idxString(activeStepIndex + 1)}</span>
+                  <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-text-dim">
+                    <span>Step {activeStage.step} of 07</span>
                     <button
-                      onClick={() => setActiveStepIndex((activeStepIndex + 1) % WORKFLOW_JOURNEY_STEPS.length)}
+                      onClick={() => setActiveStageIndex((activeStageIndex + 1) % CONTINUOUS_STAGES.length)}
                       className="text-brand-accent hover:underline flex items-center gap-1 font-semibold"
                     >
-                      <span>Next Phase</span>
+                      <span>Next Stage</span>
                       <ChevronRight className="size-3" />
                     </button>
                   </div>
+
                 </div>
+
               </motion.div>
             </AnimatePresence>
+
           </div>
+
         </div>
 
-        {/* Visual Continuity into the 3-Day Session */}
-        <div className="flex flex-col items-center gap-2 text-text-dim text-xs font-mono">
-          <span>THE RESULTING TRADING ROUTINE</span>
+        {/* Transition into 3-Day Session */}
+        <div className="mt-14 flex flex-col items-center gap-2 text-text-dim text-xs font-mono">
+          <span className="tracking-widest uppercase">THE RESULTING OPERATIONAL ROUTINE</span>
           <ArrowDown className="size-4 text-brand-accent animate-bounce" />
         </div>
 
@@ -243,9 +378,5 @@ export const SceneTransitionBridge: React.FC = () => {
     </section>
   );
 };
-
-function idxString(num: number): string {
-  return num < 10 ? `0${num}` : `${num}`;
-}
 
 export default SceneTransitionBridge;

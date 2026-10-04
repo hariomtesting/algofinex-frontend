@@ -1,4 +1,4 @@
-export type ExperienceMode = 'STRUCTURE' | 'LIQUIDITY' | 'TREND' | 'CONFIRMATION';
+export type ExperienceMode = 'RAW' | 'STRUCTURE' | 'LIQUIDITY' | 'TREND' | 'CONFIRMATION';
 
 export interface ExperienceModeData {
   id: ExperienceMode;

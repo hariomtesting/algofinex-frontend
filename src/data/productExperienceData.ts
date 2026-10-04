@@ -7,6 +7,27 @@ import {
 } from '../types/productExperience';
 
 export const EXPERIENCE_MODES: Record<string, ExperienceModeData> = {
+  RAW: {
+    id: 'RAW',
+    label: 'Raw Price',
+    tagline: 'Unfiltered Candlestick Noise',
+    headline: 'Without structure, charts are an illusion of random movement.',
+    description: 'Every tick creates emotional urgency. In raw form, candlestick wicks appear chaotic, leaving traders vulnerable to chasing false breakouts and emotional traps.',
+    whatYouSee: [
+      'Unfiltered erratic candlestick wicks & spreads',
+      'No structural reference lines or swing pivots',
+      'Unidentified resting liquidity clusters',
+      'High cognitive fatigue and premature entries'
+    ],
+    traditionalNoise: 'Trading on instinct from raw candles with no objective rules or invalidation.',
+    indicatorAdvantage: 'Transforming visual chaos into systematic, high-conviction market geometry.',
+    activeMetrics: [
+      { label: 'Market Clarity', value: 'Unfiltered / Noisy', state: 'bear' },
+      { label: 'Emotional Bias', value: 'High Chop Risk', state: 'bear' },
+      { label: 'Structure Map', value: 'None Active', state: 'neutral' },
+      { label: 'Invalidation', value: 'Undefined', state: 'neutral' }
+    ]
+  },
   STRUCTURE: {
     id: 'STRUCTURE',
     label: 'Market Structure',
