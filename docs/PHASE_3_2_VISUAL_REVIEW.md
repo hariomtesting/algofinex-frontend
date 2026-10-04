@@ -74,3 +74,24 @@ All enhancements strictly preserve AlgoFinex's established **Light-Mode First Vi
 - **Performance**: Zero frame drops observed during scroll or chart scrubbing. SVG elements use hardware-accelerated transforms.
 - **Visual Bugs**: None detected. All coordinate labels fit within container boundaries across viewports.
 - **Production Readiness Status**: **PENDING UI DIRECTOR REVIEW**. Do not mark production-ready until final visual sign-off.
+
+---
+
+## 5. UI Director Corrections Applied
+
+Following UI Director visual review, the following precise art-direction corrections have been applied:
+
+1. **Kept Interactive Chart Scrubbing**:
+   - Crosshair lines, active candle highlights, coordinate feedback, OHLC inspection ribbons, and touch interactions are fully preserved.
+   - Zero additional HUD elements or visual density added, keeping interactions clean and restrained.
+
+2. **Removed Implicit Performance & Signal Claims**:
+   - Updated overlay text from `"▲ ENTRY CONFIRMED"` to `"CONFIRMATION"`.
+   - Updated stop loss callouts from `"Stop: $66,180"` to `"INVALIDATION — $66,180"`.
+   - The visual explicitly communicates analytical context rather than an authoritative trading instruction or guaranteed entry.
+
+3. **Conceptualized Technical Terminology**:
+   - Replaced rigid specific formula labels (e.g. `"21 / 55 EMA"`) with conceptual product terms (e.g. `"Trend Corridor"`).
+
+4. **Credibility & Copy Discipline**:
+   - Ensured documentation and UI text describe interactive chart scrubbing as a product behavior demonstration rather than "proof" of performance, execution accuracy, or mathematical superiority.

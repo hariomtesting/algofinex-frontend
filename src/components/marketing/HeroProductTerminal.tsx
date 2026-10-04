@@ -175,7 +175,7 @@ export const HeroProductTerminal: React.FC = () => {
             }`}
           >
             <span className={`size-1.5 rounded-full ${showEMA ? 'bg-brand-blue' : 'bg-slate-300'}`} />
-            EMA Cloud (21/55)
+            Trend Corridor
           </button>
 
           <button
@@ -415,7 +415,7 @@ export const HeroProductTerminal: React.FC = () => {
                         fontWeight="700"
                         fontFamily="monospace"
                       >
-                        ▲ {sig.label}
+                        CONFIRMATION
                       </text>
 
                       {idx === 0 && (
@@ -437,7 +437,7 @@ export const HeroProductTerminal: React.FC = () => {
                             fontFamily="monospace"
                             fontWeight="700"
                           >
-                            Stop: ${sig.invalidation.toLocaleString()}
+                            INVALIDATION — $66,180
                           </text>
                         </g>
                       )}

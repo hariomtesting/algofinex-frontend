@@ -502,9 +502,9 @@ export const ProductRevealSection: React.FC = () => {
                   return (
                     <g key={idx}>
                       <rect
-                        x={x - 48}
+                        x={x - 56}
                         y={y + 16}
-                        width="96"
+                        width="112"
                         height="22"
                         rx="4"
                         fill="#FFFFFF"
@@ -521,10 +521,10 @@ export const ProductRevealSection: React.FC = () => {
                         fontWeight="700"
                         fontFamily="monospace"
                       >
-                        ▲ {sig.label}
+                        CONFIRMATION
                       </text>
 
-                      {/* Hard Stop Line */}
+                      {/* Invalidation Level */}
                       <line
                         x1={x}
                         y1={getY(sig.invalidation)}
@@ -538,11 +538,11 @@ export const ProductRevealSection: React.FC = () => {
                         x={chartWidth - 52}
                         y={getY(sig.invalidation) + 4}
                         fill="#DC2626"
-                        fontSize="9"
+                        fontSize="8.5"
                         fontWeight="700"
                         fontFamily="monospace"
                       >
-                        Stop: $66,180
+                        INVALIDATION — $66,180
                       </text>
                     </g>
                   );
