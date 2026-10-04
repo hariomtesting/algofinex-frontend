@@ -15,6 +15,8 @@ import {
 
 export const ProductRevealSection: React.FC = () => {
   const [activeMode, setActiveMode] = useState<ExperienceMode>('STRUCTURE');
+  const [activeCandleHover, setActiveCandleHover] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
 
   const currentMode = EXPERIENCE_MODES[activeMode] || EXPERIENCE_MODES.STRUCTURE;
 
@@ -29,6 +31,29 @@ export const ProductRevealSection: React.FC = () => {
 
   const getY = (price: number) => {
     return chartHeight - ((price - minPrice) / priceRange) * chartHeight;
+  };
+
+  const getPriceFromY = (y: number) => {
+    return maxPrice - (y / chartHeight) * priceRange;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const svgX = ((e.clientX - rect.left) / rect.width) * chartWidth;
+    const svgY = ((e.clientY - rect.top) / rect.height) * chartHeight;
+
+    setMousePos({ x: svgX, y: svgY });
+
+    const index = Math.min(
+      Math.max(0, Math.round(svgX / stepX) - 1),
+      candleCount - 1
+    );
+    setActiveCandleHover(index);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveCandleHover(null);
+    setMousePos(null);
   };
 
   // EMA Ribbon points for Trend mode
@@ -175,6 +200,26 @@ export const ProductRevealSection: React.FC = () => {
             </div>
           </div>
 
+          {/* Active Candle Hover Inspection HUD Ribbon */}
+          <div className="px-4 sm:px-8 py-2 bg-slate-50/60 border-b border-black/[0.05] flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono">
+            {(() => {
+              const c = activeCandleHover !== null ? BTC_15M_CANDLES[activeCandleHover] : BTC_15M_CANDLES[BTC_15M_CANDLES.length - 1];
+              return (
+                <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
+                  <span className="text-slate-400">Time: <span className="text-slate-900 font-semibold">{c.time}</span></span>
+                  <span className="text-slate-400">Open: <span className="text-slate-800">{c.open.toLocaleString()}</span></span>
+                  <span className="text-slate-400">High: <span className="text-emerald-700 font-bold">{c.high.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Low: <span className="text-red-700 font-bold">{c.low.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Close: <span className={c.isBullish ? 'text-emerald-700 font-bold' : 'text-red-700 font-bold'}>{c.close.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Vol: <span className="text-brand-blue font-semibold">{c.volume.toLocaleString()}</span></span>
+                </div>
+              );
+            })()}
+            <div className="text-[10px] text-slate-400 hidden sm:block">
+              Hover/Scrub chart to inspect precise coordinates
+            </div>
+          </div>
+
           {/* Expanded SVG Chart Stage with Spatial Overlays */}
           <div className="relative p-3 sm:p-6 lg:p-8 flex items-center justify-center overflow-x-auto no-scrollbar min-h-[460px] sm:min-h-[520px] bg-white">
             
@@ -198,7 +243,9 @@ export const ProductRevealSection: React.FC = () => {
             {/* SVG Chart Drawing with Exact Mathematical Coordinate Pins */}
             <svg
               viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-              className="w-full h-auto max-w-[980px] overflow-visible select-none relative z-10"
+              className="w-full h-auto max-w-[980px] overflow-visible select-none relative z-10 cursor-crosshair"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
               <defs>
                 <linearGradient id="cloudRibbonLight" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -549,6 +596,57 @@ export const ProductRevealSection: React.FC = () => {
                   </g>
                 );
               })}
+
+              {/* Interactive Crosshair & Scrub Marker */}
+              {mousePos && activeCandleHover !== null && (
+                <g className="pointer-events-none">
+                  <line
+                    x1={(activeCandleHover + 1) * stepX}
+                    y1="0"
+                    x2={(activeCandleHover + 1) * stepX}
+                    y2={chartHeight - 20}
+                    stroke="#1D4ED8"
+                    strokeWidth="1.2"
+                    strokeDasharray="3 3"
+                  />
+                  <line
+                    x1="0"
+                    y1={mousePos.y}
+                    x2={chartWidth - 58}
+                    y2={mousePos.y}
+                    stroke="#1D4ED8"
+                    strokeWidth="1"
+                    strokeDasharray="3 3"
+                  />
+                  <rect
+                    x={chartWidth - 58}
+                    y={Math.min(Math.max(mousePos.y - 9, 0), chartHeight - 38)}
+                    width="56"
+                    height="18"
+                    rx="2"
+                    fill="#0F172A"
+                  />
+                  <text
+                    x={chartWidth - 30}
+                    y={Math.min(Math.max(mousePos.y + 4, 13), chartHeight - 25)}
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize="8.5"
+                    fontWeight="700"
+                    fontFamily="monospace"
+                  >
+                    ${Math.round(getPriceFromY(mousePos.y)).toLocaleString()}
+                  </text>
+                  <circle
+                    cx={(activeCandleHover + 1) * stepX}
+                    cy={getY(BTC_15M_CANDLES[activeCandleHover].close)}
+                    r="4.5"
+                    fill="#1D4ED8"
+                    stroke="#FFFFFF"
+                    strokeWidth="1.8"
+                  />
+                </g>
+              )}
             </svg>
 
           </div>

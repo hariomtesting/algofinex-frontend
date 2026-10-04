@@ -137,7 +137,11 @@ export const SessionSection: React.FC = () => {
                   </div>
 
                   {isSelected && (
-                    <div className="absolute bottom-0 inset-x-6 h-0.5 bg-brand-blue rounded-full" />
+                    <motion.div
+                      layoutId="activeDayRail"
+                      className="absolute bottom-0 inset-x-6 h-0.5 bg-brand-blue rounded-full"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    />
                   )}
                 </button>
               );

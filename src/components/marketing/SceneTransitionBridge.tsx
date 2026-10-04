@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { 
   Workflow, 
   ChevronRight,
@@ -92,11 +92,19 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
 
 export const SceneTransitionBridge: React.FC = () => {
   const [activeStageIndex, setActiveStageIndex] = useState(6); // Default to DECISION
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  });
+
+  const scrollTraceWidth = useTransform(scrollYProgress, [0.1, 0.7], ['0%', '100%']);
 
   const activeStage = CONTINUOUS_STAGES[activeStageIndex];
 
   return (
-    <section id="workflow" className="relative py-20 sm:py-28 lg:py-32 overflow-hidden bg-[#F8FAFC] border-t border-black/[0.06]">
+    <section ref={sectionRef} id="workflow" className="relative py-20 sm:py-28 lg:py-32 overflow-hidden bg-[#F8FAFC] border-t border-black/[0.06]">
       
       {/* Dynamic Ambient Trace Path Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -145,10 +153,16 @@ export const SceneTransitionBridge: React.FC = () => {
               {/* Background Datum Conduit */}
               <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 h-[2px] bg-slate-200" />
               
-              {/* Active Trace Line */}
-              <div 
-                className="absolute left-8 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-brand-blue via-indigo-600 to-emerald-600 transition-all duration-300"
+              {/* Active Scroll-Driven Trace Line */}
+              <motion.div
+                className="absolute left-8 top-1/2 -translate-y-1/2 h-[2.5px] bg-gradient-to-r from-brand-blue via-indigo-600 to-emerald-600 origin-left"
                 style={{ width: `${(activeStageIndex / (CONTINUOUS_STAGES.length - 1)) * 92}%` }}
+              />
+
+              {/* Dynamic Scroll Atmosphere Glow Trace */}
+              <motion.div
+                className="absolute left-8 top-1/2 -translate-y-1/2 h-1 bg-brand-blue/30 blur-xs origin-left"
+                style={{ width: scrollTraceWidth }}
               />
 
               {/* Stage Waypoints along the continuous path */}

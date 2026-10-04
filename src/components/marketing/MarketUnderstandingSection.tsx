@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Compass, ArrowRight, CheckCircle2, ShieldAlert } from 'lucide-react';
 
 /**
@@ -99,10 +100,17 @@ export const MarketUnderstandingSection: React.FC = () => {
                 onClick={() => setActiveStep(idx as 0 | 1 | 2)}
                 className={`text-left py-3 px-5 sm:px-6 rounded-t-xl transition-all duration-150 relative flex items-center gap-3 shrink-0 cursor-pointer ${
                   isActive
-                    ? 'bg-white text-slate-900 font-bold border-t-2 border-brand-blue shadow-xs'
+                    ? 'bg-white text-slate-900 font-bold shadow-xs'
                     : 'text-slate-500 hover:text-slate-800 font-medium hover:bg-white/50'
                 }`}
               >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeUnderlineTab"
+                    className="absolute top-0 left-0 right-0 h-0.5 bg-brand-blue rounded-t"
+                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                  />
+                )}
                 <span className={`text-[11px] font-mono px-2 py-0.5 rounded font-bold ${
                   isActive ? 'bg-blue-50 text-brand-blue border border-blue-200' : 'bg-slate-100 text-slate-400'
                 }`}>

@@ -21,6 +21,7 @@ export const HeroProductTerminal: React.FC = () => {
   const [showOrderBlocks, setShowOrderBlocks] = useState(true);
   const [showSignals, setShowSignals] = useState(true);
   const [activeCandleHover, setActiveCandleHover] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
 
   const indicatorData = INDICATOR_DATA_BY_MODE[activeMode] || INDICATOR_DATA_BY_MODE.TREND;
 
@@ -35,6 +36,30 @@ export const HeroProductTerminal: React.FC = () => {
 
   const getY = (price: number) => {
     return chartHeight - ((price - minPrice) / priceRange) * chartHeight;
+  };
+
+  const getPriceFromY = (y: number) => {
+    return maxPrice - (y / chartHeight) * priceRange;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const svgX = ((e.clientX - rect.left) / rect.width) * chartWidth;
+    const svgY = ((e.clientY - rect.top) / rect.height) * chartHeight;
+
+    setMousePos({ x: svgX, y: svgY });
+
+    // Calculate nearest candle index
+    const index = Math.min(
+      Math.max(0, Math.round(svgX / stepX) - 1),
+      candleCount - 1
+    );
+    setActiveCandleHover(index);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveCandleHover(null);
+    setMousePos(null);
   };
 
   // Generate dynamic path for EMA ribbon based on candles
@@ -211,9 +236,11 @@ export const HeroProductTerminal: React.FC = () => {
           {/* Interactive SVG Chart */}
           <div className="relative w-full h-[300px] sm:h-[360px] select-none overflow-hidden">
             <svg
-              className="w-full h-full overflow-hidden"
+              className="w-full h-full overflow-hidden cursor-crosshair"
               viewBox={`0 0 ${chartWidth} ${chartHeight}`}
               preserveAspectRatio="none"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
               <defs>
                 <linearGradient id="cloudGradLight" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -496,6 +523,61 @@ export const HeroProductTerminal: React.FC = () => {
               >
                 68,220.5
               </text>
+
+              {/* Interactive Scrub Crosshair & Floating Coordinate Callout */}
+              {mousePos && activeCandleHover !== null && (
+                <g className="pointer-events-none">
+                  {/* Vertical Crosshair Trace */}
+                  <line
+                    x1={(activeCandleHover + 1) * stepX}
+                    y1="0"
+                    x2={(activeCandleHover + 1) * stepX}
+                    y2={chartHeight - 20}
+                    stroke="#1D4ED8"
+                    strokeWidth="1.2"
+                    strokeDasharray="3 3"
+                  />
+                  {/* Horizontal Crosshair Price Line */}
+                  <line
+                    x1="0"
+                    y1={mousePos.y}
+                    x2={chartWidth - 58}
+                    y2={mousePos.y}
+                    stroke="#1D4ED8"
+                    strokeWidth="1"
+                    strokeDasharray="3 3"
+                  />
+                  {/* Y-Axis Hover Price Label */}
+                  <rect
+                    x={chartWidth - 58}
+                    y={Math.min(Math.max(mousePos.y - 9, 0), chartHeight - 38)}
+                    width="56"
+                    height="18"
+                    rx="2"
+                    fill="#0F172A"
+                  />
+                  <text
+                    x={chartWidth - 30}
+                    y={Math.min(Math.max(mousePos.y + 4, 13), chartHeight - 25)}
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize="8.5"
+                    fontWeight="700"
+                    fontFamily="monospace"
+                  >
+                    ${Math.round(getPriceFromY(mousePos.y)).toLocaleString()}
+                  </text>
+                  {/* Active Candlestick Highlight Ring */}
+                  <circle
+                    cx={(activeCandleHover + 1) * stepX}
+                    cy={getY(BTC_15M_CANDLES[activeCandleHover].close)}
+                    r="4"
+                    fill="#1D4ED8"
+                    stroke="#FFFFFF"
+                    strokeWidth="1.5"
+                  />
+                </g>
+              )}
             </svg>
           </div>
 
