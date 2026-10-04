@@ -4,9 +4,11 @@
 **Date:** October 2026  
 **Document Version:** 3.1.0  
 **Status:** Implemented, Built & Validated  
+**Live Preview URL:** [https://preview.algofinex-ui.pages.dev](https://preview.algofinex-ui.pages.dev)  
+**Direct Build URL:** [https://23cc716c.algofinex-ui.pages.dev](https://23cc716c.algofinex-ui.pages.dev)  
 **Audit Reference:** [`docs/PHASE_3_1_VISUAL_AUDIT.md`](file:///d:/Algofinex%20UI/docs/PHASE_3_1_VISUAL_AUDIT.md)  
 **Branch:** `main`  
-**Repository:** `hariomtesting/algofinex-ui`  
+**Repository:** `hariomtesting/algofinex-ui` (Commit: `c4ba601`)  
 
 ---
 
