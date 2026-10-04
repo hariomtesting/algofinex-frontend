@@ -8,7 +8,7 @@ import { SessionSection } from './components/marketing/SessionSection';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-background text-text-primary selection:bg-brand-blue/30 selection:text-white flex flex-col justify-between">
+    <div className="min-h-screen bg-background text-text-primary selection:bg-brand-blue/20 selection:text-slate-900 flex flex-col justify-between">
       {/* Top Persistent Navigation */}
       <Navbar />
 
@@ -31,28 +31,28 @@ export const App: React.FC = () => {
       </main>
 
       {/* Persistent Landing Footer */}
-      <footer className="border-t border-white/[0.08] bg-[#07090E] py-10 px-5 sm:px-8 text-xs font-mono text-text-muted">
+      <footer className="border-t border-black/[0.06] bg-[#F1F3F5] py-10 px-5 sm:px-8 text-xs font-mono text-slate-500">
         <div className="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2">
               <span className="size-2 rounded-full bg-brand-blue" />
-              <span className="font-semibold text-white tracking-wide">ALGOFINEX</span>
-              <span className="text-text-dim text-[11px]">INDICATORS &amp; ANALYSIS</span>
+              <span className="font-semibold text-slate-900 tracking-wide">ALGOFINEX</span>
+              <span className="text-slate-500 text-[11px]">INDICATORS &amp; ANALYSIS</span>
             </div>
-            <span className="hidden sm:inline text-border-medium">•</span>
-            <div className="text-text-secondary text-[11px]">
+            <span className="hidden sm:inline text-slate-300">•</span>
+            <div className="text-slate-600 text-[11px]">
               Multi-Layered Market Structure • 7-Step Trading Workflow
             </div>
           </div>
 
           <div className="flex items-center gap-6 text-[11px]">
-            <a href="#indicator-system" className="hover:text-white transition-colors">Indicators</a>
-            <a href="#workflow" className="hover:text-white transition-colors">Methodology</a>
-            <a href="#session" className="hover:text-white transition-colors">3-Day Session</a>
-            <a href="#signin" className="hover:text-white transition-colors">Client Portal</a>
+            <a href="#indicator-system" className="text-slate-600 hover:text-slate-900 transition-colors">Indicators</a>
+            <a href="#workflow" className="text-slate-600 hover:text-slate-900 transition-colors">Methodology</a>
+            <a href="#session" className="text-slate-600 hover:text-slate-900 transition-colors">3-Day Session</a>
+            <a href="#signin" className="text-slate-600 hover:text-slate-900 transition-colors">Client Portal</a>
           </div>
 
-          <div className="text-text-dim text-[10px] text-center md:text-right">
+          <div className="text-slate-400 text-[10px] text-center md:text-right">
             © 2026 AlgoFinex. Educational market structure analysis. Not financial advice.
           </div>
         </div>
@@ -62,3 +62,4 @@ export const App: React.FC = () => {
 };
 
 export default App;
+

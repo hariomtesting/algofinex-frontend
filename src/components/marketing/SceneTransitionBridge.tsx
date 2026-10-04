@@ -25,7 +25,7 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
     stateName: 'Unfiltered Noise',
     tagline: 'Erratic candlestick wicks & emotional volatility',
     cognitiveRule: 'Do not react to isolated candles. Most intraday moves are predatory churn.',
-    statusColor: '#EF4444',
+    statusColor: '#DC2626',
     waveformType: 'chaotic'
   },
   {
@@ -35,7 +35,7 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
     stateName: 'Noise Dampening',
     tagline: 'Filter false breakouts through higher-timeframe alignment',
     cognitiveRule: 'Wait for the current bar to mature before evaluating directional intent.',
-    statusColor: '#F59E0B',
+    statusColor: '#D97706',
     waveformType: 'dampened'
   },
   {
@@ -45,7 +45,7 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
     stateName: 'Pivot Mapping',
     tagline: 'Identify validated Higher-High and Higher-Low swing boundaries',
     cognitiveRule: 'Trend direction is defined strictly by swing geometry, not personal sentiment.',
-    statusColor: '#3B82F6',
+    statusColor: '#2563EB',
     waveformType: 'pivoted'
   },
   {
@@ -55,7 +55,7 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
     stateName: 'Adaptive Cloud',
     tagline: 'Align entry momentum with dynamic multi-period ribbon support',
     cognitiveRule: 'Trades taken against the adaptive cloud carry inherently higher drawdown risk.',
-    statusColor: '#60A5FA',
+    statusColor: '#3B82F6',
     waveformType: 'cloud'
   },
   {
@@ -65,7 +65,7 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
     stateName: 'Liquidity Anchor',
     tagline: 'Detect resting order blocks and mitigated imbalance voids',
     cognitiveRule: 'Execute only where institutional resting liquidity has been swept and defended.',
-    statusColor: '#A855F7',
+    statusColor: '#9333EA',
     waveformType: 'zone'
   },
   {
@@ -75,7 +75,7 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
     stateName: 'Risk Boundary',
     tagline: 'Hard mathematical price level that invalidates the setup',
     cognitiveRule: 'Know your exact exit before your finger touches the entry button. No mental stops.',
-    statusColor: '#EF4444',
+    statusColor: '#DC2626',
     waveformType: 'boundary'
   },
   {
@@ -85,7 +85,7 @@ const CONTINUOUS_STAGES: ContinuousStage[] = [
     stateName: 'Execution Confirmed',
     tagline: 'Non-repainting bar-close confirmation with calibrated size',
     cognitiveRule: 'Trade size is derived from stop distance, keeping capital variance strictly controlled.',
-    statusColor: '#10B981',
+    statusColor: '#059669',
     waveformType: 'trigger'
   }
 ];
@@ -96,11 +96,11 @@ export const SceneTransitionBridge: React.FC = () => {
   const activeStage = CONTINUOUS_STAGES[activeStageIndex];
 
   return (
-    <section id="workflow" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#04060A] border-t border-white/[0.06]">
+    <section id="workflow" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#F8FAFC] border-t border-black/[0.06]">
       
       {/* Dynamic Ambient Trace Path Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[350px] bg-brand-blue/5 rounded-full blur-[160px] opacity-60" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[350px] bg-blue-100/35 rounded-full blur-[160px] opacity-60" />
       </div>
 
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
@@ -109,31 +109,31 @@ export const SceneTransitionBridge: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 sm:mb-20">
           
           <div className="lg:col-span-7 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated/90 border border-white/[0.1] text-xs font-mono text-brand-accent mb-4 shadow-panel">
-              <Workflow className="size-3 text-brand-accent shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px]">THE CONTINUOUS EXECUTION JOURNEY</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
+              <Workflow className="size-3 text-brand-blue shrink-0" />
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">THE CONTINUOUS EXECUTION JOURNEY</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-white leading-[1.05]">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.05]">
               An indicator is an input.<br />
-              <span className="bg-gradient-to-r from-brand-accent via-white to-text-secondary bg-clip-text text-transparent">
+              <span className="text-brand-blue">
                 Your routine is the outcome.
               </span>
             </h2>
           </div>
 
           <div className="lg:col-span-5 text-left flex flex-col justify-end">
-            <p className="text-sm sm:text-base text-text-secondary leading-relaxed mb-4">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
               Watch how chaotic market noise resolves into absolute geometric clarity through the seven stages of the AlgoFinex execution journey.
             </p>
-            <div className="text-xs font-mono text-text-muted">
+            <div className="text-xs font-mono text-slate-500">
               Interactive transformation: Click any stage along the path to trace clarity.
             </div>
           </div>
 
         </div>
 
-        {/* CONTINUOUS VISUAL PATH / CHART RIBBON (No repeated card boxes) */}
+        {/* CONTINUOUS VISUAL PATH / CHART RIBBON */}
         <div className="w-full">
           
           {/* Continuous Journey Ribbon Track (Desktop & Tablet) */}
@@ -143,11 +143,11 @@ export const SceneTransitionBridge: React.FC = () => {
             <div className="relative h-20 w-full flex items-center">
               
               {/* Background Datum Conduit */}
-              <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 h-[2px] bg-white/[0.08]" />
+              <div className="absolute inset-x-8 top-1/2 -translate-y-1/2 h-[2px] bg-slate-200" />
               
               {/* Active Trace Line */}
               <div 
-                className="absolute left-8 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-brand-blue via-brand-accent to-emerald-400 transition-all duration-300 shadow-[0_0_12px_rgba(59,130,246,0.6)]"
+                className="absolute left-8 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-brand-blue via-indigo-600 to-emerald-600 transition-all duration-300"
                 style={{ width: `${(activeStageIndex / (CONTINUOUS_STAGES.length - 1)) * 92}%` }}
               />
 
@@ -165,16 +165,16 @@ export const SceneTransitionBridge: React.FC = () => {
                     >
                       <div className={`size-10 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 ${
                         isActive
-                          ? 'bg-brand-blue text-white ring-4 ring-brand-blue/30 scale-125 shadow-glow-blue'
+                          ? 'bg-brand-blue text-white ring-4 ring-blue-100 scale-125 shadow-sm'
                           : isPassed
-                          ? 'bg-surface-elevated text-brand-accent border border-brand-blue/40'
-                          : 'bg-[#0B0F17] text-text-muted border border-white/[0.1] group-hover:border-white/[0.25]'
+                          ? 'bg-blue-50 text-brand-blue border border-blue-200'
+                          : 'bg-white text-slate-400 border border-slate-200 group-hover:border-slate-400'
                       }`}>
                         {stg.step}
                       </div>
 
                       <span className={`text-[11px] font-mono mt-3 uppercase tracking-wider transition-colors whitespace-nowrap ${
-                        isActive ? 'text-white font-bold' : 'text-text-muted group-hover:text-text-secondary'
+                        isActive ? 'text-slate-900 font-bold' : 'text-slate-400 group-hover:text-slate-700'
                       }`}>
                         {stg.title}
                       </span>
@@ -195,8 +195,8 @@ export const SceneTransitionBridge: React.FC = () => {
                 onClick={() => setActiveStageIndex(idx)}
                 className={`px-3 py-2 rounded-xl font-mono text-xs whitespace-nowrap shrink-0 border transition-all ${
                   idx === activeStageIndex
-                    ? 'bg-brand-blue text-white border-brand-blue font-bold shadow-glow-blue'
-                    : 'bg-surface-elevated/70 text-text-muted border-white/[0.08]'
+                    ? 'bg-brand-blue text-white border-brand-blue font-bold shadow-xs'
+                    : 'bg-white text-slate-600 border-black/[0.08]'
                 }`}
               >
                 {stg.step}. {stg.title}
@@ -204,8 +204,8 @@ export const SceneTransitionBridge: React.FC = () => {
             ))}
           </div>
 
-          {/* THE STAGE TRANSFORMATION STAGE (One unified architectural visual) */}
-          <div className="rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#070A11] p-6 sm:p-10 lg:p-12 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.9)]">
+          {/* THE STAGE TRANSFORMATION STAGE */}
+          <div className="rounded-2xl md:rounded-3xl border border-black/[0.09] bg-white p-6 sm:p-10 lg:p-12 shadow-workstation">
             
             <AnimatePresence mode="wait">
               <motion.div
@@ -216,43 +216,43 @@ export const SceneTransitionBridge: React.FC = () => {
                 transition={{ duration: 0.2 }}
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
               >
-                {/* Left Side: Cognitive Rule & Narrative (7 cols on lg) */}
+                {/* Left Side: Cognitive Rule & Narrative */}
                 <div className="lg:col-span-7 flex flex-col gap-4 text-left">
                   
                   <div className="flex items-center gap-2.5 text-xs font-mono">
-                    <span className="px-2 py-0.5 rounded bg-white/[0.06] text-white font-bold">
+                    <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold">
                       STAGE {activeStage.step} // 07
                     </span>
-                    <span className="text-border-medium">•</span>
+                    <span className="text-slate-300">•</span>
                     <span className="font-semibold uppercase tracking-wider" style={{ color: activeStage.statusColor }}>
                       {activeStage.stateName}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-4xl font-display font-extrabold text-white tracking-tight leading-tight">
+                  <h3 className="text-2xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
                     {activeStage.title} Phase
                   </h3>
 
-                  <div className="text-sm font-mono text-text-muted">
+                  <div className="text-sm font-mono text-slate-500">
                     {activeStage.tagline}
                   </div>
 
                   {/* Non-Negotiable Cognitive Rule Box */}
-                  <div className="mt-2 p-4 rounded-xl bg-surface-elevated/80 border border-white/[0.08] text-xs font-mono">
-                    <span className="text-[10px] text-text-dim uppercase tracking-wider block mb-1">
+                  <div className="mt-2 p-4 rounded-xl bg-slate-50 border border-black/[0.06] text-xs font-mono">
+                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block mb-1">
                       Trader Cognitive Rule:
                     </span>
-                    <div className="text-brand-accent font-semibold leading-relaxed text-sm">
+                    <div className="text-slate-900 font-semibold leading-relaxed text-sm">
                       "{activeStage.cognitiveRule}"
                     </div>
                   </div>
 
                 </div>
 
-                {/* Right Side: Continuous Waveform Transformation Graphic (5 cols on lg) */}
-                <div className="lg:col-span-5 p-6 rounded-2xl bg-[#05070C] border border-white/[0.08] font-mono text-xs flex flex-col gap-4">
+                {/* Right Side: Continuous Waveform Transformation Graphic */}
+                <div className="lg:col-span-5 p-6 rounded-2xl bg-slate-50 border border-black/[0.06] font-mono text-xs flex flex-col gap-4">
                   
-                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.06] text-[11px] text-text-muted">
+                  <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] text-[11px] text-slate-500">
                     <span>SIGNAL ENTROPY LEVEL</span>
                     <span className="font-bold uppercase" style={{ color: activeStage.statusColor }}>
                       {activeStage.stateName}
@@ -260,13 +260,13 @@ export const SceneTransitionBridge: React.FC = () => {
                   </div>
 
                   {/* Graphic Waveform Metaphor */}
-                  <div className="h-28 flex items-center justify-center relative overflow-hidden">
+                  <div className="h-28 flex items-center justify-center relative overflow-hidden bg-white rounded-xl border border-black/[0.04]">
                     <svg viewBox="0 0 400 100" className="w-full h-full">
                       {activeStage.waveformType === 'chaotic' && (
                         <path
                           d="M 10 50 Q 30 10, 50 80 T 90 20 T 130 90 T 170 30 T 210 85 T 250 15 T 290 75 T 330 25 T 370 70 T 390 50"
                           fill="none"
-                          stroke="#EF4444"
+                          stroke="#DC2626"
                           strokeWidth="2.5"
                           className="animate-pulse"
                         />
@@ -276,7 +276,7 @@ export const SceneTransitionBridge: React.FC = () => {
                         <path
                           d="M 10 50 Q 50 35, 90 60 T 170 42 T 250 56 T 330 46 T 390 50"
                           fill="none"
-                          stroke="#F59E0B"
+                          stroke="#D97706"
                           strokeWidth="2"
                         />
                       )}
@@ -286,15 +286,15 @@ export const SceneTransitionBridge: React.FC = () => {
                           <path
                             d="M 10 70 L 100 25 L 200 65 L 300 15 L 390 50"
                             fill="none"
-                            stroke="#3B82F6"
+                            stroke="#2563EB"
                             strokeWidth="2.5"
                           />
-                          <circle cx="100" cy="25" r="4" fill="#60A5FA" />
-                          <circle cx="200" cy="65" r="4" fill="#10B981" />
-                          <circle cx="300" cy="15" r="4" fill="#60A5FA" />
-                          <text x="100" y="16" fill="#93C5FD" fontSize="9" textAnchor="middle">HH</text>
-                          <text x="200" y="80" fill="#6EE7B7" fontSize="9" textAnchor="middle">HL</text>
-                          <text x="300" y="8" fill="#93C5FD" fontSize="9" textAnchor="middle">BOS</text>
+                          <circle cx="100" cy="25" r="4" fill="#2563EB" />
+                          <circle cx="200" cy="65" r="4" fill="#059669" />
+                          <circle cx="300" cy="15" r="4" fill="#2563EB" />
+                          <text x="100" y="16" fill="#1D4ED8" fontSize="9" textAnchor="middle" fontWeight="bold">HH</text>
+                          <text x="200" y="80" fill="#047857" fontSize="9" textAnchor="middle" fontWeight="bold">HL</text>
+                          <text x="300" y="8" fill="#1D4ED8" fontSize="9" textAnchor="middle" fontWeight="bold">BOS</text>
                         </g>
                       )}
 
@@ -302,18 +302,18 @@ export const SceneTransitionBridge: React.FC = () => {
                         <g>
                           <path
                             d="M 10 65 Q 100 45, 200 55 T 390 30 L 390 55 Q 290 75, 190 70 T 10 80 Z"
-                            fill="rgba(59, 130, 246, 0.2)"
+                            fill="rgba(37, 99, 235, 0.08)"
                           />
                           <path
                             d="M 10 65 Q 100 45, 200 55 T 390 30"
                             fill="none"
-                            stroke="#3B82F6"
+                            stroke="#2563EB"
                             strokeWidth="2"
                           />
                           <path
                             d="M 10 80 Q 100 60, 200 70 T 390 45"
                             fill="none"
-                            stroke="#10B981"
+                            stroke="#059669"
                             strokeWidth="1.5"
                             strokeDasharray="4 2"
                           />
@@ -322,37 +322,37 @@ export const SceneTransitionBridge: React.FC = () => {
 
                       {activeStage.waveformType === 'zone' && (
                         <g>
-                          <rect x="60" y="35" width="280" height="32" fill="rgba(168, 85, 247, 0.15)" stroke="#A855F7" strokeWidth="1.2" strokeDasharray="4 2" rx="3" />
-                          <path d="M 20 80 L 100 80 L 160 40 L 260 40 L 340 20 L 380 20" fill="none" stroke="#C084FC" strokeWidth="2" />
-                          <text x="200" y="55" fill="#E9D5FF" fontSize="9" textAnchor="middle" fontWeight="bold">INSTITUTIONAL DEMAND DEFENDED</text>
+                          <rect x="60" y="35" width="280" height="32" fill="rgba(147, 51, 234, 0.08)" stroke="#9333EA" strokeWidth="1.2" strokeDasharray="4 2" rx="3" />
+                          <path d="M 20 80 L 100 80 L 160 40 L 260 40 L 340 20 L 380 20" fill="none" stroke="#7C3AED" strokeWidth="2" />
+                          <text x="200" y="55" fill="#6D28D9" fontSize="9" textAnchor="middle" fontWeight="bold">INSTITUTIONAL DEMAND DEFENDED</text>
                         </g>
                       )}
 
                       {activeStage.waveformType === 'boundary' && (
                         <g>
-                          <line x1="20" y1="75" x2="380" y2="75" stroke="#EF4444" strokeWidth="2" strokeDasharray="5 3" />
-                          <path d="M 20 60 L 120 40 L 220 50 L 320 25 L 380 30" fill="none" stroke="#60A5FA" strokeWidth="2" />
-                          <rect x="220" y="65" width="150" height="20" rx="3" fill="#3B1214" stroke="#EF4444" strokeWidth="1" />
-                          <text x="295" y="79" fill="#FCA5A5" fontSize="9" textAnchor="middle" fontWeight="bold">HARD STOP: $66,180</text>
+                          <line x1="20" y1="75" x2="380" y2="75" stroke="#DC2626" strokeWidth="2" strokeDasharray="5 3" />
+                          <path d="M 20 60 L 120 40 L 220 50 L 320 25 L 380 30" fill="none" stroke="#2563EB" strokeWidth="2" />
+                          <rect x="220" y="65" width="150" height="20" rx="3" fill="#FEE2E2" stroke="#DC2626" strokeWidth="1" />
+                          <text x="295" y="79" fill="#B91C1C" fontSize="9" textAnchor="middle" fontWeight="bold">HARD STOP: $66,180</text>
                         </g>
                       )}
 
                       {activeStage.waveformType === 'trigger' && (
                         <g>
-                          <path d="M 20 65 L 120 55 L 200 65 L 280 35 L 380 20" fill="none" stroke="#10B981" strokeWidth="3" />
-                          <circle cx="280" cy="35" r="5" fill="#10B981" />
-                          <rect x="230" y="46" width="100" height="22" rx="4" fill="#0C2018" stroke="#10B981" strokeWidth="1.2" />
-                          <text x="280" y="60" fill="#34D399" fontSize="9" textAnchor="middle" fontWeight="bold">▲ ENTRY CONFIRMED</text>
+                          <path d="M 20 65 L 120 55 L 200 65 L 280 35 L 380 20" fill="none" stroke="#059669" strokeWidth="3" />
+                          <circle cx="280" cy="35" r="5" fill="#059669" />
+                          <rect x="230" y="46" width="100" height="22" rx="4" fill="#ECFDF5" stroke="#059669" strokeWidth="1.2" />
+                          <text x="280" y="60" fill="#047857" fontSize="9" textAnchor="middle" fontWeight="bold">▲ ENTRY CONFIRMED</text>
                         </g>
                       )}
                     </svg>
                   </div>
 
-                  <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-text-dim">
+                  <div className="pt-3 border-t border-black/[0.06] flex items-center justify-between text-[11px] text-slate-400">
                     <span>Step {activeStage.step} of 07</span>
                     <button
                       onClick={() => setActiveStageIndex((activeStageIndex + 1) % CONTINUOUS_STAGES.length)}
-                      className="text-brand-accent hover:underline flex items-center gap-1 font-semibold"
+                      className="text-brand-blue hover:underline flex items-center gap-1 font-semibold"
                     >
                       <span>Next Stage</span>
                       <ChevronRight className="size-3" />
@@ -369,9 +369,9 @@ export const SceneTransitionBridge: React.FC = () => {
         </div>
 
         {/* Transition into 3-Day Session */}
-        <div className="mt-14 flex flex-col items-center gap-2 text-text-dim text-xs font-mono">
+        <div className="mt-14 flex flex-col items-center gap-2 text-slate-400 text-xs font-mono">
           <span className="tracking-widest uppercase">THE RESULTING OPERATIONAL ROUTINE</span>
-          <ArrowDown className="size-4 text-brand-accent animate-bounce" />
+          <ArrowDown className="size-4 text-brand-blue animate-bounce" />
         </div>
 
       </div>
@@ -380,3 +380,4 @@ export const SceneTransitionBridge: React.FC = () => {
 };
 
 export default SceneTransitionBridge;
+

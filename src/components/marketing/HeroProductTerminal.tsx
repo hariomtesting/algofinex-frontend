@@ -6,16 +6,15 @@ import {
   INDICATOR_DATA_BY_MODE 
 } from '../../data/mockChartData';
 import { IndicatorMode } from '../../types/trading';
-import { DecryptedText } from '../ui/DecryptedText';
 import { 
   Layers, 
   TrendingUp, 
   Compass, 
-  Info, 
   Calendar,
   ChevronRight,
   Shield,
-  Eye
+  Eye,
+  Crosshair
 } from 'lucide-react';
 
 export const HeroProductTerminal: React.FC = () => {
@@ -54,52 +53,48 @@ export const HeroProductTerminal: React.FC = () => {
   }).join(' L ');
 
   return (
-    <div className="relative w-full rounded-2xl md:rounded-3xl border border-white/[0.1] bg-canvas/90 backdrop-blur-2xl shadow-terminal overflow-hidden transition-all duration-300">
+    <div className="relative w-full rounded-2xl md:rounded-3xl border border-slate-200/90 bg-white shadow-workstation overflow-hidden transition-all duration-300">
       
-      {/* Ambient Inner Lighting */}
-      <div className="pointer-events-none absolute -top-40 left-1/4 size-96 rounded-full bg-brand-blue/15 blur-3xl opacity-60" />
-      <div className="pointer-events-none absolute -bottom-40 right-1/4 size-96 rounded-full bg-emerald-500/10 blur-3xl opacity-50" />
-
       {/* Terminal Title Bar */}
-      <div className="flex flex-wrap items-center justify-between border-b border-white/[0.08] bg-surface/70 px-4 md:px-6 py-3 gap-3">
+      <div className="flex flex-wrap items-center justify-between border-b border-slate-200/80 bg-slate-50/80 px-4 md:px-6 py-3 gap-3">
         
         {/* Left Window Affordances & Symbol Selector */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <div className="size-2.5 rounded-full bg-white/20 border border-white/30" />
-            <div className="size-2.5 rounded-full bg-white/20 border border-white/30" />
-            <div className="size-2.5 rounded-full bg-white/20 border border-white/30" />
+            <div className="size-2.5 rounded-full bg-slate-300" />
+            <div className="size-2.5 rounded-full bg-slate-300" />
+            <div className="size-2.5 rounded-full bg-slate-300" />
           </div>
 
-          <div className="h-4 w-px bg-white/[0.1] hidden sm:block" />
+          <div className="h-4 w-px bg-slate-200 hidden sm:block" />
 
           {/* Instrument Selector Pill */}
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-xs font-mono">
-            <span className="font-bold text-white tracking-wide">BTC/USDT</span>
-            <span className="text-text-muted text-[10px]">SPOT/PERP</span>
-            <span className="text-signal-bull text-[11px] font-semibold flex items-center">
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono shadow-xs">
+            <span className="font-bold text-slate-900 tracking-wide">BTC/USDT</span>
+            <span className="text-slate-500 text-[10px]">SPOT/PERP</span>
+            <span className="text-emerald-600 text-[11px] font-bold flex items-center">
               $68,220.50
             </span>
           </div>
 
           {/* Timeframe Badges */}
-          <div className="hidden md:flex items-center gap-1 text-[11px] font-mono text-text-muted">
-            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">1m</button>
-            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">5m</button>
-            <button className="px-2 py-0.5 rounded bg-brand-blue/20 text-brand-accent font-semibold border border-brand-blue/30">15m</button>
-            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">1H</button>
-            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">4H</button>
+          <div className="hidden md:flex items-center gap-1 text-[11px] font-mono text-slate-600">
+            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">1m</button>
+            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">5m</button>
+            <button className="px-2 py-0.5 rounded bg-blue-50 text-brand-blue font-bold border border-blue-200/70">15m</button>
+            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">1H</button>
+            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">4H</button>
           </div>
         </div>
 
         {/* Center Indicator Mode Selector */}
-        <div className="flex items-center p-1 rounded-lg bg-surface-elevated/90 border border-white/[0.08] gap-1 text-xs w-full sm:w-auto justify-between sm:justify-start">
+        <div className="flex items-center p-1 rounded-lg bg-slate-200/70 border border-slate-300/60 gap-1 text-xs w-full sm:w-auto justify-between sm:justify-start">
           <button
             onClick={() => setActiveMode('TREND')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-1.5 ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 ${
               activeMode === 'TREND'
-                ? 'bg-brand-blue text-white shadow-sm'
-                : 'text-text-secondary hover:text-white'
+                ? 'bg-brand-blue text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <TrendingUp className="size-3.5 shrink-0" />
@@ -108,10 +103,10 @@ export const HeroProductTerminal: React.FC = () => {
 
           <button
             onClick={() => setActiveMode('LIQUIDITY')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-1.5 ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 ${
               activeMode === 'LIQUIDITY'
-                ? 'bg-brand-blue text-white shadow-sm'
-                : 'text-text-secondary hover:text-white'
+                ? 'bg-brand-blue text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Compass className="size-3.5 shrink-0" />
@@ -120,10 +115,10 @@ export const HeroProductTerminal: React.FC = () => {
 
           <button
             onClick={() => setActiveMode('STRUCTURE')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-1.5 ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 ${
               activeMode === 'STRUCTURE'
-                ? 'bg-brand-blue text-white shadow-sm'
-                : 'text-text-secondary hover:text-white'
+                ? 'bg-brand-blue text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <Layers className="size-3.5 shrink-0" />
@@ -133,56 +128,56 @@ export const HeroProductTerminal: React.FC = () => {
 
         {/* Right Status Tag */}
         <div className="hidden lg:flex items-center gap-2">
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-brand-blue/10 border border-brand-blue/20 text-[11px] font-mono text-brand-accent">
-            <span className="size-1.5 rounded-full bg-brand-accent animate-pulse" />
-            <DecryptedText text="INDICATOR SUITE v4.2" speed={45} />
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 text-[11px] font-mono text-slate-700">
+            <span className="size-1.5 rounded-full bg-emerald-500" />
+            <span>SUITE v4.2 // SYNCHRONIZED</span>
           </div>
         </div>
       </div>
 
       {/* Layer Toggles Secondary Ribbon */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.05] bg-canvas/40 px-4 md:px-6 py-2.5 sm:py-2 text-xs font-mono text-text-secondary gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200/70 bg-slate-50/40 px-4 md:px-6 py-2 text-xs font-mono text-slate-600 gap-2">
         <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
-          <span className="text-[10px] sm:text-[11px] text-text-muted uppercase tracking-wider flex items-center gap-1">
-            <Eye className="size-3" />
-            Indicator Overlays:
+          <span className="text-[10px] sm:text-[11px] text-slate-500 uppercase tracking-wider flex items-center gap-1">
+            <Eye className="size-3 text-slate-400" />
+            Overlays:
           </span>
           
           <button
             onClick={() => setShowEMA(!showEMA)}
             className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors ${
-              showEMA ? 'text-brand-accent bg-brand-blue/10 border border-brand-blue/20' : 'text-text-muted hover:text-text-secondary'
+              showEMA ? 'text-brand-blue bg-blue-50 border border-blue-200' : 'text-slate-400 hover:text-slate-600'
             }`}
           >
-            <span className={`size-1.5 rounded-full ${showEMA ? 'bg-brand-accent' : 'bg-text-dim'}`} />
+            <span className={`size-1.5 rounded-full ${showEMA ? 'bg-brand-blue' : 'bg-slate-300'}`} />
             EMA Cloud (21/55)
           </button>
 
           <button
             onClick={() => setShowOrderBlocks(!showOrderBlocks)}
             className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors ${
-              showOrderBlocks ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20' : 'text-text-muted hover:text-text-secondary'
+              showOrderBlocks ? 'text-emerald-700 bg-emerald-50 border border-emerald-200' : 'text-slate-400 hover:text-slate-600'
             }`}
           >
-            <span className={`size-1.5 rounded-full ${showOrderBlocks ? 'bg-emerald-400' : 'bg-text-dim'}`} />
+            <span className={`size-1.5 rounded-full ${showOrderBlocks ? 'bg-emerald-600' : 'bg-slate-300'}`} />
             Liquidity Zones
           </button>
 
           <button
             onClick={() => setShowSignals(!showSignals)}
             className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors ${
-              showSignals ? 'text-amber-300 bg-amber-500/10 border border-amber-500/20' : 'text-text-muted hover:text-text-secondary'
+              showSignals ? 'text-slate-800 bg-amber-50 border border-amber-200' : 'text-slate-400 hover:text-slate-600'
             }`}
           >
-            <span className={`size-1.5 rounded-full ${showSignals ? 'bg-amber-400' : 'bg-text-dim'}`} />
+            <span className={`size-1.5 rounded-full ${showSignals ? 'bg-amber-500' : 'bg-slate-300'}`} />
             Signal Confirmation
           </button>
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 text-[11px] text-text-muted">
+        <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-500">
           <span>Non-repainting bar-close logic</span>
-          <span className="text-border-medium">•</span>
-          <span className="text-text-secondary">Multi-Timeframe Aligned</span>
+          <span className="text-slate-300">•</span>
+          <span className="text-slate-700">Multi-Timeframe Aligned</span>
         </div>
       </div>
 
@@ -190,30 +185,24 @@ export const HeroProductTerminal: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[420px] w-full min-w-0">
         
         {/* Left Chart Canvas (8 cols on lg) */}
-        <div className="lg:col-span-8 p-3 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08] relative overflow-hidden bg-[#070A10] w-full min-w-0">
+        <div className="lg:col-span-8 p-3 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200/80 relative overflow-hidden bg-white w-full min-w-0">
           
-          {/* Subtle Chart Watermark Background */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.03] select-none">
-            <span className="font-display font-extrabold text-7xl md:text-9xl tracking-widest text-white">
-              ALGOFINEX
-            </span>
-          </div>
-
           {/* Active Candle Inspection Bar */}
           {(() => {
             const inspectedCandle = activeCandleHover !== null ? BTC_15M_CANDLES[activeCandleHover] : BTC_15M_CANDLES[BTC_15M_CANDLES.length - 1];
             return (
-              <div className="flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono mb-2 z-10 px-1 py-1 rounded bg-white/[0.02] border border-white/[0.04]">
+              <div className="flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono mb-2 z-10 px-2.5 py-1.5 rounded-md bg-slate-50 border border-slate-200/80">
                 <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                  <span className="text-text-muted">Bar: <span className="text-text-primary">{inspectedCandle.time}</span></span>
-                  <span className="text-text-muted">O: <span className="text-text-primary">{inspectedCandle.open.toLocaleString()}</span></span>
-                  <span className="text-text-muted">H: <span className="text-signal-bull">{inspectedCandle.high.toLocaleString()}</span></span>
-                  <span className="text-text-muted">L: <span className="text-signal-bear">{inspectedCandle.low.toLocaleString()}</span></span>
-                  <span className="text-text-muted">C: <span className={inspectedCandle.isBullish ? 'text-signal-bull font-semibold' : 'text-signal-bear font-semibold'}>{inspectedCandle.close.toLocaleString()}</span></span>
-                  <span className="text-text-muted">Vol: <span className="text-brand-accent">{inspectedCandle.volume.toLocaleString()}</span></span>
+                  <span className="text-slate-500">Bar: <span className="text-slate-900 font-semibold">{inspectedCandle.time}</span></span>
+                  <span className="text-slate-500">O: <span className="text-slate-900 font-semibold">{inspectedCandle.open.toLocaleString()}</span></span>
+                  <span className="text-slate-500">H: <span className="text-emerald-700 font-bold">{inspectedCandle.high.toLocaleString()}</span></span>
+                  <span className="text-slate-500">L: <span className="text-red-700 font-bold">{inspectedCandle.low.toLocaleString()}</span></span>
+                  <span className="text-slate-500">C: <span className={inspectedCandle.isBullish ? 'text-emerald-700 font-bold' : 'text-red-700 font-bold'}>{inspectedCandle.close.toLocaleString()}</span></span>
+                  <span className="text-slate-500">Vol: <span className="text-brand-blue font-semibold">{inspectedCandle.volume.toLocaleString()}</span></span>
                 </div>
-                <div className="hidden sm:flex items-center gap-1.5 text-[10px] text-text-dim">
-                  <span>Hover candles to inspect bar data</span>
+                <div className="hidden sm:flex items-center gap-1.5 text-[10px] text-slate-400">
+                  <Crosshair className="size-3" />
+                  <span>Hover to inspect coordinates</span>
                 </div>
               </div>
             );
@@ -227,15 +216,14 @@ export const HeroProductTerminal: React.FC = () => {
               preserveAspectRatio="none"
             >
               <defs>
-                {/* Horizontal Grid Gradients */}
-                <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.25" />
-                  <stop offset="100%" stopColor="#10B981" stopOpacity="0.05" />
+                <linearGradient id="cloudGradLight" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.14" />
+                  <stop offset="100%" stopColor="#059669" stopOpacity="0.04" />
                 </linearGradient>
 
-                <linearGradient id="fvgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#10B981" stopOpacity="0.18" />
-                  <stop offset="100%" stopColor="#10B981" stopOpacity="0.04" />
+                <linearGradient id="demandHatchLight" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.08" />
+                  <stop offset="100%" stopColor="#2563EB" stopOpacity="0.02" />
                 </linearGradient>
               </defs>
 
@@ -249,13 +237,13 @@ export const HeroProductTerminal: React.FC = () => {
                       y1={y}
                       x2={chartWidth}
                       y2={y}
-                      stroke="rgba(255, 255, 255, 0.05)"
+                      stroke="rgba(15, 23, 42, 0.05)"
                       strokeDasharray="4 4"
                     />
                     <text
                       x={chartWidth - 52}
                       y={y - 4}
-                      fill="#64748B"
+                      fill="#94A3B8"
                       fontSize="9"
                       fontFamily="monospace"
                     >
@@ -265,7 +253,7 @@ export const HeroProductTerminal: React.FC = () => {
                 );
               })}
 
-              {/* Order Blocks & Fair Value Gaps */}
+              {/* Order Blocks */}
               {showOrderBlocks &&
                 DEMO_ORDER_BLOCKS.map((ob, idx) => {
                   const startX = (ob.startIndex + 0.5) * stepX;
@@ -274,6 +262,7 @@ export const HeroProductTerminal: React.FC = () => {
                   const topY = getY(ob.topPrice);
                   const bottomY = getY(ob.bottomPrice);
                   const height = bottomY - topY;
+                  const isDemand = ob.type === 'BULLISH_OB';
 
                   return (
                     <g key={idx} className="transition-opacity duration-300">
@@ -282,18 +271,19 @@ export const HeroProductTerminal: React.FC = () => {
                         y={topY}
                         width={width}
                         height={height}
-                        fill={ob.type === 'BEARISH_OB' ? 'rgba(239, 68, 68, 0.12)' : 'url(#fvgGrad)'}
-                        stroke={ob.type === 'BEARISH_OB' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(16, 185, 129, 0.4)'}
+                        fill={isDemand ? 'url(#demandHatchLight)' : 'rgba(220, 38, 38, 0.06)'}
+                        stroke={isDemand ? '#2563EB' : '#DC2626'}
+                        strokeWidth="1.2"
                         strokeDasharray="3 3"
-                        rx="4"
+                        rx="3"
                       />
                       <text
                         x={startX + 6}
                         y={topY + 14}
-                        fill={ob.type === 'BEARISH_OB' ? '#F87171' : '#34D399'}
+                        fill={isDemand ? '#1D4ED8' : '#B91C1C'}
                         fontSize="8.5"
                         fontFamily="monospace"
-                        fontWeight="600"
+                        fontWeight="700"
                       >
                         {ob.label}
                       </text>
@@ -305,25 +295,28 @@ export const HeroProductTerminal: React.FC = () => {
               {showEMA && (
                 <>
                   <path
+                    d={`M ${ema21Points} L ${chartWidth - 40},${getY(67700)} L ${stepX},${getY(66200)} Z`}
+                    fill="url(#cloudGradLight)"
+                  />
+                  <path
                     d={`M ${ema21Points}`}
                     fill="none"
-                    stroke="#3B82F6"
-                    strokeWidth="2"
+                    stroke="#2563EB"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
-                    className="drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
                   />
                   <path
                     d={`M ${ema55Points}`}
                     fill="none"
-                    stroke="#60A5FA"
+                    stroke="#059669"
                     strokeWidth="1.5"
-                    strokeDasharray="5 3"
-                    strokeOpacity="0.7"
+                    strokeDasharray="4 2"
+                    strokeOpacity="0.8"
                   />
                 </>
               )}
 
-              {/* Candlestick sequence */}
+              {/* Candlesticks */}
               {BTC_15M_CANDLES.map((c, i) => {
                 const x = (i + 1) * stepX;
                 const highY = getY(c.high);
@@ -335,16 +328,15 @@ export const HeroProductTerminal: React.FC = () => {
                 const candleWidth = Math.max(stepX * 0.65, 8);
 
                 const isBull = c.isBullish;
-                const color = isBull ? '#10B981' : '#EF4444';
+                const color = isBull ? '#059669' : '#DC2626';
 
                 return (
                   <g
                     key={i}
                     onMouseEnter={() => setActiveCandleHover(i)}
                     onMouseLeave={() => setActiveCandleHover(null)}
-                    className="cursor-crosshair transition-transform duration-150 hover:scale-y-105"
+                    className="cursor-crosshair"
                   >
-                    {/* Wick */}
                     <line
                       x1={x}
                       y1={highY}
@@ -352,9 +344,7 @@ export const HeroProductTerminal: React.FC = () => {
                       y2={lowY}
                       stroke={color}
                       strokeWidth="1.5"
-                      strokeOpacity="0.8"
                     />
-                    {/* Body */}
                     <rect
                       x={x - candleWidth / 2}
                       y={bodyY}
@@ -363,14 +353,13 @@ export const HeroProductTerminal: React.FC = () => {
                       fill={color}
                       stroke={color}
                       strokeWidth="1"
-                      rx="1.5"
-                      className={isBull ? 'drop-shadow-[0_0_4px_rgba(16,185,129,0.3)]' : ''}
+                      rx="1"
                     />
                   </g>
                 );
               })}
 
-              {/* Indicator Signal Markers (Demonstrating structural zones, not trade boasts) */}
+              {/* Indicator Signal Markers */}
               {showSignals &&
                 DEMO_SIGNALS.map((sig, idx) => {
                   const targetCandle = BTC_15M_CANDLES[sig.index];
@@ -378,27 +367,23 @@ export const HeroProductTerminal: React.FC = () => {
                   const y = getY(targetCandle.low) + 24;
 
                   return (
-                    <g key={idx} className="transition-all duration-300">
-                      {/* Signal Arrow / Callout */}
-                      <path
-                        d={`M ${x} ${y - 8} L ${x - 6} ${y} L ${x + 6} ${y} Z`}
-                        fill="#10B981"
-                      />
+                    <g key={idx}>
                       <rect
-                        x={x - 64}
+                        x={x - 52}
                         y={y}
-                        width="128"
+                        width="104"
                         height="22"
                         rx="4"
-                        fill="#0E1726"
-                        stroke="#10B981"
-                        strokeWidth="1.2"
+                        fill="#FFFFFF"
+                        stroke="#059669"
+                        strokeWidth="1.5"
+                        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.06))"
                       />
                       <text
                         x={x}
                         y={y + 14}
                         textAnchor="middle"
-                        fill="#34D399"
+                        fill="#047857"
                         fontSize="8.5"
                         fontWeight="700"
                         fontFamily="monospace"
@@ -406,72 +391,26 @@ export const HeroProductTerminal: React.FC = () => {
                         ▲ {sig.label}
                       </text>
 
-                      {/* Structural Reference Levels */}
                       {idx === 0 && (
                         <g>
-                          {/* Upper Range Boundary */}
-                          <line
-                            x1={x}
-                            y1={getY(sig.upperTarget)}
-                            x2={chartWidth - 55}
-                            y2={getY(sig.upperTarget)}
-                            stroke="#3B82F6"
-                            strokeWidth="1.2"
-                            strokeDasharray="4 3"
-                            strokeOpacity="0.8"
-                          />
-                          <text
-                            x={chartWidth - 52}
-                            y={getY(sig.upperTarget) + 3}
-                            fill="#60A5FA"
-                            fontSize="8"
-                            fontFamily="monospace"
-                            fontWeight="600"
-                          >
-                            Range High (${sig.upperTarget.toLocaleString()})
-                          </text>
-
-                          {/* Local Range Midpoint */}
-                          <line
-                            x1={x}
-                            y1={getY(sig.lowerTarget)}
-                            x2={chartWidth - 55}
-                            y2={getY(sig.lowerTarget)}
-                            stroke="#10B981"
-                            strokeWidth="1.2"
-                            strokeDasharray="4 3"
-                            strokeOpacity="0.8"
-                          />
-                          <text
-                            x={chartWidth - 52}
-                            y={getY(sig.lowerTarget) + 3}
-                            fill="#10B981"
-                            fontSize="8"
-                            fontFamily="monospace"
-                            fontWeight="600"
-                          >
-                            Local Pivot (${sig.lowerTarget.toLocaleString()})
-                          </text>
-
-                          {/* Structure Invalidation Line */}
                           <line
                             x1={x}
                             y1={getY(sig.invalidation)}
                             x2={chartWidth - 55}
                             y2={getY(sig.invalidation)}
-                            stroke="#EF4444"
-                            strokeWidth="1"
+                            stroke="#DC2626"
+                            strokeWidth="1.2"
                             strokeDasharray="3 3"
-                            strokeOpacity="0.6"
                           />
                           <text
                             x={chartWidth - 52}
                             y={getY(sig.invalidation) + 3}
-                            fill="#EF4444"
+                            fill="#DC2626"
                             fontSize="8"
                             fontFamily="monospace"
+                            fontWeight="700"
                           >
-                            Invalidation (${sig.invalidation.toLocaleString()})
+                            Stop: ${sig.invalidation.toLocaleString()}
                           </text>
                         </g>
                       )}
@@ -479,16 +418,15 @@ export const HeroProductTerminal: React.FC = () => {
                   );
                 })}
 
-              {/* Current Market Price Beacon Line */}
+              {/* Price Beacon Line */}
               <line
                 x1="0"
                 y1={getY(68220)}
                 x2={chartWidth - 58}
                 y2={getY(68220)}
-                stroke="#3B82F6"
+                stroke="#2563EB"
                 strokeWidth="1.5"
-                strokeDasharray="6 4"
-                className="animate-pulse"
+                strokeDasharray="5 3"
               />
               <rect
                 x={chartWidth - 58}
@@ -496,7 +434,7 @@ export const HeroProductTerminal: React.FC = () => {
                 width="56"
                 height="20"
                 rx="3"
-                fill="#3B82F6"
+                fill="#2563EB"
               />
               <text
                 x={chartWidth - 30}
@@ -513,112 +451,107 @@ export const HeroProductTerminal: React.FC = () => {
           </div>
 
           {/* Volume & Market Structure Summary Strip */}
-          <div className="w-full pt-3 mt-1 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-text-muted">
+          <div className="w-full pt-3 mt-1 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
             <div className="flex items-center gap-3">
-              <span className="text-text-secondary font-medium">Structure Read:</span>
-              <span className="text-signal-bull">{indicatorData.marketStructure}</span>
-              <span className="hidden sm:inline text-text-dim">• {indicatorData.trendContext}</span>
+              <span className="text-slate-700 font-semibold">Structure:</span>
+              <span className="text-emerald-700 font-bold">{indicatorData.marketStructure}</span>
+              <span className="hidden sm:inline text-slate-400">• {indicatorData.trendContext}</span>
             </div>
-            <div className="flex items-center gap-1.5 text-[10px] text-text-dim">
-              <Info className="size-3" />
-              <span>Simulated preview</span>
+            <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
+              <span>Interactive Analytical Workstation</span>
             </div>
           </div>
         </div>
 
-        {/* Right Intelligence & Indicator Telemetry Dock (4 cols on lg) */}
-        <div className="lg:col-span-4 p-5 md:p-6 bg-surface/50 flex flex-col justify-between gap-5">
+        {/* Right Intelligence Strip (4 cols on lg) */}
+        <div className="lg:col-span-4 p-5 md:p-6 bg-slate-50/70 flex flex-col justify-between gap-5">
           
-          {/* Header Section: What the Indicator Helps You See */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono text-text-muted uppercase tracking-wider">
-                Indicator Analysis
+              <span className="text-xs font-mono text-slate-500 uppercase tracking-wider font-semibold">
+                INDICATOR ANALYSIS
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-brand-blue/15 text-brand-accent border border-brand-blue/30">
-                ACTIVE MODE
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-50 text-brand-blue border border-blue-200">
+                ACTIVE
               </span>
             </div>
 
-            <div className="text-lg md:text-xl font-display font-bold text-white tracking-tight mb-1">
+            <div className="text-lg md:text-xl font-display font-bold text-slate-900 tracking-tight mb-1">
               {indicatorData.marketStructure}
             </div>
 
-            <p className="text-xs text-text-secondary leading-relaxed">
-              Real-time structural mapping showing clear trend support, liquidity reclaim levels, and verified bar-close signals.
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Real-time structural mapping showing clean trend support, resting liquidity reclaim levels, and verified bar-close signals.
             </p>
           </div>
 
-          {/* Core Indicator Parameters Cards (Neutral product concepts) */}
+          {/* Core Indicator Parameters Cards */}
           <div className="flex flex-col gap-2 font-mono text-xs">
             
-            {/* Market Structure Card */}
-            <div className="p-2.5 rounded-xl bg-surface-elevated/70 border border-white/[0.06] flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-text-muted uppercase block">Market Structure</span>
-                <span className="text-white font-semibold text-xs mt-0.5 block">{indicatorData.marketStructure}</span>
+                <span className="text-[10px] text-slate-400 uppercase block">Market Structure</span>
+                <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.marketStructure}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
                 VALIDATED
               </span>
             </div>
 
-            {/* Liquidity State Card */}
-            <div className="p-2.5 rounded-xl bg-surface-elevated/70 border border-white/[0.06] flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-text-muted uppercase block">Liquidity State</span>
-                <span className="text-white font-semibold text-xs mt-0.5 block">{indicatorData.liquidityState}</span>
+                <span className="text-[10px] text-slate-400 uppercase block">Liquidity State</span>
+                <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.liquidityState}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                SWEPT & HELD
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-brand-blue border border-blue-200">
+                SWEPT &amp; HELD
               </span>
             </div>
 
-            {/* Trend Context Card */}
-            <div className="p-2.5 rounded-xl bg-surface-elevated/70 border border-white/[0.06] flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
               <div>
-                <span className="text-[10px] text-text-muted uppercase block">Trend Context</span>
-                <span className="text-white font-semibold text-xs mt-0.5 block">{indicatorData.trendContext}</span>
+                <span className="text-[10px] text-slate-400 uppercase block">Trend Context</span>
+                <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.trendContext}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20">
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
                 SUPPORT
               </span>
             </div>
 
-            {/* Multi-Timeframe Alignment Matrix */}
-            <div className="p-2.5 rounded-xl bg-surface-elevated/70 border border-white/[0.06]">
-              <span className="text-[10px] text-text-muted uppercase block mb-1.5">Multi-Timeframe Context</span>
+            {/* Multi-Timeframe Alignment */}
+            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+              <span className="text-[10px] text-slate-400 uppercase block mb-1.5">Multi-Timeframe Context</span>
               <div className="grid grid-cols-3 gap-1.5 text-center text-[10px]">
-                <div className="p-1.5 rounded bg-surface/80 border border-white/[0.04]">
-                  <div className="text-text-muted text-[9px]">4H Macro</div>
-                  <div className="text-signal-bull font-semibold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf4h}</div>
+                <div className="p-1.5 rounded bg-slate-50 border border-slate-200/60">
+                  <div className="text-slate-400 text-[9px]">4H Macro</div>
+                  <div className="text-emerald-700 font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf4h}</div>
                 </div>
-                <div className="p-1.5 rounded bg-surface/80 border border-white/[0.04]">
-                  <div className="text-text-muted text-[9px]">1H Intermediate</div>
-                  <div className="text-brand-accent font-semibold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf1h}</div>
+                <div className="p-1.5 rounded bg-slate-50 border border-slate-200/60">
+                  <div className="text-slate-400 text-[9px]">1H Interm.</div>
+                  <div className="text-brand-blue font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf1h}</div>
                 </div>
-                <div className="p-1.5 rounded bg-surface/80 border border-white/[0.04]">
-                  <div className="text-text-muted text-[9px]">15m Execution</div>
-                  <div className="text-emerald-400 font-semibold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf15m}</div>
+                <div className="p-1.5 rounded bg-slate-50 border border-slate-200/60">
+                  <div className="text-slate-400 text-[9px]">15m Entry</div>
+                  <div className="text-emerald-700 font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf15m}</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 3-Day Session Callout (Flexible, clean, professional) */}
-          <div className="p-3.5 rounded-xl bg-gradient-to-b from-brand-blue/15 to-brand-blue/5 border border-brand-blue/30 flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-semibold text-white">
-              <Calendar className="size-4 text-brand-accent shrink-0" />
+          {/* 3-Day Session Callout in Light Mode */}
+          <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200/80 flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-900">
+              <Calendar className="size-4 text-brand-blue shrink-0" />
               <span>Learn This System in the 3-Day Session</span>
             </div>
-            <p className="text-[11px] text-text-secondary leading-normal">
-              Go beyond chart overlays. Learn the complete methodology, risk framework, and indicator workflow with live guidance.
+            <p className="text-[11px] text-slate-600 leading-normal">
+              Learn the complete methodology, risk framework, and indicator workflow with interactive chart audits.
             </p>
             <a
               href="#session"
-              className="mt-1 w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold text-white bg-brand-blue hover:bg-brand-cobalt transition-colors shadow-sm"
+              className="mt-1 w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold text-white bg-brand-blue hover:bg-brand-cobalt transition-colors shadow-xs"
             >
-              <span>Join the 3-Day Session</span>
+              <span>Join 3-Day Session</span>
               <ChevronRight className="size-3.5" />
             </a>
           </div>
@@ -626,13 +559,13 @@ export const HeroProductTerminal: React.FC = () => {
         </div>
       </div>
 
-      {/* Terminal Footer Disclaimer */}
-      <div className="border-t border-white/[0.06] bg-canvas px-4 md:px-6 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono text-text-muted w-full min-w-0">
+      {/* Terminal Footer */}
+      <div className="border-t border-slate-200/80 bg-slate-50/70 px-4 md:px-6 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono text-slate-500 w-full min-w-0">
         <div className="flex items-center gap-2 text-center sm:text-left flex-wrap justify-center sm:justify-start">
           <Shield className="size-3 text-brand-blue shrink-0" />
-          <span className="text-[9px] sm:text-[10px] tracking-tight">ALGOFINEX INDICATOR SUITE • NON-REPAINTING STRUCTURE &amp; TREND ANALYSIS</span>
+          <span className="text-[9px] sm:text-[10px] tracking-tight font-medium">ALGOFINEX INDICATOR SUITE • NON-REPAINTING STRUCTURE &amp; TREND ANALYSIS</span>
         </div>
-        <div className="text-text-dim text-[9px] sm:text-[10px] text-center sm:text-right">
+        <div className="text-slate-400 text-[9px] sm:text-[10px] text-center sm:text-right">
           Illustrative product demonstration. Indicators provide market analysis and are not financial advice.
         </div>
       </div>
@@ -641,4 +574,3 @@ export const HeroProductTerminal: React.FC = () => {
 };
 
 export default HeroProductTerminal;
-
