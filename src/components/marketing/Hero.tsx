@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-28 sm:pt-36 lg:pt-40 pb-20 sm:pb-28 lg:pb-36 overflow-hidden bg-[#F8F8F6] border-b border-black/[0.06]">
+    <section id="hero" className="relative pt-28 sm:pt-36 lg:pt-40 pb-20 sm:pb-28 lg:pb-36 overflow-hidden bg-[#F8F8F6] border-b border-black/[0.06]">
       
       {/* Editorial Ambient Atmospheric Lighting (Warm off-white with delicate directional locus) */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
