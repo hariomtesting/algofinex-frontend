@@ -59,6 +59,17 @@ export const Hero: React.FC = () => {
               AlgoFinex indicator suites map market structure, liquidity voids, and trend context directly onto your charts — paired with our 3-Day Session to refine your execution routine.
             </p>
 
+            {/* Explicit Product Deliverable Badge */}
+            <div className="mt-3 text-[11px] font-mono text-slate-500 flex items-center gap-2 flex-wrap">
+              <span className="px-2 py-0.5 rounded bg-white border border-black/[0.08] text-slate-800 font-semibold shadow-2xs">
+                TradingView Pine Script v5
+              </span>
+              <span>+</span>
+              <span className="px-2 py-0.5 rounded bg-white border border-black/[0.08] text-brand-blue font-semibold shadow-2xs">
+                Live 3-Day Masterclass
+              </span>
+            </div>
+
             {/* Restrained CTA Cluster */}
             <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
               <a
