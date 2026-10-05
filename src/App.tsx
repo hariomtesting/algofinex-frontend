@@ -12,38 +12,69 @@ import { FaqSection } from './components/marketing/FaqSection';
 import { ClosingCtaSection } from './components/marketing/ClosingCtaSection';
 import { ClientPortalModal } from './components/marketing/ClientPortalModal';
 
+// Phase 4B Application Workstation Components
+import { AppShell, AppTab, Instrument, Timeframe } from './components/app/AppShell';
+import { OverviewScreen } from './components/app/OverviewScreen';
+import { WorkspaceScreen, LensLayer } from './components/app/WorkspaceScreen';
+import { IndicatorsScreen } from './components/app/IndicatorsScreen';
+import { SessionScreen } from './components/app/SessionScreen';
+import { AccessScreen } from './components/app/AccessScreen';
+
 /**
- * ALGOFINEX — PHASE 3
- * COMPLETE PRODUCT EXPERIENCE & FRONTEND PROTOTYPE
- * 
- * Sequential Architecture:
- * INTRODUCTION  (Section 01 — Hero)
- * ↓
- * PRODUCT       (Section 02 — Product Experience: 5 Progressive Layers)
- * ↓
- * UNDERSTANDING (Section 03 — What AlgoFinex Actually Does: Read → Context → Plan)
- * ↓
- * METHOD        (Section 04 — Method: Structure, Liquidity, Trend, Confirmation)
- * ↓
- * PRINCIPLES    (Section 05 — Why AlgoFinex: Clarity, Context, Discipline, Consistency)
- * ↓
- * WORKFLOW      (Workflow Bridge: 7-Stage Continuous Execution Conduit)
- * ↓
- * EXPERIENCE    (Section 06 — 3-Day Session: Day 01 Arrival → Day 02 Observation → Day 03 Application)
- * ↓
- * OFFER         (Section 07 — Prototype Pricing: Suite, Cohort, All-Access)
- * ↓
- * CLARITY       (Section 08 — FAQ: 6 Core Answers)
- * ↓
- * CLOSING       (Section 09 — Final CTA: "Read the market differently.")
+ * ALGOFINEX — PHASE 4B
+ * COMPLETE FRONTEND PROTOTYPE SPA & WORKSTATION EXPERIENCE
  */
 export const App: React.FC = () => {
+  // Mode switch: 'marketing' (Public Presentation) vs 'app' (Product Workstation)
+  const [appMode, setAppMode] = useState<'marketing' | 'app'>('marketing');
+
+  // App Global Prototype State
+  const [activeTab, setActiveTab] = useState<AppTab>('workspace');
+  const [selectedInstrument, setSelectedInstrument] = useState<Instrument>('BTC/USD');
+  const [selectedTimeframe, setSelectedTimeframe] = useState<Timeframe>('15m');
+  const [activeLens, setActiveLens] = useState<LensLayer>('STRUCTURE');
+
+  // Marketing Client Portal Modal State
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
+  // If in 'app' mode, render the Phase 4 Application Workstation
+  if (appMode === 'app') {
+    return (
+      <AppShell
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        selectedInstrument={selectedInstrument}
+        onInstrumentChange={setSelectedInstrument}
+        selectedTimeframe={selectedTimeframe}
+        onTimeframeChange={setSelectedTimeframe}
+        onExitApp={() => setAppMode('marketing')}
+      >
+        {activeTab === 'overview' && (
+          <OverviewScreen
+            onNavigate={setActiveTab}
+            selectedInstrument={selectedInstrument}
+          />
+        )}
+        {activeTab === 'workspace' && (
+          <WorkspaceScreen
+            selectedInstrument={selectedInstrument}
+            selectedTimeframe={selectedTimeframe}
+            activeLens={activeLens}
+            onLensChange={setActiveLens}
+          />
+        )}
+        {activeTab === 'indicators' && <IndicatorsScreen />}
+        {activeTab === 'session' && <SessionScreen />}
+        {activeTab === 'access' && <AccessScreen />}
+      </AppShell>
+    );
+  }
+
+  // Otherwise render the Public Presentation Landing Experience
   return (
     <div className="min-h-screen bg-background text-text-primary selection:bg-brand-blue/20 selection:text-slate-900 flex flex-col justify-between">
       {/* Top Persistent Navigation */}
-      <Navbar onOpenPortal={() => setIsPortalOpen(true)} />
+      <Navbar onOpenPortal={() => setAppMode('app')} />
 
       {/* Main Sequential Experience Flow */}
       <main className="flex-1 w-full min-w-0">
@@ -110,10 +141,10 @@ export const App: React.FC = () => {
             <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</a>
             <a href="#faq" className="text-slate-600 hover:text-slate-900 transition-colors">FAQ</a>
             <button 
-              onClick={() => setIsPortalOpen(true)} 
+              onClick={() => setAppMode('app')}
               className="text-brand-blue font-semibold hover:text-blue-800 transition-colors cursor-pointer"
             >
-              Client Portal
+              Launch Workstation
             </button>
           </div>
 
