@@ -52,6 +52,23 @@ export const ProductRevealSection: React.FC = () => {
     setActiveCandleHover(index);
   };
 
+  const handleTouchMove = (e: React.TouchEvent<SVGSVGElement>) => {
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      const rect = e.currentTarget.getBoundingClientRect();
+      const svgX = ((touch.clientX - rect.left) / rect.width) * chartWidth;
+      const svgY = ((touch.clientY - rect.top) / rect.height) * chartHeight;
+
+      setMousePos({ x: svgX, y: svgY });
+
+      const index = Math.min(
+        Math.max(0, Math.round(svgX / stepX) - 1),
+        candleCount - 1
+      );
+      setActiveCandleHover(index);
+    }
+  };
+
   const handleMouseLeave = () => {
     setActiveCandleHover(null);
     setMousePos(null);
@@ -247,6 +264,8 @@ export const ProductRevealSection: React.FC = () => {
               className="w-full h-auto max-w-[980px] overflow-visible select-none relative z-10 cursor-crosshair"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleMouseLeave}
             >
               <defs>
                 <linearGradient id="cloudRibbonLight" x1="0%" y1="0%" x2="0%" y2="100%">
