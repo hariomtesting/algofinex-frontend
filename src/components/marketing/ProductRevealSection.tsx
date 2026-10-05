@@ -113,7 +113,7 @@ export const ProductRevealSection: React.FC = () => {
           <div className="lg:col-span-7 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
               <Sparkles className="size-3 text-brand-blue shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">The Progressive Clarity Sequence</span>
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">PRODUCT INTERFACE &middot; WHAT YOU USE</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.05]">
@@ -693,10 +693,22 @@ export const ProductRevealSection: React.FC = () => {
               </p>
             </div>
 
-            {/* Micro Metrics HUD */}
+            {/* Micro Metrics HUD: Streamlined 2-item summary on mobile <640px, full 4-item grid on >=640px */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
-              {currentMode.activeMetrics.map((m, idx) => (
+              {currentMode.activeMetrics.slice(0, 2).map((m, idx) => (
                 <div key={idx} className="p-3 rounded-xl bg-white border border-black/[0.06] shadow-2xs text-left">
+                  <div className="text-[10px] text-slate-500 uppercase tracking-wider truncate">{m.label}</div>
+                  <div className={`font-semibold mt-1 truncate ${
+                    m.state === 'bull' ? 'text-signal-bull' :
+                    m.state === 'accent' ? 'text-brand-blue' :
+                    m.state === 'bear' ? 'text-signal-bear' : 'text-slate-900'
+                  }`}>
+                    {m.value}
+                  </div>
+                </div>
+              ))}
+              {currentMode.activeMetrics.slice(2, 4).map((m, idx) => (
+                <div key={idx + 2} className="hidden sm:block p-3 rounded-xl bg-white border border-black/[0.06] shadow-2xs text-left">
                   <div className="text-[10px] text-slate-500 uppercase tracking-wider truncate">{m.label}</div>
                   <div className={`font-semibold mt-1 truncate ${
                     m.state === 'bull' ? 'text-signal-bull' :

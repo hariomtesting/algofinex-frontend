@@ -177,8 +177,8 @@ export const HeroProductTerminal: React.FC = () => {
         </div>
       </div>
 
-      {/* Layer Toggles Secondary Ribbon */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200/70 bg-slate-50/40 px-4 md:px-6 py-2 text-xs font-mono text-slate-600 gap-2">
+      {/* Layer Toggles Secondary Ribbon (Hidden on mobile <640px to eliminate chrome clutter) */}
+      <div className="hidden sm:flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200/70 bg-slate-50/40 px-4 md:px-6 py-2 text-xs font-mono text-slate-600 gap-2">
         <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
           <span className="text-[10px] sm:text-[11px] text-slate-500 tracking-wide flex items-center gap-1 font-medium">
             <Eye className="size-3 text-slate-400" />
@@ -187,7 +187,7 @@ export const HeroProductTerminal: React.FC = () => {
           
           <button
             onClick={() => setShowEMA(!showEMA)}
-            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors ${
+            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
               showEMA ? 'text-brand-blue bg-blue-50 border border-blue-200' : 'text-slate-400 hover:text-slate-600'
             }`}
           >
@@ -197,7 +197,7 @@ export const HeroProductTerminal: React.FC = () => {
 
           <button
             onClick={() => setShowOrderBlocks(!showOrderBlocks)}
-            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors ${
+            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
               showOrderBlocks ? 'text-emerald-700 bg-emerald-50 border border-emerald-200' : 'text-slate-400 hover:text-slate-600'
             }`}
           >
@@ -207,7 +207,7 @@ export const HeroProductTerminal: React.FC = () => {
 
           <button
             onClick={() => setShowSignals(!showSignals)}
-            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors ${
+            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
               showSignals ? 'text-slate-800 bg-amber-50 border border-amber-200' : 'text-slate-400 hover:text-slate-600'
             }`}
           >

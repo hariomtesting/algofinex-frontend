@@ -77,7 +77,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 0.35, delay: 0.18 }}
               className="mt-7 text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed max-w-lg"
             >
-              AlgoFinex indicator suites map market structure, liquidity voids, and trend context directly onto your charts — paired with our 3-Day Session to refine your execution routine.
+              AlgoFinex is a TradingView indicator suite that organizes market information through market structure, liquidity, trend context, and confirmation — paired with an intensive 3-Day Live Session to refine your execution routine.
             </motion.p>
 
             {/* Explicit Product Deliverable Badge */}

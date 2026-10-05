@@ -76,7 +76,7 @@ export const SessionSection: React.FC = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
               <Calendar className="size-3.5 text-brand-blue shrink-0" />
               <span className="tracking-wider uppercase font-semibold text-[10px] sm:text-[11px] text-slate-600">
-                SECTION 06 • THE 3-DAY SESSION EXPERIENCE
+                LIVE MASTERCLASS &middot; WHAT EXPERIENCE YOU RECEIVE
               </span>
             </div>
 
