@@ -145,8 +145,62 @@ export const PrototypePricingSection: React.FC = () => {
         {/* Bespoke Architectural Pricing Layout: Software Suite + Live Cohort + All-Access Confluence */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Pillar 1 & 2 Left Column: The 2 Core Pillars */}
-          <div className="lg:col-span-7 flex flex-col gap-6 text-left">
+          {/* Featured All-Access Master Pass Unit (First on mobile via order-first, last on lg) */}
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-brand-blue bg-white p-6 sm:p-9 shadow-lg ring-1 ring-brand-blue/20 text-left relative order-first lg:order-last">
+
+            {/* Top Recommended Tag */}
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-brand-blue text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-4 shadow-2xs">
+                <span>Recommended System Confluence</span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+                {plans[2].name}
+              </h3>
+
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                {plans[2].description}
+              </p>
+
+              <div className="mt-6 pt-5 border-t border-black/[0.06] flex items-baseline gap-2">
+                <span className="text-4xl sm:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
+                  {plans[2].price}
+                </span>
+                <span className="text-xs font-mono text-slate-500">
+                  / combined pass (PROTOTYPE)
+                </span>
+              </div>
+
+              <div className="mt-6 space-y-3 font-mono text-xs text-slate-700">
+                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold block font-sans">
+                  Complete System Entitlements:
+                </span>
+                {plans[2].features.map((feat, i) => (
+                  <div key={i} className="flex items-start gap-2.5">
+                    <Check className="size-4 text-signal-bull shrink-0 mt-0.5" />
+                    <span className="leading-snug">{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-6 sm:pt-8 border-t border-black/[0.06] mt-6 sm:mt-8">
+              <button
+                onClick={() => handleSelectPlan(plans[2])}
+                className="w-full min-h-[48px] py-3.5 px-6 rounded-xl font-semibold text-sm text-white bg-brand-blue hover:bg-blue-800 transition-all duration-150 flex items-center justify-center gap-2 shadow-sm active:scale-[0.99] cursor-pointer"
+              >
+                <span>Select All-Access Pass</span>
+                <ArrowRight className="size-4" />
+              </button>
+              <div className="text-[10px] font-mono text-slate-400 text-center mt-2">
+                UX Prototype Simulation • No real charge
+              </div>
+            </div>
+
+          </div>
+
+          {/* Pillar 1 & 2 Column: Core Pillars */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-left order-last lg:order-first">
             
             {/* Pillar A: Indicator Suite Software */}
             <div className="rounded-3xl border border-black/[0.08] bg-[#F8FAFC] p-6 sm:p-8 flex flex-col justify-between shadow-2xs hover:border-black/[0.14] transition-all">
@@ -190,7 +244,7 @@ export const PrototypePricingSection: React.FC = () => {
                 <span className="text-[10px] font-mono text-slate-400">Includes updates &amp; alerts</span>
                 <button
                   onClick={() => handleSelectPlan(plans[0])}
-                  className="py-2.5 px-5 rounded-xl font-semibold text-xs font-mono text-slate-800 bg-white hover:bg-slate-100 border border-black/[0.12] transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                  className="min-h-[44px] py-2.5 px-5 rounded-xl font-semibold text-xs font-mono text-slate-800 bg-white hover:bg-slate-100 border border-black/[0.12] transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Select Suite</span>
                   <ArrowRight className="size-3.5" />
@@ -240,65 +294,11 @@ export const PrototypePricingSection: React.FC = () => {
                 <span className="text-[10px] font-mono text-slate-500">30-day indicator access included</span>
                 <button
                   onClick={() => handleSelectPlan(plans[1])}
-                  className="py-2.5 px-5 rounded-xl font-semibold text-xs font-mono text-slate-800 bg-white hover:bg-slate-100 border border-black/[0.12] transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
+                  className="min-h-[44px] py-2.5 px-5 rounded-xl font-semibold text-xs font-mono text-slate-800 bg-white hover:bg-slate-100 border border-black/[0.12] transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>Reserve Seat</span>
                   <ArrowRight className="size-3.5" />
                 </button>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Right Column: Hero All-Access Master Pass Unit */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-brand-blue bg-white p-7 sm:p-9 shadow-lg ring-1 ring-brand-blue/20 text-left relative">
-            
-            {/* Top Recommended Tag */}
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-brand-blue text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-4 shadow-2xs">
-                <span>Recommended System Confluence</span>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
-                {plans[2].name}
-              </h3>
-
-              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                {plans[2].description}
-              </p>
-
-              <div className="mt-6 pt-5 border-t border-black/[0.06] flex items-baseline gap-2">
-                <span className="text-4xl sm:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
-                  {plans[2].price}
-                </span>
-                <span className="text-xs font-mono text-slate-500">
-                  / combined pass (PROTOTYPE)
-                </span>
-              </div>
-
-              <div className="mt-6 space-y-3 font-mono text-xs text-slate-700">
-                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold block font-sans">
-                  Complete System Entitlements:
-                </span>
-                {plans[2].features.map((feat, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <Check className="size-4 text-signal-bull shrink-0 mt-0.5" />
-                    <span className="leading-snug">{feat}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-8 border-t border-black/[0.06] mt-8">
-              <button
-                onClick={() => handleSelectPlan(plans[2])}
-                className="w-full py-4 px-6 rounded-xl font-semibold text-sm text-white bg-brand-blue hover:bg-blue-800 transition-all duration-150 flex items-center justify-center gap-2 shadow-sm active:scale-[0.99] cursor-pointer"
-              >
-                <span>Select All-Access Pass</span>
-                <ArrowRight className="size-4" />
-              </button>
-              <div className="text-[10px] font-mono text-slate-400 text-center mt-2">
-                UX Prototype Simulation • No real charge
               </div>
             </div>
 

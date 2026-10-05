@@ -90,7 +90,7 @@ export const MarketUnderstandingSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Sleek Architectural Stage Switcher */}
+        {/* Sleek Architectural Stage Switcher with 48px Touch Targets */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-8 w-full border-b border-black/[0.06]">
           {steps.map((s, idx) => {
             const isActive = activeStep === idx;
@@ -98,7 +98,7 @@ export const MarketUnderstandingSection: React.FC = () => {
               <button
                 key={s.id}
                 onClick={() => setActiveStep(idx as 0 | 1 | 2)}
-                className={`text-left py-3 px-5 sm:px-6 rounded-t-xl transition-all duration-150 relative flex items-center gap-3 shrink-0 cursor-pointer ${
+                className={`text-left min-h-[48px] px-5 sm:px-6 rounded-t-xl transition-all duration-150 relative flex items-center gap-3 shrink-0 cursor-pointer ${
                   isActive
                     ? 'bg-white text-slate-900 font-bold shadow-xs'
                     : 'text-slate-500 hover:text-slate-800 font-medium hover:bg-white/50'

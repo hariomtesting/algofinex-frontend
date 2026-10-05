@@ -42,7 +42,7 @@ export const PrinciplesSection: React.FC = () => {
   ];
 
   return (
-    <section id="principles" className="relative py-28 sm:py-36 lg:py-44 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden">
+    <section id="principles" className="relative py-16 sm:py-28 lg:py-40 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden">
       
       {/* Editorial Ambient Aura */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

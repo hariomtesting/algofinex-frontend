@@ -88,10 +88,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
           </a>
         </div>
 
-        {/* Mobile Hamburger Button */}
+        {/* Mobile Hamburger Button (48px Touch Target) */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg bg-slate-100/80 border border-slate-200/80 text-slate-700 hover:text-slate-900 focus:outline-none"
+          className="lg:hidden min-h-[48px] min-w-[48px] p-2.5 rounded-xl bg-slate-100/90 border border-slate-200 text-slate-800 hover:text-slate-900 flex items-center justify-center focus:outline-none cursor-pointer"
           aria-label="Toggle Navigation Menu"
           aria-expanded={mobileMenuOpen}
         >
@@ -99,28 +99,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with 48px+ Touch Targets */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-16 bg-white/98 backdrop-blur-xl border-b border-black/[0.08] px-6 py-6 flex flex-col gap-5 shadow-xl">
-          <nav className="flex flex-col gap-3.5 text-base font-medium text-slate-700">
+        <div className="lg:hidden fixed inset-x-0 top-16 bg-white/98 backdrop-blur-xl border-b border-black/[0.08] px-6 py-6 flex flex-col gap-4 shadow-xl">
+          <nav className="flex flex-col text-base font-medium text-slate-800">
             <a
               href="#product-experience"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-slate-900 py-1"
+              className="hover:text-slate-900 min-h-[48px] flex items-center border-b border-slate-100"
             >
               Indicators
             </a>
             <a
-              href="#workflow"
+              href="#understanding"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-slate-900 py-1"
+              className="hover:text-slate-900 min-h-[48px] flex items-center border-b border-slate-100"
             >
               Methodology
             </a>
             <a
               href="#session"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-slate-900 py-1 flex items-center justify-between"
+              className="hover:text-slate-900 min-h-[48px] flex items-center justify-between border-b border-slate-100"
             >
               <span>3-Day Session</span>
               <span className="text-xs font-mono font-bold text-brand-blue bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded">LIVE</span>
@@ -128,17 +128,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
             <a
               href="#pricing"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-slate-900 py-1"
+              className="hover:text-slate-900 min-h-[48px] flex items-center border-b border-slate-100"
             >
               Pricing
             </a>
           </nav>
 
-          <div className="pt-3 border-t border-slate-200 flex flex-col gap-2.5">
+          <div className="pt-2 flex flex-col gap-3">
             <a
               href="#pricing"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold text-white bg-brand-blue hover:bg-brand-cobalt transition-colors"
+              className="w-full min-h-[48px] flex items-center justify-center gap-2 rounded-xl text-sm font-semibold text-white bg-brand-blue hover:bg-brand-cobalt transition-colors shadow-xs"
             >
               <span>Join 3-Day Session</span>
               <ChevronRight className="size-4" />
@@ -148,7 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
                 setMobileMenuOpen(false);
                 handlePortalClick(e);
               }}
-              className="w-full py-2 text-center text-sm font-medium text-slate-600 hover:text-slate-900 cursor-pointer"
+              className="w-full min-h-[48px] flex items-center justify-center text-sm font-medium text-slate-600 hover:text-slate-900 cursor-pointer"
             >
               Client Portal
             </button>

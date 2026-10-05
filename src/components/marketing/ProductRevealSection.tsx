@@ -134,10 +134,10 @@ export const ProductRevealSection: React.FC = () => {
 
         </div>
 
-        {/* Workstation Console Bar */}
+        {/* Workstation Console Bar with 48px Touch Targets */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-4 px-2">
           {/* Lens Selector Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 w-full sm:w-auto">
             {modesList.map((mode) => {
               const Icon = mode.icon;
               const isActive = activeMode === mode.id;
@@ -146,13 +146,13 @@ export const ProductRevealSection: React.FC = () => {
                 <button
                   key={mode.id}
                   onClick={() => setActiveMode(mode.id)}
-                  className={`px-3.5 sm:px-4 py-2 rounded-xl font-mono text-xs transition-all duration-200 flex items-center gap-2 whitespace-nowrap shrink-0 ${
+                  className={`px-3.5 sm:px-4 min-h-[48px] rounded-xl font-mono text-xs transition-all duration-200 flex items-center gap-2 whitespace-nowrap shrink-0 cursor-pointer ${
                     isActive
                       ? 'bg-brand-blue text-white shadow-sm border border-brand-blue font-semibold'
                       : 'bg-white text-slate-600 hover:text-slate-900 border border-black/[0.08] hover:border-black/[0.18]'
                   }`}
                 >
-                  <Icon className="size-3.5 shrink-0" />
+                  <Icon className="size-4 shrink-0" />
                   <span>{mode.label}</span>
                 </button>
               );

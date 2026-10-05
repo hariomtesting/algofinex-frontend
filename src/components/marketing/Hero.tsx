@@ -66,11 +66,11 @@ export const Hero: React.FC = () => {
               </span>
             </div>
 
-            {/* Restrained CTA Cluster */}
-            <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+            {/* Restrained CTA Cluster with Full-Width 48px Touch Targets on Mobile */}
+            <div className="mt-8 sm:mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full">
               <a
                 href="#session"
-                className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-sm sm:text-base font-semibold text-white bg-brand-blue hover:bg-blue-800 transition-all duration-200 shadow-sm hover:shadow active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+                className="group relative inline-flex items-center justify-center gap-2.5 px-7 min-h-[48px] rounded-xl text-base sm:text-base font-semibold text-white bg-brand-blue hover:bg-blue-800 transition-all duration-200 shadow-sm hover:shadow active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue w-full sm:w-auto"
               >
                 <span>Join 3-Day Session</span>
                 <ChevronRight className="size-4 text-white/80 transition-transform group-hover:translate-x-1" />
@@ -78,7 +78,7 @@ export const Hero: React.FC = () => {
 
               <button
                 onClick={scrollToWorkstation}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm sm:text-base font-medium text-slate-800 bg-white hover:bg-slate-50 border border-black/[0.08] hover:border-black/[0.16] shadow-xs transition-all duration-200 active:scale-[0.99]"
+                className="inline-flex items-center justify-center gap-2 px-6 min-h-[48px] rounded-xl text-base sm:text-base font-medium text-slate-800 bg-white hover:bg-slate-50 border border-black/[0.08] hover:border-black/[0.16] shadow-xs transition-all duration-200 active:scale-[0.99] w-full sm:w-auto cursor-pointer"
               >
                 <BarChart3 className="size-4 text-brand-blue" />
                 <span>Inspect Workstation</span>

@@ -55,7 +55,7 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-28 sm:py-36 lg:py-44 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden">
+    <section id="faq" className="relative py-16 sm:py-28 lg:py-40 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden">
       
       {/* Editorial Ambient Backing */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -129,7 +129,7 @@ export const FaqSection: React.FC = () => {
                   <button
                     onClick={() => toggle(faq.id)}
                     aria-expanded={isOpen}
-                    className="w-full py-6 sm:py-7 px-2 text-left flex items-start justify-between gap-6 cursor-pointer focus:outline-none group"
+                    className="w-full min-h-[48px] py-5 sm:py-7 px-2 text-left flex items-start justify-between gap-6 cursor-pointer focus:outline-none group"
                   >
                     <div className="flex items-start gap-4 sm:gap-6 min-w-0">
                       <span className="font-mono text-xs text-slate-400 font-semibold pt-1 shrink-0">

@@ -110,13 +110,13 @@ export const HeroProductTerminal: React.FC = () => {
           </div>
         </div>
 
-        {/* Center Indicator Mode Selector */}
+        {/* Center Indicator Mode Selector with Touch Target Support */}
         <div className="flex items-center p-1 rounded-lg bg-slate-200/70 border border-slate-300/60 gap-1 text-xs w-full sm:w-auto justify-between sm:justify-start">
           <button
             onClick={() => setActiveMode('TREND')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[44px] sm:min-h-[36px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
               activeMode === 'TREND'
-                ? 'bg-brand-blue text-white shadow-xs'
+                ? 'bg-brand-blue text-white shadow-xs font-semibold'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -126,9 +126,9 @@ export const HeroProductTerminal: React.FC = () => {
 
           <button
             onClick={() => setActiveMode('LIQUIDITY')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[44px] sm:min-h-[36px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
               activeMode === 'LIQUIDITY'
-                ? 'bg-brand-blue text-white shadow-xs'
+                ? 'bg-brand-blue text-white shadow-xs font-semibold'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -138,9 +138,9 @@ export const HeroProductTerminal: React.FC = () => {
 
           <button
             onClick={() => setActiveMode('STRUCTURE')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[44px] sm:min-h-[36px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
               activeMode === 'STRUCTURE'
-                ? 'bg-brand-blue text-white shadow-xs'
+                ? 'bg-brand-blue text-white shadow-xs font-semibold'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >

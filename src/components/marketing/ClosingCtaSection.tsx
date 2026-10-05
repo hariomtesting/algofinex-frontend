@@ -16,7 +16,7 @@ export const ClosingCtaSection: React.FC = () => {
   };
 
   return (
-    <section className="relative py-32 sm:py-44 lg:py-56 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden text-center">
+    <section className="relative py-20 sm:py-36 lg:py-48 bg-[#F8F8F6] border-t border-black/[0.06] overflow-hidden text-center">
       
       {/* Directional Atmospheric Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -64,11 +64,11 @@ export const ClosingCtaSection: React.FC = () => {
           Step away from subjective guessing, indicator overlap, and emotional chart chasing. Experience how disciplined market structure, multi-timeframe context, and an iron 7-step routine transform your trading.
         </p>
 
-        {/* Dual Action Cluster */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+        {/* Dual Action Cluster with 48px Touch Targets */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto w-full">
           <a
             href="#pricing"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold text-white bg-brand-blue hover:bg-blue-800 transition-all duration-200 shadow-sm hover:shadow active:scale-[0.99]"
+            className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-blue hover:bg-blue-800 transition-all duration-200 shadow-sm hover:shadow active:scale-[0.99]"
           >
             <span>Join the 3-Day Session</span>
             <ChevronRight className="size-4" />
@@ -76,7 +76,7 @@ export const ClosingCtaSection: React.FC = () => {
 
           <button
             onClick={scrollToIndicators}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl text-base font-medium text-slate-800 bg-white hover:bg-slate-50 border border-black/[0.1] hover:border-black/[0.18] shadow-xs transition-all duration-200 active:scale-[0.99]"
+            className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-base font-medium text-slate-800 bg-white hover:bg-slate-50 border border-black/[0.1] hover:border-black/[0.18] shadow-xs transition-all duration-200 active:scale-[0.99] cursor-pointer"
           >
             <BarChart3 className="size-4 text-brand-blue" />
             <span>Explore the Indicators</span>
