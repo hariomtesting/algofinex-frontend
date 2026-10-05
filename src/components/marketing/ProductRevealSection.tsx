@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { EXPERIENCE_MODES } from '../../data/productExperienceData';
 import { BTC_15M_CANDLES, DEMO_ORDER_BLOCKS, DEMO_SIGNALS } from '../../data/mockChartData';
 import { ExperienceMode } from '../../types/productExperience';
@@ -263,8 +264,14 @@ export const ProductRevealSection: React.FC = () => {
               </defs>
 
               {/* 1. LIQUIDITY LAYER OVERLAYS */}
+              <AnimatePresence>
               {activeMode === 'LIQUIDITY' && (
-                <g className="transition-opacity duration-300">
+                <motion.g
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
                   {DEMO_ORDER_BLOCKS.map((ob, idx) => {
                     const yTop = getY(ob.topPrice);
                     const yBottom = getY(ob.bottomPrice);
@@ -321,8 +328,9 @@ export const ProductRevealSection: React.FC = () => {
                   >
                     Fair Value Gap (FVG) Imbalance
                   </text>
-                </g>
+                </motion.g>
               )}
+              </AnimatePresence>
 
               {/* 2. TREND CONTEXT OVERLAYS */}
               {activeMode === 'TREND' && (

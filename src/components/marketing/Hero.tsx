@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { HeroProductTerminal } from './HeroProductTerminal';
 import { 
   ChevronRight, 
@@ -30,10 +31,20 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-start">
           
           {/* Left Column: Asymmetric Editorial Typography & Precision Controls */}
-          <div className="lg:col-span-5 flex flex-col justify-start text-left z-20 pt-2 lg:pt-6">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="lg:col-span-5 flex flex-col justify-start text-left z-20 pt-2 lg:pt-6"
+          >
             
             {/* Editorial Eyebrow Tag */}
-            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-6 w-fit shadow-xs">
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.05 }}
+              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-6 w-fit shadow-xs"
+            >
               <span className="size-2 rounded-full bg-brand-blue animate-pulse shrink-0" />
               <span className="tracking-wider uppercase font-semibold text-[10px] sm:text-[11px] text-slate-600">
                 ALGOFINEX • ANALYTICAL SUITE
@@ -42,32 +53,52 @@ export const Hero: React.FC = () => {
               <span className="text-brand-blue text-[11px] font-semibold truncate">
                 October Cohort Open
               </span>
-            </div>
+            </motion.div>
 
             {/* Massive Display Headline with Tight Leading & Intentional Linebreaks */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[68px] xl:text-[76px] font-display font-extrabold tracking-[-0.038em] text-slate-900 leading-[1.03] select-none">
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-[68px] xl:text-[76px] font-display font-extrabold tracking-[-0.038em] text-slate-900 leading-[1.03] select-none"
+            >
               Cut through<br />
               chart noise.<br />
               <span className="text-slate-400 font-bold">Trade with</span><br />
               <span className="text-brand-blue">
                 structural clarity.
               </span>
-            </h1>
+            </motion.h1>
 
             {/* Secondary Supporting Copy - Compact, Restrained, High-Contrast */}
-            <p className="mt-7 text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed max-w-lg">
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.18 }}
+              className="mt-7 text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed max-w-lg"
+            >
               AlgoFinex indicator suites map market structure, liquidity voids, and trend context directly onto your charts — paired with our 3-Day Session to refine your execution routine.
-            </p>
+            </motion.p>
 
             {/* Explicit Product Deliverable Badge */}
-            <div className="mt-3 text-[11px] font-mono text-slate-500 flex items-center gap-2 flex-wrap">
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.22 }}
+              className="mt-3 text-[11px] font-mono text-slate-500 flex items-center gap-2 flex-wrap"
+            >
               <span className="px-2.5 py-1 rounded bg-white border border-black/[0.08] text-slate-800 font-semibold shadow-2xs tracking-wide">
                 TRADINGVIEW INDICATOR SUITE &middot; 3-DAY LIVE SESSION
               </span>
-            </div>
+            </motion.div>
 
             {/* Restrained CTA Cluster with Full-Width 48px Touch Targets on Mobile */}
-            <div className="mt-8 sm:mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: 0.26 }}
+              className="mt-8 sm:mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full"
+            >
               <a
                 href="#session"
                 className="group relative inline-flex items-center justify-center gap-2.5 px-7 min-h-[48px] rounded-xl text-base sm:text-base font-semibold text-white bg-brand-blue hover:bg-blue-800 transition-all duration-200 shadow-sm hover:shadow active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue w-full sm:w-auto"
@@ -83,12 +114,17 @@ export const Hero: React.FC = () => {
                 <BarChart3 className="size-4 text-brand-blue" />
                 <span>Inspect Workstation</span>
               </button>
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: Visual Protagonist Terminal */}
-          <div className="lg:col-span-7 relative z-10 w-full min-w-0 lg:-mr-4 xl:-mr-10 2xl:-mr-16">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.32, ease: 'easeOut' }}
+            className="lg:col-span-7 relative z-10 w-full min-w-0 lg:-mr-4 xl:-mr-10 2xl:-mr-16"
+          >
             
             {/* Centerpiece Trading Terminal Protagonist */}
             <div className="relative group">
@@ -97,7 +133,7 @@ export const Hero: React.FC = () => {
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ChevronRight, BarChart3, ShieldCheck, Compass } from 'lucide-react';
 
 /**
@@ -26,7 +27,13 @@ export const ClosingCtaSection: React.FC = () => {
       <div className="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
         
         {/* Proprietary Brand Glyph Display with Concentric Technical Reticle */}
-        <div className="relative flex justify-center mb-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4 }}
+          className="relative flex justify-center mb-10"
+        >
           <div className="relative flex items-center justify-center">
             {/* Concentric hairline rings */}
             <div className="absolute size-32 rounded-full border border-brand-blue/15 animate-pulse" />
@@ -43,7 +50,7 @@ export const ClosingCtaSection: React.FC = () => {
               </svg>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-6 shadow-xs">
@@ -54,10 +61,16 @@ export const ClosingCtaSection: React.FC = () => {
         </div>
 
         {/* Monumental Editorial Statement */}
-        <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-display font-extrabold tracking-[-0.04em] text-slate-900 leading-[1.02] max-w-4xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-display font-extrabold tracking-[-0.04em] text-slate-900 leading-[1.02] max-w-4xl mx-auto"
+        >
           Read the market<br />
           <span className="text-brand-blue">differently.</span>
-        </h2>
+        </motion.h2>
 
         {/* Supporting Editorial Thought */}
         <p className="mt-8 text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">

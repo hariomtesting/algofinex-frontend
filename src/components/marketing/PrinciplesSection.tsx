@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Shield, CheckCircle } from 'lucide-react';
 
 /**
@@ -78,10 +79,14 @@ export const PrinciplesSection: React.FC = () => {
 
         {/* 4 Distinct Principles - Editorial Manifesto Flow (Unboxed, Hairline Separators) */}
         <div className="border-t border-black/[0.08]">
-          {principles.map((p) => {
+          {principles.map((p, idx) => {
             return (
-              <div
+              <motion.div
                 key={p.num}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.35, delay: idx * 0.08 }}
                 className="py-12 sm:py-16 lg:py-20 border-b border-black/[0.08] transition-colors"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
@@ -207,7 +212,7 @@ export const PrinciplesSection: React.FC = () => {
                   </div>
 
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

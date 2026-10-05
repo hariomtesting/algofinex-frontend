@@ -125,7 +125,13 @@ export const MarketUnderstandingSection: React.FC = () => {
         </div>
 
         {/* Main Interactive Stage Demonstration Plane */}
-        <div className="rounded-3xl border border-black/[0.09] bg-white shadow-workstation overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[520px]">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.4 }}
+          className="rounded-3xl border border-black/[0.09] bg-white shadow-workstation overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[520px]"
+        >
           
           {/* Left Column: Editorial Explanation & Deliverables */}
           <div className="lg:col-span-5 p-6 sm:p-10 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-black/[0.07] bg-white">
@@ -354,7 +360,7 @@ export const MarketUnderstandingSection: React.FC = () => {
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
