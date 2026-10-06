@@ -23,7 +23,7 @@ export const ContextualInspector: React.FC<ContextualInspectorProps> = ({ point,
   return (
     <>
       {/* Desktop Slide-Over Panel (380px) */}
-      <aside className="hidden lg:flex w-[380px] bg-white border-l border-black/[0.08] flex-col justify-between shrink-0 shadow-lg z-30 select-none animate-in slide-in-from-right duration-200">
+      <aside data-component="ContextualInspector" className="hidden lg:flex w-[380px] bg-white border-l border-black/[0.08] flex-col justify-between shrink-0 shadow-lg z-30 select-none animate-in slide-in-from-right duration-200">
         <div>
           {/* Header */}
           <div className="h-12 border-b border-black/[0.08] px-4 flex items-center justify-between bg-[#F8F8F6]">

@@ -56,7 +56,7 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
   const currentCandle = hoveredCandle !== null ? candleData[hoveredCandle] : candleData[candleData.length - 1];
 
   return (
-    <div className="flex-1 flex flex-col lg:flex-row h-full min-h-[calc(100vh-3.5rem)] bg-white select-none overflow-hidden">
+    <div data-component="WorkspaceScreen" className="flex-1 flex flex-col lg:flex-row h-full min-h-[calc(100vh-3.5rem)] bg-white select-none overflow-hidden">
       {/* Primary Workspace Area */}
       <div className="flex-1 flex flex-col min-w-0">
 

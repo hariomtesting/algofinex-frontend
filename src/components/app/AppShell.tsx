@@ -201,7 +201,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   onExitApp,
 }) => {
   return (
-    <div className="min-h-screen bg-background text-slate-900 flex flex-col font-sans">
+    <div data-component="AppShell" className="min-h-screen bg-background text-slate-900 flex flex-col font-sans">
       <AppHeader
         selectedInstrument={selectedInstrument}
         onInstrumentChange={onInstrumentChange}

@@ -43,7 +43,7 @@ export const SessionScreen: React.FC = () => {
   const current = days.find((d) => d.id === selectedDay) || days[0];
 
   return (
-    <div className="bg-[#F4F2EC] min-h-screen p-6 md:p-10 select-none">
+    <div data-component="SessionScreen" className="bg-[#F4F2EC] min-h-screen p-6 md:p-10 select-none">
       <div className="max-w-[1200px] mx-auto space-y-8">
         {/* Header */}
         <div className="border-b border-amber-900/10 pb-5 space-y-2">

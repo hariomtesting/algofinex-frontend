@@ -12,7 +12,7 @@ export const AccessScreen: React.FC = () => {
   };
 
   return (
-    <div className="p-6 md:p-10 max-w-[1200px] mx-auto space-y-8 select-none">
+    <div data-component="AccessScreen" className="p-6 md:p-10 max-w-[1200px] mx-auto space-y-8 select-none">
       {/* Header */}
       <div className="border-b border-black/[0.08] pb-5 space-y-2">
         <div className="flex items-center gap-2">

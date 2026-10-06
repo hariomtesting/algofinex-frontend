@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Navbar } from './components/marketing/Navbar';
 import { Hero } from './components/marketing/Hero';
 import { ProductRevealSection } from './components/marketing/ProductRevealSection';
@@ -20,16 +20,71 @@ import { IndicatorsScreen } from './components/app/IndicatorsScreen';
 import { SessionScreen } from './components/app/SessionScreen';
 import { AccessScreen } from './components/app/AccessScreen';
 
+function normalizePath(pathname: string): string {
+  const trimmed = pathname.replace(/\/+$/, '');
+  return trimmed === '' ? '/' : trimmed;
+}
+
+function resolveAppTab(pathname: string): AppTab | null {
+  switch (normalizePath(pathname)) {
+    case '/app':
+      return 'overview';
+    case '/app/workspace':
+      return 'workspace';
+    case '/app/indicators':
+      return 'indicators';
+    case '/app/session':
+      return 'session';
+    case '/app/access':
+      return 'access';
+    default:
+      return null;
+  }
+}
+
+function tabToPath(tab: AppTab): string {
+  switch (tab) {
+    case 'overview':
+      return '/app';
+    case 'workspace':
+      return '/app/workspace';
+    case 'indicators':
+      return '/app/indicators';
+    case 'session':
+      return '/app/session';
+    case 'access':
+      return '/app/access';
+  }
+}
+
 /**
  * ALGOFINEX — PHASE 4B
  * COMPLETE FRONTEND PROTOTYPE SPA & WORKSTATION EXPERIENCE
  */
 export const App: React.FC = () => {
-  // Mode switch: 'marketing' (Public Presentation) vs 'app' (Product Workstation)
-  const [appMode, setAppMode] = useState<'marketing' | 'app'>('marketing');
+  const [pathname, setPathname] = useState(() =>
+    typeof window !== 'undefined' ? normalizePath(window.location.pathname) : '/'
+  );
+
+  useEffect(() => {
+    const onPopState = () => {
+      setPathname(normalizePath(window.location.pathname));
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  const navigate = useCallback((nextPath: string) => {
+    const next = normalizePath(nextPath);
+    if (normalizePath(window.location.pathname) !== next) {
+      window.history.pushState({}, '', next);
+    }
+    setPathname(next);
+  }, []);
+
+  const appTab = resolveAppTab(pathname);
 
   // App Global Prototype State
-  const [activeTab, setActiveTab] = useState<AppTab>('workspace');
   const [selectedInstrument, setSelectedInstrument] = useState<Instrument>('BTC/USD');
   const [selectedTimeframe, setSelectedTimeframe] = useState<Timeframe>('15m');
   const [activeLens, setActiveLens] = useState<LensLayer>('STRUCTURE');
@@ -37,25 +92,24 @@ export const App: React.FC = () => {
   // Marketing Client Portal Modal State
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
-  // If in 'app' mode, render the Phase 4 Application Workstation
-  if (appMode === 'app') {
+  if (appTab) {
     return (
       <AppShell
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
+        activeTab={appTab}
+        onTabChange={(tab) => navigate(tabToPath(tab))}
         selectedInstrument={selectedInstrument}
         onInstrumentChange={setSelectedInstrument}
         selectedTimeframe={selectedTimeframe}
         onTimeframeChange={setSelectedTimeframe}
-        onExitApp={() => setAppMode('marketing')}
+        onExitApp={() => navigate('/')}
       >
-        {activeTab === 'overview' && (
+        {appTab === 'overview' && (
           <OverviewScreen
-            onNavigate={setActiveTab}
+            onNavigate={(tab) => navigate(tabToPath(tab))}
             selectedInstrument={selectedInstrument}
           />
         )}
-        {activeTab === 'workspace' && (
+        {appTab === 'workspace' && (
           <WorkspaceScreen
             selectedInstrument={selectedInstrument}
             selectedTimeframe={selectedTimeframe}
@@ -63,18 +117,21 @@ export const App: React.FC = () => {
             onLensChange={setActiveLens}
           />
         )}
-        {activeTab === 'indicators' && <IndicatorsScreen />}
-        {activeTab === 'session' && <SessionScreen />}
-        {activeTab === 'access' && <AccessScreen />}
+        {appTab === 'indicators' && <IndicatorsScreen />}
+        {appTab === 'session' && <SessionScreen />}
+        {appTab === 'access' && <AccessScreen />}
       </AppShell>
     );
   }
 
   // Otherwise render the Public Presentation Landing Experience
   return (
-    <div className="min-h-screen bg-background text-text-primary selection:bg-brand-blue/20 selection:text-slate-900 flex flex-col justify-between">
+    <div
+      data-component="MarketingPage"
+      className="min-h-screen bg-background text-text-primary selection:bg-brand-blue/20 selection:text-slate-900 flex flex-col justify-between"
+    >
       {/* Top Persistent Navigation */}
-      <Navbar onOpenPortal={() => setAppMode('app')} />
+      <Navbar onOpenPortal={() => navigate('/app')} />
 
       {/* Main Sequential Experience Flow */}
       <main className="flex-1 w-full min-w-0">
@@ -141,7 +198,7 @@ export const App: React.FC = () => {
             <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</a>
             <a href="#faq" className="text-slate-600 hover:text-slate-900 transition-colors">FAQ</a>
             <button 
-              onClick={() => setAppMode('app')}
+              onClick={() => navigate('/app')}
               className="text-brand-blue font-semibold hover:text-blue-800 transition-colors cursor-pointer"
             >
               Launch Workstation

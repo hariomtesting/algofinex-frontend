@@ -1,0 +1,2 @@
+/* SPA: serve index.html for all paths so /app/* hydrates the client router */
+/*    /index.html   200

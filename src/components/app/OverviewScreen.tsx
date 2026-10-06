@@ -9,7 +9,7 @@ interface OverviewScreenProps {
 
 export const OverviewScreen: React.FC<OverviewScreenProps> = ({ onNavigate, selectedInstrument }) => {
   return (
-    <div className="p-6 md:p-10 max-w-[1200px] mx-auto space-y-8 select-none">
+    <div data-component="OverviewScreen" className="p-6 md:p-10 max-w-[1200px] mx-auto space-y-8 select-none">
       {/* 1. PRIMARY HERO SECTION — Orientation & Active State */}
       <div className="bg-[#F8F8F6] border border-black/[0.08] rounded-2xl p-6 md:p-8 space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-black/[0.06] pb-4">
