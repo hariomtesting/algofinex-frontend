@@ -15,28 +15,46 @@ import { ClosingCtaSection } from './components/marketing/ClosingCtaSection';
 import { LogoPreloader } from './components/ui/LogoPreloader';
 import { ToastProvider } from './components/ui/Toast';
 
-// Dedicated Standalone Sub-Pages
-import { ProductDetailPage } from './components/marketing/ProductDetailPage';
-import { PricingPage } from './components/marketing/PricingPage';
-import { HowItWorksPage } from './components/marketing/HowItWorksPage';
-import { SessionPage } from './components/marketing/SessionPage';
-import { ReferralPage } from './components/marketing/ReferralPage';
-import { SupportPage } from './components/marketing/SupportPage';
-import { AuthPages } from './components/auth/AuthPages';
-import { CheckoutPage } from './components/checkout/CheckoutPage';
+import type { AppTab, Instrument, Timeframe } from './components/app/AppShell';
+import type { LensLayer } from './components/app/WorkspaceScreen';
+import type { SubscriptionPlan } from './types/api';
 
-// Phase 4B Workstation & Trader Dashboard Components
-import { AppShell, AppTab, Instrument, Timeframe } from './components/app/AppShell';
-import { OverviewScreen } from './components/app/OverviewScreen';
-import { WorkspaceScreen, LensLayer } from './components/app/WorkspaceScreen';
-import { MyProductsScreen } from './components/app/MyProductsScreen';
-import { ActiveAccessScreen } from './components/app/ActiveAccessScreen';
-import { SubscriptionScreen } from './components/app/SubscriptionScreen';
-import { ReferralScreen } from './components/app/ReferralScreen';
-import { AccountScreen } from './components/app/AccountScreen';
-import { SupportDashboardScreen } from './components/app/SupportDashboardScreen';
-import { SessionScreen } from './components/app/SessionScreen';
-import { SubscriptionPlan } from './types/api';
+// Dedicated Standalone Sub-Pages (Code-split to keep marketing bundle minimal)
+const ProductDetailPage = React.lazy(() => import('./components/marketing/ProductDetailPage').then(m => ({ default: m.ProductDetailPage })));
+const PricingPage = React.lazy(() => import('./components/marketing/PricingPage').then(m => ({ default: m.PricingPage })));
+const HowItWorksPage = React.lazy(() => import('./components/marketing/HowItWorksPage').then(m => ({ default: m.HowItWorksPage })));
+const SessionPage = React.lazy(() => import('./components/marketing/SessionPage').then(m => ({ default: m.SessionPage })));
+const ReferralPage = React.lazy(() => import('./components/marketing/ReferralPage').then(m => ({ default: m.ReferralPage })));
+const SupportPage = React.lazy(() => import('./components/marketing/SupportPage').then(m => ({ default: m.SupportPage })));
+const AuthPages = React.lazy(() => import('./components/auth/AuthPages').then(m => ({ default: m.AuthPages })));
+const CheckoutPage = React.lazy(() => import('./components/checkout/CheckoutPage').then(m => ({ default: m.CheckoutPage })));
+
+// Workstation & Trader Dashboard Screens (Code-split)
+const AppShell = React.lazy(() => import('./components/app/AppShell').then(m => ({ default: m.AppShell })));
+const OverviewScreen = React.lazy(() => import('./components/app/OverviewScreen').then(m => ({ default: m.OverviewScreen })));
+const WorkspaceScreen = React.lazy(() => import('./components/app/WorkspaceScreen').then(m => ({ default: m.WorkspaceScreen })));
+const MyProductsScreen = React.lazy(() => import('./components/app/MyProductsScreen').then(m => ({ default: m.MyProductsScreen })));
+const ActiveAccessScreen = React.lazy(() => import('./components/app/ActiveAccessScreen').then(m => ({ default: m.ActiveAccessScreen })));
+const SubscriptionScreen = React.lazy(() => import('./components/app/SubscriptionScreen').then(m => ({ default: m.SubscriptionScreen })));
+const ReferralScreen = React.lazy(() => import('./components/app/ReferralScreen').then(m => ({ default: m.ReferralScreen })));
+const AccountScreen = React.lazy(() => import('./components/app/AccountScreen').then(m => ({ default: m.AccountScreen })));
+const SupportDashboardScreen = React.lazy(() => import('./components/app/SupportDashboardScreen').then(m => ({ default: m.SupportDashboardScreen })));
+const SessionScreen = React.lazy(() => import('./components/app/SessionScreen').then(m => ({ default: m.SessionScreen })));
+
+// Institutional Route Loading Fallbacks
+const RouteLoadingFallback: React.FC = () => (
+  <div className="min-h-[70vh] flex flex-col items-center justify-center gap-3 font-mono text-xs text-[#8B929C] bg-[#080A0D]">
+    <div className="w-7 h-7 border-2 border-[#C8A96B] border-t-transparent rounded-full animate-spin" />
+    <span className="tracking-widest text-[11px] text-[#A6AEB8]">SYNCHRONIZING TERMINAL MODULE...</span>
+  </div>
+);
+
+const AppShellFallback: React.FC = () => (
+  <div className="min-h-screen flex flex-col items-center justify-center gap-3 font-mono text-xs text-[#8B929C] bg-[#07090E]">
+    <div className="w-8 h-8 border-2 border-[#C8A96B] border-t-transparent rounded-full animate-spin" />
+    <span className="tracking-widest text-[11px] text-[#C8A96B]">INITIALIZING ALGOFINEX WORKSTATION...</span>
+  </div>
+);
 
 function normalizePath(pathname: string): string {
   const trimmed = pathname.replace(/\/+$/, '');
@@ -136,38 +154,42 @@ export const App: React.FC = () => {
 
       {/* 1. APP WORKSTATION & TRADER DASHBOARD VIEW */}
       {appTab ? (
-        <AppShell
-          activeTab={appTab}
-          onTabChange={(tab) => navigate(tabToPath(tab))}
-          selectedInstrument={selectedInstrument}
-          onInstrumentChange={setSelectedInstrument}
-          selectedTimeframe={selectedTimeframe}
-          onTimeframeChange={setSelectedTimeframe}
-          onExitApp={() => navigate('/')}
-        >
-          {appTab === 'overview' && (
-            <OverviewScreen
-              onNavigate={(tab) => navigate(tabToPath(tab))}
-              selectedInstrument={selectedInstrument}
-            />
-          )}
-          {appTab === 'workspace' && (
-            <WorkspaceScreen
-              selectedInstrument={selectedInstrument}
-              selectedTimeframe={selectedTimeframe}
-              activeLens={activeLens}
-              onLensChange={setActiveLens}
-              onSelectInstrument={setSelectedInstrument}
-            />
-          )}
-          {appTab === 'products' && <MyProductsScreen />}
-          {appTab === 'access' && <ActiveAccessScreen />}
-          {appTab === 'subscription' && <SubscriptionScreen />}
-          {appTab === 'referral' && <ReferralScreen />}
-          {appTab === 'account' && <AccountScreen />}
-          {appTab === 'support' && <SupportDashboardScreen onNavigate={(t) => navigate(tabToPath(t))} />}
-          {appTab === 'session' && <SessionScreen />}
-        </AppShell>
+        <React.Suspense fallback={<AppShellFallback />}>
+          <AppShell
+            activeTab={appTab}
+            onTabChange={(tab) => navigate(tabToPath(tab))}
+            selectedInstrument={selectedInstrument}
+            onInstrumentChange={setSelectedInstrument}
+            selectedTimeframe={selectedTimeframe}
+            onTimeframeChange={setSelectedTimeframe}
+            onExitApp={() => navigate('/')}
+          >
+            <React.Suspense fallback={<RouteLoadingFallback />}>
+              {appTab === 'overview' && (
+                <OverviewScreen
+                  onNavigate={(tab) => navigate(tabToPath(tab))}
+                  selectedInstrument={selectedInstrument}
+                />
+              )}
+              {appTab === 'workspace' && (
+                <WorkspaceScreen
+                  selectedInstrument={selectedInstrument}
+                  selectedTimeframe={selectedTimeframe}
+                  activeLens={activeLens}
+                  onLensChange={setActiveLens}
+                  onSelectInstrument={setSelectedInstrument}
+                />
+              )}
+              {appTab === 'products' && <MyProductsScreen />}
+              {appTab === 'access' && <ActiveAccessScreen />}
+              {appTab === 'subscription' && <SubscriptionScreen />}
+              {appTab === 'referral' && <ReferralScreen />}
+              {appTab === 'account' && <AccountScreen />}
+              {appTab === 'support' && <SupportDashboardScreen onNavigate={(t) => navigate(tabToPath(t))} />}
+              {appTab === 'session' && <SessionScreen />}
+            </React.Suspense>
+          </AppShell>
+        </React.Suspense>
       ) : (
         /* 2. PUBLIC MARKETING & DEDICATED EXPERIENCE VIEWS */
         <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] flex flex-col justify-between selection:bg-[#C8A96B]/20 selection:text-[#C8A96B]">
@@ -176,87 +198,89 @@ export const App: React.FC = () => {
           <Navbar currentPath={pathname} onNavigate={navigate} />
 
           <main className="flex-1 w-full min-w-0">
-            {/* ROUTE: /products/:slug (Dedicated Product Detail Page) */}
-            {productSlug ? (
-              <ProductDetailPage slug={productSlug} onNavigate={navigate} />
-            ) : pathname === '/products' ? (
-              /* ROUTE: /products (Product Catalogue Page) */
-              <div className="pt-20">
-                <ProductCatalogSection onNavigate={navigate} />
-              </div>
-            ) : pathname === '/pricing' ? (
-              /* ROUTE: /pricing (Pricing Comparison Page) */
-              <PricingPage onNavigate={navigate} />
-            ) : pathname === '/how-it-works' ? (
-              /* ROUTE: /how-it-works (Architecture & Routine Page) */
-              <HowItWorksPage onNavigate={navigate} />
-            ) : pathname === '/session' ? (
-              /* ROUTE: /session (Dedicated 3-Day Session Page) */
-              <SessionPage onNavigate={navigate} />
-            ) : pathname === '/referral' ? (
-              /* ROUTE: /referral (Partner & Affiliate Page) */
-              <ReferralPage onNavigate={navigate} />
-            ) : pathname === '/support' ? (
-              /* ROUTE: /support (Client Helpdesk Page) */
-              <SupportPage onNavigate={navigate} />
-            ) : pathname === '/login' ? (
-              /* ROUTE: /login */
-              <AuthPages initialMode="login" onNavigate={navigate} />
-            ) : pathname === '/signup' ? (
-              /* ROUTE: /signup */
-              <AuthPages initialMode="signup" onNavigate={navigate} />
-            ) : pathname === '/forgot-password' ? (
-              /* ROUTE: /forgot-password */
-              <AuthPages initialMode="forgot_password" onNavigate={navigate} />
-            ) : pathname === '/verify' ? (
-              /* ROUTE: /verify */
-              <AuthPages initialMode="verify" onNavigate={navigate} />
-            ) : pathname === '/checkout' ? (
-              /* ROUTE: /checkout (Payment Flow) */
-              <CheckoutPage
-                initialPlan={(navState?.selectedPlan as SubscriptionPlan) || 'annual'}
-                onNavigate={navigate}
-              />
-            ) : (
-              /* ROUTE: / (HOME PAGE — EXACT MASTER BRIEF STRUCTURE) */
-              <>
-                {/* 1. Hero */}
-                <Hero onNavigate={navigate} />
+            <React.Suspense fallback={<RouteLoadingFallback />}>
+              {/* ROUTE: /products/:slug (Dedicated Product Detail Page) */}
+              {productSlug ? (
+                <ProductDetailPage slug={productSlug} onNavigate={navigate} />
+              ) : pathname === '/products' ? (
+                /* ROUTE: /products (Product Catalogue Page) */
+                <div className="pt-20">
+                  <ProductCatalogSection onNavigate={navigate} />
+                </div>
+              ) : pathname === '/pricing' ? (
+                /* ROUTE: /pricing (Pricing Comparison Page) */
+                <PricingPage onNavigate={navigate} />
+              ) : pathname === '/how-it-works' ? (
+                /* ROUTE: /how-it-works (Architecture & Routine Page) */
+                <HowItWorksPage onNavigate={navigate} />
+              ) : pathname === '/session' ? (
+                /* ROUTE: /session (Dedicated 3-Day Session Page) */
+                <SessionPage onNavigate={navigate} />
+              ) : pathname === '/referral' ? (
+                /* ROUTE: /referral (Partner & Affiliate Page) */
+                <ReferralPage onNavigate={navigate} />
+              ) : pathname === '/support' ? (
+                /* ROUTE: /support (Client Helpdesk Page) */
+                <SupportPage onNavigate={navigate} />
+              ) : pathname === '/login' ? (
+                /* ROUTE: /login */
+                <AuthPages initialMode="login" onNavigate={navigate} />
+              ) : pathname === '/signup' ? (
+                /* ROUTE: /signup */
+                <AuthPages initialMode="signup" onNavigate={navigate} />
+              ) : pathname === '/forgot-password' ? (
+                /* ROUTE: /forgot-password */
+                <AuthPages initialMode="forgot_password" onNavigate={navigate} />
+              ) : pathname === '/verify' ? (
+                /* ROUTE: /verify */
+                <AuthPages initialMode="verify" onNavigate={navigate} />
+              ) : pathname === '/checkout' ? (
+                /* ROUTE: /checkout (Payment Flow) */
+                <CheckoutPage
+                  initialPlan={(navState?.selectedPlan as SubscriptionPlan) || 'annual'}
+                  onNavigate={navigate}
+                />
+              ) : (
+                /* ROUTE: / (HOME PAGE — EXACT MASTER BRIEF STRUCTURE) */
+                <>
+                  {/* 1. Hero */}
+                  <Hero onNavigate={navigate} />
 
-                {/* 2. Product / Indicator showcase */}
-                <ProductCatalogSection onNavigate={navigate} />
+                  {/* 2. Product / Indicator showcase */}
+                  <ProductCatalogSection onNavigate={navigate} />
 
-                {/* 3. Why AlgoFinex (Clarity, Context, Discipline, Consistency) */}
-                <PrinciplesSection />
+                  {/* 3. Why AlgoFinex (Clarity, Context, Discipline, Consistency) */}
+                  <PrinciplesSection />
 
-                {/* 4. Product capabilities (4 Strata Layers) */}
-                <IndicatorSystemSection />
+                  {/* 4. Product capabilities (4 Strata Layers) */}
+                  <IndicatorSystemSection />
 
-                {/* 5. Visual trading/chart section (5-Stage Progressive Reveal) */}
-                <ProductRevealSection />
+                  {/* 5. Visual trading/chart section (5-Stage Progressive Reveal) */}
+                  <ProductRevealSection />
 
-                {/* 6. 3-Day Session CTA */}
-                <SessionSection onNavigate={navigate} />
+                  {/* 6. 3-Day Session CTA */}
+                  <SessionSection onNavigate={navigate} />
 
-                {/* 7. Social proof / trust section (Verifiable standards) */}
-                <HomeTrustSection />
+                  {/* 7. Social proof / trust section (Verifiable standards) */}
+                  <HomeTrustSection />
 
-                {/* 8. Pricing preview */}
-                <PrototypePricingSection onNavigate={navigate} />
+                  {/* 8. Pricing preview */}
+                  <PrototypePricingSection onNavigate={navigate} />
 
-                {/* 9. Referral CTA */}
-                <HomeReferralCtaSection onNavigate={navigate} />
+                  {/* 9. Referral CTA */}
+                  <HomeReferralCtaSection onNavigate={navigate} />
 
-                {/* 10. Team / support */}
-                <HomeSupportCtaSection onNavigate={navigate} />
+                  {/* 10. Team / support */}
+                  <HomeSupportCtaSection onNavigate={navigate} />
 
-                {/* 11. FAQ */}
-                <FaqSection onNavigate={navigate} />
+                  {/* 11. FAQ */}
+                  <FaqSection onNavigate={navigate} />
 
-                {/* 12. Closing CTA */}
-                <ClosingCtaSection onNavigate={navigate} />
-              </>
-            )}
+                  {/* 12. Closing CTA */}
+                  <ClosingCtaSection onNavigate={navigate} />
+                </>
+              )}
+            </React.Suspense>
           </main>
 
           {/* Persistent Footer */}

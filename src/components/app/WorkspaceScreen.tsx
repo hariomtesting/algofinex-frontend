@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { Instrument, Timeframe } from './AppShell';
+import type { Instrument, Timeframe } from './AppShell';
 import { ContextualInspector, InspectorPoint } from './ContextualInspector';
-import { TradingChart, ChartType, ChartCrosshairData } from './TradingChart';
+import type { ChartType, ChartCrosshairData } from './TradingChart';
 import { DrawingToolbar } from './DrawingToolbar';
+
+const TradingChart = React.lazy(() => import('./TradingChart'));
 import { TerminalSidePanel } from './TerminalSidePanel';
 import { TerminalBottomDock } from './TerminalBottomDock';
 import { DrawingToolType } from '../../types/trading';
@@ -267,43 +269,52 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
 
         {/* Primary Chart Canvas (Single or Dual) */}
         <div className="flex-1 flex flex-col md:flex-row min-w-0 h-full relative overflow-hidden">
-          {/* Primary Chart */}
-          <div className="flex-1 flex flex-col min-w-0 h-full relative">
-            <TradingChart
-              instrument={selectedInstrument}
-              timeframe={selectedTimeframe}
-              chartType={chartType}
-              activeLens={activeLens}
-              showEMA={showEMA}
-              showOrderBlocks={showOrderBlocks}
-              showLiquidity={showLiquidity}
-              showVolume={showVolume}
-              showRSI={showRSI}
-              onCrosshairMove={handleCrosshairMove}
-              onSelectInspectPoint={handleSelectInspectPoint}
-            />
-          </div>
-
-          {/* Secondary Chart (if Dual Split is enabled) */}
-          {isDualSplit && (
-            <div className="flex-1 flex flex-col min-w-0 h-full border-t md:border-t-0 md:border-l border-white/10 relative">
-              <div className="h-7 bg-[#070B14] px-3 flex items-center justify-between text-[10px] font-mono text-slate-400 border-b border-white/5">
-                <span>ETH/USD · 1H CORRELATION PANE</span>
-                <span className="text-[#00F090]">SYNCED FEED</span>
+          <React.Suspense
+            fallback={
+              <div className="flex-1 flex flex-col items-center justify-center bg-[#070B14] text-[#8B929C] font-mono text-xs gap-3">
+                <div className="w-6 h-6 border-2 border-[#C8A96B] border-t-transparent rounded-full animate-spin" />
+                <span className="tracking-widest text-[11px] text-[#A6AEB8]">INITIALIZING TRADING ENGINE...</span>
               </div>
+            }
+          >
+            {/* Primary Chart */}
+            <div className="flex-1 flex flex-col min-w-0 h-full relative">
               <TradingChart
-                instrument="ETH/USD"
-                timeframe="1h"
-                chartType="candles"
+                instrument={selectedInstrument}
+                timeframe={selectedTimeframe}
+                chartType={chartType}
                 activeLens={activeLens}
                 showEMA={showEMA}
                 showOrderBlocks={showOrderBlocks}
-                showLiquidity={false}
+                showLiquidity={showLiquidity}
                 showVolume={showVolume}
-                showRSI={false}
+                showRSI={showRSI}
+                onCrosshairMove={handleCrosshairMove}
+                onSelectInspectPoint={handleSelectInspectPoint}
               />
             </div>
-          )}
+
+            {/* Secondary Chart (if Dual Split is enabled) */}
+            {isDualSplit && (
+              <div className="flex-1 flex flex-col min-w-0 h-full border-t md:border-t-0 md:border-l border-white/10 relative">
+                <div className="h-7 bg-[#070B14] px-3 flex items-center justify-between text-[10px] font-mono text-slate-400 border-b border-white/5">
+                  <span>ETH/USD · 1H CORRELATION PANE</span>
+                  <span className="text-[#00F090]">SYNCED FEED</span>
+                </div>
+                <TradingChart
+                  instrument="ETH/USD"
+                  timeframe="1h"
+                  chartType="candles"
+                  activeLens={activeLens}
+                  showEMA={showEMA}
+                  showOrderBlocks={showOrderBlocks}
+                  showLiquidity={false}
+                  showVolume={showVolume}
+                  showRSI={false}
+                />
+              </div>
+            )}
+          </React.Suspense>
         </div>
 
         {/* Right Multi-Tab Terminal Panel */}
