@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { useTheme } from '../../context/ThemeContext';
 
 interface NavbarProps {
   currentPath?: string;
@@ -10,6 +11,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,7 +99,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
           </nav>
 
           {/* Right Side Actions */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          <div className="hidden sm:flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+              title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+              className="p-2 rounded-xl border border-[#EAEAE5] bg-white text-[#666B76] hover:text-[#17181C] hover:bg-[#F1F4FF] transition-all cursor-pointer"
+            >
+              {isDark ? <Sun className="size-4 text-[#F4C95D]" /> : <Moon className="size-4 text-[#666B76]" />}
+            </button>
+
             <button
               onClick={() => onNavigate('/app')}
               className="text-xs font-medium px-3 py-1.5 rounded-lg text-[#666B76] hover:text-[#17181C] hover:bg-[#F1F4FF] transition-all cursor-pointer"
@@ -124,6 +135,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath = '/', onNavigate })
 
           {/* Mobile Menu Toggle Button */}
           <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={toggleTheme}
+              aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+              className="p-1.5 rounded-lg border border-[#EAEAE5] bg-white text-[#666B76] hover:text-[#17181C] cursor-pointer"
+            >
+              {isDark ? <Sun className="size-4 text-[#F4C95D]" /> : <Moon className="size-4" />}
+            </button>
+
             <Button
               size="sm"
               variant="primary"

@@ -14,6 +14,7 @@ import { FaqSection } from './components/marketing/FaqSection';
 import { ClosingCtaSection } from './components/marketing/ClosingCtaSection';
 import { LogoPreloader } from './components/ui/LogoPreloader';
 import { ToastProvider } from './components/ui/Toast';
+import { ThemeProvider } from './context/ThemeContext';
 
 import type { AppTab, Instrument, Timeframe } from './components/app/AppShell';
 import type { LensLayer } from './components/app/WorkspaceScreen';
@@ -149,8 +150,9 @@ export const App: React.FC = () => {
   const productSlug = productMatch ? productMatch[1] : null;
 
   return (
-    <ToastProvider>
-      <LogoPreloader />
+    <ThemeProvider>
+      <ToastProvider>
+        <LogoPreloader />
 
       {/* 1. APP WORKSTATION & TRADER DASHBOARD VIEW */}
       {appTab ? (
@@ -335,7 +337,8 @@ export const App: React.FC = () => {
 
         </div>
       )}
-    </ToastProvider>
+      </ToastProvider>
+    </ThemeProvider>
   );
 };
 

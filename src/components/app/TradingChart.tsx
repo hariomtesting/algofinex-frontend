@@ -21,6 +21,7 @@ import {
   calculateRSI
 } from '../../data/mockChartData';
 import { InspectorPoint } from './ContextualInspector';
+import { useTheme } from '../../context/ThemeContext';
 
 export type ChartType = 'candles' | 'line' | 'area';
 
@@ -66,6 +67,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
   onCrosshairMove,
   onSelectInspectPoint,
 }) => {
+  const { isDark } = useTheme();
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const rsiContainerRef = useRef<HTMLDivElement>(null);
 
@@ -86,6 +88,45 @@ export const TradingChart: React.FC<TradingChartProps> = ({
   const candleData = INSTRUMENT_LW_CANDLES[instrument] || INSTRUMENT_LW_CANDLES['BTC/USD'];
   const volumeData = INSTRUMENT_LW_VOLUME[instrument] || INSTRUMENT_LW_VOLUME['BTC/USD'];
 
+  // Dynamically update theme options on chart instances
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.applyOptions({
+        layout: {
+          background: { type: ColorType.Solid, color: isDark ? '#0B0E14' : '#FFFFFF' },
+          textColor: isDark ? '#9CA3AF' : '#666B76',
+        },
+        grid: {
+          vertLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)' },
+          horzLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)' },
+        },
+        rightPriceScale: {
+          borderColor: isDark ? '#222738' : '#EAEAE5',
+          textColor: isDark ? '#9CA3AF' : '#666B76',
+        },
+        timeScale: {
+          borderColor: isDark ? '#222738' : '#EAEAE5',
+        },
+      });
+    }
+    if (rsiChartRef.current) {
+      rsiChartRef.current.applyOptions({
+        layout: {
+          background: { type: ColorType.Solid, color: isDark ? '#0B0E14' : '#FFFFFF' },
+          textColor: isDark ? '#9CA3AF' : '#666B76',
+        },
+        grid: {
+          vertLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)' },
+          horzLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)' },
+        },
+        rightPriceScale: {
+          borderColor: isDark ? '#222738' : '#EAEAE5',
+          textColor: isDark ? '#9CA3AF' : '#666B76',
+        },
+      });
+    }
+  }, [isDark]);
+
   // Initialize main chart
   useEffect(() => {
     if (!chartContainerRef.current) return;
@@ -101,14 +142,14 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       width: container.clientWidth,
       height: container.clientHeight || 420,
       layout: {
-        background: { type: ColorType.Solid, color: '#FFFFFF' },
-        textColor: '#666B76',
+        background: { type: ColorType.Solid, color: isDark ? '#0B0E14' : '#FFFFFF' },
+        textColor: isDark ? '#9CA3AF' : '#666B76',
         fontFamily: "'Inter', sans-serif",
         fontSize: 11,
       },
       grid: {
-        vertLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
-        horzLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
+        vertLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
+        horzLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
       },
       crosshair: {
         mode: CrosshairMode.Normal,
@@ -116,22 +157,22 @@ export const TradingChart: React.FC<TradingChartProps> = ({
           color: 'rgba(79, 107, 255, 0.4)',
           width: 1,
           style: LineStyle.Dashed,
-          labelBackgroundColor: '#17181C',
+          labelBackgroundColor: isDark ? '#1F2433' : '#17181C',
         },
         horzLine: {
           color: 'rgba(79, 107, 255, 0.4)',
           width: 1,
           style: LineStyle.Dashed,
-          labelBackgroundColor: '#17181C',
+          labelBackgroundColor: isDark ? '#1F2433' : '#17181C',
         },
       },
       rightPriceScale: {
-        borderColor: '#EAEAE5',
-        textColor: '#666B76',
+        borderColor: isDark ? '#222738' : '#EAEAE5',
+        textColor: isDark ? '#9CA3AF' : '#666B76',
         autoScale: true,
       },
       timeScale: {
-        borderColor: '#EAEAE5',
+        borderColor: isDark ? '#222738' : '#EAEAE5',
         timeVisible: true,
         secondsVisible: false,
       },
@@ -391,18 +432,18 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       width: container.clientWidth,
       height: 110,
       layout: {
-        background: { type: ColorType.Solid, color: '#FFFFFF' },
-        textColor: '#666B76',
+        background: { type: ColorType.Solid, color: isDark ? '#0B0E14' : '#FFFFFF' },
+        textColor: isDark ? '#9CA3AF' : '#666B76',
         fontFamily: "'Inter', sans-serif",
         fontSize: 10,
       },
       grid: {
-        vertLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
-        horzLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
+        vertLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
+        horzLines: { color: isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
       },
       rightPriceScale: {
-        borderColor: '#EAEAE5',
-        textColor: '#666B76',
+        borderColor: isDark ? '#222738' : '#EAEAE5',
+        textColor: isDark ? '#9CA3AF' : '#666B76',
         scaleMargins: { top: 0.15, bottom: 0.15 },
       },
       timeScale: {

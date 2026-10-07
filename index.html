@@ -108,8 +108,24 @@
       ]
     }
     </script>
+    <!-- Theme Initializer (Prevents Flash of Unstyled Content) -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('algofinex-theme');
+          var theme = saved ? saved : 'dark';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-[#05080E] text-white antialiased selection:bg-emerald-500/30 selection:text-emerald-200 min-h-screen overflow-x-hidden">
+  <body class="bg-background text-text-primary antialiased selection:bg-[#4F6BFF]/20 selection:text-[#4F6BFF] min-h-screen overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

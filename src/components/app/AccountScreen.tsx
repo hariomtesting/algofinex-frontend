@@ -4,10 +4,12 @@ import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Badge } from '../ui/Badge';
 import { useToast } from '../ui/Toast';
-import { User as UserIcon } from 'lucide-react';
+import { User as UserIcon, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 
 export const AccountScreen: React.FC = () => {
   const { showToast } = useToast();
+  const { theme, setTheme } = useTheme();
   const [name, setName] = useState(MOCK_CURRENT_USER.name);
   const [email, setEmail] = useState(MOCK_CURRENT_USER.email);
   const [tradingViewHandle, setTradingViewHandle] = useState(MOCK_CURRENT_USER.tradingViewHandle);
@@ -144,6 +146,60 @@ export const AccountScreen: React.FC = () => {
               className="rounded accent-[#4F6BFF] size-4"
             />
           </label>
+        </div>
+      </div>
+
+      {/* Theme Preferences */}
+      <div className="bg-white border border-[#EAEAE5] rounded-3xl p-6 sm:p-8 space-y-4 shadow-card">
+        <h3 className="text-base font-bold text-[#17181C] border-b border-[#EAEAE5] pb-4">
+          Interface Theme Preference
+        </h3>
+        <p className="text-xs text-[#666B76]">
+          Choose your preferred color theme across the marketing site and trading workstation.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <button
+            type="button"
+            onClick={() => setTheme('dark')}
+            className={`p-4 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
+              theme === 'dark'
+                ? 'bg-[#161B2E] border-[#4F6BFF] text-[#F3F4F6] ring-2 ring-[#4F6BFF]/30'
+                : 'bg-white border-[#EAEAE5] text-[#666B76] hover:border-[#4F6BFF]/50'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-[#222738] text-[#F4C95D]">
+                <Moon className="size-4" />
+              </div>
+              <div>
+                <div className="font-bold text-sm text-[#17181C]">Dark Mode</div>
+                <div className="text-[11px] text-[#666B76]">Modern obsidian fintech aesthetic</div>
+              </div>
+            </div>
+            {theme === 'dark' && <Badge variant="success" size="sm">Active</Badge>}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setTheme('light')}
+            className={`p-4 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${
+              theme === 'light'
+                ? 'bg-[#F1F4FF] border-[#4F6BFF] text-[#17181C] ring-2 ring-[#4F6BFF]/30'
+                : 'bg-white border-[#EAEAE5] text-[#666B76] hover:border-[#4F6BFF]/50'
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-[#F4C95D]/20 text-[#D97706]">
+                <Sun className="size-4" />
+              </div>
+              <div>
+                <div className="font-bold text-sm text-[#17181C]">Light Mode</div>
+                <div className="text-[11px] text-[#666B76]">Clean, high-contrast off-white surface</div>
+              </div>
+            </div>
+            {theme === 'light' && <Badge variant="success" size="sm">Active</Badge>}
+          </button>
         </div>
       </div>
 

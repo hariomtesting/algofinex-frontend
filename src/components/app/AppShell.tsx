@@ -14,10 +14,13 @@ import {
   CreditCard,
   Users,
   User as UserIcon,
-  LifeBuoy
+  LifeBuoy,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { SymbolSearchModal } from './SymbolSearchModal';
 import { WATCHLIST_DATA } from '../../data/mockChartData';
+import { useTheme } from '../../context/ThemeContext';
 
 export type AppTab = 
   | 'workspace' 
@@ -59,6 +62,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   // Active instrument quote lookup
   const currentQuote = WATCHLIST_DATA.find((w) => w.symbol === selectedInstrument) || {
@@ -167,6 +171,15 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             <span className="size-1.5 rounded-full bg-[#35C99A]" />
             <span>PINE V5 · SYNCED</span>
           </div>
+
+          <button
+            onClick={toggleTheme}
+            className="size-8 rounded-xl hover:bg-[#FAFAF7] flex items-center justify-center text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer border border-[#EAEAE5]"
+            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
+          >
+            {isDark ? <Sun className="size-3.5 text-[#F4C95D]" /> : <Moon className="size-3.5" />}
+          </button>
 
           <button
             onClick={toggleFullscreen}

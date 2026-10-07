@@ -18,6 +18,22 @@
   --accent-yellow: #F4C95D;
 }
 
+html.dark, body.dark, .dark {
+  color-scheme: dark;
+  --bg-primary: #0B0E14;
+  --bg-secondary: #121622;
+  --surface-card: #151926;
+  --surface-elevated: #1B2030;
+  --border-color: #232838;
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  --accent-blue: #4F6BFF;
+  --accent-violet: #8B5CF6;
+  --accent-coral: #FF6B6B;
+  --accent-mint: #35C99A;
+  --accent-yellow: #F4C95D;
+}
+
 html, body {
   background-color: #FAFAF7;
   color: #17181C;
@@ -29,6 +45,126 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html.dark, html.dark body {
+  background-color: #0B0E14;
+  color: #F3F4F6;
+}
+
+/* In dark mode, elegantly remap utility colors */
+html.dark .bg-\[\#FAFAF7\] {
+  background-color: #0B0E14 !important;
+}
+
+html.dark .bg-white {
+  background-color: #141722 !important;
+}
+
+html.dark .bg-white\/95 {
+  background-color: rgba(20, 23, 34, 0.95) !important;
+}
+
+html.dark .bg-white\/90 {
+  background-color: rgba(20, 23, 34, 0.90) !important;
+}
+
+html.dark .bg-white\/80 {
+  background-color: rgba(20, 23, 34, 0.85) !important;
+}
+
+html.dark .bg-\[\#F1F4FF\] {
+  background-color: #161B2E !important;
+}
+
+html.dark .bg-\[\#EEF2FF\] {
+  background-color: #171E36 !important;
+}
+
+html.dark .bg-\[\#F4F0FF\] {
+  background-color: #1C1733 !important;
+}
+
+html.dark .bg-\[\#ECFBF6\] {
+  background-color: #122420 !important;
+}
+
+html.dark .bg-\[\#FFF8E1\] {
+  background-color: #292415 !important;
+}
+
+html.dark .bg-\[\#FEF2F2\] {
+  background-color: #2B1818 !important;
+}
+
+html.dark .bg-\[\#F4F5F8\] {
+  background-color: #181C2A !important;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-gray-50 {
+  background-color: #161A28 !important;
+}
+
+/* Text colors in dark mode */
+html.dark .text-\[\#17181C\] {
+  color: #F3F4F6 !important;
+}
+
+html.dark .text-\[\#666B76\] {
+  color: #9499A8 !important;
+}
+
+/* Borders in dark mode */
+html.dark .border-\[\#EAEAE5\],
+html.dark .border-\[\#EAEAE5\]\/80,
+html.dark .border-\[\#EAEAE5\]\/60,
+html.dark .border-\[\#E0E7FF\],
+html.dark .border-\[\#DDD8FE\],
+html.dark .border-\[\#A7F3D0\],
+html.dark .border-\[\#FDE68A\],
+html.dark .border-\[\#D8D8D2\],
+html.dark .border-slate-200,
+html.dark .border-gray-200 {
+  border-color: #222738 !important;
+}
+
+/* Form inputs in dark mode */
+html.dark input:not([type="checkbox"]):not([type="radio"]),
+html.dark textarea,
+html.dark select {
+  background-color: #121520 !important;
+  color: #F3F4F6 !important;
+  border-color: #262C3E !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  background-color: #161A28 !important;
+  border-color: #4F6BFF !important;
+}
+
+/* Hovers in dark mode */
+html.dark .hover\:bg-\[\#FAFAF7\]:hover {
+  background-color: #181D2C !important;
+}
+
+html.dark .hover\:bg-\[\#F1F4FF\]:hover {
+  background-color: #1A223B !important;
+}
+
+html.dark .hover\:bg-\[\#F4F5F8\]:hover {
+  background-color: #1C2132 !important;
+}
+
+html.dark .hover\:bg-gray-50:hover,
+html.dark .hover\:bg-slate-50:hover {
+  background-color: #181D2C !important;
+}
+
+html.dark .hover\:text-\[\#17181C\]:hover {
+  color: #FFFFFF !important;
+}
+
 /* Subtle modern fintech grid */
 .bg-subtle-grid {
   background-size: 32px 32px;
@@ -37,9 +173,19 @@ html, body {
     linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
 
+html.dark .bg-subtle-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
 .bg-dot-grid {
   background-size: 24px 24px;
   background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+html.dark .bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
 }
 
 /* Soft modern scrollbar */
@@ -58,6 +204,25 @@ html, body {
   background: #B8B8B0;
 }
 
+html.dark ::-webkit-scrollbar-track {
+  background: #0B0E14;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #252A3C;
+  border-radius: 4px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #323850;
+}
+
+/* SVG grid lines in dark mode */
+html.dark svg line[stroke="#F0F1EE"] {
+  stroke: #1E2333 !important;
+}
+html.dark svg line[stroke="#EAEAE5"] {
+  stroke: #222738 !important;
+}
+
 /* Focus outline accessibility */
 :focus-visible {
   outline: 2px solid #4F6BFF;
@@ -69,7 +234,5 @@ html, body {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
