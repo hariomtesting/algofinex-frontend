@@ -1,6 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Instrument, Timeframe } from './AppShell';
 import { ContextualInspector, InspectorPoint } from './ContextualInspector';
+import { TradingChart, ChartType, ChartCrosshairData } from './TradingChart';
+import { DrawingToolbar } from './DrawingToolbar';
+import { TerminalSidePanel } from './TerminalSidePanel';
+import { TerminalBottomDock } from './TerminalBottomDock';
+import { DrawingToolType } from '../../types/trading';
+import {
+  SlidersHorizontal,
+  Columns,
+  Square,
+  ChevronDown,
+  Check
+} from 'lucide-react';
+import { WATCHLIST_DATA } from '../../data/mockChartData';
 
 export type LensLayer = 'RAW' | 'STRUCTURE' | 'LIQUIDITY' | 'TREND' | 'CONFIRMATION';
 
@@ -9,6 +22,7 @@ interface WorkspaceScreenProps {
   selectedTimeframe: Timeframe;
   activeLens: LensLayer;
   onLensChange: (lens: LensLayer) => void;
+  onSelectInstrument?: (inst: Instrument) => void;
 }
 
 export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
@@ -16,61 +30,84 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
   selectedTimeframe,
   activeLens,
   onLensChange,
+  onSelectInstrument,
 }) => {
-  const [activeInspectorPoint, setActiveInspectorPoint] = useState<InspectorPoint | null>(null);
-  const [hoveredCandle, setHoveredCandle] = useState<number | null>(null);
+  // Chart visual configurations
+  const [chartType, setChartType] = useState<ChartType>('candles');
+  const [showEMA, setShowEMA] = useState(true);
+  const [showOrderBlocks, setShowOrderBlocks] = useState(true);
+  const [showLiquidity, setShowLiquidity] = useState(true);
+  const [showVolume, setShowVolume] = useState(true);
+  const [showRSI, setShowRSI] = useState(true);
+  const [isDualSplit, setIsDualSplit] = useState(false);
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  // Indicators menu toggle
+  const [isIndicatorsMenuOpen, setIsIndicatorsMenuOpen] = useState(false);
 
-  // Demo candlestick dataset
-  const candleData = [
-    { x: 40, open: 180, high: 195, low: 175, close: 190, bull: true, time: '09:00', price: '$66,200' },
-    { x: 80, open: 190, high: 205, low: 185, close: 178, bull: false, time: '09:15', price: '$66,100' },
-    { x: 120, open: 178, high: 210, low: 170, close: 202, bull: true, time: '09:30', price: '$66,450' },
-    { x: 160, open: 202, high: 225, low: 195, close: 218, bull: true, time: '09:45', price: '$66,800' },
-    { x: 200, open: 218, high: 235, low: 210, close: 228, bull: true, time: '10:00', price: '$67,100' },
-    { x: 240, open: 228, high: 245, low: 220, close: 240, bull: true, time: '10:15', price: '$67,400' },
-    { x: 280, open: 240, high: 250, low: 215, close: 222, bull: false, time: '10:30', price: '$66,900' },
-    { x: 320, open: 222, high: 238, low: 218, close: 235, bull: true, time: '10:45', price: '$67,250' },
-    { x: 360, open: 235, high: 260, low: 230, close: 255, bull: true, time: '11:00', price: '$67,850' },
-    { x: 400, open: 255, high: 268, low: 248, close: 262, bull: true, time: '11:15', price: '$68,100' },
-  ];
+  // Active drawing tool
+  const [activeDrawingTool, setActiveDrawingTool] = useState<DrawingToolType>('cursor');
 
-  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
+  // Terminal side panel toggle & active inspector point
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(true);
+  const [isBottomDockOpen, setIsBottomDockOpen] = useState(false);
+  const [activeInspectorPoint, setActiveInspectorPoint] = useState<InspectorPoint | null>({
+    price: '$67,400',
+    label: 'BOS ▲ 67,400',
+    layer: 'STRUCTURE',
+    type: 'STRUCTURE',
+    description: 'Clean Break of Structure confirming higher timeframe bullish momentum continuation with institutional volume displacement.',
+    invalidation: '$66,180',
+    time: '10:15 UTC',
+  });
 
-    // Map X to nearest candle
-    const index = Math.min(
-      candleData.length - 1,
-      Math.max(0, Math.floor((x / rect.width) * candleData.length))
-    );
-    setHoveredCandle(index);
+  // Crosshair live scrub data
+  const [crosshairData, setCrosshairData] = useState<ChartCrosshairData | null>(null);
+
+  // Active quote fallback
+  const quote = WATCHLIST_DATA.find((w) => w.symbol === selectedInstrument) || {
+    symbol: selectedInstrument,
+    price: 68220.50,
+    change24h: 3.42,
+    high24h: 68450,
+    low24h: 65920,
+    volume24h: '$38.4B',
   };
 
-  const handleMouseLeave = () => {
-    setHoveredCandle(null);
-  };
+  const handleCrosshairMove = useCallback((data: ChartCrosshairData | null) => {
+    setCrosshairData(data);
+  }, []);
 
-  const currentCandle = hoveredCandle !== null ? candleData[hoveredCandle] : candleData[candleData.length - 1];
+  const handleSelectInspectPoint = useCallback((point: InspectorPoint) => {
+    setActiveInspectorPoint(point);
+    setIsSidePanelOpen(true);
+  }, []);
+
+  // Display values for top legend
+  const displayOpen = crosshairData ? crosshairData.open : quote.price * 0.995;
+  const displayHigh = crosshairData ? crosshairData.high : quote.high24h;
+  const displayLow = crosshairData ? crosshairData.low : quote.low24h;
+  const displayClose = crosshairData ? crosshairData.close : quote.price;
+  const isBullish = crosshairData ? crosshairData.isBull : quote.change24h >= 0;
+  const displayChangePercent = crosshairData ? crosshairData.changePercent : quote.change24h;
 
   return (
-    <div data-component="WorkspaceScreen" className="flex-1 flex flex-col lg:flex-row h-full min-h-[calc(100vh-3.5rem)] bg-[#05080E] text-white select-none overflow-hidden">
-      {/* Primary Workspace Area */}
-      <div className="flex-1 flex flex-col min-w-0">
-
-        {/* Workspace Toolbar / Lens Selector Bar */}
-        <div className="h-12 border-b border-white/10 px-4 bg-[#060A12] flex items-center justify-between shrink-0 overflow-x-auto gap-3">
-          <div className="flex items-center gap-1.5 min-w-max">
-            <span className="text-[10px] font-mono font-semibold uppercase text-slate-500 mr-2">
-              Strata Lens:
-            </span>
-            {(['RAW', 'STRUCTURE', 'LIQUIDITY', 'TREND', 'CONFIRMATION'] as LensLayer[]).map((lens) => (
+    <div
+      data-component="WorkspaceScreen"
+      className="flex-1 flex flex-col h-full min-h-0 bg-[#05080E] text-white select-none overflow-hidden"
+    >
+      {/* 1. UPPER WORKSPACE TOOLBAR / LENS & INDICATORS BAR */}
+      <div className="h-11 border-b border-white/10 px-3 bg-[#060A12] flex items-center justify-between shrink-0 overflow-x-auto gap-2 z-20">
+        {/* Left: Strata Lenses (Raw, Structure, Liquidity, Trend, Confirmation) */}
+        <div className="flex items-center gap-1.5 min-w-max">
+          <span className="text-[10px] font-mono font-semibold uppercase text-slate-500 mr-1 hidden sm:inline">
+            Strata Lens:
+          </span>
+          {(['RAW', 'STRUCTURE', 'LIQUIDITY', 'TREND', 'CONFIRMATION'] as LensLayer[]).map(
+            (lens) => (
               <button
                 key={lens}
                 onClick={() => onLensChange(lens)}
-                className={`px-2.5 py-1 text-xs font-mono font-medium rounded-md transition-all cursor-pointer ${
+                className={`px-2 py-0.5 text-[11px] font-mono font-medium rounded-md transition-all cursor-pointer ${
                   activeLens === lens
                     ? 'bg-[#00F090] text-black font-bold shadow-[0_0_8px_#00F090]'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -78,212 +115,223 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
               >
                 {lens}
               </button>
+            )
+          )}
+        </div>
+
+        {/* Right Controls: Indicators Dropdown, Chart Style, Dual Split */}
+        <div className="flex items-center gap-2 min-w-max">
+          {/* Indicators Toggle Popover */}
+          <div className="relative">
+            <button
+              onClick={() => setIsIndicatorsMenuOpen((prev) => !prev)}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0A0E1A] border border-white/10 hover:border-cyan-500/40 text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
+            >
+              <SlidersHorizontal className="size-3 text-[#00E5FF]" />
+              <span>Indicators</span>
+              <span className="size-4 rounded-full bg-emerald-500/20 text-[#00F090] text-[9px] flex items-center justify-center font-bold">
+                {[showEMA, showOrderBlocks, showLiquidity, showVolume, showRSI].filter(Boolean).length}
+              </span>
+              <ChevronDown className="size-3 text-slate-500 ml-0.5" />
+            </button>
+
+            {/* Popover Menu */}
+            {isIndicatorsMenuOpen && (
+              <div className="absolute right-0 top-9 w-60 bg-[#0A0E1A] border border-white/15 rounded-xl shadow-2xl p-2 space-y-1 z-50 animate-in fade-in-50 duration-100">
+                <div className="px-2 py-1 text-[10px] font-mono uppercase text-slate-500 font-bold border-b border-white/5 mb-1">
+                  Active Overlays
+                </div>
+
+                {[
+                  { label: 'Dynamic EMA 21/55 Cloud', state: showEMA, setter: setShowEMA },
+                  { label: 'Order Blocks & FVG Zones', state: showOrderBlocks, setter: setShowOrderBlocks },
+                  { label: 'Liquidity Pools (Equal H/L)', state: showLiquidity, setter: setShowLiquidity },
+                  { label: 'Volume Histogram', state: showVolume, setter: setShowVolume },
+                  { label: 'RSI (14) Momentum Sub-Pane', state: showRSI, setter: setShowRSI },
+                ].map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => item.setter(!item.state)}
+                    className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-mono text-left hover:bg-white/5 transition-colors cursor-pointer"
+                  >
+                    <span className={item.state ? 'text-white font-medium' : 'text-slate-500'}>
+                      {item.label}
+                    </span>
+                    <div
+                      className={`size-4 rounded flex items-center justify-center border ${
+                        item.state
+                          ? 'bg-[#00F090] border-[#00F090] text-black'
+                          : 'border-white/20'
+                      }`}
+                    >
+                      {item.state && <Check className="size-3 stroke-[3]" />}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Chart Style (Candles / Line / Area) */}
+          <div className="flex items-center bg-[#0A0E1A] border border-white/10 rounded-lg p-0.5">
+            {(['candles', 'line', 'area'] as ChartType[]).map((type) => (
+              <button
+                key={type}
+                onClick={() => setChartType(type)}
+                className={`px-2 py-0.5 text-[10px] font-mono uppercase rounded capitalize transition-all cursor-pointer ${
+                  chartType === type
+                    ? 'bg-white/15 text-white font-bold'
+                    : 'text-slate-500 hover:text-white'
+                }`}
+              >
+                {type}
+              </button>
             ))}
           </div>
 
-          <div className="hidden sm:flex items-center gap-3 text-xs font-mono text-slate-400">
-            <span>Chart: <strong className="text-white font-bold">{selectedInstrument}</strong></span>
-            <span>TF: <strong className="text-[#00F090] font-bold">{selectedTimeframe}</strong></span>
-          </div>
-        </div>
-
-        {/* Main Interactive Chart Canvas Area */}
-        <div
-          ref={containerRef}
-          className="flex-1 relative bg-[#060A12] border-b border-white/10 p-4 flex flex-col justify-between min-h-[380px] sm:min-h-[460px] cursor-crosshair overflow-hidden"
-        >
-          {/* Top Crosshair / OHLC Inspection Ribbon */}
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono bg-[#0A0E1A] border border-white/10 px-3 py-2 rounded-lg z-10 shadow-xl">
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-white">{selectedInstrument}</span>
-              <span className="text-slate-600">•</span>
-              <span className="text-slate-400">O: <strong className="text-white">${currentCandle.open}</strong></span>
-              <span className="text-slate-400">H: <strong className="text-white">${currentCandle.high}</strong></span>
-              <span className="text-slate-400">L: <strong className="text-white">${currentCandle.low}</strong></span>
-              <span className="text-slate-400">C: <strong className={currentCandle.bull ? 'text-[#00F090]' : 'text-[#FF3B69]'}>${currentCandle.close}</strong></span>
-            </div>
-
-            <div className="text-[10px] text-slate-500 font-mono hidden md:block">
-              // LUXALGO VELA WORKSTATION · Touch/Drag Scrubbing Enabled
-            </div>
-          </div>
-
-          {/* SVG Candlestick & Layer Blueprint Rendering */}
-          <div className="flex-1 my-2 relative">
-            <svg
-              className="w-full h-full overflow-visible"
-              viewBox="0 0 440 280"
-              preserveAspectRatio="none"
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-            >
-              {/* Grid Background Lines */}
-              <line x1="0" y1="70" x2="440" y2="70" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" strokeDasharray="3 3" />
-              <line x1="0" y1="140" x2="440" y2="140" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" strokeDasharray="3 3" />
-              <line x1="0" y1="210" x2="440" y2="210" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" strokeDasharray="3 3" />
-
-              {/* LAYER 3: LIQUIDITY */}
-              {(activeLens === 'LIQUIDITY' || activeLens === 'TREND' || activeLens === 'CONFIRMATION') && (
-                <g>
-                  <rect x="20" y="50" width="400" height="24" fill="rgba(0, 229, 255, 0.08)" stroke="#00E5FF" strokeWidth="0.8" strokeDasharray="4 2" rx="4" />
-                  <text x="28" y="66" fill="#00E5FF" fontSize="9" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
-                    UNMITIGATED BUY-SIDE LIQUIDITY POOL ($68,200)
-                  </text>
-
-                  <rect x="20" y="240" width="400" height="20" fill="rgba(255, 59, 105, 0.08)" stroke="#FF3B69" strokeWidth="0.8" strokeDasharray="4 2" rx="4" />
-                  <text x="28" y="254" fill="#FF3B69" fontSize="9" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
-                    SELL-SIDE LIQUIDITY / EQUAL LOWS ($65,800)
-                  </text>
-                </g>
-              )}
-
-              {/* LAYER 4: TREND CORRIDOR */}
-              {(activeLens === 'TREND' || activeLens === 'CONFIRMATION') && (
-                <path
-                  d="M 40 185 Q 160 210, 240 220 T 400 250"
-                  fill="none"
-                  stroke="#00E5FF"
-                  strokeWidth="2.5"
-                  strokeOpacity="0.8"
-                  strokeDasharray="4 2"
-                  filter="drop-shadow(0 0 6px rgba(0,229,255,0.4))"
-                />
-              )}
-
-              {/* Candlesticks Series */}
-              {candleData.map((c, idx) => {
-                const isHovered = hoveredCandle === idx;
-                const candleColor = c.bull ? '#00F090' : '#FF3B69';
-
-                return (
-                  <g key={idx}>
-                    {/* Wick */}
-                    <line x1={c.x} y1={280 - c.high} x2={c.x} y2={280 - c.low} stroke={candleColor} strokeWidth="1.5" />
-                    {/* Body */}
-                    <rect
-                      x={c.x - 6}
-                      y={280 - Math.max(c.open, c.close)}
-                      width="12"
-                      height={Math.max(4, Math.abs(c.open - c.close))}
-                      fill={candleColor}
-                      rx="1"
-                    />
-                    {/* Hover Highlight Ring */}
-                    {isHovered && (
-                      <circle cx={c.x} cy={280 - c.close} r="8" fill="none" stroke="#00E5FF" strokeWidth="2" filter="drop-shadow(0 0 4px #00E5FF)" />
-                    )}
-                  </g>
-                );
-              })}
-
-              {/* LAYER 2: STRUCTURE ANNOTATIONS */}
-              {activeLens !== 'RAW' && (
-                <g>
-                  {/* High Swing Point */}
-                  <g
-                    className="cursor-pointer"
-                    onClick={() =>
-                      setActiveInspectorPoint({
-                        price: '$67,400',
-                        label: 'BOS ▲ 67,400',
-                        layer: activeLens,
-                        type: 'STRUCTURE',
-                        description: 'Clean Break of Structure confirming higher timeframe bullish momentum continuation.',
-                        invalidation: '$66,180',
-                        time: '10:15',
-                      })
-                    }
-                  >
-                    <line x1="240" y1="40" x2="240" y2="80" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="2 2" />
-                    <rect x="205" y="22" width="70" height="18" fill="#0A101D" stroke="#00E5FF" strokeWidth="1" rx="3" />
-                    <text x="240" y="34" fill="#00E5FF" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
-                      BOS ▲ 67,400
-                    </text>
-                  </g>
-
-                  {/* Low Swing Invalidation Point */}
-                  <g
-                    className="cursor-pointer"
-                    onClick={() =>
-                      setActiveInspectorPoint({
-                        price: '$66,180',
-                        label: 'INVALIDATION',
-                        layer: activeLens,
-                        type: 'CONFIRMATION',
-                        description: 'Structural Higher Low acting as the primary invalidation threshold for active trade context.',
-                        invalidation: '$66,180',
-                        time: '09:15',
-                      })
-                    }
-                  >
-                    <rect x="45" y="195" width="110" height="18" fill="#2A0B13" stroke="#FF3B69" strokeWidth="1" rx="3" />
-                    <text x="100" y="207" fill="#FF3B69" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
-                      INVALIDATION — $66,180
-                    </text>
-                  </g>
-                </g>
-              )}
-
-              {/* LAYER 5: CONFIRMATION Context Overlay */}
-              {activeLens === 'CONFIRMATION' && (
-                <g>
-                  <line x1="240" y1="60" x2="400" y2="60" stroke="#00F090" strokeWidth="2" strokeDasharray="4 4" />
-                  <rect x="330" y="46" width="90" height="18" fill="#052E1B" stroke="#00F090" strokeWidth="1" rx="3" />
-                  <text x="375" y="58" fill="#00F090" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
-                    CONFIRMATION ZN
-                  </text>
-                </g>
-              )}
-            </svg>
-          </div>
-
-          {/* Bottom Context Bar */}
-          <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-2 border-t border-white/10">
-            <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-[#00F090] shadow-[0_0_6px_#00F090]" />
-              <span>Status: <strong className="text-white">STRUCTURE CONFIRMED</strong></span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span>Invalidation: <strong className="text-[#FF3B69] font-bold">$66,180</strong></span>
-              <button
-                onClick={() =>
-                  setActiveInspectorPoint({
-                    price: '$67,400',
-                    label: 'BOS ▲ 67,400',
-                    layer: activeLens,
-                    type: 'STRUCTURE',
-                    description: 'Interactive analytical inspector displaying structural context for selected chart coordinate.',
-                    invalidation: '$66,180',
-                    time: '10:15',
-                  })
-                }
-                className="px-2.5 py-1 rounded-md bg-white/10 text-white font-bold hover:bg-white/20 border border-white/15 transition-colors cursor-pointer"
-              >
-                Inspect Point →
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Routine Steps / Execution Context Summary Bar */}
-        <div className="p-4 bg-[#060A12] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono">
-          <div className="flex items-center gap-2 text-slate-400">
-            <span className="font-bold text-white">7-STEP ROUTINE:</span>
-            <span>Step 03 / 07 — Contextual Invalidation Verified</span>
-          </div>
-
-          <div className="text-[10px] text-slate-500">
-            // LUXALGO VELA ENGINE — High-precision mathematical feed
-          </div>
+          {/* Dual Split Toggle */}
+          <button
+            onClick={() => setIsDualSplit((prev) => !prev)}
+            title={isDualSplit ? 'Single Chart Layout' : 'Dual Split Layout'}
+            className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
+              isDualSplit
+                ? 'bg-cyan-500/20 text-[#00E5FF] border-cyan-500/40'
+                : 'text-slate-500 hover:text-white border-white/10 bg-[#0A0E1A]'
+            }`}
+          >
+            {isDualSplit ? <Columns className="size-3.5" /> : <Square className="size-3.5" />}
+          </button>
         </div>
       </div>
 
-      {/* Right Contextual Inspector Slide-Over / Panel */}
-      <ContextualInspector
-        point={activeInspectorPoint}
-        onClose={() => setActiveInspectorPoint(null)}
+      {/* 2. OHLCV LIVE COORDINATE INSPECTION STRIP */}
+      <div className="h-8 border-b border-white/10 px-3 bg-[#080C14] flex items-center justify-between text-xs font-mono shrink-0 overflow-x-auto gap-3">
+        <div className="flex items-center gap-2.5 min-w-max">
+          <div className="flex items-center gap-1.5 font-bold text-white">
+            <span>{selectedInstrument}</span>
+            <span className="text-[10px] px-1 py-0.2 rounded bg-white/5 text-[#00E5FF]">
+              {selectedTimeframe}
+            </span>
+          </div>
+
+          <span className="text-slate-600">•</span>
+
+          <div className="flex items-center gap-3 text-slate-400 text-[11px]">
+            <span>
+              O: <strong className="text-white">${displayOpen.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
+            </span>
+            <span>
+              H: <strong className="text-white">${displayHigh.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
+            </span>
+            <span>
+              L: <strong className="text-white">${displayLow.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
+            </span>
+            <span>
+              C:{' '}
+              <strong className={isBullish ? 'text-[#00F090]' : 'text-[#FF3B69]'}>
+                ${displayClose.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              </strong>
+            </span>
+            <span
+              className={`font-semibold ${isBullish ? 'text-[#00F090]' : 'text-[#FF3B69]'}`}
+            >
+              ({isBullish ? '+' : ''}
+              {displayChangePercent}%)
+            </span>
+          </div>
+        </div>
+
+        {/* Status / Invalidation Badge */}
+        <div className="flex items-center gap-3 min-w-max text-[11px]">
+          <div className="hidden md:flex items-center gap-1.5 text-slate-400">
+            <span>Invalidation:</span>
+            <strong className="text-[#FF3B69] font-bold">
+              ${(quote.price * 0.985).toFixed(0)}
+            </strong>
+          </div>
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-[#00F090] border border-emerald-500/20 font-semibold">
+            {activeLens} ACTIVE
+          </span>
+        </div>
+      </div>
+
+      {/* 3. MAIN WORKSTATION CENTER: TOOLBAR + CHARTS + RIGHT PANEL */}
+      <div className="flex-1 flex min-h-0 relative overflow-hidden">
+        {/* Left Drawing Toolbar */}
+        <DrawingToolbar
+          activeTool={activeDrawingTool}
+          onSelectTool={setActiveDrawingTool}
+          onClearDrawings={() => setActiveInspectorPoint(null)}
+          onFitChart={() => {}}
+        />
+
+        {/* Primary Chart Canvas (Single or Dual) */}
+        <div className="flex-1 flex flex-col md:flex-row min-w-0 h-full relative overflow-hidden">
+          {/* Primary Chart */}
+          <div className="flex-1 flex flex-col min-w-0 h-full relative">
+            <TradingChart
+              instrument={selectedInstrument}
+              timeframe={selectedTimeframe}
+              chartType={chartType}
+              activeLens={activeLens}
+              showEMA={showEMA}
+              showOrderBlocks={showOrderBlocks}
+              showLiquidity={showLiquidity}
+              showVolume={showVolume}
+              showRSI={showRSI}
+              onCrosshairMove={handleCrosshairMove}
+              onSelectInspectPoint={handleSelectInspectPoint}
+            />
+          </div>
+
+          {/* Secondary Chart (if Dual Split is enabled) */}
+          {isDualSplit && (
+            <div className="flex-1 flex flex-col min-w-0 h-full border-t md:border-t-0 md:border-l border-white/10 relative">
+              <div className="h-7 bg-[#070B14] px-3 flex items-center justify-between text-[10px] font-mono text-slate-400 border-b border-white/5">
+                <span>ETH/USD · 1H CORRELATION PANE</span>
+                <span className="text-[#00F090]">SYNCED FEED</span>
+              </div>
+              <TradingChart
+                instrument="ETH/USD"
+                timeframe="1h"
+                chartType="candles"
+                activeLens={activeLens}
+                showEMA={showEMA}
+                showOrderBlocks={showOrderBlocks}
+                showLiquidity={false}
+                showVolume={showVolume}
+                showRSI={false}
+              />
+            </div>
+          )}
+        </div>
+
+        {/* Right Multi-Tab Terminal Panel */}
+        <TerminalSidePanel
+          selectedInstrument={selectedInstrument}
+          onSelectInstrument={(inst) => {
+            if (onSelectInstrument) onSelectInstrument(inst);
+          }}
+          activeInspectPoint={activeInspectorPoint}
+          onClearInspectPoint={() => setActiveInspectorPoint(null)}
+          isOpen={isSidePanelOpen}
+          onToggleOpen={() => setIsSidePanelOpen((prev) => !prev)}
+        />
+      </div>
+
+      {/* 4. BOTTOM WORKSTATION DOCK (7-Step Routine & Global Telemetry) */}
+      <TerminalBottomDock
+        isOpen={isBottomDockOpen}
+        onToggleOpen={() => setIsBottomDockOpen((prev) => !prev)}
       />
+
+      {/* Mobile Drawer Contextual Inspector */}
+      <div className="lg:hidden">
+        <ContextualInspector
+          point={activeInspectorPoint}
+          onClose={() => setActiveInspectorPoint(null)}
+        />
+      </div>
     </div>
   );
 };

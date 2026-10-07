@@ -115,6 +115,7 @@ export const App: React.FC = () => {
             selectedTimeframe={selectedTimeframe}
             activeLens={activeLens}
             onLensChange={setActiveLens}
+            onSelectInstrument={setSelectedInstrument}
           />
         )}
         {appTab === 'indicators' && <IndicatorsScreen />}
