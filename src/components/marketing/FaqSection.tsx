@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
-import { HelpCircle, ChevronDown, ShieldCheck, Mail } from 'lucide-react';
+import { HelpCircle, ChevronDown, Mail } from 'lucide-react';
+import { Button } from '../ui/Button';
 
 interface FaqItem {
   id: string;
   question: string;
   answer: string;
-  tag?: string;
 }
 
-/**
- * SECTION 08 — FAQ
- * Redesigned in LuxAlgo Obsidian Dark aesthetic with neon interactions.
- * Clean editorial FAQ answering prospective user questions.
- */
-export const FaqSection: React.FC = () => {
+interface FaqSectionProps {
+  onNavigate?: (path: string) => void;
+}
+
+export const FaqSection: React.FC<FaqSectionProps> = ({ onNavigate }) => {
   const [openId, setOpenId] = useState<string | null>('faq-1');
 
-  // PROTOTYPE DATA — REPLACE BEFORE PRODUCTION
   const faqs: FaqItem[] = [
     {
       id: 'faq-1',
@@ -26,17 +24,17 @@ export const FaqSection: React.FC = () => {
     {
       id: 'faq-2',
       question: 'What does the indicator system focus on?',
-      answer: 'The suite is engineered around four coordinated analytical dimensions: Market Structure (algorithmic swing highs, swing lows, and breaks of structure), Liquidity (unmitigated order blocks and fair value gap imbalances), Trend Context (dynamic multi-period momentum envelopes), and Confirmation (non-repainting bar-close execution triggers with predetermined invalidation levels).'
+      answer: 'The suite is engineered around four coordinated analytical dimensions: Market Structure (algorithmic swing highs, swing lows, and breaks of structure), Liquidity (unmitigated order blocks and fair value gap imbalances), Trend Context (dynamic volatility-adaptive momentum clouds), and Confirmation (non-repainting bar-close execution triggers with predetermined invalidation levels).'
     },
     {
       id: 'faq-3',
       question: 'What markets and timeframes does it support?',
-      answer: 'Because our algorithms model pure auction market theory and candlestick geometry, they function across any liquid market charted on TradingView—including cryptocurrency (BTC, ETH), major FX pairs, equity index futures (NQ, ES), and commodities (Gold, Crude). The suite is synchronized for multi-timeframe analysis, from 5-minute execution frames to daily macro trend perspectives.'
+      answer: 'Because our algorithms model pure auction market theory and candlestick geometry, they function across any liquid market charted on TradingView—including cryptocurrency (BTC, ETH), major FX pairs, equity index futures (NQ, ES), and commodities (Gold, Crude). The suite is synchronized for multi-timeframe analysis, from 1-minute execution frames to daily macro trend perspectives.'
     },
     {
       id: 'faq-4',
       question: 'How does the 3-Day Session work?',
-      answer: 'The 3-Day Session is an intensive cohort masterclass delivered live online across three consecutive market days: Arrival & Deconstruction (Day 1), Live Tape Observation (Day 2), and Application of the 7-Step Protocol (Day 3). Traders leave with an audited, personalized checklist and risk rules. (Prototype note: Cohort dates and schedules are finalized upon intake confirmation).'
+      answer: 'The 3-Day Session is an intensive cohort masterclass delivered across three consecutive phases: System Calibration (Day 1), Live Liquidity & Tape Observation (Day 2), and Application of the 7-Step Protocol (Day 3). Traders leave with an audited, personalized checklist and risk rules.'
     },
     {
       id: 'faq-5',
@@ -55,107 +53,81 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="relative py-14 sm:py-18 lg:py-20 bg-[#05080E] border-t border-white/10 overflow-hidden">
-      
-      {/* Editorial Ambient Backing */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[180px]" />
-      </div>
-
-      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
+    <section id="faq" className="relative py-20 sm:py-24 bg-[#080A0D] border-t border-[#20252C] overflow-hidden">
+      <div className="relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
         
-        {/* Editorial Asymmetric Grid: Left Header & Context vs Right Accordion */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* Editorial Grid: Left Header & Context vs Right Accordion */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start text-left">
           
           {/* Left Column: Heading and Support Guidance */}
-          <div className="lg:col-span-5 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 mb-5 backdrop-blur-md">
-              <HelpCircle className="size-3.5 text-[#00F090] shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-300">
-                SECTION 08 • FREQUENTLY ASKED QUESTIONS
+          <div className="lg:col-span-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#141820] border border-[#20252C] text-xs font-mono text-[#8B929C] mb-4">
+              <HelpCircle className="size-3.5 text-[#C8A96B]" />
+              <span className="tracking-widest uppercase font-semibold text-[11px] text-[#C8A96B]">
+                QUESTIONS &middot; CLARITY
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-white leading-[1.08]">
-              Clarifying<br />
-              <span className="bg-gradient-to-r from-[#00F090] via-teal-300 to-[#00E5FF] bg-clip-text text-transparent">
-                the system.
-              </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#F3F4F6] leading-[1.12]">
+              Clarifying <br />
+              <span className="text-[#C8A96B]">the system.</span>
             </h2>
 
-            <p className="mt-6 text-sm sm:text-base text-slate-400 leading-relaxed max-w-md">
+            <p className="mt-4 text-xs sm:text-sm text-[#8B929C] leading-relaxed max-w-md">
               Direct, transparent answers regarding our analytical methodology, TradingView compatibility, cohort structure, and access mechanisms.
             </p>
 
             {/* Assistance Card */}
-            <div className="mt-10 p-6 rounded-2xl bg-[#0A0E1A] border border-white/10 shadow-xl text-left">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#00E5FF] font-semibold block mb-1">
+            <div className="mt-8 p-6 rounded-xl bg-[#101318] border border-[#20252C]">
+              <span className="text-xs font-mono uppercase text-[#C8A96B] font-semibold block mb-1">
                 Technical Assistance
               </span>
-              <h4 className="text-base font-display font-bold text-white mb-2">
+              <h4 className="text-sm font-bold text-[#F3F4F6] mb-1.5">
                 Have an unaddressed technical inquiry?
               </h4>
-              <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                Our support desk assists with TradingView username verification, cohort scheduling, and platform compatibility.
+              <p className="text-xs text-[#8B929C] leading-relaxed mb-4">
+                Our technical desk assists with TradingView username verification, webhook configurations, and indicator presets.
               </p>
-              <a
-                href="#signin"
-                className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-[#00F090] hover:text-emerald-300 transition-colors"
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => onNavigate ? onNavigate('/support') : undefined}
+                leftIcon={<Mail className="size-3.5" />}
               >
-                <Mail className="size-3.5" />
-                <span>Contact Desk via Client Portal</span>
-              </a>
+                Open Support Desk
+              </Button>
             </div>
-
-            <div className="mt-6 flex items-center gap-2 text-[11px] font-mono text-slate-400">
-              <ShieldCheck className="size-3.5 text-[#00F090]" />
-              <span>Full terms and operational policies verified on enrollment</span>
-            </div>
-
           </div>
 
-          {/* Right Column: Editorial Accordion List */}
-          <div className="lg:col-span-7 w-full border-t border-white/10 divide-y divide-white/10">
-            {faqs.map((faq, index) => {
+          {/* Right Column: Accordion */}
+          <div className="lg:col-span-7 space-y-3">
+            {faqs.map((faq) => {
               const isOpen = openId === faq.id;
-
               return (
                 <div
                   key={faq.id}
-                  className={`transition-colors duration-200 text-left ${
-                    isOpen ? 'bg-white/[0.02]' : 'hover:bg-white/[0.01]'
+                  className={`rounded-xl border transition-all duration-200 overflow-hidden ${
+                    isOpen
+                      ? 'bg-[#101318] border-[#C8A96B]/50'
+                      : 'bg-[#101318] border-[#20252C] hover:border-[#2E3642]'
                   }`}
                 >
                   <button
                     onClick={() => toggle(faq.id)}
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-[#F3F4F6] hover:text-[#C8A96B] transition-colors cursor-pointer"
                     aria-expanded={isOpen}
-                    className="w-full min-h-[48px] py-5 sm:py-7 px-2 text-left flex items-start justify-between gap-6 cursor-pointer focus:outline-none group"
                   >
-                    <div className="flex items-start gap-4 sm:gap-6 min-w-0">
-                      <span className="font-mono text-xs text-white/30 font-semibold pt-1 shrink-0">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-snug group-hover:text-[#00F090] transition-colors">
-                        {faq.question}
-                      </span>
-                    </div>
-
-                    <div className="pt-1 shrink-0">
-                      <span className={`size-7 rounded-full flex items-center justify-center border transition-all duration-200 ${
-                        isOpen 
-                          ? 'bg-[#00F090] text-black border-[#00F090] rotate-180 shadow-[0_0_12px_#00F090]' 
-                          : 'bg-white/5 text-slate-400 border-white/10 group-hover:border-white/30 group-hover:text-white'
-                      }`}>
-                        <ChevronDown className="size-3.5" />
-                      </span>
-                    </div>
+                    <span>{faq.question}</span>
+                    <ChevronDown
+                      className={`size-4 text-[#8B929C] shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180 text-[#C8A96B]' : ''
+                      }`}
+                    />
                   </button>
 
                   {isOpen && (
-                    <div className="pl-8 sm:pl-12 pr-4 pb-7 pt-1">
-                      <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl font-normal">
-                        {faq.answer}
-                      </p>
+                    <div className="px-5 pb-5 text-xs sm:text-sm text-[#8B929C] leading-relaxed border-t border-[#1C2128] pt-3.5">
+                      {faq.answer}
                     </div>
                   )}
                 </div>
@@ -169,5 +141,3 @@ export const FaqSection: React.FC = () => {
     </section>
   );
 };
-
-export default FaqSection;

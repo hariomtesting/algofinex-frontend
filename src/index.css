@@ -4,59 +4,67 @@
 
 :root {
   color-scheme: dark;
-  --bg-color: #05080E;
-  --panel-bg: #0A0E1A;
-  --text-primary: #FFFFFF;
+  --bg-primary: #080A0D;
+  --surface-secondary: #101318;
+  --surface-card: #12161E;
+  --surface-elevated: #141820;
+  --border-color: #20252C;
+  --text-primary: #F3F4F6;
+  --text-secondary: #8B929C;
+  --accent-gold: #C8A96B;
+  --signal-success: #6FAF8A;
+  --signal-danger: #C87878;
 }
 
 html, body {
-  background-color: #05080E;
-  color: #FFFFFF;
+  background-color: #080A0D;
+  color: #F3F4F6;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   max-width: 100vw;
   width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* LuxAlgo Dark Technical Grids & Glows */
-.bg-blueprint-grid {
-  background-size: 40px 40px;
+/* Institutional Financial Grids */
+.bg-financial-grid {
+  background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
-.bg-dot-matrix {
+.bg-dot-grid {
   background-size: 24px 24px;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
-.bg-radial-hero {
-  background: radial-gradient(circle at 50% -20%, rgba(0, 240, 144, 0.15), rgba(0, 229, 255, 0.08) 35%, transparent 70%);
+/* Restrained ambient glow */
+.bg-radial-ambient {
+  background: radial-gradient(circle at 50% 0%, rgba(200, 169, 107, 0.05), rgba(16, 19, 24, 0) 60%);
 }
 
-.glow-emerald-sm {
-  box-shadow: 0 0 20px -3px rgba(0, 240, 144, 0.3);
-}
-
-.glow-cyan-sm {
-  box-shadow: 0 0 20px -3px rgba(0, 229, 255, 0.3);
-}
-
-/* Custom Dark Lux Scrollbar */
+/* Custom Financial Dark Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080C14;
+  background: #080A0D;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #20252C;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #2E3642;
+}
+
+/* Focus outline accessibility */
+:focus-visible {
+  outline: 2px solid #C8A96B;
+  outline-offset: 2px;
 }
 
 /* Reduced motion preference */

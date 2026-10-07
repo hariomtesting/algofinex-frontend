@@ -5,15 +5,18 @@ import {
   ArrowRight,
   LineChart,
   ShieldCheck,
-  TrendingUp,
-  TrendingDown,
-  BarChart2,
-  Compass
+  CreditCard,
+  Users,
+  Activity,
+  ChevronRight,
+  FileText
 } from 'lucide-react';
 import { AppTab, Instrument } from './AppShell';
-import { WATCHLIST_DATA } from '../../data/mockChartData';
-import { BorderBeam } from '../ui/BorderBeam';
-import { SpotlightCard } from '../ui/SpotlightCard';
+import { ALGORITHMIC_ALERTS } from '../../data/mockChartData';
+import { AlgorithmicAlert } from '../../types/trading';
+import { MOCK_CURRENT_USER } from '../../mock/mockData';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
 
 interface OverviewScreenProps {
   onNavigate: (tab: AppTab) => void;
@@ -27,257 +30,226 @@ export const OverviewScreen: React.FC<OverviewScreenProps> = ({
   return (
     <div
       data-component="OverviewScreen"
-      className="p-4 sm:p-6 lg:p-8 max-w-[1360px] mx-auto space-y-6 select-none text-left overflow-y-auto"
+      className="p-4 sm:p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6 select-none text-left overflow-y-auto"
     >
-      {/* 1. TOP QUANT TELEMETRY METRIC STRIP */}
+      {/* 1. TOP DENSITY TELEMETRY STRIP */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <SpotlightCard
-          spotlightColor="rgba(0, 240, 144, 0.15)"
-          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
-        >
-          <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
-            <span>Terminal Engine</span>
-            <span className="size-1.5 rounded-full bg-[#00F090] animate-pulse" />
+        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4 text-left">
+          <div className="text-[10px] font-mono uppercase text-[#8B929C] flex items-center justify-between">
+            <span>Account Status</span>
+            <span className="size-1.5 rounded-full bg-[#6FAF8A]" />
           </div>
-          <div className="text-base font-mono font-bold text-white">VELA QUANT v4.2</div>
-          <div className="text-[11px] font-mono text-emerald-400">100% OPERATIONAL</div>
-        </SpotlightCard>
+          <div className="text-sm sm:text-base font-mono font-bold text-[#F3F4F6] mt-1">PRO SUBSCRIBER</div>
+          <div className="text-[11px] font-mono text-[#6FAF8A]">TradingView Synced</div>
+        </div>
 
-        <SpotlightCard
-          spotlightColor="rgba(0, 229, 255, 0.15)"
-          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
-        >
-          <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
-            <span>Active Preset</span>
-            <Compass className="size-3 text-[#00E5FF]" />
+        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4 text-left">
+          <div className="text-[10px] font-mono uppercase text-[#8B929C] flex items-center justify-between">
+            <span>Active Indicators</span>
+            <Layers className="size-3 text-[#C8A96B]" />
           </div>
-          <div className="text-base font-mono font-bold text-white">{selectedInstrument}</div>
-          <div className="text-[11px] font-mono text-slate-400">15m TIMEFRAME ALIGNED</div>
-        </SpotlightCard>
+          <div className="text-sm sm:text-base font-mono font-bold text-[#F3F4F6] mt-1">4 of 4 Scripts Active</div>
+          <div className="text-[11px] font-mono text-[#8B929C]">Pine Script v5 Locked</div>
+        </div>
 
-        <SpotlightCard
-          spotlightColor="rgba(168, 85, 247, 0.15)"
-          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
-        >
-          <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
-            <span>Indicator Suite</span>
-            <Layers className="size-3 text-[#A855F7]" />
+        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4 text-left">
+          <div className="text-[10px] font-mono uppercase text-[#8B929C] flex items-center justify-between">
+            <span>Masterclass Status</span>
+            <Calendar className="size-3 text-[#C8A96B]" />
           </div>
-          <div className="text-base font-mono font-bold text-white">4 STRATA READY</div>
-          <div className="text-[11px] font-mono text-purple-400">PINE SCRIPT VERIFIED</div>
-        </SpotlightCard>
+          <div className="text-sm sm:text-base font-mono font-bold text-[#F3F4F6] mt-1">3-Day Session Passed</div>
+          <div className="text-[11px] font-mono text-[#6FAF8A]">Recordings Certified</div>
+        </div>
 
-        <SpotlightCard
-          spotlightColor="rgba(0, 240, 144, 0.15)"
-          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
-        >
-          <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
-            <span>License Pass</span>
-            <ShieldCheck className="size-3 text-[#00F090]" />
+        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4 text-left">
+          <div className="text-[10px] font-mono uppercase text-[#8B929C] flex items-center justify-between">
+            <span>Current Subscription</span>
+            <CreditCard className="size-3 text-[#C8A96B]" />
           </div>
-          <div className="text-base font-mono font-bold text-white">AF-8849-VALID</div>
-          <div className="text-[11px] font-mono text-emerald-400">FULL ACCESS ACTIVE</div>
-        </SpotlightCard>
+          <div className="text-sm sm:text-base font-mono font-bold text-[#F3F4F6] mt-1">Annual Suite</div>
+          <div className="text-[11px] font-mono text-[#8B929C]">Renews April 2027</div>
+        </div>
       </div>
 
-      {/* 2. PRIMARY HERO LAUNCHER CARD */}
-      <div className="bg-[#0A0E1A] border border-white/10 rounded-2xl p-6 md:p-8 space-y-5 shadow-2xl relative overflow-hidden group">
-        <BorderBeam duration={10} borderWidth={1.5} colorFrom="#00F090" colorTo="#00E5FF" />
-        {/* Subtle radial glow */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4 relative z-10">
+      {/* 2. PRIMARY WORKSTATION LAUNCHER & QUICK ACTIONS */}
+      <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-7 text-left">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#20252C] pb-4">
           <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-[#00F090] animate-pulse shadow-[0_0_6px_#00F090]" />
-            <span className="text-xs font-mono font-bold uppercase text-white tracking-wider">
-              Workstation Ready · LuxAlgo Vela Architecture
+            <span className="size-2 rounded-full bg-[#6FAF8A]" />
+            <span className="text-xs font-mono font-bold uppercase text-[#F3F4F6] tracking-wider">
+              AlgoFinex Trading Terminal
             </span>
           </div>
-          <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-emerald-500/10 text-[#00F090] border border-emerald-500/30 font-semibold">
-            STATUS: REAL-TIME FEED READY
+          <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[#141820] text-[#C8A96B] border border-[#20252C] font-semibold">
+            WORKSPACE FEED: LIVE
           </span>
         </div>
 
-        <div className="space-y-2 relative z-10">
-          <h1 className="text-2xl md:text-3xl font-display font-extrabold text-white tracking-tight">
-            Read market structure with <span className="bg-gradient-to-r from-[#00F090] to-[#00E5FF] bg-clip-text text-transparent">institutional calm.</span>
-          </h1>
-          <p className="text-sm text-slate-400 max-w-2xl leading-relaxed font-sans">
-            Welcome to the AlgoFinex institutional quant workstation. Configure multi-layered market structure, unmitigated liquidity sweeps, and dynamic trend corridors directly on institutional TradingView Lightweight Charts.
-          </p>
-        </div>
-
-        {/* Action Button & Quick Jump */}
-        <div className="pt-2 flex flex-wrap items-center gap-4 relative z-10">
-          <button
-            onClick={() => onNavigate('workspace')}
-            className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#00F090] to-[#00E5FF] text-black text-xs font-mono font-bold hover:brightness-110 transition-all flex items-center gap-2.5 shadow-[0_0_20px_rgba(0,240,144,0.3)] cursor-pointer"
-          >
-            <LineChart className="size-4 text-black" />
-            <span>Launch Primary Trading Terminal ({selectedInstrument})</span>
-            <ArrowRight className="size-4" />
-          </button>
-
-          <button
-            onClick={() => onNavigate('indicators')}
-            className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-mono font-bold transition-all flex items-center gap-2 cursor-pointer"
-          >
-            <Layers className="size-4 text-[#00E5FF]" />
-            <span>Review Indicator Code</span>
-          </button>
-        </div>
-      </div>
-
-      {/* 3. QUANTITATIVE MARKET OVERVIEW TABLE */}
-      <div className="bg-[#080C14] border border-white/10 rounded-2xl overflow-hidden shadow-xl">
-        <div className="p-4 bg-[#0A0E1A] border-b border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <BarChart2 className="size-4 text-[#00E5FF]" />
-            <span className="font-mono font-bold text-xs uppercase text-white tracking-wider">
-              Live Quant Market Matrix
-            </span>
-          </div>
-          <span className="text-[10px] font-mono text-slate-400">
-            CLICK ANY ASSET TO OPEN DIRECTLY IN CHART
-          </span>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#060A12] text-slate-400 border-b border-white/5 text-[10px] uppercase">
-              <tr>
-                <th className="p-3.5 pl-4">Asset</th>
-                <th className="p-3.5">Category</th>
-                <th className="p-3.5 text-right">Price</th>
-                <th className="p-3.5 text-right">24h Change</th>
-                <th className="p-3.5 text-right">24h Volume</th>
-                <th className="p-3.5">Structure State</th>
-                <th className="p-3.5 pr-4 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {WATCHLIST_DATA.slice(0, 5).map((item) => {
-                const isPositive = item.change24h >= 0;
-                return (
-                  <tr
-                    key={item.symbol}
-                    className="hover:bg-white/[0.02] transition-colors group cursor-pointer"
-                    onClick={() => onNavigate('workspace')}
-                  >
-                    <td className="p-3.5 pl-4">
-                      <div className="font-bold text-white group-hover:text-[#00E5FF] transition-colors">
-                        {item.symbol}
-                      </div>
-                      <div className="text-[10px] text-slate-500 font-sans">{item.name}</div>
-                    </td>
-                    <td className="p-3.5">
-                      <span className="px-1.5 py-0.5 rounded bg-white/5 text-slate-400 text-[10px]">
-                        {item.category}
-                      </span>
-                    </td>
-                    <td className="p-3.5 text-right font-bold text-white">
-                      ${item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-                    </td>
-                    <td className="p-3.5 text-right">
-                      <span
-                        className={`inline-flex items-center gap-0.5 font-bold ${
-                          isPositive ? 'text-[#00F090]' : 'text-[#FF3B69]'
-                        }`}
-                      >
-                        {isPositive ? <TrendingUp className="size-3" /> : <TrendingDown className="size-3" />}
-                        {isPositive ? '+' : ''}
-                        {item.change24h}%
-                      </span>
-                    </td>
-                    <td className="p-3.5 text-right text-slate-400">{item.volume24h}</td>
-                    <td className="p-3.5">
-                      <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-[#00F090] border border-emerald-500/20 text-[10px]">
-                        BULLISH BOS ALIGNED
-                      </span>
-                    </td>
-                    <td className="p-3.5 pr-4 text-right">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onNavigate('workspace');
-                        }}
-                        className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-[#00F090] hover:text-black text-slate-300 font-bold transition-all text-[11px]"
-                      >
-                        Chart →
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* 4. COMPANION ACCESS CARDS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Module A: TradingView Indicator Suite */}
-        <div className="bg-[#080C14] border border-white/10 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-cyan-500/40 transition-all">
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Layers className="size-4 text-[#00E5FF]" />
-                <span className="text-xs font-mono font-bold uppercase text-white">
-                  TradingView Indicators
-                </span>
-              </div>
-              <span className="text-[10px] font-mono font-bold text-[#00F090] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
-                4/4 UNLOCKED
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 leading-relaxed font-sans">
-              Inspect technical specifications, mathematical logic formulas, and copy Pine Script invite keys for Market Structure, Liquidity Pools, Dynamic Cloud, and Invalidation models.
+        <div className="mt-5 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-8 space-y-2">
+            <h1 className="text-xl sm:text-2xl font-bold text-[#F3F4F6] tracking-tight">
+              Institutional Charting &amp; Market Structure Workstation
+            </h1>
+            <p className="text-xs sm:text-sm text-[#8B929C] leading-relaxed max-w-2xl">
+              Launch the live interactive Lightweight Charts terminal. Inspect multi-timeframe swing geometry, liquidity imbalance sweeps, and bar-close execution triggers across crypto, futures, and equities.
             </p>
           </div>
-          <button
-            onClick={() => onNavigate('indicators')}
-            className="text-xs font-mono font-bold text-[#00E5FF] hover:text-cyan-300 flex items-center gap-1.5 pt-2 cursor-pointer"
-          >
-            <span>View Indicator Directory</span>
-            <ArrowRight className="size-3.5" />
-          </button>
-        </div>
 
-        {/* Module B: 3-Day Session Companion */}
-        <div className="bg-[#080C14] border border-white/10 rounded-2xl p-6 flex flex-col justify-between space-y-4 hover:border-purple-500/40 transition-all">
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Calendar className="size-4 text-[#A855F7]" />
-                <span className="text-xs font-mono font-bold uppercase text-[#D8B4FE]">
-                  3-Day Live Masterclass
-                </span>
-              </div>
-              <span className="text-[10px] font-mono font-bold text-[#C084FC] bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/30">
-                ENROLLED
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 leading-relaxed font-sans">
-              Access the step-by-step masterclass curriculum: Day 01 Institutional Orientation, Day 02 Market Structure &amp; Liquidity Execution, and Day 03 Invalidation Mastery.
-            </p>
+          <div className="lg:col-span-4 flex flex-col gap-2.5">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => onNavigate('workspace')}
+              leftIcon={<LineChart className="size-4" />}
+              rightIcon={<ArrowRight className="size-4" />}
+            >
+              Launch Live Terminal ({selectedInstrument})
+            </Button>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => onNavigate('products')}
+              leftIcon={<Layers className="size-3.5" />}
+            >
+              Manage Installed Indicators
+            </Button>
           </div>
-          <button
-            onClick={() => onNavigate('session')}
-            className="text-xs font-mono font-bold text-[#A855F7] hover:text-purple-300 flex items-center gap-1.5 pt-2 cursor-pointer"
-          >
-            <span>Open Session Companion</span>
-            <ArrowRight className="size-3.5" />
-          </button>
         </div>
       </div>
 
-      {/* Telemetry Footer Notice */}
-      <div className="text-[11px] font-mono text-slate-500 border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>// LUXALGO VELA WORKSTATION ARCHITECTURE · PASS AF-8849 VERIFIED</span>
-        <span>CONNECTED TO ALGOFINEX REAL-TIME TELEMETRY</span>
+      {/* 3. TWO-COLUMN HIGH-DENSITY DASHBOARD: Real Activity & Account Summary */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 text-left">
+        
+        {/* Left Column (7 cols): Recent Algorithmic Activity & Signal Log */}
+        <div className="lg:col-span-7 bg-[#101318] border border-[#20252C] rounded-2xl p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between border-b border-[#20252C] pb-3">
+            <div className="flex items-center gap-2">
+              <Activity className="size-4 text-[#C8A96B]" />
+              <h3 className="text-sm font-semibold text-[#F3F4F6]">
+                Recent Indicator Telemetry
+              </h3>
+            </div>
+            <span className="text-[11px] font-mono text-[#8B929C]">Auto-sync 15s</span>
+          </div>
+
+          <div className="divide-y divide-[#1C2128]">
+            {ALGORITHMIC_ALERTS.map((alert: AlgorithmicAlert) => (
+              <div key={alert.id} className="py-3 flex items-center justify-between text-xs font-mono">
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`size-1.5 rounded-full ${
+                      alert.type.includes('BULLISH') || alert.type.includes('MOMENTUM')
+                        ? 'bg-[#6FAF8A]'
+                        : 'bg-[#C87878]'
+                    }`}
+                  />
+                  <div>
+                    <span className="font-bold text-[#F3F4F6]">{alert.symbol}</span>
+                    <span className="text-[#8B929C] ml-2">{alert.title}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 text-[#8B929C]">
+                  <span>${alert.price.toLocaleString()}</span>
+                  <span className="text-[10px] text-[#4B5563]">{alert.time}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="pt-2 border-t border-[#20252C]">
+            <button
+              onClick={() => onNavigate('workspace')}
+              className="text-xs font-mono text-[#C8A96B] hover:text-[#D8BB80] flex items-center gap-1 cursor-pointer"
+            >
+              <span>View Full Telemetry Feed in Workspace</span>
+              <ChevronRight className="size-3.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Right Column (5 cols): Active Access & License Details */}
+        <div className="lg:col-span-5 space-y-6">
+          
+          {/* Active Access Card */}
+          <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-5 sm:p-6 space-y-4">
+            <div className="flex items-center justify-between border-b border-[#20252C] pb-3">
+              <h3 className="text-sm font-semibold text-[#F3F4F6] flex items-center gap-2">
+                <ShieldCheck className="size-4 text-[#6FAF8A]" />
+                <span>TradingView Whitelist</span>
+              </h3>
+              <Badge variant="success">ACTIVE</Badge>
+            </div>
+
+            <div className="space-y-2.5 text-xs font-mono">
+              <div className="flex justify-between py-1 border-b border-[#1C2128]">
+                <span className="text-[#8B929C]">Linked Username:</span>
+                <span className="text-[#F3F4F6] font-semibold">@{MOCK_CURRENT_USER.tradingViewHandle}</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[#1C2128]">
+                <span className="text-[#8B929C]">License Pass:</span>
+                <span className="text-[#F3F4F6]">AF-PRO-98214</span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[#1C2128]">
+                <span className="text-[#8B929C]">Pine Script Access:</span>
+                <span className="text-[#6FAF8A]">All 4 Indicators Active</span>
+              </div>
+            </div>
+
+            <div className="pt-2 flex gap-2">
+              <Button
+                variant="secondary"
+                size="sm"
+                className="w-full"
+                onClick={() => onNavigate('access')}
+              >
+                Change Linked Handle
+              </Button>
+            </div>
+          </div>
+
+          {/* Quick Links Card */}
+          <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-5 sm:p-6 space-y-3 text-xs">
+            <h4 className="text-xs font-mono uppercase text-[#8B929C] font-semibold mb-2">
+              Desk Management
+            </h4>
+            <button
+              onClick={() => onNavigate('subscription')}
+              className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#141820] text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer"
+            >
+              <span className="flex items-center gap-2 font-mono">
+                <CreditCard className="size-3.5 text-[#C8A96B]" />
+                <span>Subscription &amp; Invoices</span>
+              </span>
+              <ChevronRight className="size-3.5 text-[#4B5563]" />
+            </button>
+
+            <button
+              onClick={() => onNavigate('referral')}
+              className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#141820] text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer"
+            >
+              <span className="flex items-center gap-2 font-mono">
+                <Users className="size-3.5 text-[#C8A96B]" />
+                <span>Partner &amp; Referral Desk ($354 Pending)</span>
+              </span>
+              <ChevronRight className="size-3.5 text-[#4B5563]" />
+            </button>
+
+            <button
+              onClick={() => onNavigate('support')}
+              className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#141820] text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer"
+            >
+              <span className="flex items-center gap-2 font-mono">
+                <FileText className="size-3.5 text-[#C8A96B]" />
+                <span>Submit Technical Ticket</span>
+              </span>
+              <ChevronRight className="size-3.5 text-[#4B5563]" />
+            </button>
+          </div>
+
+        </div>
+
       </div>
     </div>
   );
 };
-
-export default OverviewScreen;

@@ -90,7 +90,6 @@ export const TradingChart: React.FC<TradingChartProps> = ({
   useEffect(() => {
     if (!chartContainerRef.current) return;
 
-    // Clean up prior instances
     if (chartRef.current) {
       chartRef.current.remove();
       chartRef.current = null;
@@ -102,37 +101,37 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       width: container.clientWidth,
       height: container.clientHeight || 420,
       layout: {
-        background: { type: ColorType.Solid, color: '#060A12' },
-        textColor: '#94A3B8',
+        background: { type: ColorType.Solid, color: '#0B0E13' },
+        textColor: '#8B929C',
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: 11,
       },
       grid: {
-        vertLines: { color: 'rgba(255, 255, 255, 0.03)', style: LineStyle.Dotted },
-        horzLines: { color: 'rgba(255, 255, 255, 0.03)', style: LineStyle.Dotted },
+        vertLines: { color: 'rgba(255, 255, 255, 0.02)', style: LineStyle.Dotted },
+        horzLines: { color: 'rgba(255, 255, 255, 0.02)', style: LineStyle.Dotted },
       },
       crosshair: {
         mode: CrosshairMode.Normal,
         vertLine: {
-          color: 'rgba(0, 229, 255, 0.5)',
+          color: 'rgba(200, 169, 107, 0.4)',
           width: 1,
           style: LineStyle.Dashed,
-          labelBackgroundColor: '#0A1526',
+          labelBackgroundColor: '#141820',
         },
         horzLine: {
-          color: 'rgba(0, 229, 255, 0.5)',
+          color: 'rgba(200, 169, 107, 0.4)',
           width: 1,
           style: LineStyle.Dashed,
-          labelBackgroundColor: '#0A1526',
+          labelBackgroundColor: '#141820',
         },
       },
       rightPriceScale: {
-        borderColor: 'rgba(255, 255, 255, 0.08)',
-        textColor: '#94A3B8',
+        borderColor: '#20252C',
+        textColor: '#8B929C',
         autoScale: true,
       },
       timeScale: {
-        borderColor: 'rgba(255, 255, 255, 0.08)',
+        borderColor: '#20252C',
         timeVisible: true,
         secondsVisible: false,
       },
@@ -149,7 +148,6 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
     chartRef.current = chart;
 
-    // Responsive Auto Resize
     const resizeObserver = new ResizeObserver((entries) => {
       if (!entries || entries.length === 0 || !chartRef.current) return;
       const { width, height } = entries[0].contentRect;
@@ -172,37 +170,32 @@ export const TradingChart: React.FC<TradingChartProps> = ({
     const chart = chartRef.current;
     if (!chart) return;
 
-    // Remove previous main series
     if (mainSeriesRef.current) {
       try {
         chart.removeSeries(mainSeriesRef.current);
-      } catch (e) {
-        // Ignored
-      }
+      } catch (e) {}
       mainSeriesRef.current = null;
     }
 
-    // Clear price lines
     priceLinesRef.current = [];
 
-    // Add selected chart type
     if (chartType === 'candles') {
       const series = chart.addSeries(CandlestickSeries, {
-        upColor: '#00F090',
-        downColor: '#FF3B69',
+        upColor: '#6FAF8A',
+        downColor: '#C87878',
         borderVisible: true,
-        borderUpColor: '#00F090',
-        borderDownColor: '#FF3B69',
-        wickUpColor: '#00F090',
-        wickDownColor: '#FF3B69',
+        borderUpColor: '#6FAF8A',
+        borderDownColor: '#C87878',
+        wickUpColor: '#6FAF8A',
+        wickDownColor: '#C87878',
       });
       series.setData(candleData as any);
       mainSeriesRef.current = series;
     } else if (chartType === 'area') {
       const series = chart.addSeries(AreaSeries, {
-        topColor: 'rgba(0, 240, 144, 0.35)',
-        bottomColor: 'rgba(0, 240, 144, 0.01)',
-        lineColor: '#00F090',
+        topColor: 'rgba(200, 169, 107, 0.25)',
+        bottomColor: 'rgba(200, 169, 107, 0.01)',
+        lineColor: '#C8A96B',
         lineWidth: 2,
       });
       const areaData = candleData.map((c) => ({ time: c.time as Time, value: c.close }));
@@ -210,7 +203,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       mainSeriesRef.current = series;
     } else {
       const series = chart.addSeries(LineSeries, {
-        color: '#00E5FF',
+        color: '#C8A96B',
         lineWidth: 2,
       });
       const lineData = candleData.map((c) => ({ time: c.time as Time, value: c.close }));
@@ -260,7 +253,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       const ema55Data = calculateEMA(candleData, 45);
 
       const ema21 = chart.addSeries(LineSeries, {
-        color: '#00E5FF',
+        color: '#C8A96B',
         lineWidth: 1,
         lineStyle: LineStyle.Solid,
         title: 'EMA 21',
@@ -269,10 +262,10 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       ema21SeriesRef.current = ema21;
 
       const ema55 = chart.addSeries(LineSeries, {
-        color: '#A855F7',
+        color: '#8B929C',
         lineWidth: 1,
         lineStyle: LineStyle.Dashed,
-        title: 'EMA 55',
+        title: 'EMA 45',
       });
       ema55.setData(ema55Data as any);
       ema55SeriesRef.current = ema55;
@@ -289,7 +282,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
         const lineHigh = targetSeries.createPriceLine({
           price: obHigh,
-          color: '#FF3B69',
+          color: '#C87878',
           lineWidth: 1,
           lineStyle: LineStyle.Dotted,
           axisLabelVisible: true,
@@ -297,7 +290,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
         });
         const lineLow = targetSeries.createPriceLine({
           price: obLow,
-          color: '#00F090',
+          color: '#6FAF8A',
           lineWidth: 1,
           lineStyle: LineStyle.Dotted,
           axisLabelVisible: true,
@@ -313,7 +306,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
         const lineLiqBuy = targetSeries.createPriceLine({
           price: liqBuy,
-          color: '#00E5FF',
+          color: '#C8A96B',
           lineWidth: 1,
           lineStyle: LineStyle.Dashed,
           axisLabelVisible: true,
@@ -321,7 +314,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
         });
         const lineLiqSell = targetSeries.createPriceLine({
           price: liqSell,
-          color: '#FFB800',
+          color: '#D4A359',
           lineWidth: 1,
           lineStyle: LineStyle.Dashed,
           axisLabelVisible: true,
@@ -331,10 +324,8 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       }
     }
 
-    // Fit content
     chart.timeScale().fitContent();
 
-    // Crosshair move listener
     chart.subscribeCrosshairMove((param) => {
       if (!param.time || !mainSeriesRef.current) {
         if (onCrosshairMove) onCrosshairMove(null);
@@ -358,8 +349,8 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       const changePercent = open > 0 ? Math.round(((close - open) / open) * 10000) / 100 : 0;
 
       const timeVal = typeof param.time === 'number' ? param.time : 0;
-      const date = new Date(timeVal * 1000);
-      const timeStr = `${date.getUTCHours().toString().padStart(2, '0')}:${date.getUTCMinutes().toString().padStart(2, '0')}`;
+      const d = new Date(timeVal * 1000);
+      const timeStr = `${d.getUTCHours().toString().padStart(2, '0')}:${d.getUTCMinutes().toString().padStart(2, '0')} UTC`;
 
       if (onCrosshairMove) {
         onCrosshairMove({
@@ -376,19 +367,9 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       }
     });
 
-  }, [
-    instrument,
-    candleData,
-    volumeData,
-    chartType,
-    showEMA,
-    showOrderBlocks,
-    showLiquidity,
-    showVolume,
-    activeLens,
-  ]);
+  }, [instrument, chartType, candleData, volumeData, showEMA, showOrderBlocks, showLiquidity, showVolume, activeLens]);
 
-  // RSI Sub-Pane Chart Handling
+  // Secondary RSI Chart Pane
   useEffect(() => {
     if (!showRSI) {
       if (rsiChartRef.current) {
@@ -410,8 +391,8 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       width: container.clientWidth,
       height: 110,
       layout: {
-        background: { type: ColorType.Solid, color: '#070B14' },
-        textColor: '#64748B',
+        background: { type: ColorType.Solid, color: '#0B0E13' },
+        textColor: '#8B929C',
         fontFamily: "'JetBrains Mono', monospace",
         fontSize: 10,
       },
@@ -420,8 +401,8 @@ export const TradingChart: React.FC<TradingChartProps> = ({
         horzLines: { color: 'rgba(255, 255, 255, 0.02)', style: LineStyle.Dotted },
       },
       rightPriceScale: {
-        borderColor: 'rgba(255, 255, 255, 0.08)',
-        textColor: '#64748B',
+        borderColor: '#20252C',
+        textColor: '#8B929C',
         scaleMargins: { top: 0.15, bottom: 0.15 },
       },
       timeScale: {
@@ -435,8 +416,8 @@ export const TradingChart: React.FC<TradingChartProps> = ({
     rsiChartRef.current = rsiChart;
 
     const rsiSeries = rsiChart.addSeries(LineSeries, {
-      color: '#A855F7',
-      lineWidth: 2,
+      color: '#C8A96B',
+      lineWidth: 1,
       title: 'RSI 14',
     });
 
@@ -444,17 +425,16 @@ export const TradingChart: React.FC<TradingChartProps> = ({
     rsiSeries.setData(rsiData as any);
     rsiSeriesRef.current = rsiSeries;
 
-    // Overbought / Oversold threshold lines
     rsiSeries.createPriceLine({
       price: 70,
-      color: 'rgba(255, 59, 105, 0.6)',
+      color: '#C87878',
       lineWidth: 1,
       lineStyle: LineStyle.Dotted,
       title: 'OB 70',
     });
     rsiSeries.createPriceLine({
       price: 30,
-      color: 'rgba(0, 240, 144, 0.6)',
+      color: '#6FAF8A',
       lineWidth: 1,
       lineStyle: LineStyle.Dotted,
       title: 'OS 30',
@@ -462,7 +442,6 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
     rsiChart.timeScale().fitContent();
 
-    // Resize observer for RSI pane
     const resizeObserver = new ResizeObserver((entries) => {
       if (!entries || entries.length === 0 || !rsiChartRef.current) return;
       const { width } = entries[0].contentRect;
@@ -479,7 +458,6 @@ export const TradingChart: React.FC<TradingChartProps> = ({
     };
   }, [showRSI, candleData]);
 
-  // Click on chart to inspect structural coordinate
   const handleChartClick = () => {
     if (!onSelectInspectPoint) return;
     const lastBar = candleData[candleData.length - 1];
@@ -495,31 +473,28 @@ export const TradingChart: React.FC<TradingChartProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full w-full relative select-none overflow-hidden bg-[#060A12]">
-      {/* Primary Chart Canvas */}
+    <div className="flex-1 flex flex-col h-full w-full relative select-none overflow-hidden bg-[#0B0E13]">
       <div
         ref={chartContainerRef}
         onClick={handleChartClick}
         className="flex-1 w-full min-h-[340px] relative cursor-crosshair"
       >
-        {/* Subtle Institutional Watermark */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none text-center select-none z-0 opacity-[0.035]">
-          <div className="text-6xl md:text-8xl font-display font-black tracking-tighter text-white">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none text-center select-none z-0 opacity-[0.03]">
+          <div className="text-6xl md:text-8xl font-black tracking-tighter text-[#F3F4F6]">
             ALGOFINEX
           </div>
-          <div className="text-xs md:text-sm font-mono uppercase tracking-[0.5em] text-[#00F090]">
-            VELA QUANT WORKSTATION
+          <div className="text-xs md:text-sm font-mono uppercase tracking-[0.5em] text-[#C8A96B]">
+            PINE SCRIPT v5 WORKSTATION
           </div>
         </div>
       </div>
 
-      {/* Secondary RSI Sub-Pane */}
       {showRSI && (
-        <div className="h-[110px] w-full border-t border-white/10 relative bg-[#070B14] shrink-0">
-          <div className="absolute top-1.5 left-3 text-[10px] font-mono text-[#A855F7] z-10 flex items-center gap-2">
+        <div className="h-[110px] w-full border-t border-[#20252C] relative bg-[#0B0E13] shrink-0">
+          <div className="absolute top-1.5 left-3 text-[10px] font-mono text-[#C8A96B] z-10 flex items-center gap-2">
             <span className="font-bold">RSI (14)</span>
-            <span className="text-slate-500">•</span>
-            <span className="text-slate-400">SMA BASE (14)</span>
+            <span className="text-[#4B5563]">•</span>
+            <span className="text-[#8B929C]">Institutional Momentum</span>
           </div>
           <div ref={rsiContainerRef} className="w-full h-full" />
         </div>

@@ -12,8 +12,8 @@ export const BorderBeam: React.FC<BorderBeamProps> = ({
   className = '',
   duration = 7,
   borderWidth = 1.5,
-  colorFrom = '#00F090',
-  colorTo = '#00E5FF',
+  colorFrom = '#C8A96B',
+  colorTo = '#6FAF8A',
 }) => {
   return (
     <div
