@@ -16,10 +16,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     try {
       const saved = localStorage.getItem('algofinex-theme');
       if (saved === 'light' || saved === 'dark') return saved;
-      // Default to dark as requested by user
-      return 'dark';
+      // Default to light mode as primary brand identity
+      return 'light';
     } catch {
-      return 'dark';
+      return 'light';
     }
   });
 
