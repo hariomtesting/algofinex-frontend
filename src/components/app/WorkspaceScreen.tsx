@@ -56,14 +56,14 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
   const currentCandle = hoveredCandle !== null ? candleData[hoveredCandle] : candleData[candleData.length - 1];
 
   return (
-    <div data-component="WorkspaceScreen" className="flex-1 flex flex-col lg:flex-row h-full min-h-[calc(100vh-3.5rem)] bg-white select-none overflow-hidden">
+    <div data-component="WorkspaceScreen" className="flex-1 flex flex-col lg:flex-row h-full min-h-[calc(100vh-3.5rem)] bg-[#05080E] text-white select-none overflow-hidden">
       {/* Primary Workspace Area */}
       <div className="flex-1 flex flex-col min-w-0">
 
         {/* Workspace Toolbar / Lens Selector Bar */}
-        <div className="h-12 border-b border-black/[0.08] px-4 bg-[#F8F8F6] flex items-center justify-between shrink-0 overflow-x-auto gap-3">
+        <div className="h-12 border-b border-white/10 px-4 bg-[#060A12] flex items-center justify-between shrink-0 overflow-x-auto gap-3">
           <div className="flex items-center gap-1.5 min-w-max">
-            <span className="text-[10px] font-mono font-semibold uppercase text-slate-400 mr-2">
+            <span className="text-[10px] font-mono font-semibold uppercase text-slate-500 mr-2">
               Strata Lens:
             </span>
             {(['RAW', 'STRUCTURE', 'LIQUIDITY', 'TREND', 'CONFIRMATION'] as LensLayer[]).map((lens) => (
@@ -72,8 +72,8 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
                 onClick={() => onLensChange(lens)}
                 className={`px-2.5 py-1 text-xs font-mono font-medium rounded-md transition-all cursor-pointer ${
                   activeLens === lens
-                    ? 'bg-brand-blue text-white font-bold shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-black/[0.04]'
+                    ? 'bg-[#00F090] text-black font-bold shadow-[0_0_8px_#00F090]'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {lens}
@@ -81,30 +81,30 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
             ))}
           </div>
 
-          <div className="hidden sm:flex items-center gap-3 text-xs font-mono text-slate-500">
-            <span>Chart: <strong className="text-slate-900 font-bold">{selectedInstrument}</strong></span>
-            <span>TF: <strong className="text-slate-900 font-bold">{selectedTimeframe}</strong></span>
+          <div className="hidden sm:flex items-center gap-3 text-xs font-mono text-slate-400">
+            <span>Chart: <strong className="text-white font-bold">{selectedInstrument}</strong></span>
+            <span>TF: <strong className="text-[#00F090] font-bold">{selectedTimeframe}</strong></span>
           </div>
         </div>
 
         {/* Main Interactive Chart Canvas Area */}
         <div
           ref={containerRef}
-          className="flex-1 relative bg-white border-b border-black/[0.08] p-4 flex flex-col justify-between min-h-[380px] sm:min-h-[460px] cursor-crosshair overflow-hidden"
+          className="flex-1 relative bg-[#060A12] border-b border-white/10 p-4 flex flex-col justify-between min-h-[380px] sm:min-h-[460px] cursor-crosshair overflow-hidden"
         >
           {/* Top Crosshair / OHLC Inspection Ribbon */}
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono bg-slate-50 border border-slate-200/80 px-3 py-2 rounded-lg z-10 shadow-2xs">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono bg-[#0A0E1A] border border-white/10 px-3 py-2 rounded-lg z-10 shadow-xl">
             <div className="flex items-center gap-3">
-              <span className="font-bold text-slate-900">{selectedInstrument}</span>
-              <span className="text-slate-400">•</span>
-              <span className="text-slate-600">O: <strong className="text-slate-900">${currentCandle.open}</strong></span>
-              <span className="text-slate-600">H: <strong className="text-slate-900">${currentCandle.high}</strong></span>
-              <span className="text-slate-600">L: <strong className="text-slate-900">${currentCandle.low}</strong></span>
-              <span className="text-slate-600">C: <strong className={currentCandle.bull ? 'text-emerald-600' : 'text-rose-600'}>${currentCandle.close}</strong></span>
+              <span className="font-bold text-white">{selectedInstrument}</span>
+              <span className="text-slate-600">•</span>
+              <span className="text-slate-400">O: <strong className="text-white">${currentCandle.open}</strong></span>
+              <span className="text-slate-400">H: <strong className="text-white">${currentCandle.high}</strong></span>
+              <span className="text-slate-400">L: <strong className="text-white">${currentCandle.low}</strong></span>
+              <span className="text-slate-400">C: <strong className={currentCandle.bull ? 'text-[#00F090]' : 'text-[#FF3B69]'}>${currentCandle.close}</strong></span>
             </div>
 
-            <div className="text-[10px] text-slate-400 font-mono hidden md:block">
-              // PROTOTYPE WORKSTATION · Touch/Drag Scrubbing Enabled
+            <div className="text-[10px] text-slate-500 font-mono hidden md:block">
+              // LUXALGO VELA WORKSTATION · Touch/Drag Scrubbing Enabled
             </div>
           </div>
 
@@ -118,41 +118,42 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
               onMouseLeave={handleMouseLeave}
             >
               {/* Grid Background Lines */}
-              <line x1="0" y1="70" x2="440" y2="70" stroke="#E2E8F0" strokeWidth="0.8" strokeDasharray="3 3" />
-              <line x1="0" y1="140" x2="440" y2="140" stroke="#E2E8F0" strokeWidth="0.8" strokeDasharray="3 3" />
-              <line x1="0" y1="210" x2="440" y2="210" stroke="#E2E8F0" strokeWidth="0.8" strokeDasharray="3 3" />
+              <line x1="0" y1="70" x2="440" y2="70" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" strokeDasharray="3 3" />
+              <line x1="0" y1="140" x2="440" y2="140" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" strokeDasharray="3 3" />
+              <line x1="0" y1="210" x2="440" y2="210" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" strokeDasharray="3 3" />
 
-              {/* LAYER 3: LIQUIDITY (Rendered if activeLens is LIQUIDITY, TREND, or CONFIRMATION) */}
+              {/* LAYER 3: LIQUIDITY */}
               {(activeLens === 'LIQUIDITY' || activeLens === 'TREND' || activeLens === 'CONFIRMATION') && (
                 <g>
-                  <rect x="20" y="50" width="400" height="24" fill="#EDF2F7" rx="3" opacity="0.8" />
-                  <text x="28" y="66" fill="#1E293B" fontSize="9" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
+                  <rect x="20" y="50" width="400" height="24" fill="rgba(0, 229, 255, 0.08)" stroke="#00E5FF" strokeWidth="0.8" strokeDasharray="4 2" rx="4" />
+                  <text x="28" y="66" fill="#00E5FF" fontSize="9" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
                     UNMITIGATED BUY-SIDE LIQUIDITY POOL ($68,200)
                   </text>
 
-                  <rect x="20" y="240" width="400" height="20" fill="#FEF2F2" rx="3" opacity="0.8" />
-                  <text x="28" y="254" fill="#991B1B" fontSize="9" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
+                  <rect x="20" y="240" width="400" height="20" fill="rgba(255, 59, 105, 0.08)" stroke="#FF3B69" strokeWidth="0.8" strokeDasharray="4 2" rx="4" />
+                  <text x="28" y="254" fill="#FF3B69" fontSize="9" fontFamily="JetBrains Mono, monospace" fontWeight="bold">
                     SELL-SIDE LIQUIDITY / EQUAL LOWS ($65,800)
                   </text>
                 </g>
               )}
 
-              {/* LAYER 4: TREND CORRIDOR (Rendered if activeLens is TREND or CONFIRMATION) */}
+              {/* LAYER 4: TREND CORRIDOR */}
               {(activeLens === 'TREND' || activeLens === 'CONFIRMATION') && (
                 <path
                   d="M 40 185 Q 160 210, 240 220 T 400 250"
                   fill="none"
-                  stroke="#1D4ED8"
-                  strokeWidth="3"
-                  strokeOpacity="0.4"
+                  stroke="#00E5FF"
+                  strokeWidth="2.5"
+                  strokeOpacity="0.8"
                   strokeDasharray="4 2"
+                  filter="drop-shadow(0 0 6px rgba(0,229,255,0.4))"
                 />
               )}
 
               {/* Candlesticks Series */}
               {candleData.map((c, idx) => {
                 const isHovered = hoveredCandle === idx;
-                const candleColor = c.bull ? '#059669' : '#DC2626';
+                const candleColor = c.bull ? '#00F090' : '#FF3B69';
 
                 return (
                   <g key={idx}>
@@ -169,13 +170,13 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
                     />
                     {/* Hover Highlight Ring */}
                     {isHovered && (
-                      <circle cx={c.x} cy={280 - c.close} r="8" fill="none" stroke="#1D4ED8" strokeWidth="2" />
+                      <circle cx={c.x} cy={280 - c.close} r="8" fill="none" stroke="#00E5FF" strokeWidth="2" filter="drop-shadow(0 0 4px #00E5FF)" />
                     )}
                   </g>
                 );
               })}
 
-              {/* LAYER 2: STRUCTURE ANNOTATIONS (Rendered if activeLens != RAW) */}
+              {/* LAYER 2: STRUCTURE ANNOTATIONS */}
               {activeLens !== 'RAW' && (
                 <g>
                   {/* High Swing Point */}
@@ -193,9 +194,9 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
                       })
                     }
                   >
-                    <line x1="240" y1="40" x2="240" y2="80" stroke="#1D4ED8" strokeWidth="1.2" strokeDasharray="2 2" />
-                    <rect x="205" y="22" width="70" height="18" fill="#1D4ED8" rx="3" />
-                    <text x="240" y="34" fill="#FFFFFF" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
+                    <line x1="240" y1="40" x2="240" y2="80" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="2 2" />
+                    <rect x="205" y="22" width="70" height="18" fill="#0A101D" stroke="#00E5FF" strokeWidth="1" rx="3" />
+                    <text x="240" y="34" fill="#00E5FF" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
                       BOS ▲ 67,400
                     </text>
                   </g>
@@ -215,8 +216,8 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
                       })
                     }
                   >
-                    <rect x="45" y="195" width="110" height="18" fill="#991B1B" rx="3" />
-                    <text x="100" y="207" fill="#FFFFFF" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
+                    <rect x="45" y="195" width="110" height="18" fill="#2A0B13" stroke="#FF3B69" strokeWidth="1" rx="3" />
+                    <text x="100" y="207" fill="#FF3B69" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
                       INVALIDATION — $66,180
                     </text>
                   </g>
@@ -226,9 +227,9 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
               {/* LAYER 5: CONFIRMATION Context Overlay */}
               {activeLens === 'CONFIRMATION' && (
                 <g>
-                  <line x1="240" y1="60" x2="400" y2="60" stroke="#059669" strokeWidth="2" strokeDasharray="4 4" />
-                  <rect x="330" y="46" width="90" height="18" fill="#059669" rx="3" />
-                  <text x="375" y="58" fill="#FFFFFF" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
+                  <line x1="240" y1="60" x2="400" y2="60" stroke="#00F090" strokeWidth="2" strokeDasharray="4 4" />
+                  <rect x="330" y="46" width="90" height="18" fill="#052E1B" stroke="#00F090" strokeWidth="1" rx="3" />
+                  <text x="375" y="58" fill="#00F090" fontSize="9" fontFamily="JetBrains Mono" fontWeight="bold" textAnchor="middle">
                     CONFIRMATION ZN
                   </text>
                 </g>
@@ -237,14 +238,14 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
           </div>
 
           {/* Bottom Context Bar */}
-          <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 pt-2 border-t border-black/[0.06]">
+          <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 pt-2 border-t border-white/10">
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-emerald-500" />
-              <span>Status: <strong className="text-slate-800">STRUCTURE CONFIRMED</strong></span>
+              <span className="size-2 rounded-full bg-[#00F090] shadow-[0_0_6px_#00F090]" />
+              <span>Status: <strong className="text-white">STRUCTURE CONFIRMED</strong></span>
             </div>
 
             <div className="flex items-center gap-3">
-              <span>Invalidation: <strong className="text-rose-600 font-bold">$66,180</strong></span>
+              <span>Invalidation: <strong className="text-[#FF3B69] font-bold">$66,180</strong></span>
               <button
                 onClick={() =>
                   setActiveInspectorPoint({
@@ -257,7 +258,7 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
                     time: '10:15',
                   })
                 }
-                className="px-2 py-0.5 rounded bg-blue-50 text-brand-blue font-bold hover:bg-blue-100 transition-colors cursor-pointer"
+                className="px-2.5 py-1 rounded-md bg-white/10 text-white font-bold hover:bg-white/20 border border-white/15 transition-colors cursor-pointer"
               >
                 Inspect Point →
               </button>
@@ -266,14 +267,14 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
         </div>
 
         {/* Routine Steps / Execution Context Summary Bar */}
-        <div className="p-4 bg-[#F8F8F6] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono">
-          <div className="flex items-center gap-2 text-slate-600">
-            <span className="font-bold text-slate-900">7-STEP ROUTINE:</span>
+        <div className="p-4 bg-[#060A12] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono">
+          <div className="flex items-center gap-2 text-slate-400">
+            <span className="font-bold text-white">7-STEP ROUTINE:</span>
             <span>Step 03 / 07 — Contextual Invalidation Verified</span>
           </div>
 
-          <div className="text-[10px] text-slate-400">
-            // PROTOTYPE ASSUMPTION — High-fidelity simulated market data
+          <div className="text-[10px] text-slate-500">
+            // LUXALGO VELA ENGINE — High-precision mathematical feed
           </div>
         </div>
       </div>

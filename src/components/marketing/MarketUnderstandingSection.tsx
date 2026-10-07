@@ -60,38 +60,39 @@ export const MarketUnderstandingSection: React.FC = () => {
   const current = steps[activeStep];
 
   return (
-    <section id="understanding" className="relative py-24 sm:py-32 lg:py-40 bg-[#F4F6F9] border-t border-black/[0.06] overflow-hidden">
+    <section id="understanding" className="relative py-24 sm:py-32 lg:py-40 bg-[#05080E] border-t border-white/[0.08] overflow-hidden">
       {/* Editorial Ambient Light */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-[160px] opacity-70" />
-        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-emerald-100/25 rounded-full blur-[140px] opacity-60" />
+        <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] opacity-60" />
+        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] opacity-50" />
+        <div className="absolute inset-0 bg-blueprint-grid opacity-20" />
       </div>
 
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
         
         {/* Section Header: Varied Editorial Pacing */}
         <div className="max-w-3xl text-left mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
-            <Compass className="size-3.5 text-brand-blue shrink-0" />
-            <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 mb-4 shadow-xs backdrop-blur-md">
+            <Compass className="size-3.5 text-emerald-400 shrink-0" />
+            <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-300">
               The Three-Phase Discipline
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.04]">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-white leading-[1.04]">
             How AlgoFinex organizes market information:<br />
-            <span className="text-brand-blue">
+            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
               Three sequential decisions.
             </span>
           </h2>
 
-          <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            Trading is not about predicting the future. It is about systematically parsing market structure so you never commit capital without architectural justification and predetermined risk.
+          <p className="mt-5 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
+            Trading is not about guessing tops and bottoms. It is about systematically parsing market structure so you never commit capital without mathematical justification and predetermined risk.
           </p>
         </div>
 
         {/* Sleek Architectural Stage Switcher with 48px Touch Targets */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-8 w-full border-b border-black/[0.06]">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 mb-8 w-full border-b border-white/[0.08]">
           {steps.map((s, idx) => {
             const isActive = activeStep === idx;
             return (
@@ -100,19 +101,19 @@ export const MarketUnderstandingSection: React.FC = () => {
                 onClick={() => setActiveStep(idx as 0 | 1 | 2)}
                 className={`text-left min-h-[48px] px-5 sm:px-6 rounded-t-xl transition-all duration-150 relative flex items-center gap-3 shrink-0 cursor-pointer ${
                   isActive
-                    ? 'bg-white text-slate-900 font-bold shadow-xs'
-                    : 'text-slate-500 hover:text-slate-800 font-medium hover:bg-white/50'
+                    ? 'bg-[#0A0E1A] text-white font-bold shadow-xs border-t border-x border-white/10'
+                    : 'text-slate-400 hover:text-white font-medium hover:bg-white/[0.02]'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeUnderlineTab"
-                    className="absolute top-0 left-0 right-0 h-0.5 bg-brand-blue rounded-t"
+                    className="absolute top-0 left-0 right-0 h-0.5 bg-emerald-400 rounded-t shadow-[0_0_8px_#00F090]"
                     transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                   />
                 )}
                 <span className={`text-[11px] font-mono px-2 py-0.5 rounded font-bold ${
-                  isActive ? 'bg-blue-50 text-brand-blue border border-blue-200' : 'bg-slate-100 text-slate-400'
+                  isActive ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' : 'bg-white/5 text-slate-500'
                 }`}>
                   {s.num}
                 </span>
@@ -130,34 +131,34 @@ export const MarketUnderstandingSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.4 }}
-          className="rounded-3xl border border-black/[0.09] bg-white shadow-workstation overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[520px]"
+          className="rounded-3xl border border-white/[0.12] bg-[#0A0E1A] shadow-[0_25px_80px_rgba(0,0,0,0.85)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[520px]"
         >
           
           {/* Left Column: Editorial Explanation & Deliverables */}
-          <div className="lg:col-span-5 p-6 sm:p-10 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-black/[0.07] bg-white">
+          <div className="lg:col-span-5 p-6 sm:p-10 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08] bg-[#0A0E1A]">
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-brand-blue font-semibold uppercase tracking-wider mb-2">
+              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 font-semibold uppercase tracking-wider mb-2">
                 <span>Phase {current.num}</span>
                 <span>•</span>
                 <span>{current.focusArea}</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
+              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight mb-4">
                 {current.subtitle}
               </h3>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-8">
+              <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-8">
                 {current.lead}
               </p>
 
               {/* Specific Deliverables List */}
               <div className="space-y-3.5 mb-8">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold block">
+                <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold block">
                   Observed Structural Output:
                 </span>
                 {current.deliverables.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                    <CheckCircle2 className="size-4 text-signal-bull shrink-0 mt-0.5" />
+                  <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-slate-300">
+                    <CheckCircle2 className="size-4 text-emerald-400 shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -165,13 +166,13 @@ export const MarketUnderstandingSection: React.FC = () => {
             </div>
 
             {/* Stepper Footer Action */}
-            <div className="pt-6 border-t border-black/[0.06] flex items-center justify-between">
-              <span className="text-xs font-mono text-slate-400">
+            <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
+              <span className="text-xs font-mono text-slate-500">
                 Decision {activeStep + 1} of 3
               </span>
               <button
                 onClick={() => setActiveStep(((activeStep + 1) % 3) as 0 | 1 | 2)}
-                className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-brand-blue hover:text-blue-800 transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
               >
                 <span>{activeStep === 2 ? 'Return to Phase 01' : 'Next Phase'}</span>
                 <ArrowRight className="size-3.5" />
@@ -180,15 +181,15 @@ export const MarketUnderstandingSection: React.FC = () => {
           </div>
 
           {/* Right Column: Visual Diagrammatic Product Fragment */}
-          <div className="lg:col-span-7 bg-[#F8FAFC] p-6 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-7 bg-[#060A12] p-6 sm:p-10 flex flex-col justify-between relative overflow-hidden">
             
             {/* Top Frame Telemetry */}
-            <div className="flex items-center justify-between text-xs font-mono text-slate-500 mb-6">
+            <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-6">
               <div className="flex items-center gap-2">
-                <span className="size-2 rounded-full bg-brand-blue" />
-                <span className="font-semibold text-slate-800">{current.terminalTag}</span>
+                <span className="size-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#00F090]" />
+                <span className="font-semibold text-white">{current.terminalTag}</span>
               </div>
-              <span className="text-[11px] text-slate-400 bg-white px-2 py-0.5 rounded border border-black/[0.06]">
+              <span className="text-[11px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/25">
                 Non-repainting logic
               </span>
             </div>
@@ -197,9 +198,9 @@ export const MarketUnderstandingSection: React.FC = () => {
             <div className="relative flex-1 flex items-center justify-center min-h-[300px] w-full">
               
               {/* Hairline background coordinate lines */}
-              <div className="absolute inset-0 grid grid-rows-4 grid-cols-6 opacity-30 pointer-events-none">
+              <div className="absolute inset-0 grid grid-rows-4 grid-cols-6 opacity-20 pointer-events-none">
                 {Array.from({ length: 24 }).map((_, i) => (
-                  <div key={i} className="border-b border-r border-black/[0.05]" />
+                  <div key={i} className="border-b border-r border-white/10" />
                 ))}
               </div>
 
@@ -207,50 +208,50 @@ export const MarketUnderstandingSection: React.FC = () => {
               {activeStep === 0 && (
                 <svg viewBox="0 0 540 260" className="w-full h-auto max-w-[500px] select-none">
                   {/* Demand Zone Box */}
-                  <rect x="60" y="140" width="380" height="45" fill="#EFF6FF" stroke="#1D4ED8" strokeWidth="1.2" strokeDasharray="4 3" rx="4" />
-                  <text x="75" y="165" fill="#1D4ED8" fontSize="10" fontFamily="monospace" fontWeight="700">
+                  <rect x="60" y="140" width="380" height="45" fill="rgba(0,229,255,0.08)" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="4 3" rx="4" />
+                  <text x="75" y="165" fill="#00E5FF" fontSize="10" fontFamily="monospace" fontWeight="700">
                     Demand Zone [Unmitigated Resting Pool]
                   </text>
 
                   {/* Clean Candlesticks */}
                   {/* C1: Bearish */}
-                  <line x1="80" y1="60" x2="80" y2="130" stroke="#DC2626" strokeWidth="1.5" />
-                  <rect x="74" y="75" width="12" height="40" fill="#DC2626" rx="1.5" />
+                  <line x1="80" y1="60" x2="80" y2="130" stroke="#FF3B69" strokeWidth="1.5" />
+                  <rect x="74" y="75" width="12" height="40" fill="#FF3B69" rx="1.5" />
 
                   {/* C2: Low Pivot (HL) */}
-                  <line x1="140" y1="110" x2="140" y2="175" stroke="#059669" strokeWidth="1.5" />
-                  <rect x="134" y="125" width="12" height="40" fill="#059669" rx="1.5" />
+                  <line x1="140" y1="110" x2="140" y2="175" stroke="#00F090" strokeWidth="1.5" />
+                  <rect x="134" y="125" width="12" height="40" fill="#00F090" rx="1.5" />
                   {/* Pivot Pin */}
-                  <circle cx="140" cy="180" r="3" fill="#059669" />
-                  <line x1="140" y1="180" x2="140" y2="198" stroke="#059669" strokeWidth="1" />
-                  <rect x="114" y="198" width="52" height="15" rx="3" fill="#FFFFFF" stroke="#059669" strokeWidth="1" />
-                  <text x="140" y="209" textAnchor="middle" fill="#047857" fontSize="8" fontFamily="monospace" fontWeight="700">HL 66,100</text>
+                  <circle cx="140" cy="180" r="3" fill="#00F090" />
+                  <line x1="140" y1="180" x2="140" y2="198" stroke="#00F090" strokeWidth="1" />
+                  <rect x="114" y="198" width="52" height="15" rx="3" fill="#0A1322" stroke="#00F090" strokeWidth="1" />
+                  <text x="140" y="209" textAnchor="middle" fill="#00F090" fontSize="8" fontFamily="monospace" fontWeight="700">HL 66,100</text>
 
                   {/* C3: Bullish expansion */}
-                  <line x1="200" y1="95" x2="200" y2="160" stroke="#059669" strokeWidth="1.5" />
-                  <rect x="194" y="105" width="12" height="45" fill="#059669" rx="1.5" />
+                  <line x1="200" y1="95" x2="200" y2="160" stroke="#00F090" strokeWidth="1.5" />
+                  <rect x="194" y="105" width="12" height="45" fill="#00F090" rx="1.5" />
 
                   {/* C4: High Pivot (HH) */}
-                  <line x1="260" y1="40" x2="260" y2="120" stroke="#1D4ED8" strokeWidth="1.5" />
-                  <rect x="254" y="55" width="12" height="45" fill="#059669" rx="1.5" />
+                  <line x1="260" y1="40" x2="260" y2="120" stroke="#00E5FF" strokeWidth="1.5" />
+                  <rect x="254" y="55" width="12" height="45" fill="#00F090" rx="1.5" />
                   {/* Pivot Pin */}
-                  <circle cx="260" cy="36" r="3" fill="#1D4ED8" />
-                  <line x1="260" y1="20" x2="260" y2="36" stroke="#1D4ED8" strokeWidth="1" />
-                  <rect x="234" y="6" width="52" height="15" rx="3" fill="#FFFFFF" stroke="#1D4ED8" strokeWidth="1" />
-                  <text x="260" y="17" textAnchor="middle" fill="#1D4ED8" fontSize="8" fontFamily="monospace" fontWeight="700">HH 67,400</text>
+                  <circle cx="260" cy="36" r="3" fill="#00E5FF" />
+                  <line x1="260" y1="20" x2="260" y2="36" stroke="#00E5FF" strokeWidth="1" />
+                  <rect x="234" y="6" width="52" height="15" rx="3" fill="#0A1322" stroke="#00E5FF" strokeWidth="1" />
+                  <text x="260" y="17" textAnchor="middle" fill="#00E5FF" fontSize="8" fontFamily="monospace" fontWeight="700">HH 67,400</text>
 
                   {/* Break of Structure Line */}
-                  <line x1="260" y1="40" x2="420" y2="40" stroke="#1D4ED8" strokeWidth="1.5" strokeDasharray="4 2" />
-                  <rect x="330" y="28" width="60" height="16" rx="3" fill="#FFFFFF" stroke="#1D4ED8" strokeWidth="1" />
-                  <text x="360" y="39" textAnchor="middle" fill="#1D4ED8" fontSize="8" fontFamily="monospace" fontWeight="700">BOS ▲ 67,400</text>
+                  <line x1="260" y1="40" x2="420" y2="40" stroke="#00E5FF" strokeWidth="1.5" strokeDasharray="4 2" />
+                  <rect x="330" y="28" width="60" height="16" rx="3" fill="#0A1322" stroke="#00E5FF" strokeWidth="1" />
+                  <text x="360" y="39" textAnchor="middle" fill="#00E5FF" fontSize="8" fontFamily="monospace" fontWeight="700">BOS ▲ 67,400</text>
 
                   {/* C5: Breakout candle */}
-                  <line x1="390" y1="30" x2="390" y2="100" stroke="#059669" strokeWidth="1.5" />
-                  <rect x="384" y="35" width="12" height="48" fill="#059669" rx="1.5" />
+                  <line x1="390" y1="30" x2="390" y2="100" stroke="#00F090" strokeWidth="1.5" />
+                  <rect x="384" y="35" width="12" height="48" fill="#00F090" rx="1.5" />
 
                   {/* C6: Confirmation candle */}
-                  <line x1="450" y1="20" x2="450" y2="85" stroke="#059669" strokeWidth="1.5" />
-                  <rect x="444" y="25" width="12" height="45" fill="#059669" rx="1.5" />
+                  <line x1="450" y1="20" x2="450" y2="85" stroke="#00F090" strokeWidth="1.5" />
+                  <rect x="444" y="25" width="12" height="45" fill="#00F090" rx="1.5" />
                 </svg>
               )}
 
@@ -260,14 +261,14 @@ export const MarketUnderstandingSection: React.FC = () => {
                   {/* Dynamic Trend Corridor Ribbon */}
                   <path
                     d="M 50,190 Q 200,160 320,110 T 500,50 L 500,105 Q 320,165 200,210 T 50,230 Z"
-                    fill="#1D4ED8"
-                    fillOpacity="0.08"
+                    fill="#00E5FF"
+                    fillOpacity="0.12"
                   />
                   {/* Fast 21 EMA */}
                   <path
                     d="M 50,190 Q 200,160 320,110 T 500,50"
                     fill="none"
-                    stroke="#1D4ED8"
+                    stroke="#00E5FF"
                     strokeWidth="2.4"
                     strokeLinecap="round"
                   />
@@ -275,33 +276,33 @@ export const MarketUnderstandingSection: React.FC = () => {
                   <path
                     d="M 50,230 Q 200,210 320,165 T 500,105"
                     fill="none"
-                    stroke="#059669"
+                    stroke="#00F090"
                     strokeWidth="1.8"
                     strokeDasharray="4 2"
                   />
 
                   {/* Multi-Timeframe Alignment Badges */}
                   <g transform="translate(60, 30)">
-                    <rect x="0" y="0" width="120" height="28" rx="6" fill="#FFFFFF" stroke="rgba(15,23,42,0.12)" />
-                    <circle cx="14" cy="14" r="3.5" fill="#059669" />
-                    <text x="26" y="18" fill="#0F172A" fontSize="10" fontFamily="sans-serif" fontWeight="700">Daily: Bullish</text>
+                    <rect x="0" y="0" width="120" height="28" rx="6" fill="#0D1322" stroke="rgba(255,255,255,0.12)" />
+                    <circle cx="14" cy="14" r="3.5" fill="#00F090" />
+                    <text x="26" y="18" fill="#FFFFFF" fontSize="10" fontFamily="sans-serif" fontWeight="700">Daily: Bullish</text>
                   </g>
 
                   <g transform="translate(195, 30)">
-                    <rect x="0" y="0" width="120" height="28" rx="6" fill="#FFFFFF" stroke="rgba(15,23,42,0.12)" />
-                    <circle cx="14" cy="14" r="3.5" fill="#059669" />
-                    <text x="26" y="18" fill="#0F172A" fontSize="10" fontFamily="sans-serif" fontWeight="700">4-Hour: Expansion</text>
+                    <rect x="0" y="0" width="120" height="28" rx="6" fill="#0D1322" stroke="rgba(255,255,255,0.12)" />
+                    <circle cx="14" cy="14" r="3.5" fill="#00F090" />
+                    <text x="26" y="18" fill="#FFFFFF" fontSize="10" fontFamily="sans-serif" fontWeight="700">4-Hour: Expansion</text>
                   </g>
 
                   <g transform="translate(330, 30)">
-                    <rect x="0" y="0" width="140" height="28" rx="6" fill="#FFFFFF" stroke="#1D4ED8" strokeWidth="1.2" />
-                    <circle cx="14" cy="14" r="3.5" fill="#1D4ED8" />
-                    <text x="26" y="18" fill="#1D4ED8" fontSize="10" fontFamily="sans-serif" fontWeight="700">15-Min: Pullback Test</text>
+                    <rect x="0" y="0" width="140" height="28" rx="6" fill="#0D1322" stroke="#00E5FF" strokeWidth="1.2" />
+                    <circle cx="14" cy="14" r="3.5" fill="#00E5FF" />
+                    <text x="26" y="18" fill="#00E5FF" fontSize="10" fontFamily="sans-serif" fontWeight="700">15-Min: Pullback Test</text>
                   </g>
 
                   {/* Trend Angle Vector Annotation */}
-                  <line x1="320" y1="110" x2="420" y2="70" stroke="#1D4ED8" strokeWidth="1.2" strokeDasharray="3 3" />
-                  <text x="350" y="135" fill="#475569" fontSize="9" fontFamily="monospace">
+                  <line x1="320" y1="110" x2="420" y2="70" stroke="#00E5FF" strokeWidth="1.2" strokeDasharray="3 3" />
+                  <text x="350" y="135" fill="#94A3B8" fontSize="9" fontFamily="monospace">
                     Corridor Angle: +28° [Positive Slope]
                   </text>
                 </svg>
@@ -311,38 +312,38 @@ export const MarketUnderstandingSection: React.FC = () => {
               {activeStep === 2 && (
                 <svg viewBox="0 0 540 260" className="w-full h-auto max-w-[500px] select-none">
                   {/* Liquidity Target Line */}
-                  <line x1="60" y1="50" x2="480" y2="50" stroke="#059669" strokeWidth="1.5" strokeDasharray="4 3" />
-                  <rect x="60" y="38" width="170" height="24" rx="4" fill="#ECFDF5" stroke="#059669" strokeWidth="1" />
-                  <text x="70" y="54" fill="#047857" fontSize="9" fontFamily="monospace" fontWeight="700">
+                  <line x1="60" y1="50" x2="480" y2="50" stroke="#00F090" strokeWidth="1.5" strokeDasharray="4 3" />
+                  <rect x="60" y="38" width="170" height="24" rx="4" fill="rgba(0,240,144,0.1)" stroke="#00F090" strokeWidth="1" />
+                  <text x="70" y="54" fill="#00F090" fontSize="9" fontFamily="monospace" fontWeight="700">
                     TARGET: $68,900 [Liquidity Pool]
                   </text>
 
                   {/* Execution Trigger Bar & Point */}
-                  <line x1="180" y1="70" x2="180" y2="170" stroke="#1D4ED8" strokeWidth="2" />
-                  <rect x="174" y="100" width="12" height="40" fill="#1D4ED8" rx="2" />
-                  <circle cx="180" cy="120" r="5" fill="#FFFFFF" stroke="#1D4ED8" strokeWidth="2.5" />
+                  <line x1="180" y1="70" x2="180" y2="170" stroke="#00E5FF" strokeWidth="2" />
+                  <rect x="174" y="100" width="12" height="40" fill="#00E5FF" rx="2" />
+                  <circle cx="180" cy="120" r="5" fill="#0A0E1A" stroke="#00E5FF" strokeWidth="2.5" />
 
                   {/* Trigger Callout */}
-                  <rect x="200" y="108" width="160" height="26" rx="4" fill="#FFFFFF" stroke="#1D4ED8" strokeWidth="1.2" />
-                  <text x="210" y="125" fill="#1D4ED8" fontSize="9" fontFamily="monospace" fontWeight="700">
+                  <rect x="200" y="108" width="160" height="26" rx="4" fill="#0D1322" stroke="#00E5FF" strokeWidth="1.2" />
+                  <text x="210" y="125" fill="#00E5FF" fontSize="9" fontFamily="monospace" fontWeight="700">
                     ▲ TRIGGER: $67,420 (Bar Close)
                   </text>
 
                   {/* Risk Corridor Bracket */}
-                  <rect x="180" y="120" width="160" height="70" fill="#DC2626" fillOpacity="0.06" stroke="#DC2626" strokeWidth="0.8" strokeDasharray="3 3" />
+                  <rect x="180" y="120" width="160" height="70" fill="#FF3B69" fillOpacity="0.1" stroke="#FF3B69" strokeWidth="0.8" strokeDasharray="3 3" />
 
                   {/* Hard Stop Invalidation Level */}
-                  <line x1="60" y1="190" x2="480" y2="190" stroke="#DC2626" strokeWidth="1.8" strokeDasharray="4 2" />
-                  <rect x="60" y="178" width="180" height="24" rx="4" fill="#FEF2F2" stroke="#DC2626" strokeWidth="1" />
-                  <text x="70" y="194" fill="#B91C1C" fontSize="9" fontFamily="monospace" fontWeight="700">
+                  <line x1="60" y1="190" x2="480" y2="190" stroke="#FF3B69" strokeWidth="1.8" strokeDasharray="4 2" />
+                  <rect x="60" y="178" width="180" height="24" rx="4" fill="rgba(255,59,105,0.12)" stroke="#FF3B69" strokeWidth="1" />
+                  <text x="70" y="194" fill="#FF3B69" fontSize="9" fontFamily="monospace" fontWeight="700">
                     INVALIDATION STOP: $66,180
                   </text>
 
                   {/* Risk Metric Box */}
                   <g transform="translate(370, 150)">
-                    <rect x="0" y="0" width="120" height="44" rx="6" fill="#FFFFFF" stroke="rgba(15,23,42,0.12)" />
-                    <text x="10" y="18" fill="#64748B" fontSize="9" fontFamily="monospace">Risk Unit (1.0R)</text>
-                    <text x="10" y="34" fill="#0F172A" fontSize="11" fontFamily="monospace" fontWeight="700">Pre-set: $1,240</text>
+                    <rect x="0" y="0" width="120" height="44" rx="6" fill="#0D1322" stroke="rgba(255,255,255,0.12)" />
+                    <text x="10" y="18" fill="#94A3B8" fontSize="9" fontFamily="monospace">Risk Unit (1.0R)</text>
+                    <text x="10" y="34" fill="#FFFFFF" fontSize="11" fontFamily="monospace" fontWeight="700">Pre-set: $1,240</text>
                   </g>
                 </svg>
               )}
@@ -350,12 +351,12 @@ export const MarketUnderstandingSection: React.FC = () => {
             </div>
 
             {/* Bottom Methodology Note */}
-            <div className="pt-4 border-t border-black/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono text-slate-400">
               <span className="flex items-center gap-1.5">
-                <ShieldAlert className="size-3.5 text-slate-400" />
+                <ShieldAlert className="size-3.5 text-emerald-400" />
                 <span>Deterministic rules • No arbitrary discretion</span>
               </span>
-              <span className="text-slate-400">TradingView Pine Script v5 Engine</span>
+              <span className="text-slate-500">TradingView Pine Script &amp; Vela Ready</span>
             </div>
 
           </div>

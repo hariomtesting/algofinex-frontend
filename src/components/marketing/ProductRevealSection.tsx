@@ -96,12 +96,13 @@ export const ProductRevealSection: React.FC = () => {
   ];
 
   return (
-    <section id="product-experience" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#F4F6F9] border-t border-black/[0.06]">
+    <section id="product-experience" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#080C14] border-t border-white/[0.08]">
       
       {/* Subtle Analytical Atmospheric Lighting */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[550px] bg-blue-100/35 rounded-full blur-[160px] opacity-70" />
-        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-emerald-100/30 rounded-full blur-[140px] opacity-50" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1200px] h-[550px] bg-emerald-500/10 rounded-full blur-[160px] opacity-60" />
+        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] opacity-40" />
+        <div className="absolute inset-0 bg-blueprint-grid opacity-25" />
       </div>
 
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 w-full min-w-0">
@@ -111,14 +112,14 @@ export const ProductRevealSection: React.FC = () => {
           
           {/* Left Column: Big Editorial Typography */}
           <div className="lg:col-span-7 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/[0.08] text-xs font-mono text-slate-700 mb-4 shadow-xs">
-              <Sparkles className="size-3 text-brand-blue shrink-0" />
-              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-600">PRODUCT INTERFACE &middot; WHAT YOU USE</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 mb-4 shadow-xs backdrop-blur-md">
+              <Sparkles className="size-3 text-emerald-400 shrink-0" />
+              <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-300">PRODUCT INTERFACE &middot; PROGRESSIVE LENSES</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-slate-900 leading-[1.05]">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-[-0.035em] text-white leading-[1.05]">
               Market structure.<br />
-              <span className="text-brand-blue">
+              <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
                 Progressively revealed.
               </span>
             </h2>
@@ -126,21 +127,21 @@ export const ProductRevealSection: React.FC = () => {
 
           {/* Right Column: Explanatory Context Positioned Asymmetrically */}
           <div className="lg:col-span-5 text-left lg:text-left flex flex-col justify-end">
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
-              Raw candlesticks reveal where transactions occurred. AlgoFinex isolates swing pivots, resting liquidity pools, and dynamic momentum directly on your workstation surface.
+            <p className="text-sm sm:text-base text-slate-400 leading-relaxed mb-6">
+              Raw candlesticks conceal institutional order flow. AlgoFinex isolates swing pivots, resting liquidity pools, and dynamic momentum directly on your workstation surface.
             </p>
 
             {/* Micro Mode Step Indicators */}
             <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mr-1">Progression:</span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mr-1">Progression:</span>
               {modesList.map((m, idx) => (
                 <button
                   key={m.id}
                   onClick={() => setActiveMode(m.id)}
                   className={`px-2.5 py-1 rounded text-[11px] font-mono transition-all duration-200 flex items-center gap-1 ${
                     activeMode === m.id
-                      ? 'bg-brand-blue text-white shadow-xs font-semibold'
-                      : 'bg-white text-slate-600 hover:text-slate-900 border border-black/[0.08]'
+                      ? 'bg-emerald-400 text-slate-950 font-bold shadow-[0_0_10px_rgba(0,240,144,0.3)]'
+                      : 'bg-white/5 text-slate-400 hover:text-white border border-white/10'
                   }`}
                 >
                   <span>{idx + 1}</span>
@@ -166,8 +167,8 @@ export const ProductRevealSection: React.FC = () => {
                   onClick={() => setActiveMode(mode.id)}
                   className={`px-3.5 sm:px-4 min-h-[48px] rounded-xl font-mono text-xs transition-all duration-200 flex items-center gap-2 whitespace-nowrap shrink-0 cursor-pointer ${
                     isActive
-                      ? 'bg-brand-blue text-white shadow-sm border border-brand-blue font-semibold'
-                      : 'bg-white text-slate-600 hover:text-slate-900 border border-black/[0.08] hover:border-black/[0.18]'
+                      ? 'bg-emerald-400 text-slate-950 font-bold shadow-[0_0_15px_rgba(0,240,144,0.35)] border border-emerald-400'
+                      : 'bg-[#0D1322] text-slate-400 hover:text-white border border-white/10 hover:border-white/20'
                   }`}
                 >
                   <Icon className="size-4 shrink-0" />
@@ -177,41 +178,41 @@ export const ProductRevealSection: React.FC = () => {
             })}
           </div>
 
-          <div className="hidden md:flex items-center gap-4 text-xs font-mono text-slate-500">
+          <div className="hidden md:flex items-center gap-4 text-xs font-mono text-slate-400">
             <div className="flex items-center gap-1.5">
-              <span className="size-1.5 rounded-full bg-signal-bull animate-ping" />
-              <span className="text-slate-900 font-semibold">15m Resolution</span>
+              <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#00F090]" />
+              <span className="text-white font-semibold">15m Resolution</span>
             </div>
-            <span className="text-slate-300">•</span>
-            <span>Non-repainting geometry</span>
+            <span className="text-white/20">•</span>
+            <span className="text-slate-400">Non-repainting geometry</span>
           </div>
         </div>
 
-        {/* DOMINANT UNBOXED WORKSTATION CANVAS (Pure White Precision Surface) */}
-        <div className="relative rounded-2xl md:rounded-3xl border border-black/[0.09] bg-white shadow-workstation overflow-hidden w-full min-w-0">
+        {/* DOMINANT UNBOXED WORKSTATION CANVAS */}
+        <div className="relative rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#0A0E1A] shadow-[0_30px_90px_rgba(0,0,0,0.85)] overflow-hidden w-full min-w-0">
           
           {/* Top Hairline Telemetry Ribbon */}
-          <div className="flex flex-wrap items-center justify-between border-b border-black/[0.07] bg-slate-50/80 px-4 sm:px-8 py-3 gap-3 text-xs font-mono">
+          <div className="flex flex-wrap items-center justify-between border-b border-white/[0.08] bg-[#0D1322] px-4 sm:px-8 py-3 gap-3 text-xs font-mono">
             <div className="flex items-center gap-3">
-              <span className="size-2 rounded-full bg-brand-blue animate-pulse" />
-              <span className="font-bold text-slate-900 tracking-wider">
-                BTC/USDT • ANALYTICAL WORKSTATION
+              <span className="size-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00F090]" />
+              <span className="font-bold text-white tracking-wider">
+                BTC/USDT &middot; ANALYTICAL WORKSTATION
               </span>
-              <span className="text-[10px] px-2 py-0.5 rounded bg-white text-brand-blue border border-black/[0.08] font-semibold uppercase shadow-2xs">
+              <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 font-semibold uppercase shadow-2xs">
                 {currentMode.label}
               </span>
             </div>
 
-            <div className="flex items-center gap-6 text-[11px] text-slate-500">
+            <div className="flex items-center gap-6 text-[11px] text-slate-400">
               <div>
-                <span className="text-slate-400">Structure: </span>
-                <span className="text-signal-bull font-semibold">Higher-High Sequence</span>
+                <span className="text-slate-500">Structure: </span>
+                <span className="text-emerald-400 font-semibold">Higher-High Sequence</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-slate-400">Trigger: </span>
-                <span className="text-slate-800 font-medium">Bar-Close Non-Repaint</span>
+                <span className="text-slate-500">Trigger: </span>
+                <span className="text-slate-300 font-medium">Bar-Close Non-Repaint</span>
               </div>
-              <div className="flex items-center gap-1 text-emerald-700 font-medium">
+              <div className="flex items-center gap-1 text-emerald-400 font-medium">
                 <ShieldCheck className="size-3.5" />
                 <span>Synchronized</span>
               </div>
@@ -219,17 +220,17 @@ export const ProductRevealSection: React.FC = () => {
           </div>
 
           {/* Active Candle Hover Inspection HUD Ribbon */}
-          <div className="px-4 sm:px-8 py-2 bg-slate-50/60 border-b border-black/[0.05] flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono">
+          <div className="px-4 sm:px-8 py-2 bg-[#070B14] border-b border-white/[0.08] flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono">
             {(() => {
               const c = activeCandleHover !== null ? BTC_15M_CANDLES[activeCandleHover] : BTC_15M_CANDLES[BTC_15M_CANDLES.length - 1];
               return (
                 <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
-                  <span className="text-slate-400">Time: <span className="text-slate-900 font-semibold">{c.time}</span></span>
-                  <span className="text-slate-400">Open: <span className="text-slate-800">{c.open.toLocaleString()}</span></span>
-                  <span className="text-slate-400">High: <span className="text-emerald-700 font-bold">{c.high.toLocaleString()}</span></span>
-                  <span className="text-slate-400">Low: <span className="text-red-700 font-bold">{c.low.toLocaleString()}</span></span>
-                  <span className="text-slate-400">Close: <span className={c.isBullish ? 'text-emerald-700 font-bold' : 'text-red-700 font-bold'}>{c.close.toLocaleString()}</span></span>
-                  <span className="text-slate-400">Vol: <span className="text-brand-blue font-semibold">{c.volume.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Time: <span className="text-white font-semibold">{c.time}</span></span>
+                  <span className="text-slate-400">Open: <span className="text-white">{c.open.toLocaleString()}</span></span>
+                  <span className="text-slate-400">High: <span className="text-emerald-400 font-bold">{c.high.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Low: <span className="text-rose-400 font-bold">{c.low.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Close: <span className={c.isBullish ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}>{c.close.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Vol: <span className="text-cyan-400 font-semibold">{c.volume.toLocaleString()}</span></span>
                 </div>
               );
             })()}
@@ -239,12 +240,12 @@ export const ProductRevealSection: React.FC = () => {
           </div>
 
           {/* Expanded SVG Chart Stage with Spatial Overlays */}
-          <div className="relative p-3 sm:p-6 lg:p-8 flex items-center justify-center overflow-x-auto no-scrollbar min-h-[460px] sm:min-h-[520px] bg-white">
+          <div className="relative p-3 sm:p-6 lg:p-8 flex items-center justify-center overflow-x-auto no-scrollbar min-h-[460px] sm:min-h-[520px] bg-[#060A12]">
             
             {/* Fine Hairline Coordinate Grid */}
-            <div className="absolute inset-0 grid grid-rows-6 grid-cols-8 pointer-events-none opacity-40">
+            <div className="absolute inset-0 grid grid-rows-6 grid-cols-8 pointer-events-none opacity-20">
               {Array.from({ length: 48 }).map((_, i) => (
-                <div key={i} className="border-b border-r border-black/[0.04]" />
+                <div key={i} className="border-b border-r border-white/10" />
               ))}
             </div>
 
@@ -268,17 +269,17 @@ export const ProductRevealSection: React.FC = () => {
               onTouchEnd={handleMouseLeave}
             >
               <defs>
-                <linearGradient id="cloudRibbonLight" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.14" />
-                  <stop offset="100%" stopColor="#059669" stopOpacity="0.04" />
+                <linearGradient id="cloudRibbonDark" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.2" />
+                  <stop offset="100%" stopColor="#00F090" stopOpacity="0.04" />
                 </linearGradient>
 
-                <pattern id="demandHatchLight" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-                  <line x1="0" y1="0" x2="0" y2="8" stroke="#2563EB" strokeWidth="1" strokeOpacity="0.25" />
+                <pattern id="demandHatchDark" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="#00E5FF" strokeWidth="1" strokeOpacity="0.35" />
                 </pattern>
 
-                <pattern id="fvgHatchLight" width="8" height="8" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
-                  <line x1="0" y1="0" x2="0" y2="8" stroke="#7C3AED" strokeWidth="1" strokeOpacity="0.25" />
+                <pattern id="fvgHatchDark" width="8" height="8" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="8" stroke="#A855F7" strokeWidth="1" strokeOpacity="0.35" />
                 </pattern>
               </defs>
 
@@ -304,9 +305,9 @@ export const ProductRevealSection: React.FC = () => {
                           y={yTop}
                           width={chartWidth - 240}
                           height={rectHeight}
-                          fill={isDemand ? 'url(#demandHatchLight)' : '#FEE2E2'}
-                          fillOpacity={isDemand ? 1 : 0.6}
-                          stroke={isDemand ? '#2563EB' : '#DC2626'}
+                          fill={isDemand ? 'url(#demandHatchDark)' : '#FF3B69'}
+                          fillOpacity={isDemand ? 1 : 0.12}
+                          stroke={isDemand ? '#00E5FF' : '#FF3B69'}
                           strokeWidth="1.2"
                           strokeDasharray="4 3"
                           rx="4"
@@ -314,7 +315,7 @@ export const ProductRevealSection: React.FC = () => {
                         <text
                           x={170}
                           y={yTop + 14}
-                          fill={isDemand ? '#1D4ED8' : '#B91C1C'}
+                          fill={isDemand ? '#00E5FF' : '#FF3B69'}
                           fontSize="9"
                           fontFamily="monospace"
                           fontWeight="700"
@@ -331,8 +332,8 @@ export const ProductRevealSection: React.FC = () => {
                     y={getY(67250)}
                     width={320}
                     height={Math.abs(getY(66850) - getY(67250))}
-                    fill="url(#fvgHatchLight)"
-                    stroke="#7C3AED"
+                    fill="url(#fvgHatchDark)"
+                    stroke="#A855F7"
                     strokeWidth="1.2"
                     strokeDasharray="3 3"
                     rx="4"
@@ -340,7 +341,7 @@ export const ProductRevealSection: React.FC = () => {
                   <text
                     x={310}
                     y={getY(67250) + 14}
-                    fill="#6D28D9"
+                    fill="#C084FC"
                     fontSize="9"
                     fontFamily="monospace"
                     fontWeight="700"
@@ -356,22 +357,22 @@ export const ProductRevealSection: React.FC = () => {
                 <g className="transition-opacity duration-300">
                   <path
                     d={`M ${ema21Points} L ${chartWidth - 60},${getY(67700)} L ${stepX},${getY(66200)} Z`}
-                    fill="url(#cloudRibbonLight)"
+                    fill="url(#cloudRibbonDark)"
                   />
                   <path
                     d={`M ${ema21Points}`}
                     fill="none"
-                    stroke="#1D4ED8"
+                    stroke="#00E5FF"
                     strokeWidth="2.2"
                     strokeLinecap="round"
                   />
                   <path
                     d={`M ${ema55Points}`}
                     fill="none"
-                    stroke="#059669"
+                    stroke="#00F090"
                     strokeWidth="1.5"
                     strokeDasharray="4 2"
-                    strokeOpacity="0.85"
+                    strokeOpacity="0.9"
                   />
                 </g>
               )}
@@ -381,7 +382,7 @@ export const ProductRevealSection: React.FC = () => {
                 const x = (i + 1) * stepX;
                 const candleWidth = 16;
                 const isBull = c.isBullish;
-                const color = isBull ? '#059669' : '#DC2626';
+                const color = isBull ? '#00F090' : '#FF3B69';
                 const yHigh = getY(c.high);
                 const yLow = getY(c.low);
                 const yOpen = getY(c.open);
@@ -393,7 +394,6 @@ export const ProductRevealSection: React.FC = () => {
                 const isLowPivot = i === 6;
                 const isBOSCandle = i === 9;
 
-                // In RAW mode, make candles slightly dimmer to emphasize raw noise
                 const opacity = activeMode === 'RAW' ? 0.65 : 1.0;
 
                 return (
@@ -427,23 +427,23 @@ export const ProductRevealSection: React.FC = () => {
                       <>
                         {isHighPivot && (
                           <g>
-                            <circle cx={x} cy={yHigh - 6} r="3" fill="#1D4ED8" />
-                            <line x1={x} y1={yHigh - 16} x2={x} y2={yHigh - 6} stroke="#1D4ED8" strokeWidth="1.2" />
+                            <circle cx={x} cy={yHigh - 6} r="3" fill="#00E5FF" />
+                            <line x1={x} y1={yHigh - 16} x2={x} y2={yHigh - 6} stroke="#00E5FF" strokeWidth="1.2" />
                             <rect
                               x={x - 28}
                               y={yHigh - 30}
                               width="56"
                               height="15"
                               rx="3"
-                              fill="#FFFFFF"
-                              stroke="#1D4ED8"
+                              fill="#0A1322"
+                              stroke="#00E5FF"
                               strokeWidth="1"
                             />
                             <text
                               x={x}
                               y={yHigh - 19}
                               textAnchor="middle"
-                              fill="#1D4ED8"
+                              fill="#00E5FF"
                               fontSize="8.5"
                               fontFamily="monospace"
                               fontWeight="700"
@@ -454,23 +454,23 @@ export const ProductRevealSection: React.FC = () => {
                         )}
                         {isLowPivot && (
                           <g>
-                            <circle cx={x} cy={yLow + 6} r="3" fill="#059669" />
-                            <line x1={x} y1={yLow + 6} x2={x} y2={yLow + 16} stroke="#059669" strokeWidth="1.2" />
+                            <circle cx={x} cy={yLow + 6} r="3" fill="#00F090" />
+                            <line x1={x} y1={yLow + 6} x2={x} y2={yLow + 16} stroke="#00F090" strokeWidth="1.2" />
                             <rect
                               x={x - 28}
                               y={yLow + 16}
                               width="56"
                               height="15"
                               rx="3"
-                              fill="#FFFFFF"
-                              stroke="#059669"
+                              fill="#0A1322"
+                              stroke="#00F090"
                               strokeWidth="1"
                             />
                             <text
                               x={x}
                               y={yLow + 27}
                               textAnchor="middle"
-                              fill="#047857"
+                              fill="#00F090"
                               fontSize="8.5"
                               fontFamily="monospace"
                               fontWeight="700"
@@ -486,7 +486,7 @@ export const ProductRevealSection: React.FC = () => {
                               y1={getY(67400)}
                               x2={x + 60}
                               y2={getY(67400)}
-                              stroke="#1D4ED8"
+                              stroke="#00E5FF"
                               strokeWidth="1.5"
                               strokeDasharray="4 3"
                             />
@@ -496,15 +496,15 @@ export const ProductRevealSection: React.FC = () => {
                               width="68"
                               height="15"
                               rx="3"
-                              fill="#FFFFFF"
-                              stroke="#1D4ED8"
+                              fill="#0A1322"
+                              stroke="#00E5FF"
                               strokeWidth="1"
                             />
                             <text
                               x={x}
                               y={getY(67400) - 7}
                               textAnchor="middle"
-                              fill="#1D4ED8"
+                              fill="#00E5FF"
                               fontSize="8.5"
                               fontFamily="monospace"
                               fontWeight="700"
@@ -529,26 +529,26 @@ export const ProductRevealSection: React.FC = () => {
                   return (
                     <g key={idx}>
                       <rect
-                        x={x - 56}
+                        x={x - 62}
                         y={y + 16}
-                        width="112"
+                        width="124"
                         height="22"
                         rx="4"
-                        fill="#FFFFFF"
-                        stroke="#059669"
+                        fill="#0A1624"
+                        stroke="#00F090"
                         strokeWidth="1.5"
-                        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.06))"
+                        filter="drop-shadow(0 2px 8px rgba(0,240,144,0.3))"
                       />
                       <text
                         x={x}
                         y={y + 30}
                         textAnchor="middle"
-                        fill="#059669"
+                        fill="#00F090"
                         fontSize="9"
                         fontWeight="700"
                         fontFamily="monospace"
                       >
-                        CONFIRMATION
+                        CONFIRMATION BUY ✦
                       </text>
 
                       {/* Invalidation Level */}
@@ -557,14 +557,14 @@ export const ProductRevealSection: React.FC = () => {
                         y1={getY(sig.invalidation)}
                         x2={chartWidth - 58}
                         y2={getY(sig.invalidation)}
-                        stroke="#DC2626"
+                        stroke="#FF3B69"
                         strokeWidth="1.5"
                         strokeDasharray="4 2"
                       />
                       <text
                         x={chartWidth - 52}
                         y={getY(sig.invalidation) + 4}
-                        fill="#DC2626"
+                        fill="#FF3B69"
                         fontSize="8.5"
                         fontWeight="700"
                         fontFamily="monospace"
@@ -581,7 +581,7 @@ export const ProductRevealSection: React.FC = () => {
                 y1="0"
                 x2={chartWidth - 58}
                 y2={chartHeight - 20}
-                stroke="rgba(15, 23, 42, 0.08)"
+                stroke="rgba(255, 255, 255, 0.08)"
                 strokeWidth="1"
               />
 
@@ -591,7 +591,7 @@ export const ProductRevealSection: React.FC = () => {
                 y1={chartHeight - 20}
                 x2={chartWidth - 58}
                 y2={chartHeight - 20}
-                stroke="rgba(15, 23, 42, 0.08)"
+                stroke="rgba(255, 255, 255, 0.08)"
                 strokeWidth="1"
               />
 
@@ -607,14 +607,14 @@ export const ProductRevealSection: React.FC = () => {
                       y1={chartHeight - 20}
                       x2={x}
                       y2={chartHeight - 15}
-                      stroke="rgba(15, 23, 42, 0.2)"
+                      stroke="rgba(255, 255, 255, 0.2)"
                       strokeWidth="1"
                     />
                     <text
                       x={x}
                       y={chartHeight - 6}
                       textAnchor="middle"
-                      fill="#94A3B8"
+                      fill="#64748B"
                       fontSize="9"
                       fontFamily="monospace"
                     >
@@ -632,7 +632,7 @@ export const ProductRevealSection: React.FC = () => {
                     y1="0"
                     x2={(activeCandleHover + 1) * stepX}
                     y2={chartHeight - 20}
-                    stroke="#1D4ED8"
+                    stroke="#00E5FF"
                     strokeWidth="1.2"
                     strokeDasharray="3 3"
                   />
@@ -641,7 +641,7 @@ export const ProductRevealSection: React.FC = () => {
                     y1={mousePos.y}
                     x2={chartWidth - 58}
                     y2={mousePos.y}
-                    stroke="#1D4ED8"
+                    stroke="#00E5FF"
                     strokeWidth="1"
                     strokeDasharray="3 3"
                   />
@@ -651,13 +651,15 @@ export const ProductRevealSection: React.FC = () => {
                     width="56"
                     height="18"
                     rx="2"
-                    fill="#0F172A"
+                    fill="#0D1322"
+                    stroke="#00E5FF"
+                    strokeWidth="1"
                   />
                   <text
                     x={chartWidth - 30}
                     y={Math.min(Math.max(mousePos.y + 4, 13), chartHeight - 25)}
                     textAnchor="middle"
-                    fill="#FFFFFF"
+                    fill="#00E5FF"
                     fontSize="8.5"
                     fontWeight="700"
                     fontFamily="monospace"
@@ -668,7 +670,7 @@ export const ProductRevealSection: React.FC = () => {
                     cx={(activeCandleHover + 1) * stepX}
                     cy={getY(BTC_15M_CANDLES[activeCandleHover].close)}
                     r="4.5"
-                    fill="#1D4ED8"
+                    fill="#00F090"
                     stroke="#FFFFFF"
                     strokeWidth="1.8"
                   />
@@ -679,16 +681,16 @@ export const ProductRevealSection: React.FC = () => {
           </div>
 
           {/* Bottom Telemetry & Asymmetric Insight Strip */}
-          <div className="border-t border-black/[0.07] bg-slate-50/70 p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="border-t border-white/[0.08] bg-[#0D1322] p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             
             <div className="flex flex-col gap-1 max-w-xl text-left">
-              <div className="text-[11px] font-mono text-brand-blue uppercase tracking-wider font-semibold">
+              <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider font-semibold">
                 Active Lens: {currentMode.label}
               </div>
-              <div className="text-base sm:text-lg font-display font-bold text-slate-900 tracking-tight">
+              <div className="text-base sm:text-lg font-display font-bold text-white tracking-tight">
                 {currentMode.headline}
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                 {currentMode.description}
               </p>
             </div>
@@ -696,24 +698,24 @@ export const ProductRevealSection: React.FC = () => {
             {/* Micro Metrics HUD: Streamlined 2-item summary on mobile <640px, full 4-item grid on >=640px */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
               {currentMode.activeMetrics.slice(0, 2).map((m, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-white border border-black/[0.06] shadow-2xs text-left">
-                  <div className="text-[10px] text-slate-500 uppercase tracking-wider truncate">{m.label}</div>
+                <div key={idx} className="p-3 rounded-xl bg-[#0E1528] border border-white/[0.08] shadow-2xs text-left">
+                  <div className="text-[10px] text-slate-400 uppercase tracking-wider truncate">{m.label}</div>
                   <div className={`font-semibold mt-1 truncate ${
-                    m.state === 'bull' ? 'text-signal-bull' :
-                    m.state === 'accent' ? 'text-brand-blue' :
-                    m.state === 'bear' ? 'text-signal-bear' : 'text-slate-900'
+                    m.state === 'bull' ? 'text-emerald-400' :
+                    m.state === 'accent' ? 'text-cyan-400' :
+                    m.state === 'bear' ? 'text-rose-400' : 'text-white'
                   }`}>
                     {m.value}
                   </div>
                 </div>
               ))}
               {currentMode.activeMetrics.slice(2, 4).map((m, idx) => (
-                <div key={idx + 2} className="hidden sm:block p-3 rounded-xl bg-white border border-black/[0.06] shadow-2xs text-left">
-                  <div className="text-[10px] text-slate-500 uppercase tracking-wider truncate">{m.label}</div>
+                <div key={idx + 2} className="hidden sm:block p-3 rounded-xl bg-[#0E1528] border border-white/[0.08] shadow-2xs text-left">
+                  <div className="text-[10px] text-slate-400 uppercase tracking-wider truncate">{m.label}</div>
                   <div className={`font-semibold mt-1 truncate ${
-                    m.state === 'bull' ? 'text-signal-bull' :
-                    m.state === 'accent' ? 'text-brand-blue' :
-                    m.state === 'bear' ? 'text-signal-bear' : 'text-slate-900'
+                    m.state === 'bull' ? 'text-emerald-400' :
+                    m.state === 'accent' ? 'text-cyan-400' :
+                    m.state === 'bear' ? 'text-rose-400' : 'text-white'
                   }`}>
                     {m.value}
                   </div>
@@ -727,10 +729,10 @@ export const ProductRevealSection: React.FC = () => {
 
         {/* Transition cue into the Layered System */}
         <div className="mt-12 text-center flex flex-col items-center gap-2">
-          <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
+          <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">
             NEXT: SEE HOW ALL 4 LAYERS INTEGRATE AS ONE INSTRUMENT
           </span>
-          <a href="#indicator-system" className="text-brand-blue hover:text-blue-800 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold">
+          <a href="#indicator-system" className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 text-xs font-mono font-semibold">
             <span>Explore The 4-Layer Architecture</span>
             <ArrowRight className="size-3.5" />
           </a>

@@ -128,7 +128,7 @@ export const App: React.FC = () => {
   return (
     <div
       data-component="MarketingPage"
-      className="min-h-screen bg-background text-text-primary selection:bg-brand-blue/20 selection:text-slate-900 flex flex-col justify-between"
+      className="min-h-screen bg-[#05080E] text-white selection:bg-emerald-500/20 selection:text-emerald-300 flex flex-col justify-between"
     >
       {/* Top Persistent Navigation */}
       <Navbar onOpenPortal={() => navigate('/app')} />
@@ -168,44 +168,44 @@ export const App: React.FC = () => {
 
       </main>
 
-      {/* Persistent Landing Footer */}
-      <footer className="border-t border-black/[0.06] bg-[#F1F3F5] py-12 px-5 sm:px-8 text-xs font-mono text-slate-500">
+      {/* Persistent Landing Footer - LuxAlgo Dark Aesthetic */}
+      <footer className="border-t border-white/[0.08] bg-[#080C14] py-14 px-5 sm:px-8 text-xs font-mono text-slate-400">
         <div className="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2">
-              <div className="size-6 rounded-lg bg-brand-blue flex items-center justify-center shadow-xs">
+              <div className="size-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shadow-xs">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                  <line x1="3" y1="20" x2="21" y2="20" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
-                  <line x1="4" y1="20" x2="4" y2="4" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.4" />
-                  <path d="M4 17L11 10L15 14L20 6" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                  <circle cx="20" cy="6" r="2.2" fill="#FFFFFF" />
+                  <line x1="3" y1="20" x2="21" y2="20" stroke="#00F090" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.8" />
+                  <line x1="4" y1="20" x2="4" y2="4" stroke="#00F090" strokeWidth="1.6" strokeLinecap="round" strokeOpacity="0.8" />
+                  <path d="M4 17L11 10L15 14L20 6" stroke="#00F090" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="20" cy="6" r="2.2" fill="#00E5FF" />
                 </svg>
               </div>
-              <span className="font-display font-bold text-slate-900 tracking-[-0.03em] text-sm">
-                Algo<span className="text-slate-600 font-medium">Finex</span>.
+              <span className="font-display font-bold text-white tracking-[-0.03em] text-sm">
+                Algo<span className="text-emerald-400 font-semibold">Finex</span>
               </span>
             </div>
-            <span className="hidden sm:inline text-slate-300">•</span>
-            <div className="text-slate-500 text-[11px]">
-              Multi-Layered Market Structure &amp; 7-Step Trading Workflow
+            <span className="hidden sm:inline text-slate-600">•</span>
+            <div className="text-slate-400 text-[11px]">
+              Multi-Layered Market Structure &amp; Quantitative Indicator Suite
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-[11px]">
-            <a href="#product-experience" className="text-slate-600 hover:text-slate-900 transition-colors">Indicators</a>
-            <a href="#methodology" className="text-slate-600 hover:text-slate-900 transition-colors">Methodology</a>
-            <a href="#session" className="text-slate-600 hover:text-slate-900 transition-colors">3-Day Session</a>
-            <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors">Pricing</a>
-            <a href="#faq" className="text-slate-600 hover:text-slate-900 transition-colors">FAQ</a>
+            <a href="#product-experience" className="text-slate-400 hover:text-white transition-colors">Indicators</a>
+            <a href="#methodology" className="text-slate-400 hover:text-white transition-colors">Methodology</a>
+            <a href="#session" className="text-slate-400 hover:text-white transition-colors">3-Day Session</a>
+            <a href="#pricing" className="text-slate-400 hover:text-white transition-colors">Pricing</a>
+            <a href="#faq" className="text-slate-400 hover:text-white transition-colors">FAQ</a>
             <button 
               onClick={() => navigate('/app')}
-              className="text-brand-blue font-semibold hover:text-blue-800 transition-colors cursor-pointer"
+              className="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors cursor-pointer"
             >
               Launch Workstation
             </button>
           </div>
 
-          <div className="text-slate-400 text-[10px] text-center md:text-right">
+          <div className="text-slate-500 text-[10px] text-center md:text-right">
             © 2026 AlgoFinex. Educational market structure analysis. Not financial advice.
           </div>
         </div>

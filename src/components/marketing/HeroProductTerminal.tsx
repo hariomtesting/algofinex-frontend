@@ -93,60 +93,60 @@ export const HeroProductTerminal: React.FC = () => {
   }).join(' L ');
 
   return (
-    <div className="relative w-full rounded-2xl md:rounded-3xl border border-slate-200/90 bg-white shadow-workstation overflow-hidden transition-all duration-300">
+    <div className="relative w-full rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#0A0E1A] shadow-[0_25px_80px_rgba(0,0,0,0.85)] overflow-hidden transition-all duration-300">
       
-      {/* Terminal Title Bar */}
-      <div className="flex flex-wrap items-center justify-between border-b border-slate-200/80 bg-slate-50/80 px-4 md:px-6 py-3 gap-3">
+      {/* Terminal Title Bar (LuxAlgo Vela Header) */}
+      <div className="flex flex-wrap items-center justify-between border-b border-white/[0.08] bg-[#0D1322] px-4 md:px-6 py-3 gap-3">
         
         {/* Left Window Affordances & Symbol Selector */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
-            <div className="size-2.5 rounded-full bg-slate-300" />
-            <div className="size-2.5 rounded-full bg-slate-300" />
-            <div className="size-2.5 rounded-full bg-slate-300" />
+            <div className="size-2.5 rounded-full bg-[#FF5F56]/80" />
+            <div className="size-2.5 rounded-full bg-[#FFBD2E]/80" />
+            <div className="size-2.5 rounded-full bg-[#27C93F]/80" />
           </div>
 
-          <div className="h-4 w-px bg-slate-200 hidden sm:block" />
+          <div className="h-4 w-px bg-white/10 hidden sm:block" />
 
           {/* Instrument Selector Pill */}
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono shadow-xs">
-            <span className="font-bold text-slate-900 tracking-wide">BTC/USDT</span>
-            <span className="text-slate-500 text-[10px]">SPOT/PERP</span>
-            <span className="text-emerald-600 text-[11px] font-bold flex items-center">
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/10 text-xs font-mono shadow-xs">
+            <span className="font-bold text-white tracking-wide">BTC/USDT</span>
+            <span className="text-slate-400 text-[10px]">SPOT &middot; PERP</span>
+            <span className="text-emerald-400 text-[11px] font-bold flex items-center shadow-[0_0_10px_rgba(0,240,144,0.3)]">
               $68,220.50
             </span>
           </div>
 
           {/* Timeframe Badges */}
-          <div className="hidden md:flex items-center gap-1 text-[11px] font-mono text-slate-600">
-            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">1m</button>
-            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">5m</button>
-            <button className="px-2 py-0.5 rounded bg-blue-50 text-brand-blue font-bold border border-blue-200/70">15m</button>
-            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">1H</button>
-            <button className="px-2 py-0.5 rounded hover:text-slate-900 transition-colors">4H</button>
+          <div className="hidden md:flex items-center gap-1 text-[11px] font-mono text-slate-400">
+            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">1m</button>
+            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">5m</button>
+            <button className="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-bold border border-emerald-500/30 shadow-[0_0_8px_rgba(0,240,144,0.2)]">15m</button>
+            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">1H</button>
+            <button className="px-2 py-0.5 rounded hover:text-white transition-colors">4H</button>
           </div>
         </div>
 
         {/* Center Indicator Mode Selector with Touch Target Support */}
-        <div className="flex items-center p-1 rounded-lg bg-slate-200/70 border border-slate-300/60 gap-1 text-xs w-full sm:w-auto justify-between sm:justify-start">
+        <div className="flex items-center p-1 rounded-lg bg-black/40 border border-white/10 gap-1 text-xs w-full sm:w-auto justify-between sm:justify-start">
           <button
             onClick={() => setActiveMode('TREND')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[44px] sm:min-h-[36px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[40px] sm:min-h-[32px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
               activeMode === 'TREND'
-                ? 'bg-brand-blue text-white shadow-xs font-semibold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-emerald-400 text-slate-950 font-bold shadow-[0_0_12px_rgba(0,240,144,0.35)]'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <TrendingUp className="size-3.5 shrink-0" />
-            <span><span className="sm:hidden">Trend</span><span className="hidden sm:inline">Trend Context</span></span>
+            <span><span className="sm:hidden">Trend</span><span className="hidden sm:inline">Trend Corridor</span></span>
           </button>
 
           <button
             onClick={() => setActiveMode('LIQUIDITY')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[44px] sm:min-h-[36px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[40px] sm:min-h-[32px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
               activeMode === 'LIQUIDITY'
-                ? 'bg-brand-blue text-white shadow-xs font-semibold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-cyan-400 text-slate-950 font-bold shadow-[0_0_12px_rgba(0,229,255,0.35)]'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <Compass className="size-3.5 shrink-0" />
@@ -155,10 +155,10 @@ export const HeroProductTerminal: React.FC = () => {
 
           <button
             onClick={() => setActiveMode('STRUCTURE')}
-            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[44px] sm:min-h-[36px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`flex-1 sm:flex-initial px-2.5 sm:px-3 min-h-[40px] sm:min-h-[32px] rounded-md font-medium transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer ${
               activeMode === 'STRUCTURE'
-                ? 'bg-brand-blue text-white shadow-xs font-semibold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-purple-400 text-slate-950 font-bold shadow-[0_0_12px_rgba(168,85,247,0.35)]'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <Layers className="size-3.5 shrink-0" />
@@ -168,83 +168,83 @@ export const HeroProductTerminal: React.FC = () => {
 
         {/* Right Status Tag */}
         <div className="hidden lg:flex items-center gap-2">
-          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-[11px] font-mono text-slate-700 shadow-2xs">
-            <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-semibold text-slate-900">Synchronized</span>
-            <span className="text-slate-300">•</span>
-            <span className="text-slate-500">v4.2</span>
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[11px] font-mono text-slate-300">
+            <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_#00F090]" />
+            <span className="font-semibold text-white">Live Engine</span>
+            <span className="text-white/20">•</span>
+            <span className="text-emerald-400 font-mono">v4.2 PRO</span>
           </div>
         </div>
       </div>
 
-      {/* Layer Toggles Secondary Ribbon (Hidden on mobile <640px to eliminate chrome clutter) */}
-      <div className="hidden sm:flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200/70 bg-slate-50/40 px-4 md:px-6 py-2 text-xs font-mono text-slate-600 gap-2">
+      {/* Layer Toggles Secondary Ribbon */}
+      <div className="hidden sm:flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/[0.06] bg-[#070B14] px-4 md:px-6 py-2 text-xs font-mono text-slate-400 gap-2">
         <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
-          <span className="text-[10px] sm:text-[11px] text-slate-500 tracking-wide flex items-center gap-1 font-medium">
-            <Eye className="size-3 text-slate-400" />
+          <span className="text-[10px] sm:text-[11px] text-slate-400 tracking-wide flex items-center gap-1 font-medium">
+            <Eye className="size-3 text-emerald-400" />
             Active Lenses:
           </span>
           
           <button
             onClick={() => setShowEMA(!showEMA)}
-            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
-              showEMA ? 'text-brand-blue bg-blue-50 border border-blue-200' : 'text-slate-400 hover:text-slate-600'
+            className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
+              showEMA ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30' : 'text-slate-500 hover:text-slate-300'
             }`}
           >
-            <span className={`size-1.5 rounded-full ${showEMA ? 'bg-brand-blue' : 'bg-slate-300'}`} />
+            <span className={`size-1.5 rounded-full ${showEMA ? 'bg-cyan-400 shadow-[0_0_6px_#00E5FF]' : 'bg-slate-600'}`} />
             Trend Corridor
           </button>
 
           <button
             onClick={() => setShowOrderBlocks(!showOrderBlocks)}
-            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
-              showOrderBlocks ? 'text-emerald-700 bg-emerald-50 border border-emerald-200' : 'text-slate-400 hover:text-slate-600'
+            className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
+              showOrderBlocks ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/30' : 'text-slate-500 hover:text-slate-300'
             }`}
           >
-            <span className={`size-1.5 rounded-full ${showOrderBlocks ? 'bg-emerald-600' : 'bg-slate-300'}`} />
-            Liquidity Zones
+            <span className={`size-1.5 rounded-full ${showOrderBlocks ? 'bg-emerald-400 shadow-[0_0_6px_#00F090]' : 'bg-slate-600'}`} />
+            Liquidity Zones (OB)
           </button>
 
           <button
             onClick={() => setShowSignals(!showSignals)}
-            className={`flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
-              showSignals ? 'text-slate-800 bg-amber-50 border border-amber-200' : 'text-slate-400 hover:text-slate-600'
+            className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] transition-colors cursor-pointer ${
+              showSignals ? 'text-amber-400 bg-amber-500/10 border border-amber-500/30' : 'text-slate-500 hover:text-slate-300'
             }`}
           >
-            <span className={`size-1.5 rounded-full ${showSignals ? 'bg-amber-500' : 'bg-slate-300'}`} />
-            Signal Confirmation
+            <span className={`size-1.5 rounded-full ${showSignals ? 'bg-amber-400 shadow-[0_0_6px_#F59E0B]' : 'bg-slate-600'}`} />
+            Confirmation Signals
           </button>
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-500">
-          <span>Non-repainting bar-close logic</span>
-          <span className="text-slate-300">•</span>
-          <span className="text-slate-700">Multi-Timeframe Aligned</span>
+        <div className="hidden sm:flex items-center gap-2 text-[11px] text-slate-400 font-mono">
+          <span className="text-emerald-400/90 font-medium">Non-repainting bar-close</span>
+          <span className="text-white/20">•</span>
+          <span className="text-slate-300">Multi-Timeframe Aligned</span>
         </div>
       </div>
 
       {/* Main Terminal Body Grid: Chart Area (Left) + Intelligence Strip (Right) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[420px] w-full min-w-0">
+      <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[420px] w-full min-w-0 bg-[#060A12]">
         
         {/* Left Chart Canvas (8 cols on lg) */}
-        <div className="lg:col-span-8 p-3 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200/80 relative overflow-hidden bg-white w-full min-w-0">
+        <div className="lg:col-span-8 p-3 sm:p-6 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08] relative overflow-hidden bg-[#060A12] w-full min-w-0">
           
           {/* Active Candle Inspection Bar */}
           {(() => {
             const inspectedCandle = activeCandleHover !== null ? BTC_15M_CANDLES[activeCandleHover] : BTC_15M_CANDLES[BTC_15M_CANDLES.length - 1];
             return (
-              <div className="flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono mb-2 z-10 px-2.5 py-1.5 rounded-md bg-slate-50 border border-slate-200/80">
+              <div className="flex flex-wrap items-center justify-between text-[10px] sm:text-[11px] font-mono mb-2 z-10 px-2.5 py-1.5 rounded-md bg-[#0D1322] border border-white/[0.08]">
                 <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                  <span className="text-slate-500">Bar: <span className="text-slate-900 font-semibold">{inspectedCandle.time}</span></span>
-                  <span className="text-slate-500">O: <span className="text-slate-900 font-semibold">{inspectedCandle.open.toLocaleString()}</span></span>
-                  <span className="text-slate-500">H: <span className="text-emerald-700 font-bold">{inspectedCandle.high.toLocaleString()}</span></span>
-                  <span className="text-slate-500">L: <span className="text-red-700 font-bold">{inspectedCandle.low.toLocaleString()}</span></span>
-                  <span className="text-slate-500">C: <span className={inspectedCandle.isBullish ? 'text-emerald-700 font-bold' : 'text-red-700 font-bold'}>{inspectedCandle.close.toLocaleString()}</span></span>
-                  <span className="text-slate-500">Vol: <span className="text-brand-blue font-semibold">{inspectedCandle.volume.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Bar: <span className="text-white font-semibold">{inspectedCandle.time}</span></span>
+                  <span className="text-slate-400">O: <span className="text-white font-semibold">{inspectedCandle.open.toLocaleString()}</span></span>
+                  <span className="text-slate-400">H: <span className="text-emerald-400 font-bold">{inspectedCandle.high.toLocaleString()}</span></span>
+                  <span className="text-slate-400">L: <span className="text-rose-400 font-bold">{inspectedCandle.low.toLocaleString()}</span></span>
+                  <span className="text-slate-400">C: <span className={inspectedCandle.isBullish ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}>{inspectedCandle.close.toLocaleString()}</span></span>
+                  <span className="text-slate-400">Vol: <span className="text-cyan-400 font-semibold">{inspectedCandle.volume.toLocaleString()}</span></span>
                 </div>
                 <div className="hidden sm:flex items-center gap-1.5 text-[10px] text-slate-400">
-                  <Crosshair className="size-3" />
-                  <span>Hover to inspect coordinates</span>
+                  <Crosshair className="size-3 text-emerald-400" />
+                  <span>Interactive Scrub</span>
                 </div>
               </div>
             );
@@ -262,14 +262,19 @@ export const HeroProductTerminal: React.FC = () => {
               onTouchEnd={handleMouseLeave}
             >
               <defs>
-                <linearGradient id="cloudGradLight" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.14" />
-                  <stop offset="100%" stopColor="#059669" stopOpacity="0.04" />
+                <linearGradient id="cloudGradDark" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.22" />
+                  <stop offset="100%" stopColor="#00F090" stopOpacity="0.04" />
                 </linearGradient>
 
-                <linearGradient id="demandHatchLight" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#2563EB" stopOpacity="0.08" />
-                  <stop offset="100%" stopColor="#2563EB" stopOpacity="0.02" />
+                <linearGradient id="demandHatchDark" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.14" />
+                  <stop offset="100%" stopColor="#00E5FF" stopOpacity="0.03" />
+                </linearGradient>
+
+                <linearGradient id="supplyHatchDark" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#FF3B69" stopOpacity="0.14" />
+                  <stop offset="100%" stopColor="#FF3B69" stopOpacity="0.03" />
                 </linearGradient>
               </defs>
 
@@ -283,13 +288,13 @@ export const HeroProductTerminal: React.FC = () => {
                       y1={y}
                       x2={chartWidth}
                       y2={y}
-                      stroke="rgba(15, 23, 42, 0.05)"
+                      stroke="rgba(255, 255, 255, 0.05)"
                       strokeDasharray="4 4"
                     />
                     <text
                       x={chartWidth - 52}
                       y={y - 4}
-                      fill="#94A3B8"
+                      fill="#64748B"
                       fontSize="9"
                       fontFamily="monospace"
                     >
@@ -317,8 +322,8 @@ export const HeroProductTerminal: React.FC = () => {
                         y={topY}
                         width={width}
                         height={height}
-                        fill={isDemand ? 'url(#demandHatchLight)' : 'rgba(220, 38, 38, 0.06)'}
-                        stroke={isDemand ? '#2563EB' : '#DC2626'}
+                        fill={isDemand ? 'url(#demandHatchDark)' : 'url(#supplyHatchDark)'}
+                        stroke={isDemand ? '#00E5FF' : '#FF3B69'}
                         strokeWidth="1.2"
                         strokeDasharray="3 3"
                         rx="3"
@@ -326,7 +331,7 @@ export const HeroProductTerminal: React.FC = () => {
                       <text
                         x={startX + 6}
                         y={topY + 14}
-                        fill={isDemand ? '#1D4ED8' : '#B91C1C'}
+                        fill={isDemand ? '#00E5FF' : '#FF3B69'}
                         fontSize="8.5"
                         fontFamily="monospace"
                         fontWeight="700"
@@ -342,27 +347,27 @@ export const HeroProductTerminal: React.FC = () => {
                 <>
                   <path
                     d={`M ${ema21Points} L ${chartWidth - 40},${getY(67700)} L ${stepX},${getY(66200)} Z`}
-                    fill="url(#cloudGradLight)"
+                    fill="url(#cloudGradDark)"
                   />
                   <path
                     d={`M ${ema21Points}`}
                     fill="none"
-                    stroke="#2563EB"
+                    stroke="#00E5FF"
                     strokeWidth="2.2"
                     strokeLinecap="round"
                   />
                   <path
                     d={`M ${ema55Points}`}
                     fill="none"
-                    stroke="#059669"
-                    strokeWidth="1.5"
+                    stroke="#00F090"
+                    strokeWidth="1.6"
                     strokeDasharray="4 2"
-                    strokeOpacity="0.8"
+                    strokeOpacity="0.9"
                   />
                 </>
               )}
 
-              {/* Candlesticks */}
+              {/* Candlesticks (LuxAlgo Confirmation Colors) */}
               {BTC_15M_CANDLES.map((c, i) => {
                 const x = (i + 1) * stepX;
                 const highY = getY(c.high);
@@ -374,7 +379,7 @@ export const HeroProductTerminal: React.FC = () => {
                 const candleWidth = Math.max(stepX * 0.65, 8);
 
                 const isBull = c.isBullish;
-                const color = isBull ? '#059669' : '#DC2626';
+                const color = isBull ? '#00F090' : '#FF3B69';
 
                 return (
                   <g
@@ -415,26 +420,26 @@ export const HeroProductTerminal: React.FC = () => {
                   return (
                     <g key={idx}>
                       <rect
-                        x={x - 52}
+                        x={x - 56}
                         y={y}
-                        width="104"
+                        width="112"
                         height="22"
                         rx="4"
-                        fill="#FFFFFF"
-                        stroke="#059669"
+                        fill="#0A1624"
+                        stroke="#00F090"
                         strokeWidth="1.5"
-                        filter="drop-shadow(0 2px 4px rgba(0,0,0,0.06))"
+                        filter="drop-shadow(0 2px 8px rgba(0,240,144,0.25))"
                       />
                       <text
                         x={x}
                         y={y + 14}
                         textAnchor="middle"
-                        fill="#047857"
+                        fill="#00F090"
                         fontSize="8.5"
                         fontWeight="700"
                         fontFamily="monospace"
                       >
-                        CONFIRMATION
+                        CONFIRMATION BUY ✦
                       </text>
 
                       {idx === 0 && (
@@ -444,14 +449,14 @@ export const HeroProductTerminal: React.FC = () => {
                             y1={getY(sig.invalidation)}
                             x2={chartWidth - 55}
                             y2={getY(sig.invalidation)}
-                            stroke="#DC2626"
+                            stroke="#FF3B69"
                             strokeWidth="1.2"
                             strokeDasharray="3 3"
                           />
                           <text
                             x={chartWidth - 52}
                             y={getY(sig.invalidation) + 3}
-                            fill="#DC2626"
+                            fill="#FF3B69"
                             fontSize="8"
                             fontFamily="monospace"
                             fontWeight="700"
@@ -470,7 +475,7 @@ export const HeroProductTerminal: React.FC = () => {
                 y1="0"
                 x2={chartWidth - 58}
                 y2={chartHeight - 20}
-                stroke="rgba(15, 23, 42, 0.08)"
+                stroke="rgba(255, 255, 255, 0.08)"
                 strokeWidth="1"
               />
 
@@ -480,7 +485,7 @@ export const HeroProductTerminal: React.FC = () => {
                 y1={chartHeight - 20}
                 x2={chartWidth - 58}
                 y2={chartHeight - 20}
-                stroke="rgba(15, 23, 42, 0.08)"
+                stroke="rgba(255, 255, 255, 0.08)"
                 strokeWidth="1"
               />
 
@@ -496,14 +501,14 @@ export const HeroProductTerminal: React.FC = () => {
                       y1={chartHeight - 20}
                       x2={x}
                       y2={chartHeight - 15}
-                      stroke="rgba(15, 23, 42, 0.2)"
+                      stroke="rgba(255, 255, 255, 0.2)"
                       strokeWidth="1"
                     />
                     <text
                       x={x}
                       y={chartHeight - 6}
                       textAnchor="middle"
-                      fill="#94A3B8"
+                      fill="#64748B"
                       fontSize="9"
                       fontFamily="monospace"
                     >
@@ -519,7 +524,7 @@ export const HeroProductTerminal: React.FC = () => {
                 y1={getY(68220)}
                 x2={chartWidth - 58}
                 y2={getY(68220)}
-                stroke="#1D4ED8"
+                stroke="#00F090"
                 strokeWidth="1.5"
                 strokeDasharray="5 3"
               />
@@ -529,15 +534,15 @@ export const HeroProductTerminal: React.FC = () => {
                 width="56"
                 height="20"
                 rx="3"
-                fill="#1D4ED8"
+                fill="#00F090"
               />
               <text
                 x={chartWidth - 30}
                 y={getY(68220) + 4}
                 textAnchor="middle"
-                fill="#FFFFFF"
+                fill="#05080E"
                 fontSize="9"
-                fontWeight="700"
+                fontWeight="800"
                 fontFamily="monospace"
               >
                 68,220.5
@@ -552,7 +557,7 @@ export const HeroProductTerminal: React.FC = () => {
                     y1="0"
                     x2={(activeCandleHover + 1) * stepX}
                     y2={chartHeight - 20}
-                    stroke="#1D4ED8"
+                    stroke="#00E5FF"
                     strokeWidth="1.2"
                     strokeDasharray="3 3"
                   />
@@ -562,7 +567,7 @@ export const HeroProductTerminal: React.FC = () => {
                     y1={mousePos.y}
                     x2={chartWidth - 58}
                     y2={mousePos.y}
-                    stroke="#1D4ED8"
+                    stroke="#00E5FF"
                     strokeWidth="1"
                     strokeDasharray="3 3"
                   />
@@ -573,13 +578,15 @@ export const HeroProductTerminal: React.FC = () => {
                     width="56"
                     height="18"
                     rx="2"
-                    fill="#0F172A"
+                    fill="#0D1322"
+                    stroke="#00E5FF"
+                    strokeWidth="1"
                   />
                   <text
                     x={chartWidth - 30}
                     y={Math.min(Math.max(mousePos.y + 4, 13), chartHeight - 25)}
                     textAnchor="middle"
-                    fill="#FFFFFF"
+                    fill="#00E5FF"
                     fontSize="8.5"
                     fontWeight="700"
                     fontFamily="monospace"
@@ -591,7 +598,7 @@ export const HeroProductTerminal: React.FC = () => {
                     cx={(activeCandleHover + 1) * stepX}
                     cy={getY(BTC_15M_CANDLES[activeCandleHover].close)}
                     r="4"
-                    fill="#1D4ED8"
+                    fill="#00F090"
                     stroke="#FFFFFF"
                     strokeWidth="1.5"
                   />
@@ -601,117 +608,117 @@ export const HeroProductTerminal: React.FC = () => {
           </div>
 
           {/* Volume & Market Structure Summary Strip */}
-          <div className="w-full pt-3 mt-1 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-slate-500">
+          <div className="w-full pt-3 mt-1 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono text-slate-400">
             <div className="flex items-center gap-3">
-              <span className="text-slate-700 font-semibold">Structure:</span>
-              <span className="text-emerald-700 font-bold">{indicatorData.marketStructure}</span>
-              <span className="hidden sm:inline text-slate-400">• {indicatorData.trendContext}</span>
+              <span className="text-slate-300 font-semibold">Structure:</span>
+              <span className="text-emerald-400 font-bold">{indicatorData.marketStructure}</span>
+              <span className="hidden sm:inline text-slate-500">• {indicatorData.trendContext}</span>
             </div>
             <div className="flex items-center gap-1.5 text-[10px] text-slate-400">
-              <span className="size-1.5 rounded-full bg-emerald-500" />
-              <span>Real-Time Analytical Canvas</span>
+              <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#00F090]" />
+              <span>Real-Time Analytical Engine</span>
             </div>
           </div>
         </div>
 
         {/* Right Intelligence Strip (4 cols on lg) */}
-        <div className="lg:col-span-4 p-5 md:p-6 bg-slate-50/70 flex flex-col justify-between gap-5">
+        <div className="lg:col-span-4 p-5 md:p-6 bg-[#0A0F1D] flex flex-col justify-between gap-5 border-l border-white/[0.08]">
           
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono text-slate-500 tracking-wide font-medium">
+              <span className="text-xs font-mono text-slate-400 tracking-wide font-medium">
                 Indicator Analysis
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-blue-50 text-brand-blue border border-blue-200">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
                 Active Lens
               </span>
             </div>
 
-            <div className="text-lg md:text-xl font-display font-bold text-slate-900 tracking-tight mb-1">
+            <div className="text-lg md:text-xl font-display font-bold text-white tracking-tight mb-1">
               {indicatorData.marketStructure}
             </div>
 
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Structural mapping showing clean trend support, resting liquidity reclaim levels, and verified bar-close signals.
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Algorithmic mapping showing clean trend support, resting liquidity reclaim levels, and verified bar-close signals.
             </p>
           </div>
 
           {/* Core Indicator Parameters Cards */}
           <div className="flex flex-col gap-2 font-mono text-xs">
             
-            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-[#0E1528] border border-white/[0.08] shadow-xs flex items-center justify-between">
               <div>
                 <span className="text-[10px] text-slate-400 block font-sans">Market Structure</span>
-                <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.marketStructure}</span>
+                <span className="text-white font-bold text-xs mt-0.5 block">{indicatorData.marketStructure}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
                 Validated
               </span>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-[#0E1528] border border-white/[0.08] shadow-xs flex items-center justify-between">
               <div>
                 <span className="text-[10px] text-slate-400 block font-sans">Liquidity State</span>
-                <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.liquidityState}</span>
+                <span className="text-white font-bold text-xs mt-0.5 block">{indicatorData.liquidityState}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-50 text-brand-blue border border-blue-200">
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
                 Swept &amp; Held
               </span>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-between">
+            <div className="p-2.5 rounded-xl bg-[#0E1528] border border-white/[0.08] shadow-xs flex items-center justify-between">
               <div>
                 <span className="text-[10px] text-slate-400 block font-sans">Trend Context</span>
-                <span className="text-slate-900 font-bold text-xs mt-0.5 block">{indicatorData.trendContext}</span>
+                <span className="text-white font-bold text-xs mt-0.5 block">{indicatorData.trendContext}</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-purple-500/15 text-purple-400 border border-purple-500/30">
                 Support
               </span>
             </div>
 
             {/* Multi-Timeframe Alignment */}
-            <div className="p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs">
+            <div className="p-2.5 rounded-xl bg-[#0E1528] border border-white/[0.08] shadow-xs">
               <span className="text-[10px] text-slate-400 block mb-1.5 font-sans">Multi-Timeframe Context</span>
               <div className="grid grid-cols-3 gap-1.5 text-center text-[10px]">
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200/60">
+                <div className="p-1.5 rounded bg-[#070B14] border border-white/[0.06]">
                   <div className="text-slate-400 text-[9px]">4H Macro</div>
-                  <div className="text-emerald-700 font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf4h}</div>
+                  <div className="text-emerald-400 font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf4h}</div>
                 </div>
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200/60">
+                <div className="p-1.5 rounded bg-[#070B14] border border-white/[0.06]">
                   <div className="text-slate-400 text-[9px]">1H Interm.</div>
-                  <div className="text-brand-blue font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf1h}</div>
+                  <div className="text-cyan-400 font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf1h}</div>
                 </div>
-                <div className="p-1.5 rounded bg-slate-50 border border-slate-200/60">
+                <div className="p-1.5 rounded bg-[#070B14] border border-white/[0.06]">
                   <div className="text-slate-400 text-[9px]">15m Entry</div>
-                  <div className="text-emerald-700 font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf15m}</div>
+                  <div className="text-emerald-400 font-bold mt-0.5 truncate">{indicatorData.timeframeAlignment.tf15m}</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Authentic Analytical Telemetry Panel */}
-          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col gap-2.5 font-mono text-[11px]">
-            <div className="flex items-center justify-between text-[10px] text-slate-500 uppercase tracking-wider">
+          <div className="p-3.5 rounded-xl bg-[#070B14] border border-white/[0.08] flex flex-col gap-2.5 font-mono text-[11px]">
+            <div className="flex items-center justify-between text-[10px] text-slate-400 uppercase tracking-wider">
               <span>Operational Regime</span>
-              <span className="text-emerald-700 font-bold flex items-center gap-1">
-                <span className="size-1.5 rounded-full bg-signal-bull" />
+              <span className="text-emerald-400 font-bold flex items-center gap-1">
+                <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#00F090]" />
                 Active
               </span>
             </div>
 
-            <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-black/[0.04]">
-              <span className="text-slate-500">Structural Invalidation:</span>
-              <span className="text-red-700 font-bold font-mono">$66,180.00</span>
+            <div className="flex items-center justify-between p-2 rounded-lg bg-[#0E1528] border border-white/[0.06]">
+              <span className="text-slate-400">Structural Invalidation:</span>
+              <span className="text-rose-400 font-bold font-mono">$66,180.00</span>
             </div>
 
-            <div className="flex items-center justify-between p-2 rounded-lg bg-white border border-black/[0.04]">
-              <span className="text-slate-500">Resting Liquidity Pool:</span>
-              <span className="text-brand-blue font-bold font-mono">$68,900.00</span>
+            <div className="flex items-center justify-between p-2 rounded-lg bg-[#0E1528] border border-white/[0.06]">
+              <span className="text-slate-400">Resting Liquidity Pool:</span>
+              <span className="text-cyan-400 font-bold font-mono">$68,900.00</span>
             </div>
 
-            <div className="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-black/[0.04]">
-              <span>Pine Script Engine v4.2</span>
-              <span className="text-slate-700 font-medium">Bar-Close Only</span>
+            <div className="text-[10px] text-slate-400 pt-1 flex items-center justify-between border-t border-white/[0.06]">
+              <span>Pine Script &amp; Vela Engine</span>
+              <span className="text-emerald-400 font-medium">Bar-Close Only</span>
             </div>
           </div>
 
@@ -719,12 +726,12 @@ export const HeroProductTerminal: React.FC = () => {
       </div>
 
       {/* Terminal Footer */}
-      <div className="border-t border-slate-200/80 bg-slate-50/70 px-4 md:px-6 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono text-slate-500 w-full min-w-0">
+      <div className="border-t border-white/[0.08] bg-[#070B14] px-4 md:px-6 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono text-slate-400 w-full min-w-0">
         <div className="flex items-center gap-2 text-center sm:text-left flex-wrap justify-center sm:justify-start">
-          <Shield className="size-3 text-brand-blue shrink-0" />
-          <span className="text-[9px] sm:text-[10px] tracking-tight font-medium">ALGOFINEX INDICATOR SUITE • NON-REPAINTING STRUCTURE &amp; TREND ANALYSIS</span>
+          <Shield className="size-3 text-emerald-400 shrink-0" />
+          <span className="text-[9px] sm:text-[10px] tracking-tight font-medium text-slate-300">ALGOFINEX INDICATOR SUITE • NON-REPAINTING STRUCTURE &amp; TREND ANALYSIS</span>
         </div>
-        <div className="text-slate-400 text-[9px] sm:text-[10px] text-center sm:text-right">
+        <div className="text-slate-500 text-[9px] sm:text-[10px] text-center sm:text-right">
           Illustrative product demonstration. Indicators provide market analysis and are not financial advice.
         </div>
       </div>

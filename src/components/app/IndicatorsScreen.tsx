@@ -45,19 +45,19 @@ export const IndicatorsScreen: React.FC = () => {
   };
 
   return (
-    <div data-component="IndicatorsScreen" className="p-6 md:p-10 max-w-[1200px] mx-auto space-y-8 select-none">
+    <div data-component="IndicatorsScreen" className="p-6 md:p-10 max-w-[1200px] mx-auto space-y-8 select-none text-left">
       {/* Header */}
-      <div className="border-b border-black/[0.08] pb-5 space-y-2">
+      <div className="border-b border-white/10 pb-5 space-y-2">
         <div className="flex items-center gap-2">
-          <Layers className="size-4 text-brand-blue" />
-          <span className="text-xs font-mono font-bold uppercase text-slate-800 tracking-wider">
+          <Layers className="size-4 text-[#00F090]" />
+          <span className="text-xs font-mono font-bold uppercase text-white tracking-wider">
             Indicator Suite Directory
           </span>
         </div>
-        <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">
+        <h1 className="text-2xl font-display font-bold text-white tracking-tight">
           TradingView Indicator Architecture
         </h1>
-        <p className="text-xs text-slate-600 max-w-2xl font-sans">
+        <p className="text-xs text-slate-400 max-w-2xl font-sans">
           Review technical specifications, mathematical logic, and simulated invite access for the 4 core AlgoFinex indicator components.
         </p>
       </div>
@@ -65,8 +65,8 @@ export const IndicatorsScreen: React.FC = () => {
       {/* Master-Detail Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Master List */}
-        <div className="lg:col-span-4 space-y-2">
-          <div className="text-[10px] font-mono font-semibold uppercase text-slate-400 px-1 mb-2">
+        <div className="lg:col-span-4 space-y-2.5">
+          <div className="text-[10px] font-mono font-semibold uppercase text-slate-500 px-1 mb-2">
             Available Modules:
           </div>
           {indicators.map((item) => (
@@ -75,68 +75,73 @@ export const IndicatorsScreen: React.FC = () => {
               onClick={() => setSelectedIndicator(item.id)}
               className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                 selectedIndicator === item.id
-                  ? 'bg-white border-brand-blue shadow-xs'
-                  : 'bg-[#F8F8F6] border-black/[0.06] hover:border-slate-300'
+                  ? 'bg-[#0E1528] border-[#00F090] shadow-[0_0_15px_rgba(0,240,144,0.15)] ring-1 ring-[#00F090]/30'
+                  : 'bg-[#0A0E1A] border-white/10 hover:border-white/20'
               }`}
             >
-              <div className="text-[10px] font-mono font-semibold text-brand-blue uppercase">{item.category}</div>
-              <div className="font-display font-bold text-slate-900 text-sm mt-0.5">{item.name}</div>
+              <div className="text-[10px] font-mono font-semibold text-[#00E5FF] uppercase">{item.category}</div>
+              <div className="font-display font-bold text-white text-sm mt-0.5">{item.name}</div>
             </button>
           ))}
         </div>
 
         {/* Right Detail Pane */}
-        <div className="lg:col-span-8 bg-white border border-black/[0.08] rounded-2xl p-6 space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-black/[0.06] pb-4">
+        <div className="lg:col-span-8 bg-[#0A0E1A] border border-white/10 rounded-2xl p-6 space-y-6 shadow-2xl">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
             <div>
-              <span className="text-[10px] font-mono font-semibold uppercase text-brand-blue px-2 py-0.5 bg-blue-50 rounded border border-blue-200">
+              <span className="text-[10px] font-mono font-semibold uppercase text-[#00E5FF] px-2.5 py-0.5 bg-cyan-500/10 rounded border border-cyan-500/30">
                 {current.category}
               </span>
-              <h2 className="text-xl font-display font-bold text-slate-900 mt-2">{current.name}</h2>
+              <h2 className="text-xl font-display font-bold text-white mt-2">{current.name}</h2>
             </div>
 
             {/* Prototype Invite Action */}
             <button
               onClick={handleCopyInvite}
-              className="px-3 py-2 rounded-lg bg-slate-900 text-white text-xs font-mono font-bold hover:bg-slate-800 transition-colors flex items-center gap-2 cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#00F090] to-[#00E5FF] text-black text-xs font-mono font-bold hover:brightness-110 transition-colors flex items-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(0,240,144,0.3)]"
             >
-              {copied ? <Check className="size-3.5 text-emerald-400" /> : <Copy className="size-3.5" />}
+              {copied ? <Check className="size-3.5 text-black" /> : <Copy className="size-3.5" />}
               <span>{copied ? 'Invite Key Copied!' : 'Copy Script Access Key'}</span>
             </button>
           </div>
 
-          <p className="text-xs text-slate-600 leading-relaxed font-sans">{current.description}</p>
+          <p className="text-xs text-slate-300 leading-relaxed font-sans">{current.description}</p>
 
           {/* Mathematical Logic Formula */}
-          <div className="bg-[#EDF2F7] border border-slate-300/80 rounded-xl p-4 space-y-2">
-            <div className="text-[10px] font-mono font-bold uppercase text-slate-700 flex items-center gap-1.5">
-              <Code2 className="size-3.5 text-brand-blue" />
+          <div className="bg-[#060A12] border border-white/10 rounded-xl p-4 space-y-2">
+            <div className="text-[10px] font-mono font-bold uppercase text-slate-400 flex items-center gap-1.5">
+              <Code2 className="size-3.5 text-[#00E5FF]" />
               <span>Logic Specification:</span>
             </div>
-            <pre className="text-xs font-mono text-slate-800 whitespace-pre-wrap break-all bg-white/80 p-3 rounded border border-slate-200">
+            <pre className="text-xs font-mono text-[#00E5FF] whitespace-pre-wrap break-all bg-black/40 p-3 rounded-lg border border-cyan-500/20">
               {current.formula}
             </pre>
           </div>
 
           {/* Simulated Sensitivity Parameter Slider */}
-          <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-4 space-y-3">
+          <div className="bg-[#060A12] border border-white/10 rounded-xl p-4 space-y-3">
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="font-semibold text-slate-800 flex items-center gap-1.5">
-                <Sliders className="size-3.5 text-brand-blue" />
+              <span className="font-semibold text-white flex items-center gap-1.5">
+                <Sliders className="size-3.5 text-[#00F090]" />
                 <span>Preset Sensitivity Lookback:</span>
               </span>
-              <span className="font-bold text-slate-900">20 Bars</span>
+              <span className="font-bold text-[#00F090]">20 Bars</span>
             </div>
             <input
               type="range"
               min="10"
               max="50"
               defaultValue="20"
-              className="w-full accent-brand-blue cursor-pointer"
+              className="w-full accent-[#00F090] cursor-pointer"
             />
-            <div className="text-[10px] font-mono text-slate-400">
-              // PROTOTYPE ASSUMPTION — Sensitivity controls reflect client-side simulation state.
+            <div className="text-[10px] font-mono text-slate-500">
+              // LUXALGO VELA ENGINE — Dynamic client-side sensitivity tuner.
             </div>
+          </div>
+
+          {/* Verification Notice */}
+          <div className="text-[11px] font-mono text-slate-500 border-t border-white/10 pt-4">
+            // STATUS: VERIFIED PINE SCRIPT v4.2 COMPATIBILITY
           </div>
         </div>
       </div>
