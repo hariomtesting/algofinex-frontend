@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /app
+Allow: /app/workspace
+Allow: /app/indicators
+Allow: /app/session
+Allow: /app/access
+
+Sitemap: https://algofinex-frontend.pages.dev/sitemap.xml

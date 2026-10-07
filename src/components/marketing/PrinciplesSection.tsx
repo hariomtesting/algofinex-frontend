@@ -45,7 +45,7 @@ export const PrinciplesSection: React.FC = () => {
   ];
 
   return (
-    <section id="principles" className="relative py-16 sm:py-28 lg:py-40 bg-[#05080E] border-t border-white/10 overflow-hidden">
+    <section id="principles" className="relative py-14 sm:py-18 lg:py-20 bg-[#05080E] border-t border-white/10 overflow-hidden">
       
       {/* Editorial Atmospheric Glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

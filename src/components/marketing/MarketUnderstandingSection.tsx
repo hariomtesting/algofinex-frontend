@@ -60,7 +60,7 @@ export const MarketUnderstandingSection: React.FC = () => {
   const current = steps[activeStep];
 
   return (
-    <section id="understanding" className="relative py-24 sm:py-32 lg:py-40 bg-[#05080E] border-t border-white/[0.08] overflow-hidden">
+    <section id="understanding" className="relative py-14 sm:py-18 lg:py-20 bg-[#05080E] border-t border-white/[0.08] overflow-hidden">
       {/* Editorial Ambient Light */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] opacity-60" />

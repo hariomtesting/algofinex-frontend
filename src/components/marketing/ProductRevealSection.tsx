@@ -96,7 +96,7 @@ export const ProductRevealSection: React.FC = () => {
   ];
 
   return (
-    <section id="product-experience" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#080C14] border-t border-white/[0.08]">
+    <section id="product-experience" className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-[#080C14] border-t border-white/[0.08]">
       
       {/* Subtle Analytical Atmospheric Lighting */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

@@ -73,7 +73,7 @@ export const PrototypePricingSection: React.FC = () => {
   };
 
   return (
-    <section id="pricing" className="relative py-28 sm:py-36 lg:py-44 bg-[#05080E] border-t border-white/10 overflow-hidden">
+    <section id="pricing" className="relative py-14 sm:py-18 lg:py-20 bg-[#05080E] border-t border-white/10 overflow-hidden">
       
       {/* Editorial Ambient Backing */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

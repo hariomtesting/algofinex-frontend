@@ -44,7 +44,7 @@ export const IndicatorSystemSection: React.FC = () => {
   const isConfirmationVisible = activeLayer === 'all' || activeLayer === 'confirmation';
 
   return (
-    <section id="methodology" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#080C14] border-t border-white/[0.08] bg-blueprint-grid">
+    <section id="methodology" className="relative py-14 sm:py-18 lg:py-20 overflow-hidden bg-[#080C14] border-t border-white/[0.08] bg-blueprint-grid">
       
       {/* Anchor for alternate nav link */}
       <span id="indicator-system" className="absolute -top-20" />

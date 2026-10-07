@@ -61,7 +61,7 @@ export const SessionSection: React.FC = () => {
   const currentDayData = daysData[activeDay - 1];
 
   return (
-    <section id="session" className="relative py-28 sm:py-36 lg:py-44 overflow-hidden bg-[#060A12] border-t border-white/10">
+    <section id="session" className="relative py-14 sm:py-18 lg:py-20 overflow-hidden bg-[#060A12] border-t border-white/10">
       
       {/* Matte LuxAlgo Dark Ambience */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

@@ -16,7 +16,7 @@ export const ClosingCtaSection: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 sm:py-36 lg:py-48 bg-[#05080E] border-t border-white/10 overflow-hidden text-center">
+    <section className="relative py-16 sm:py-20 lg:py-24 bg-[#05080E] border-t border-white/10 overflow-hidden text-center">
       
       {/* Directional Atmospheric Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
