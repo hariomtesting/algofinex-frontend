@@ -2,6 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { HeroProductTerminal } from './HeroProductTerminal';
 import { ChevronRight, BarChart3 } from 'lucide-react';
+import { Squares } from '../ui/Squares';
+import { DecryptedText } from '../ui/DecryptedText';
+import { ShinyText } from '../ui/ShinyText';
+import { CountUp } from '../ui/CountUp';
 
 export const Hero: React.FC = () => {
   const scrollToWorkstation = () => {
@@ -17,12 +21,21 @@ export const Hero: React.FC = () => {
       aria-label="AlgoFinex Platform Introduction"
       className="relative pt-20 sm:pt-24 lg:pt-24 xl:pt-28 pb-10 sm:pb-14 lg:pb-16 overflow-hidden bg-[#05080E] border-b border-white/[0.08]"
     >
-      {/* Editorial Ambient Atmospheric Lighting */}
+      {/* Editorial Ambient Atmospheric Lighting & Living Reactive Squares Grid */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Living interactive drifting grid from React Bits */}
+        <div className="absolute inset-0 opacity-40">
+          <Squares
+            direction="diagonal"
+            speed={0.35}
+            squareSize={46}
+            borderColor="rgba(255, 255, 255, 0.04)"
+            hoverFillColor="rgba(0, 240, 144, 0.12)"
+          />
+        </div>
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-emerald-500/15 via-cyan-500/10 to-transparent rounded-full blur-[130px] opacity-75" />
         <div className="absolute top-1/4 -left-28 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] opacity-40" />
         <div className="absolute top-1/4 -right-28 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] opacity-40" />
-        <div className="absolute inset-0 bg-blueprint-grid opacity-25" />
         <div className="absolute top-1/3 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
       </div>
 
@@ -36,21 +49,27 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="lg:col-span-5 flex flex-col justify-center text-left z-20"
           >
-            {/* Eyebrow Tag */}
+            {/* Eyebrow Tag with DecryptedText and ShinyText */}
             <motion.div
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: 0.05 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 mb-3 sm:mb-4 w-fit shadow-xs backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 mb-3 sm:mb-4 w-fit shadow-xs backdrop-blur-md hover:border-emerald-500/40 transition-colors"
             >
               <span className="size-2 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_#00F090]" />
-              <span className="tracking-wider uppercase font-semibold text-[10px] sm:text-[11px] text-slate-300">
-                ALGOFINEX • QUANT SUITE
-              </span>
+              <DecryptedText
+                text="ALGOFINEX • QUANT SUITE"
+                animateOnHover={true}
+                speed={35}
+                className="tracking-wider uppercase font-semibold text-[10px] sm:text-[11px] text-slate-300"
+              />
               <span className="text-white/20 shrink-0">•</span>
-              <span className="text-emerald-400 text-[11px] font-semibold truncate">
+              <ShinyText
+                className="text-emerald-400 text-[11px] font-semibold truncate"
+                shimmerColor="rgba(0, 240, 144, 0.9)"
+              >
                 30 Days Risk Free
-              </span>
+              </ShinyText>
             </motion.div>
 
             {/* Display Headline */}
@@ -122,8 +141,12 @@ export const Hero: React.FC = () => {
             >
               <div className="flex items-center gap-1.5">
                 <span className="text-emerald-400 font-bold">★★★★★</span>
-                <span className="text-white font-semibold">4.9/5</span>
-                <span className="text-slate-500">(1,400+ traders)</span>
+                <span className="text-white font-semibold">
+                  <CountUp to={4.9} decimals={1} duration={0.8} />/5
+                </span>
+                <span className="text-slate-500">
+                  (<CountUp to={1400} suffix="+" duration={1.2} /> traders)
+                </span>
               </div>
               <span className="text-white/15">•</span>
               <div className="flex items-center gap-1.5 text-slate-300">

@@ -11,6 +11,7 @@ import { PrototypePricingSection } from './components/marketing/PrototypePricing
 import { FaqSection } from './components/marketing/FaqSection';
 import { ClosingCtaSection } from './components/marketing/ClosingCtaSection';
 import { ClientPortalModal } from './components/marketing/ClientPortalModal';
+import { LogoPreloader } from './components/ui/LogoPreloader';
 
 // Phase 4B Application Workstation Components
 import { AppShell, AppTab, Instrument, Timeframe } from './components/app/AppShell';
@@ -94,34 +95,37 @@ export const App: React.FC = () => {
 
   if (appTab) {
     return (
-      <AppShell
-        activeTab={appTab}
-        onTabChange={(tab) => navigate(tabToPath(tab))}
-        selectedInstrument={selectedInstrument}
-        onInstrumentChange={setSelectedInstrument}
-        selectedTimeframe={selectedTimeframe}
-        onTimeframeChange={setSelectedTimeframe}
-        onExitApp={() => navigate('/')}
-      >
-        {appTab === 'overview' && (
-          <OverviewScreen
-            onNavigate={(tab) => navigate(tabToPath(tab))}
-            selectedInstrument={selectedInstrument}
-          />
-        )}
-        {appTab === 'workspace' && (
-          <WorkspaceScreen
-            selectedInstrument={selectedInstrument}
-            selectedTimeframe={selectedTimeframe}
-            activeLens={activeLens}
-            onLensChange={setActiveLens}
-            onSelectInstrument={setSelectedInstrument}
-          />
-        )}
-        {appTab === 'indicators' && <IndicatorsScreen />}
-        {appTab === 'session' && <SessionScreen />}
-        {appTab === 'access' && <AccessScreen />}
-      </AppShell>
+      <>
+        <LogoPreloader />
+        <AppShell
+          activeTab={appTab}
+          onTabChange={(tab) => navigate(tabToPath(tab))}
+          selectedInstrument={selectedInstrument}
+          onInstrumentChange={setSelectedInstrument}
+          selectedTimeframe={selectedTimeframe}
+          onTimeframeChange={setSelectedTimeframe}
+          onExitApp={() => navigate('/')}
+        >
+          {appTab === 'overview' && (
+            <OverviewScreen
+              onNavigate={(tab) => navigate(tabToPath(tab))}
+              selectedInstrument={selectedInstrument}
+            />
+          )}
+          {appTab === 'workspace' && (
+            <WorkspaceScreen
+              selectedInstrument={selectedInstrument}
+              selectedTimeframe={selectedTimeframe}
+              activeLens={activeLens}
+              onLensChange={setActiveLens}
+              onSelectInstrument={setSelectedInstrument}
+            />
+          )}
+          {appTab === 'indicators' && <IndicatorsScreen />}
+          {appTab === 'session' && <SessionScreen />}
+          {appTab === 'access' && <AccessScreen />}
+        </AppShell>
+      </>
     );
   }
 
@@ -131,6 +135,7 @@ export const App: React.FC = () => {
       data-component="MarketingPage"
       className="min-h-screen bg-[#05080E] text-white selection:bg-emerald-500/20 selection:text-emerald-300 flex flex-col justify-between"
     >
+      <LogoPreloader />
       {/* Top Persistent Navigation */}
       <Navbar onOpenPortal={() => navigate('/app')} />
 

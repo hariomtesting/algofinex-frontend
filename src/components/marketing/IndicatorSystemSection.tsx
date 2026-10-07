@@ -6,6 +6,7 @@ import {
   Sliders, 
   ShieldCheck
 } from 'lucide-react';
+import { BorderBeam } from '../ui/BorderBeam';
 
 export const IndicatorSystemSection: React.FC = () => {
   const [activeLayer, setActiveLayer] = useState<'all' | 'structure' | 'liquidity' | 'trend' | 'confirmation'>('all');
@@ -155,43 +156,72 @@ export const IndicatorSystemSection: React.FC = () => {
           </button>
         </div>
 
-        {/* Spatial Architecture Framing: 4 Analytical Dimensions surrounding the Instrument */}
+        {/* Spatial Architecture Framing: 4 Interactive Analytical Dimensions surrounding the Instrument */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
-          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
-            isStructureVisible ? 'bg-[#0E1528] border-cyan-500/40 shadow-xs' : 'bg-white/[0.02] border-white/5 opacity-50'
-          }`}>
-            <span className="text-[10px] font-mono font-bold text-cyan-400 block mb-0.5">DIMENSION 01</span>
+          <button
+            onClick={() => setActiveLayer(activeLayer === 'structure' ? 'all' : 'structure')}
+            className={`p-4 rounded-xl border transition-all duration-200 text-left cursor-pointer group ${
+              isStructureVisible
+                ? 'bg-[#0E1528] border-cyan-500/50 shadow-[0_0_20px_rgba(0,229,255,0.15)] ring-1 ring-cyan-500/30'
+                : 'bg-white/[0.02] border-white/5 opacity-50 hover:opacity-80'
+            }`}
+          >
+            <span className="text-[10px] font-mono font-bold text-cyan-400 block mb-0.5 group-hover:translate-x-0.5 transition-transform">
+              DIMENSION 01 • CLICK TO ISOLATE
+            </span>
             <div className="font-display font-bold text-white text-sm">Market Structure</div>
             <div className="text-[11px] text-slate-400 font-mono mt-1">Swing Pivots &amp; Breaks</div>
-          </div>
+          </button>
 
-          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
-            isLiquidityVisible ? 'bg-[#0E1528] border-purple-500/40 shadow-xs' : 'bg-white/[0.02] border-white/5 opacity-50'
-          }`}>
-            <span className="text-[10px] font-mono font-bold text-purple-400 block mb-0.5">DIMENSION 02</span>
+          <button
+            onClick={() => setActiveLayer(activeLayer === 'liquidity' ? 'all' : 'liquidity')}
+            className={`p-4 rounded-xl border transition-all duration-200 text-left cursor-pointer group ${
+              isLiquidityVisible
+                ? 'bg-[#0E1528] border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.15)] ring-1 ring-purple-500/30'
+                : 'bg-white/[0.02] border-white/5 opacity-50 hover:opacity-80'
+            }`}
+          >
+            <span className="text-[10px] font-mono font-bold text-purple-400 block mb-0.5 group-hover:translate-x-0.5 transition-transform">
+              DIMENSION 02 • CLICK TO ISOLATE
+            </span>
             <div className="font-display font-bold text-white text-sm">Liquidity Pools</div>
             <div className="text-[11px] text-slate-400 font-mono mt-1">Resting Orders &amp; Imbalance</div>
-          </div>
+          </button>
 
-          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
-            isTrendVisible ? 'bg-[#0E1528] border-emerald-500/40 shadow-xs' : 'bg-white/[0.02] border-white/5 opacity-50'
-          }`}>
-            <span className="text-[10px] font-mono font-bold text-emerald-400 block mb-0.5">DIMENSION 03</span>
+          <button
+            onClick={() => setActiveLayer(activeLayer === 'trend' ? 'all' : 'trend')}
+            className={`p-4 rounded-xl border transition-all duration-200 text-left cursor-pointer group ${
+              isTrendVisible
+                ? 'bg-[#0E1528] border-emerald-500/50 shadow-[0_0_20px_rgba(0,240,144,0.15)] ring-1 ring-emerald-500/30'
+                : 'bg-white/[0.02] border-white/5 opacity-50 hover:opacity-80'
+            }`}
+          >
+            <span className="text-[10px] font-mono font-bold text-emerald-400 block mb-0.5 group-hover:translate-x-0.5 transition-transform">
+              DIMENSION 03 • CLICK TO ISOLATE
+            </span>
             <div className="font-display font-bold text-white text-sm">Trend Corridor</div>
             <div className="text-[11px] text-slate-400 font-mono mt-1">Multi-Period Dynamic Ribbon</div>
-          </div>
+          </button>
 
-          <div className={`p-4 rounded-xl border transition-all duration-150 text-left ${
-            isConfirmationVisible ? 'bg-[#0E1528] border-amber-500/40 shadow-xs' : 'bg-white/[0.02] border-white/5 opacity-50'
-          }`}>
-            <span className="text-[10px] font-mono font-bold text-amber-400 block mb-0.5">DIMENSION 04</span>
+          <button
+            onClick={() => setActiveLayer(activeLayer === 'confirmation' ? 'all' : 'confirmation')}
+            className={`p-4 rounded-xl border transition-all duration-200 text-left cursor-pointer group ${
+              isConfirmationVisible
+                ? 'bg-[#0E1528] border-amber-500/50 shadow-[0_0_20px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/30'
+                : 'bg-white/[0.02] border-white/5 opacity-50 hover:opacity-80'
+            }`}
+          >
+            <span className="text-[10px] font-mono font-bold text-amber-400 block mb-0.5 group-hover:translate-x-0.5 transition-transform">
+              DIMENSION 04 • CLICK TO ISOLATE
+            </span>
             <div className="font-display font-bold text-white text-sm">Execution Trigger</div>
             <div className="text-[11px] text-slate-400 font-mono mt-1">Bar-Close Non-Repainting Lock</div>
-          </div>
+          </button>
         </div>
 
         {/* ONE LARGE CENTRAL TRADING INTERFACE (Unboxed Analytical Canvas) */}
         <div className="relative rounded-2xl md:rounded-3xl border border-white/10 bg-[#060A12] shadow-2xl overflow-hidden w-full min-w-0">
+          <BorderBeam duration={14} borderWidth={1.5} colorFrom="#00E5FF" colorTo="#A855F7" />
           
           {/* Top Interface Status Strip */}
           <div className="flex flex-wrap items-center justify-between border-b border-white/10 bg-[#0A0E1A]/90 px-4 sm:px-8 py-3.5 gap-3 text-xs font-mono">

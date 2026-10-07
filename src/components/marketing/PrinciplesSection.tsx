@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, CheckCircle } from 'lucide-react';
+import { SpotlightCard } from '../ui/SpotlightCard';
 
 /**
  * SECTION 05 — WHY ALGOFINEX (FOUNDATIONAL PRINCIPLES)
@@ -118,10 +119,18 @@ export const PrinciplesSection: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Right Column: Minimalist Visual Fragment */}
+                  {/* Right Column: Minimalist Visual Fragment with Living SpotlightCard */}
                   <div className="lg:col-span-4 w-full">
-                    <div className="rounded-2xl border border-white/10 bg-[#0A0E1A]/80 backdrop-blur-md p-5 sm:p-6 shadow-xl">
-                      
+                    <SpotlightCard
+                      spotlightColor={
+                        p.accentColor === '#00F090'
+                          ? 'rgba(0, 240, 144, 0.16)'
+                          : p.accentColor === '#00E5FF'
+                          ? 'rgba(0, 229, 255, 0.16)'
+                          : 'rgba(168, 85, 247, 0.16)'
+                      }
+                      className="bg-[#0A0E1A]/90 border-white/10 rounded-2xl p-5 sm:p-6 shadow-xl"
+                    >
                       {/* Fragment Header */}
                       <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 border-b border-white/10 pb-2.5 mb-3.5">
                         <span className="text-white font-bold uppercase">{p.keyword} SPECIFICATION</span>
@@ -214,7 +223,7 @@ export const PrinciplesSection: React.FC = () => {
                         </div>
                       )}
 
-                    </div>
+                    </SpotlightCard>
                   </div>
 
                 </div>

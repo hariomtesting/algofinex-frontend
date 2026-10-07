@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { CreditCard, Check, ArrowRight, ShieldCheck } from 'lucide-react';
 import { PrototypeCheckoutModal, PlanDetails } from './PrototypeCheckoutModal';
+import { BorderBeam } from '../ui/BorderBeam';
+import { ShinyText } from '../ui/ShinyText';
 
 /**
  * SECTION 07 — PROTOTYPE PRICING
@@ -146,12 +148,15 @@ export const PrototypePricingSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Featured All-Access Master Pass Unit (LuxAlgo Ultimate Plan) */}
-          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-[#00F090] bg-[#0A0E1A] p-6 sm:p-9 shadow-[0_0_40px_rgba(0,240,144,0.15)] ring-1 ring-[#00F090]/30 text-left relative order-first lg:order-last">
+          <div className="lg:col-span-5 flex flex-col justify-between rounded-3xl border-2 border-[#00F090] bg-[#0A0E1A] p-6 sm:p-9 shadow-[0_0_40px_rgba(0,240,144,0.15)] ring-1 ring-[#00F090]/30 text-left relative overflow-hidden order-first lg:order-last group">
+            <BorderBeam duration={8} borderWidth={2} colorFrom="#00F090" colorTo="#00E5FF" />
 
             {/* Top Recommended Tag */}
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#00F090] text-black text-[10px] font-mono font-bold uppercase tracking-wider mb-4 shadow-[0_0_10px_rgba(0,240,144,0.4)]">
-                <span>Recommended System Confluence</span>
+                <ShinyText shimmerColor="rgba(0, 0, 0, 0.4)" duration="2.5s">
+                  Recommended System Confluence
+                </ShinyText>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight">

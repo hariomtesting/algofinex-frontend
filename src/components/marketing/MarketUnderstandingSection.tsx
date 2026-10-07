@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Compass, ArrowRight, CheckCircle2, ShieldAlert } from 'lucide-react';
+import { BorderBeam } from '../ui/BorderBeam';
 
 /**
  * SECTION 03 — WHAT ALGOFINEX ACTUALLY DOES
@@ -131,8 +132,9 @@ export const MarketUnderstandingSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.4 }}
-          className="rounded-3xl border border-white/[0.12] bg-[#0A0E1A] shadow-[0_25px_80px_rgba(0,0,0,0.85)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[520px]"
+          className="relative rounded-3xl border border-white/[0.12] bg-[#0A0E1A] shadow-[0_25px_80px_rgba(0,0,0,0.85)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[520px]"
         >
+          <BorderBeam duration={12} borderWidth={1} colorFrom="rgba(0, 240, 144, 0.4)" colorTo="rgba(0, 229, 255, 0.4)" />
           
           {/* Left Column: Editorial Explanation & Deliverables */}
           <div className="lg:col-span-5 p-6 sm:p-10 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/[0.08] bg-[#0A0E1A]">

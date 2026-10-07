@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import { AppTab, Instrument } from './AppShell';
 import { WATCHLIST_DATA } from '../../data/mockChartData';
+import { BorderBeam } from '../ui/BorderBeam';
+import { SpotlightCard } from '../ui/SpotlightCard';
 
 interface OverviewScreenProps {
   onNavigate: (tab: AppTab) => void;
@@ -29,45 +31,58 @@ export const OverviewScreen: React.FC<OverviewScreenProps> = ({
     >
       {/* 1. TOP QUANT TELEMETRY METRIC STRIP */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div className="bg-[#0A0E1A] border border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm">
+        <SpotlightCard
+          spotlightColor="rgba(0, 240, 144, 0.15)"
+          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
+        >
           <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
             <span>Terminal Engine</span>
             <span className="size-1.5 rounded-full bg-[#00F090] animate-pulse" />
           </div>
           <div className="text-base font-mono font-bold text-white">VELA QUANT v4.2</div>
           <div className="text-[11px] font-mono text-emerald-400">100% OPERATIONAL</div>
-        </div>
+        </SpotlightCard>
 
-        <div className="bg-[#0A0E1A] border border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm">
+        <SpotlightCard
+          spotlightColor="rgba(0, 229, 255, 0.15)"
+          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
+        >
           <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
             <span>Active Preset</span>
             <Compass className="size-3 text-[#00E5FF]" />
           </div>
           <div className="text-base font-mono font-bold text-white">{selectedInstrument}</div>
           <div className="text-[11px] font-mono text-slate-400">15m TIMEFRAME ALIGNED</div>
-        </div>
+        </SpotlightCard>
 
-        <div className="bg-[#0A0E1A] border border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm">
+        <SpotlightCard
+          spotlightColor="rgba(168, 85, 247, 0.15)"
+          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
+        >
           <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
             <span>Indicator Suite</span>
             <Layers className="size-3 text-[#A855F7]" />
           </div>
           <div className="text-base font-mono font-bold text-white">4 STRATA READY</div>
           <div className="text-[11px] font-mono text-purple-400">PINE SCRIPT VERIFIED</div>
-        </div>
+        </SpotlightCard>
 
-        <div className="bg-[#0A0E1A] border border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm">
+        <SpotlightCard
+          spotlightColor="rgba(0, 240, 144, 0.15)"
+          className="bg-[#0A0E1A] border-white/10 rounded-xl p-3.5 space-y-1 shadow-sm"
+        >
           <div className="text-[10px] font-mono uppercase text-slate-400 flex items-center justify-between">
             <span>License Pass</span>
             <ShieldCheck className="size-3 text-[#00F090]" />
           </div>
           <div className="text-base font-mono font-bold text-white">AF-8849-VALID</div>
           <div className="text-[11px] font-mono text-emerald-400">FULL ACCESS ACTIVE</div>
-        </div>
+        </SpotlightCard>
       </div>
 
       {/* 2. PRIMARY HERO LAUNCHER CARD */}
-      <div className="bg-[#0A0E1A] border border-white/10 rounded-2xl p-6 md:p-8 space-y-5 shadow-2xl relative overflow-hidden">
+      <div className="bg-[#0A0E1A] border border-white/10 rounded-2xl p-6 md:p-8 space-y-5 shadow-2xl relative overflow-hidden group">
+        <BorderBeam duration={10} borderWidth={1.5} colorFrom="#00F090" colorTo="#00E5FF" />
         {/* Subtle radial glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
 

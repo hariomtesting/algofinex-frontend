@@ -3,15 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { EXPERIENCE_MODES } from '../../data/productExperienceData';
 import { BTC_15M_CANDLES, DEMO_ORDER_BLOCKS, DEMO_SIGNALS } from '../../data/mockChartData';
 import { ExperienceMode } from '../../types/productExperience';
+import { BorderBeam } from '../ui/BorderBeam';
 import { 
+  Activity, 
   Layers, 
   Compass, 
   TrendingUp, 
   CheckCircle2, 
   Sparkles, 
   ArrowRight, 
-  ShieldCheck, 
-  Activity 
+  ShieldCheck 
 } from 'lucide-react';
 
 export const ProductRevealSection: React.FC = () => {
@@ -190,6 +191,7 @@ export const ProductRevealSection: React.FC = () => {
 
         {/* DOMINANT UNBOXED WORKSTATION CANVAS */}
         <div className="relative rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#0A0E1A] shadow-[0_30px_90px_rgba(0,0,0,0.85)] overflow-hidden w-full min-w-0">
+          <BorderBeam duration={12} borderWidth={1.5} colorFrom="#00F090" colorTo="#00E5FF" />
           
           {/* Top Hairline Telemetry Ribbon */}
           <div className="flex flex-wrap items-center justify-between border-b border-white/[0.08] bg-[#0D1322] px-4 sm:px-8 py-3 gap-3 text-xs font-mono">

@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, BarChart3, ShieldCheck, Compass } from 'lucide-react';
+import { ChevronRight, BarChart3, Compass, ShieldCheck } from 'lucide-react';
+import { Squares } from '../ui/Squares';
+import { DecryptedText } from '../ui/DecryptedText';
 
 /**
  * SECTION 09 — FINAL CTA (CLOSING SCENE)
@@ -18,8 +20,17 @@ export const ClosingCtaSection: React.FC = () => {
   return (
     <section className="relative py-16 sm:py-20 lg:py-24 bg-[#05080E] border-t border-white/10 overflow-hidden text-center">
       
-      {/* Directional Atmospheric Glow */}
+      {/* Directional Atmospheric Glow & Living Squares Background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
+          <Squares
+            direction="up"
+            speed={0.4}
+            squareSize={50}
+            borderColor="rgba(255, 255, 255, 0.04)"
+            hoverFillColor="rgba(0, 229, 255, 0.12)"
+          />
+        </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-emerald-500/10 rounded-full blur-[200px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-cyan-500/10 rounded-full blur-[160px]" />
       </div>
@@ -55,9 +66,12 @@ export const ClosingCtaSection: React.FC = () => {
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 mb-6 backdrop-blur-md">
           <Compass className="size-3.5 text-[#00F090] shrink-0" />
-          <span className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-300">
-            THE CONCLUSION OF CHART CHAOS
-          </span>
+          <DecryptedText
+            text="THE CONCLUSION OF CHART CHAOS"
+            animateOnHover={true}
+            speed={40}
+            className="tracking-wider uppercase text-[10px] sm:text-[11px] font-semibold text-slate-300"
+          />
         </div>
 
         {/* Monumental Editorial Statement */}

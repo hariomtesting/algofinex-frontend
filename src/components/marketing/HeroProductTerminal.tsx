@@ -6,13 +6,14 @@ import {
   INDICATOR_DATA_BY_MODE 
 } from '../../data/mockChartData';
 import { IndicatorMode } from '../../types/trading';
+import { BorderBeam } from '../ui/BorderBeam';
 import { 
-  Layers, 
   TrendingUp, 
   Compass, 
-  Shield,
-  Eye,
-  Crosshair
+  Layers, 
+  Eye, 
+  Crosshair, 
+  Shield 
 } from 'lucide-react';
 
 export const HeroProductTerminal: React.FC = () => {
@@ -90,6 +91,7 @@ export const HeroProductTerminal: React.FC = () => {
 
   return (
     <div className="relative w-full rounded-2xl md:rounded-3xl border border-white/[0.12] bg-[#0A0E1A] shadow-[0_20px_70px_rgba(0,0,0,0.85)] overflow-hidden transition-all duration-300">
+      <BorderBeam duration={10} borderWidth={1.5} colorFrom="#00F090" colorTo="#00E5FF" />
       {/* Terminal Title Bar (LuxAlgo Vela Header) */}
       <div className="flex flex-wrap items-center justify-between border-b border-white/[0.08] bg-[#0D1322] px-3.5 sm:px-5 py-2.5 gap-2">
         {/* Left Window Affordances & Symbol Selector */}
