@@ -158,6 +158,11 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 
         {/* Right: Telemetry & Controls */}
         <div className="flex items-center gap-2 sm:gap-3">
+          <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-[#C8A96B] bg-[#141820] border border-[#20252C] px-2.5 py-1 rounded-md">
+            <span className="size-1.5 rounded-full bg-[#C8A96B]" />
+            <span>DEMO PREVIEW</span>
+          </div>
+
           <div className="hidden lg:flex items-center gap-1.5 text-[10px] font-mono text-[#6FAF8A] bg-[#141820] border border-[#20252C] px-2.5 py-1 rounded-md">
             <span className="size-1.5 rounded-full bg-[#6FAF8A]" />
             <span>PINE V5 ENGINE · SYNCED</span>

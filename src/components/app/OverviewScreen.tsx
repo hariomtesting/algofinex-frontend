@@ -32,6 +32,18 @@ export const OverviewScreen: React.FC<OverviewScreenProps> = ({
       data-component="OverviewScreen"
       className="p-4 sm:p-6 lg:p-8 max-w-[1400px] mx-auto space-y-6 select-none text-left overflow-y-auto"
     >
+      {/* PUBLIC PREVIEW DEMO NOTICE BANNER */}
+      <div className="p-3.5 rounded-xl bg-[#101318] border border-[#20252C] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        <div className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-[#C8A96B]" />
+          <span className="text-[#F3F4F6] font-semibold">PUBLIC PREVIEW:</span>
+          <span className="text-[#8B929C]">Displaying simulated demo trading account data.</span>
+        </div>
+        <span className="px-2 py-0.5 rounded bg-[#141820] text-[#C8A96B] border border-[#20252C] text-[10px] font-bold">
+          DEMO ENVIRONMENT
+        </span>
+      </div>
+
       {/* 1. TOP DENSITY TELEMETRY STRIP */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4 text-left">
@@ -39,8 +51,8 @@ export const OverviewScreen: React.FC<OverviewScreenProps> = ({
             <span>Account Status</span>
             <span className="size-1.5 rounded-full bg-[#6FAF8A]" />
           </div>
-          <div className="text-sm sm:text-base font-mono font-bold text-[#F3F4F6] mt-1">PRO SUBSCRIBER</div>
-          <div className="text-[11px] font-mono text-[#6FAF8A]">TradingView Synced</div>
+          <div className="text-sm sm:text-base font-mono font-bold text-[#F3F4F6] mt-1">DEMO SUBSCRIBER</div>
+          <div className="text-[11px] font-mono text-[#6FAF8A]">Simulated TV Sync</div>
         </div>
 
         <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4 text-left">
@@ -188,7 +200,7 @@ export const OverviewScreen: React.FC<OverviewScreenProps> = ({
               </div>
               <div className="flex justify-between py-1 border-b border-[#1C2128]">
                 <span className="text-[#8B929C]">License Pass:</span>
-                <span className="text-[#F3F4F6]">AF-PRO-98214</span>
+                <span className="text-[#F3F4F6]">AF-DEMO-00000</span>
               </div>
               <div className="flex justify-between py-1 border-b border-[#1C2128]">
                 <span className="text-[#8B929C]">Pine Script Access:</span>

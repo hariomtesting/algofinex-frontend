@@ -24,8 +24,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
   onNavigate,
 }) => {
   const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan>(initialPlan);
-  const [email, setEmail] = useState('trader@desk.com');
-  const [tradingViewHandle, setTradingViewHandle] = useState('Marcus_MacroFlow');
+  const [email, setEmail] = useState('demo@example.com');
+  const [tradingViewHandle, setTradingViewHandle] = useState('DemoTrader');
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'crypto'>('card');
   
   // Card details
@@ -220,7 +220,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               <Input
                 label="TradingView Username"
                 required
-                placeholder="e.g. SatoshiQuant"
+                placeholder="e.g. DemoTrader"
                 helperText="Algorithms will be granted directly to this handle within minutes."
                 value={tradingViewHandle}
                 onChange={(e) => setTradingViewHandle(e.target.value)}

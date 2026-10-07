@@ -44,7 +44,7 @@ export async function createSupportTicket(data: CreateTicketData): Promise<Suppo
       {
         id: `msg_${Date.now()}`,
         sender: 'user',
-        senderName: 'Marcus Vance',
+        senderName: 'Demo User',
         message: data.message,
         timestamp: new Date().toISOString(),
       },

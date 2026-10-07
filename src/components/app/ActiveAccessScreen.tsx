@@ -16,8 +16,8 @@ export const ActiveAccessScreen: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
 
-  const licenseKey = 'AF-PRO-98214-9921-ACTIVE';
-  const webhookUrl = 'https://api.algofinex.com/v1/webhooks/alerts/usr_algo_98214';
+  const licenseKey = 'AF-DEMO-00000-PREVIEW';
+  const webhookUrl = 'https://api.algofinex.com/v1/webhooks/alerts/demo_user_preview';
 
   const handleCopy = (text: string, label: string) => {
     navigator.clipboard?.writeText(text);

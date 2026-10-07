@@ -208,7 +208,7 @@ export const SessionPage: React.FC<SessionPageProps> = ({ onNavigate: _onNavigat
                 label="Email Address"
                 type="email"
                 required
-                placeholder="trader@domain.com"
+                placeholder="demo@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -216,7 +216,7 @@ export const SessionPage: React.FC<SessionPageProps> = ({ onNavigate: _onNavigat
               <Input
                 label="TradingView Username"
                 required
-                placeholder="e.g. SatoshiQuant"
+                placeholder="e.g. DemoTrader"
                 helperText="Required to grant invite-only script access during your 3-day evaluation."
                 value={tradingViewHandle}
                 onChange={(e) => setTradingViewHandle(e.target.value)}

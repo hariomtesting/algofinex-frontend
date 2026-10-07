@@ -79,6 +79,14 @@ export const ReferralScreen: React.FC = () => {
         </p>
       </div>
 
+      {/* DEMO NOTICE */}
+      <div className="p-3 rounded-xl bg-[#101318] border border-[#20252C] flex items-center justify-between text-xs font-mono text-[#8B929C]">
+        <div className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-[#C8A96B]" />
+          <span>SIMULATED PARTNER ANALYTICS — Public Preview Mode</span>
+        </div>
+      </div>
+
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4">

@@ -42,6 +42,14 @@ export const SubscriptionScreen: React.FC = () => {
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-[1000px] mx-auto text-left space-y-6">
       
+      {/* DEMO NOTICE */}
+      <div className="p-3 rounded-xl bg-[#101318] border border-[#20252C] flex items-center justify-between text-xs font-mono text-[#8B929C]">
+        <div className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-[#C8A96B]" />
+          <span>SIMULATED SUBSCRIPTION &amp; BILLING DESK — Public Preview Mode</span>
+        </div>
+      </div>
+
       {/* Header */}
       <div className="border-b border-[#20252C] pb-5">
         <div className="flex items-center gap-2">

@@ -7,11 +7,11 @@ import {
 } from '../types/api';
 
 export const MOCK_CURRENT_USER: User = {
-  id: 'usr_algo_98214',
-  email: 'trader@institutional-desk.com',
-  name: 'Marcus Vance',
+  id: 'usr_demo_001',
+  email: 'demo@example.com',
+  name: 'Demo User',
   role: 'pro',
-  tradingViewHandle: 'Marcus_MacroFlow',
+  tradingViewHandle: 'DemoTrader',
   tier: 'pro_subscriber',
   sessionExpiresAt: '2026-11-01T00:00:00Z',
   createdAt: '2026-03-15T10:00:00Z',
@@ -238,7 +238,7 @@ export const MOCK_PRODUCTS: Product[] = [
 ];
 
 export const MOCK_SUBSCRIPTION: Subscription = {
-  id: 'sub_pro_44812',
+  id: 'sub_demo_001',
   userId: MOCK_CURRENT_USER.id,
   plan: 'annual',
   status: 'active',
@@ -247,17 +247,17 @@ export const MOCK_SUBSCRIPTION: Subscription = {
   currentPeriodStart: '2026-04-01T00:00:00Z',
   currentPeriodEnd: '2027-04-01T00:00:00Z',
   cancelAtPeriodEnd: false,
-  paymentMethodLast4: '4242',
+  paymentMethodLast4: '0000',
   invoiceHistory: [
     {
-      id: 'inv_88201',
+      id: 'inv_demo_001',
       date: '2026-04-01',
       amount: 708,
       pdfUrl: '#',
       status: 'paid'
     },
     {
-      id: 'inv_77192',
+      id: 'inv_demo_002',
       date: '2025-04-01',
       amount: 708,
       pdfUrl: '#',
@@ -267,8 +267,8 @@ export const MOCK_SUBSCRIPTION: Subscription = {
 };
 
 export const MOCK_REFERRAL_DATA: ReferralData = {
-  referralCode: 'MARCUS25',
-  referralLink: 'https://algofinex.com/r/MARCUS25',
+  referralCode: 'DEMO25',
+  referralLink: 'https://algofinex-preview.pages.dev/r/DEMO25',
   commissionRate: 25,
   totalReferred: 18,
   activeSubscribers: 14,
@@ -278,37 +278,37 @@ export const MOCK_REFERRAL_DATA: ReferralData = {
   minimumPayoutThreshold: 100,
   history: [
     {
-      id: 'ref_tx_901',
+      id: 'ref_tx_demo_01',
       date: '2026-09-28',
-      referredUser: 'j***@quantdesk.io',
-      plan: 'Annual Suite ($708)',
+      referredUser: 'trader01@example.com',
+      plan: 'Annual Suite (Demo)',
       amount: 708,
       commission: 177,
       status: 'pending'
     },
     {
-      id: 'ref_tx_902',
+      id: 'ref_tx_demo_02',
       date: '2026-09-14',
-      referredUser: 'a***@tradercap.com',
-      plan: 'Annual Suite ($708)',
+      referredUser: 'trader02@example.com',
+      plan: 'Annual Suite (Demo)',
       amount: 708,
       commission: 177,
       status: 'pending'
     },
     {
-      id: 'ref_tx_899',
+      id: 'ref_tx_demo_03',
       date: '2026-08-11',
-      referredUser: 'k***@cryptoalpha.net',
-      plan: 'Monthly Suite ($79)',
+      referredUser: 'trader03@example.com',
+      plan: 'Monthly Suite (Demo)',
       amount: 79,
       commission: 19.75,
       status: 'paid'
     },
     {
-      id: 'ref_tx_890',
+      id: 'ref_tx_demo_04',
       date: '2026-07-22',
-      referredUser: 's***@macrofund.eu',
-      plan: 'Lifetime Suite ($1,490)',
+      referredUser: 'trader04@example.com',
+      plan: 'Lifetime Suite (Demo)',
       amount: 1490,
       commission: 372.50,
       status: 'paid'
@@ -318,8 +318,8 @@ export const MOCK_REFERRAL_DATA: ReferralData = {
 
 export const MOCK_TICKETS: SupportTicket[] = [
   {
-    id: 'TICK-441',
-    subject: 'TradingView script access verification for NQ charts',
+    id: 'TICK-DEMO-01',
+    subject: 'TradingView script access verification (Demo Simulation)',
     category: 'tradingview_access',
     priority: 'medium',
     status: 'resolved',
@@ -329,21 +329,21 @@ export const MOCK_TICKETS: SupportTicket[] = [
       {
         id: 'msg_01',
         sender: 'user',
-        senderName: 'Marcus Vance',
-        message: 'Hello team, I updated my TradingView username to Marcus_MacroFlow yesterday. Could you please confirm if the indicator suite invites are active for this handle?',
+        senderName: 'Demo User',
+        message: 'Hello team, I updated my TradingView username to DemoTrader. Could you please confirm if the indicator suite invites are active for this handle in the preview environment?',
         timestamp: '2026-09-20T14:32:00Z'
       },
       {
         id: 'msg_02',
         sender: 'support_engineer',
         senderName: 'AlgoFinex Technical Desk',
-        message: 'Hi Marcus, your handle Marcus_MacroFlow has been whitelisted for all 4 suite indicators and the Strategy Engine. Please refresh your TradingView browser window and check Indicators > Invite-Only Scripts.',
+        message: 'Hi Demo User, the handle DemoTrader is simulated as whitelisted for all 4 suite indicators and the Strategy Engine. You can inspect indicators in the preview workspace.',
         timestamp: '2026-09-21T09:15:00Z'
       }
     ]
   },
   {
-    id: 'TICK-449',
+    id: 'TICK-DEMO-02',
     subject: 'Question on Order Block volume filter sensitivity parameter',
     category: 'indicator_settings',
     priority: 'low',
@@ -354,7 +354,7 @@ export const MOCK_TICKETS: SupportTicket[] = [
       {
         id: 'msg_03',
         sender: 'user',
-        senderName: 'Marcus Vance',
+        senderName: 'Demo User',
         message: 'What is the recommended Volume Threshold multiplier for 15-minute Bitcoin charts during the Asian session?',
         timestamp: '2026-10-02T11:04:00Z'
       },
@@ -362,7 +362,7 @@ export const MOCK_TICKETS: SupportTicket[] = [
         id: 'msg_04',
         sender: 'support_engineer',
         senderName: 'AlgoFinex Technical Desk',
-        message: 'Marcus, for lower-volume sessions like Asia, we recommend reducing the threshold from 1.5x to 1.2x ATR to catch tighter institutional imbalances without false breakouts.',
+        message: 'For lower-volume sessions like Asia, we recommend reducing the threshold from 1.5x to 1.2x ATR to catch tighter institutional imbalances without false breakouts.',
         timestamp: '2026-10-03T16:20:00Z'
       }
     ]

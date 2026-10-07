@@ -146,7 +146,7 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
             <Input
               label="Full Name"
               type="text"
-              placeholder="Marcus Vance"
+              placeholder="Demo User"
               value={name}
               onChange={(e) => setName(e.target.value)}
               leftIcon={<UserIcon className="size-4" />}
@@ -158,7 +158,7 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
             <Input
               label="Email Address"
               type="email"
-              placeholder="trader@quantdesk.com"
+              placeholder="demo@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               leftIcon={<Mail className="size-4" />}
@@ -182,7 +182,7 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
             <Input
               label="TradingView Handle"
               type="text"
-              placeholder="e.g. SatoshiQuant"
+              placeholder="e.g. DemoTrader"
               helperText="This username will be whitelisted for invite-only script access."
               value={tradingViewHandle}
               onChange={(e) => setTradingViewHandle(e.target.value)}

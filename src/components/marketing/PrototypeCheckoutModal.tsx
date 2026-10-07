@@ -126,7 +126,7 @@ export const PrototypeCheckoutModal: React.FC<PrototypeCheckoutModalProps> = ({
                 <input
                   type="text"
                   required
-                  placeholder="e.g. trader_marcus"
+                  placeholder="e.g. DemoTrader"
                   value={tradingViewUser}
                   onChange={(e) => setTradingViewUser(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-[#060A12] text-white font-mono text-sm placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-[#00F090]"
@@ -140,7 +140,7 @@ export const PrototypeCheckoutModal: React.FC<PrototypeCheckoutModalProps> = ({
                 <input
                   type="email"
                   required
-                  placeholder="you@domain.com"
+                  placeholder="demo@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-white/10 bg-[#060A12] text-white font-mono text-sm placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-[#00F090]"
