@@ -101,37 +101,37 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       width: container.clientWidth,
       height: container.clientHeight || 420,
       layout: {
-        background: { type: ColorType.Solid, color: '#0B0E13' },
-        textColor: '#8B929C',
-        fontFamily: "'JetBrains Mono', monospace",
+        background: { type: ColorType.Solid, color: '#FFFFFF' },
+        textColor: '#666B76',
+        fontFamily: "'Inter', sans-serif",
         fontSize: 11,
       },
       grid: {
-        vertLines: { color: 'rgba(255, 255, 255, 0.02)', style: LineStyle.Dotted },
-        horzLines: { color: 'rgba(255, 255, 255, 0.02)', style: LineStyle.Dotted },
+        vertLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
+        horzLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
       },
       crosshair: {
         mode: CrosshairMode.Normal,
         vertLine: {
-          color: 'rgba(200, 169, 107, 0.4)',
+          color: 'rgba(79, 107, 255, 0.4)',
           width: 1,
           style: LineStyle.Dashed,
-          labelBackgroundColor: '#141820',
+          labelBackgroundColor: '#17181C',
         },
         horzLine: {
-          color: 'rgba(200, 169, 107, 0.4)',
+          color: 'rgba(79, 107, 255, 0.4)',
           width: 1,
           style: LineStyle.Dashed,
-          labelBackgroundColor: '#141820',
+          labelBackgroundColor: '#17181C',
         },
       },
       rightPriceScale: {
-        borderColor: '#20252C',
-        textColor: '#8B929C',
+        borderColor: '#EAEAE5',
+        textColor: '#666B76',
         autoScale: true,
       },
       timeScale: {
-        borderColor: '#20252C',
+        borderColor: '#EAEAE5',
         timeVisible: true,
         secondsVisible: false,
       },
@@ -181,21 +181,21 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
     if (chartType === 'candles') {
       const series = chart.addSeries(CandlestickSeries, {
-        upColor: '#6FAF8A',
-        downColor: '#C87878',
+        upColor: '#35C99A',
+        downColor: '#FF6B6B',
         borderVisible: true,
-        borderUpColor: '#6FAF8A',
-        borderDownColor: '#C87878',
-        wickUpColor: '#6FAF8A',
-        wickDownColor: '#C87878',
+        borderUpColor: '#35C99A',
+        borderDownColor: '#FF6B6B',
+        wickUpColor: '#35C99A',
+        wickDownColor: '#FF6B6B',
       });
       series.setData(candleData as any);
       mainSeriesRef.current = series;
     } else if (chartType === 'area') {
       const series = chart.addSeries(AreaSeries, {
-        topColor: 'rgba(200, 169, 107, 0.25)',
-        bottomColor: 'rgba(200, 169, 107, 0.01)',
-        lineColor: '#C8A96B',
+        topColor: 'rgba(79, 107, 255, 0.2)',
+        bottomColor: 'rgba(79, 107, 255, 0.01)',
+        lineColor: '#4F6BFF',
         lineWidth: 2,
       });
       const areaData = candleData.map((c) => ({ time: c.time as Time, value: c.close }));
@@ -203,7 +203,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       mainSeriesRef.current = series;
     } else {
       const series = chart.addSeries(LineSeries, {
-        color: '#C8A96B',
+        color: '#4F6BFF',
         lineWidth: 2,
       });
       const lineData = candleData.map((c) => ({ time: c.time as Time, value: c.close }));
@@ -226,7 +226,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       });
       chart.priceScale('volume_scale').applyOptions({
         scaleMargins: {
-          top: 0.8,
+          top: 0.82,
           bottom: 0,
         },
       });
@@ -253,7 +253,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       const ema55Data = calculateEMA(candleData, 45);
 
       const ema21 = chart.addSeries(LineSeries, {
-        color: '#C8A96B',
+        color: '#4F6BFF',
         lineWidth: 1,
         lineStyle: LineStyle.Solid,
         title: 'EMA 21',
@@ -262,7 +262,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       ema21SeriesRef.current = ema21;
 
       const ema55 = chart.addSeries(LineSeries, {
-        color: '#8B929C',
+        color: '#8B5CF6',
         lineWidth: 1,
         lineStyle: LineStyle.Dashed,
         title: 'EMA 45',
@@ -282,7 +282,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
         const lineHigh = targetSeries.createPriceLine({
           price: obHigh,
-          color: '#C87878',
+          color: '#FF6B6B',
           lineWidth: 1,
           lineStyle: LineStyle.Dotted,
           axisLabelVisible: true,
@@ -290,7 +290,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
         });
         const lineLow = targetSeries.createPriceLine({
           price: obLow,
-          color: '#6FAF8A',
+          color: '#35C99A',
           lineWidth: 1,
           lineStyle: LineStyle.Dotted,
           axisLabelVisible: true,
@@ -306,7 +306,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
         const lineLiqBuy = targetSeries.createPriceLine({
           price: liqBuy,
-          color: '#C8A96B',
+          color: '#4F6BFF',
           lineWidth: 1,
           lineStyle: LineStyle.Dashed,
           axisLabelVisible: true,
@@ -314,7 +314,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
         });
         const lineLiqSell = targetSeries.createPriceLine({
           price: liqSell,
-          color: '#D4A359',
+          color: '#8B5CF6',
           lineWidth: 1,
           lineStyle: LineStyle.Dashed,
           axisLabelVisible: true,
@@ -391,18 +391,18 @@ export const TradingChart: React.FC<TradingChartProps> = ({
       width: container.clientWidth,
       height: 110,
       layout: {
-        background: { type: ColorType.Solid, color: '#0B0E13' },
-        textColor: '#8B929C',
-        fontFamily: "'JetBrains Mono', monospace",
+        background: { type: ColorType.Solid, color: '#FFFFFF' },
+        textColor: '#666B76',
+        fontFamily: "'Inter', sans-serif",
         fontSize: 10,
       },
       grid: {
-        vertLines: { color: 'rgba(255, 255, 255, 0.02)', style: LineStyle.Dotted },
-        horzLines: { color: 'rgba(255, 255, 255, 0.02)', style: LineStyle.Dotted },
+        vertLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
+        horzLines: { color: 'rgba(0, 0, 0, 0.04)', style: LineStyle.Dotted },
       },
       rightPriceScale: {
-        borderColor: '#20252C',
-        textColor: '#8B929C',
+        borderColor: '#EAEAE5',
+        textColor: '#666B76',
         scaleMargins: { top: 0.15, bottom: 0.15 },
       },
       timeScale: {
@@ -416,7 +416,7 @@ export const TradingChart: React.FC<TradingChartProps> = ({
     rsiChartRef.current = rsiChart;
 
     const rsiSeries = rsiChart.addSeries(LineSeries, {
-      color: '#C8A96B',
+      color: '#4F6BFF',
       lineWidth: 1,
       title: 'RSI 14',
     });
@@ -427,14 +427,14 @@ export const TradingChart: React.FC<TradingChartProps> = ({
 
     rsiSeries.createPriceLine({
       price: 70,
-      color: '#C87878',
+      color: '#FF6B6B',
       lineWidth: 1,
       lineStyle: LineStyle.Dotted,
       title: 'OB 70',
     });
     rsiSeries.createPriceLine({
       price: 30,
-      color: '#6FAF8A',
+      color: '#35C99A',
       lineWidth: 1,
       lineStyle: LineStyle.Dotted,
       title: 'OS 30',
@@ -473,28 +473,28 @@ export const TradingChart: React.FC<TradingChartProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full w-full relative select-none overflow-hidden bg-[#0B0E13]">
+    <div className="flex-1 flex flex-col h-full w-full relative select-none overflow-hidden bg-white">
       <div
         ref={chartContainerRef}
         onClick={handleChartClick}
         className="flex-1 w-full min-h-[340px] relative cursor-crosshair"
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none text-center select-none z-0 opacity-[0.03]">
-          <div className="text-6xl md:text-8xl font-black tracking-tighter text-[#F3F4F6]">
+          <div className="text-6xl md:text-8xl font-black tracking-tighter text-[#17181C]">
             ALGOFINEX
           </div>
-          <div className="text-xs md:text-sm font-mono uppercase tracking-[0.5em] text-[#C8A96B]">
+          <div className="text-xs md:text-sm font-mono uppercase tracking-[0.5em] text-[#4F6BFF]">
             PINE SCRIPT v5 WORKSTATION
           </div>
         </div>
       </div>
 
       {showRSI && (
-        <div className="h-[110px] w-full border-t border-[#20252C] relative bg-[#0B0E13] shrink-0">
-          <div className="absolute top-1.5 left-3 text-[10px] font-mono text-[#C8A96B] z-10 flex items-center gap-2">
+        <div className="h-[110px] w-full border-t border-[#EAEAE5] relative bg-white shrink-0">
+          <div className="absolute top-2 left-4 text-[11px] font-medium text-[#4F6BFF] z-10 flex items-center gap-2">
             <span className="font-bold">RSI (14)</span>
-            <span className="text-[#4B5563]">•</span>
-            <span className="text-[#8B929C]">Institutional Momentum</span>
+            <span className="text-[#D0D4DD]">•</span>
+            <span className="text-[#666B76]">Institutional Momentum</span>
           </div>
           <div ref={rsiContainerRef} className="w-full h-full" />
         </div>

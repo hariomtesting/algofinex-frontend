@@ -75,35 +75,35 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
   if (checkoutState === 'succeeded' && receiptData) {
     return (
-      <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] pt-24 pb-20 flex items-center justify-center px-4">
-        <div className="w-full max-w-lg bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-8 shadow-workstation text-left">
-          <div className="size-12 rounded-xl bg-[#6FAF8A]/15 border border-[#6FAF8A]/30 flex items-center justify-center mb-4">
-            <CheckCircle2 className="size-6 text-[#6FAF8A]" />
+      <div className="min-h-screen bg-[#FAFAF7] text-[#17181C] pt-28 pb-24 flex items-center justify-center px-4">
+        <div className="w-full max-w-lg bg-white border border-[#EAEAE5] rounded-3xl p-8 sm:p-10 shadow-card text-left">
+          <div className="size-12 rounded-2xl bg-[#ECFBF6] border border-[#35C99A]/30 flex items-center justify-center mb-4">
+            <CheckCircle2 className="size-6 text-[#059669]" />
           </div>
 
-          <h2 className="text-2xl font-bold tracking-tight text-[#F3F4F6]">
+          <h2 className="text-2xl font-bold tracking-tight text-[#17181C]">
             Payment Confirmed
           </h2>
-          <p className="text-xs text-[#8B929C] mt-1">
-            Receipt ID: <span className="font-mono text-[#F3F4F6]">{receiptData.id}</span>
+          <p className="text-xs text-[#666B76] mt-1">
+            Receipt ID: <span className="font-mono text-[#17181C] font-semibold">{receiptData.id}</span>
           </p>
 
-          <div className="mt-6 p-4 rounded-xl bg-[#0B0E13] border border-[#20252C] space-y-2.5 text-xs font-mono">
+          <div className="mt-6 p-5 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5] space-y-2.5 text-xs font-medium">
             <div className="flex justify-between">
-              <span className="text-[#8B929C]">Plan:</span>
-              <span className="text-[#F3F4F6]">{receiptData.plan}</span>
+              <span className="text-[#666B76]">Plan:</span>
+              <span className="text-[#17181C] font-bold">{receiptData.plan}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#8B929C]">Amount Charged:</span>
-              <span className="text-[#6FAF8A] font-semibold">${receiptData.amount}.00 USD</span>
+              <span className="text-[#666B76]">Amount Charged:</span>
+              <span className="text-[#059669] font-bold font-mono">${receiptData.amount}.00 USD</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#8B929C]">TradingView Whitelist:</span>
-              <span className="text-[#C8A96B]">Queued for @{tradingViewHandle}</span>
+              <span className="text-[#666B76]">TradingView Whitelist:</span>
+              <span className="text-[#4F6BFF] font-semibold">Queued for @{tradingViewHandle}</span>
             </div>
           </div>
 
-          <div className="mt-6 text-xs text-[#8B929C] leading-relaxed">
+          <div className="mt-6 text-xs text-[#666B76] leading-relaxed">
             Your TradingView account is being whitelisted for all 4 suite indicators. Please open your trading workstation to review your license state.
           </div>
 
@@ -130,32 +130,32 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] pt-24 pb-20">
+    <div className="min-h-screen bg-[#FAFAF7] text-[#17181C] pt-28 pb-24">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Navigation Back */}
-        <div className="flex items-center gap-2 text-xs font-mono text-[#8B929C] mb-6">
+        <div className="flex items-center gap-2 text-xs font-medium text-[#666B76] mb-6">
           <button
             onClick={() => onNavigate('/pricing')}
-            className="flex items-center gap-1 hover:text-[#F3F4F6] transition-colors cursor-pointer"
+            className="flex items-center gap-1 hover:text-[#17181C] transition-colors cursor-pointer"
           >
             <ArrowLeft className="size-3.5" />
             <span>Return to Pricing</span>
           </button>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F3F4F6] tracking-tight text-left mb-8">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#17181C] tracking-tight text-left mb-8">
           Complete Your Subscription
         </h1>
 
         {/* Failed Error Banner with Retry */}
         {checkoutState === 'failed' && (
-          <div className="mb-6 p-4 rounded-xl bg-[#C87878]/10 border border-[#C87878]/30 text-left">
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#C87878]">
+          <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-left">
+            <div className="flex items-center gap-2 text-xs font-bold text-red-700">
               <AlertCircle className="size-4 shrink-0" />
               <span>Checkout Failed: {errorMessage}</span>
             </div>
-            <p className="text-xs text-[#8B929C] mt-1">
+            <p className="text-xs text-[#666B76] mt-1">
               Please verify your payment credentials or select an alternative payment method.
             </p>
             <div className="mt-3">
@@ -174,11 +174,11 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 text-left">
           
           {/* Left Column: Form Details */}
-          <div className="lg:col-span-7 bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-8">
+          <div className="lg:col-span-7 bg-white border border-[#EAEAE5] rounded-3xl p-8 shadow-card">
             
             {/* Step 1: Select Plan */}
             <div>
-              <label className="text-xs font-mono uppercase text-[#8B929C] block mb-3 font-semibold">
+              <label className="text-xs font-semibold uppercase text-[#666B76] block mb-3">
                 1. Select Billing Tier
               </label>
               <div className="grid grid-cols-3 gap-2.5">
@@ -189,14 +189,14 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                       key={p}
                       type="button"
                       onClick={() => setSelectedPlan(p)}
-                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#141820] border-[#C8A96B] text-[#F3F4F6]'
-                          : 'bg-[#0B0E13] border-[#20252C] text-[#8B929C] hover:border-[#2E3642]'
+                          ? 'bg-[#EEF2FF] border-2 border-[#4F6BFF] text-[#17181C] shadow-xs'
+                          : 'bg-[#FAFAF7] border-[#EAEAE5] text-[#666B76] hover:border-[#D0D4DD]'
                       }`}
                     >
-                      <p className="text-xs font-mono capitalize">{p}</p>
-                      <p className="text-sm font-bold font-mono text-[#F3F4F6] mt-0.5">
+                      <p className="text-xs font-semibold capitalize">{p}</p>
+                      <p className="text-sm font-bold font-mono text-[#17181C] mt-0.5">
                         ${planDetails[p].price}
                       </p>
                     </button>
@@ -207,7 +207,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
             {/* Step 2: Client & TradingView Handle */}
             <div className="mt-8 space-y-4">
-              <label className="text-xs font-mono uppercase text-[#8B929C] block font-semibold">
+              <label className="text-xs font-semibold uppercase text-[#666B76] block">
                 2. Client Credentials
               </label>
               <Input
@@ -229,7 +229,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
             {/* Step 3: Payment Method */}
             <div className="mt-8 space-y-4">
-              <label className="text-xs font-mono uppercase text-[#8B929C] block font-semibold">
+              <label className="text-xs font-semibold uppercase text-[#666B76] block">
                 3. Payment Method
               </label>
               
@@ -237,27 +237,27 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('card')}
-                  className={`p-3 rounded-xl border flex items-center gap-2 cursor-pointer transition-all ${
+                  className={`p-3.5 rounded-2xl border flex items-center gap-2 cursor-pointer transition-all ${
                     paymentMethod === 'card'
-                      ? 'bg-[#141820] border-[#C8A96B] text-[#F3F4F6]'
-                      : 'bg-[#0B0E13] border-[#20252C] text-[#8B929C]'
+                      ? 'bg-[#EEF2FF] border-2 border-[#4F6BFF] text-[#17181C] shadow-xs'
+                      : 'bg-[#FAFAF7] border-[#EAEAE5] text-[#666B76] hover:border-[#D0D4DD]'
                   }`}
                 >
-                  <CreditCard className="size-4" />
-                  <span className="text-xs font-mono">Credit Card</span>
+                  <CreditCard className="size-4 text-[#4F6BFF]" />
+                  <span className="text-xs font-medium">Credit Card</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('crypto')}
-                  className={`p-3 rounded-xl border flex items-center gap-2 cursor-pointer transition-all ${
+                  className={`p-3.5 rounded-2xl border flex items-center gap-2 cursor-pointer transition-all ${
                     paymentMethod === 'crypto'
-                      ? 'bg-[#141820] border-[#C8A96B] text-[#F3F4F6]'
-                      : 'bg-[#0B0E13] border-[#20252C] text-[#8B929C]'
+                      ? 'bg-[#EEF2FF] border-2 border-[#4F6BFF] text-[#17181C] shadow-xs'
+                      : 'bg-[#FAFAF7] border-[#EAEAE5] text-[#666B76] hover:border-[#D0D4DD]'
                   }`}
                 >
-                  <Lock className="size-4" />
-                  <span className="text-xs font-mono">USDT / USDC</span>
+                  <Lock className="size-4 text-[#4F6BFF]" />
+                  <span className="text-xs font-medium">USDT / USDC</span>
                 </button>
               </div>
 
@@ -283,22 +283,22 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   </div>
                 </div>
               ) : (
-                <div className="p-4 rounded-xl bg-[#0B0E13] border border-[#20252C] text-xs font-mono text-[#8B929C] space-y-2">
-                  <p>Deposit Network: <strong>Ethereum (ERC-20) / TRON (TRC-20)</strong></p>
-                  <p className="text-[11px] text-[#C8A96B]">A dynamic deposit address will be generated upon confirmation.</p>
+                <div className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5] text-xs text-[#666B76] space-y-2">
+                  <p>Deposit Network: <strong className="text-[#17181C]">Ethereum (ERC-20) / TRON (TRC-20)</strong></p>
+                  <p className="text-[11px] text-[#4F6BFF] font-medium">A dynamic deposit address will be generated upon confirmation.</p>
                 </div>
               )}
             </div>
 
             {/* Test Simulation Controls */}
-            <div className="mt-6 pt-4 border-t border-[#20252C] flex items-center justify-between text-[11px] font-mono text-[#8B929C]">
+            <div className="mt-6 pt-4 border-t border-[#EAEAE5] flex items-center justify-between text-[11px] text-[#666B76]">
               <span>QA State Simulation:</span>
               <label className="flex items-center gap-1.5 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={simulateDecline}
                   onChange={(e) => setSimulateDecline(e.target.checked)}
-                  className="rounded accent-[#C87878] size-3"
+                  className="rounded accent-[#FF6B6B] size-3"
                 />
                 <span>Simulate Decline Error</span>
               </label>
@@ -319,34 +319,34 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
           </div>
 
           {/* Right Column: Order Summary */}
-          <div className="lg:col-span-5 bg-[#101318] border border-[#20252C] rounded-2xl p-6 h-fit">
-            <h3 className="text-sm font-semibold text-[#F3F4F6] pb-3 border-b border-[#20252C]">
+          <div className="lg:col-span-5 bg-white border border-[#EAEAE5] rounded-3xl p-8 shadow-card h-fit">
+            <h3 className="text-base font-bold text-[#17181C] pb-3 border-b border-[#EAEAE5]">
               Order Summary
             </h3>
 
-            <div className="mt-4 space-y-3 text-xs">
+            <div className="mt-4 space-y-3.5 text-xs">
               <div className="flex justify-between">
-                <span className="text-[#8B929C]">{current.name}</span>
-                <span className="font-mono text-[#F3F4F6]">${current.price}.00</span>
+                <span className="text-[#666B76]">{current.name}</span>
+                <span className="font-mono text-[#17181C] font-semibold">${current.price}.00</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#8B929C]">Pine Script Whitelist Engine</span>
-                <span className="font-mono text-[#6FAF8A]">FREE</span>
+                <span className="text-[#666B76]">Pine Script Whitelist Engine</span>
+                <span className="font-medium text-[#059669]">FREE</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#8B929C]">3-Day Masterclass Seat</span>
-                <span className="font-mono text-[#6FAF8A]">INCLUDED</span>
+                <span className="text-[#666B76]">3-Day Masterclass Seat</span>
+                <span className="font-medium text-[#059669]">INCLUDED</span>
               </div>
-              <div className="pt-3 border-t border-[#20252C] flex justify-between text-sm font-bold">
-                <span className="text-[#F3F4F6]">Total Due</span>
-                <span className="font-mono text-[#C8A96B]">${current.price}.00 USD</span>
+              <div className="pt-4 border-t border-[#EAEAE5] flex justify-between text-base font-bold">
+                <span className="text-[#17181C]">Total Due</span>
+                <span className="font-mono text-[#4F6BFF] text-xl">${current.price}.00 USD</span>
               </div>
             </div>
 
-            <div className="mt-6 p-4 rounded-xl bg-[#0B0E13] border border-[#20252C] text-xs text-[#8B929C] space-y-2">
-              <div className="flex items-center gap-2 text-[#6FAF8A]">
+            <div className="mt-6 p-5 rounded-2xl bg-[#EEF2FF] border border-[#4F6BFF]/20 text-xs text-[#666B76] space-y-2">
+              <div className="flex items-center gap-2 text-[#4F6BFF]">
                 <ShieldCheck className="size-4 shrink-0" />
-                <span className="font-semibold">14-Day Money Back Guarantee</span>
+                <span className="font-bold">14-Day Money Back Guarantee</span>
               </div>
               <p className="text-[11px] leading-relaxed">
                 Cancel anytime directly from your dashboard. No contract lock-in or cancellation penalties.

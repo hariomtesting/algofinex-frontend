@@ -22,16 +22,16 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       } ${className}`}
     >
       {eyebrow && (
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#141820] border border-[#20252C] text-[11px] font-mono font-medium text-[#C8A96B] uppercase tracking-wider mb-3">
-          <span className="size-1.5 rounded-full bg-[#C8A96B]" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2FF] border border-[#4F6BFF]/20 text-xs font-semibold text-[#4F6BFF] uppercase tracking-wider mb-3">
+          <span className="size-1.5 rounded-full bg-[#4F6BFF]" />
           <span>{eyebrow}</span>
         </div>
       )}
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#F3F4F6] tracking-tight leading-tight">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#17181C] tracking-tight leading-tight">
         {title}
       </h2>
       {description && (
-        <p className="mt-3.5 text-sm sm:text-base text-[#8B929C] leading-relaxed">
+        <p className="mt-3.5 text-sm sm:text-base text-[#666B76] leading-relaxed">
           {description}
         </p>
       )}

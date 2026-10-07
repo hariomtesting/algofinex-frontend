@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Play, Download, CheckCircle2 } from 'lucide-react';
+import { Button } from '../ui/Button';
 
 export const SessionScreen: React.FC = () => {
   const [selectedDay, setSelectedDay] = useState<'day1' | 'day2' | 'day3'>('day1');
@@ -43,20 +44,20 @@ export const SessionScreen: React.FC = () => {
   const current = days.find((d) => d.id === selectedDay) || days[0];
 
   return (
-    <div data-component="SessionScreen" className="bg-[#05080E] min-h-screen p-6 md:p-10 select-none text-left text-white">
+    <div data-component="SessionScreen" className="bg-[#FAFAF7] min-h-screen p-6 md:p-10 select-none text-left text-[#17181C]">
       <div className="max-w-[1200px] mx-auto space-y-8">
         {/* Header */}
-        <div className="border-b border-white/10 pb-5 space-y-2">
+        <div className="border-b border-[#EAEAE5] pb-5 space-y-2">
           <div className="flex items-center gap-2">
-            <Calendar className="size-4 text-[#00F090]" />
-            <span className="text-xs font-mono font-bold uppercase text-[#00F090] tracking-wider">
+            <Calendar className="size-5 text-[#8B5CF6]" />
+            <span className="text-xs font-semibold uppercase text-[#8B5CF6] tracking-wider">
               3-Day Session Companion
             </span>
           </div>
-          <h1 className="text-2xl font-display font-bold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#17181C] tracking-tight">
             Live Masterclass Curriculum
           </h1>
-          <p className="text-xs text-slate-400 max-w-2xl font-sans">
+          <p className="text-xs sm:text-sm text-[#666B76] max-w-2xl">
             Access curriculum schedules, workout routine checklists, and simulated video recordings for the 3-Day Live Masterclass.
           </p>
         </div>
@@ -67,44 +68,44 @@ export const SessionScreen: React.FC = () => {
             <button
               key={d.id}
               onClick={() => setSelectedDay(d.id as any)}
-              className={`p-4 rounded-xl border text-left transition-all cursor-pointer ${
+              className={`p-5 rounded-2xl border text-left transition-all cursor-pointer ${
                 selectedDay === d.id
-                  ? 'bg-[#0E1528] border-[#00E5FF] shadow-[0_0_15px_rgba(0,229,255,0.15)] ring-1 ring-[#00E5FF]/30'
-                  : 'bg-[#0A0E1A] border-white/10 hover:border-white/20'
+                  ? 'bg-[#F4F0FF] border-2 border-[#8B5CF6] shadow-xs'
+                  : 'bg-white border-[#EAEAE5] hover:border-[#D0D4DD] shadow-card'
               }`}
             >
-              <div className="text-[10px] font-mono font-bold text-[#00E5FF] uppercase">{d.id.toUpperCase()}</div>
-              <div className="font-display font-bold text-white text-sm mt-1">{d.title.split('—')[1]}</div>
+              <div className="text-[11px] font-bold text-[#8B5CF6] uppercase">{d.id.toUpperCase()}</div>
+              <div className="font-bold text-[#17181C] text-sm mt-1">{d.title.split('—')[1]}</div>
             </button>
           ))}
         </div>
 
         {/* Selected Day Content Container */}
-        <div className="bg-[#0A0E1A] border border-white/10 rounded-2xl p-6 md:p-8 space-y-6 shadow-2xl">
-          <div className="border-b border-white/10 pb-4 space-y-1">
-            <div className="text-[10px] font-mono font-bold uppercase text-[#00F090]">{current.routineStep}</div>
-            <h2 className="text-xl font-display font-bold text-white">{current.title}</h2>
-            <p className="text-xs text-slate-400 font-sans">{current.subtitle}</p>
+        <div className="bg-white border border-[#EAEAE5] rounded-3xl p-6 md:p-8 space-y-6 shadow-card">
+          <div className="border-b border-[#EAEAE5] pb-4 space-y-1">
+            <div className="text-xs font-bold uppercase text-[#8B5CF6]">{current.routineStep}</div>
+            <h2 className="text-xl sm:text-2xl font-bold text-[#17181C]">{current.title}</h2>
+            <p className="text-xs sm:text-sm text-[#666B76]">{current.subtitle}</p>
           </div>
 
           {/* Simulated Video Player Placeholder */}
-          <div className="bg-[#060A12] border border-white/10 rounded-xl p-8 text-white flex flex-col items-center justify-center space-y-3 text-center min-h-[220px]">
-            <div className="size-14 rounded-full bg-gradient-to-tr from-[#00F090] to-[#00E5FF] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform shadow-[0_0_20px_rgba(0,240,144,0.4)]">
-              <Play className="size-6 text-black ml-0.5 fill-black" />
+          <div className="bg-[#FAFAF7] border border-[#EAEAE5] rounded-2xl p-8 flex flex-col items-center justify-center space-y-4 text-center min-h-[220px]">
+            <div className="size-14 rounded-full bg-[#8B5CF6] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform shadow-xs">
+              <Play className="size-6 text-white ml-0.5 fill-white" />
             </div>
             <div className="space-y-1">
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-white">{current.title} (Recording)</div>
-              <div className="text-[10px] font-mono text-slate-400">Duration: 1h 45m · Simulated Session Recording</div>
+              <div className="text-sm font-bold text-[#17181C]">{current.title} (Recording)</div>
+              <div className="text-xs text-[#666B76]">Duration: 1h 45m · Simulated Session Recording</div>
             </div>
           </div>
 
           {/* Routine Exercise Checklist */}
           <div className="space-y-3">
-            <div className="text-xs font-mono font-bold uppercase text-white">Day Exercise Checklist:</div>
-            <div className="space-y-2">
+            <div className="text-xs font-bold uppercase text-[#17181C]">Day Exercise Checklist:</div>
+            <div className="space-y-2.5">
               {current.tasks.map((task, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-lg bg-white/[0.02] border border-white/5 text-xs text-slate-300">
-                  <CheckCircle2 className="size-4 text-[#00F090] shrink-0 mt-0.5" />
+                <div key={idx} className="flex items-start gap-3 p-4 rounded-xl bg-[#FAFAF7] border border-[#EAEAE5] text-xs text-[#17181C]">
+                  <CheckCircle2 className="size-4 text-[#35C99A] shrink-0 mt-0.5" />
                   <span>{task}</span>
                 </div>
               ))}
@@ -112,13 +113,16 @@ export const SessionScreen: React.FC = () => {
           </div>
 
           {/* Download Workbook Action */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-white/10 text-xs font-mono">
-            <button className="px-4 py-2.5 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 border border-white/15 transition-colors flex items-center gap-2 cursor-pointer">
-              <Download className="size-3.5 text-[#00E5FF]" />
-              <span>Download Day Workbook (PDF)</span>
-            </button>
-            <span className="text-[10px] text-slate-500">
-              // LUXALGO VELA ENGINE — Simulated masterclass material
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-5 border-t border-[#EAEAE5] text-xs">
+            <Button
+              variant="secondary"
+              size="md"
+              leftIcon={<Download className="size-3.5 text-[#8B5CF6]" />}
+            >
+              Download Day Workbook (PDF)
+            </Button>
+            <span className="text-xs text-[#666B76]">
+              Simulated masterclass material
             </span>
           </div>
         </div>

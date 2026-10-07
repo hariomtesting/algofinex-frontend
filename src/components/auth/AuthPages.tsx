@@ -103,21 +103,21 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] pt-24 pb-20 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-8 shadow-workstation text-left">
+    <div className="min-h-screen bg-[#FAFAF7] text-[#17181C] pt-28 pb-24 flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white border border-[#EAEAE5] rounded-3xl p-8 sm:p-10 shadow-card text-left">
         
         {/* Brand Header */}
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center size-10 rounded-xl bg-[#141820] border border-[#20252C] mb-3">
-            <Lock className="size-5 text-[#C8A96B]" />
+          <div className="inline-flex items-center justify-center size-12 rounded-2xl bg-[#EEF2FF] border border-[#4F6BFF]/20 mb-3 shadow-xs">
+            <Lock className="size-5 text-[#4F6BFF]" />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#F3F4F6]">
+          <h2 className="text-2xl font-bold tracking-tight text-[#17181C]">
             {mode === 'login' && 'Client Portal Login'}
             {mode === 'signup' && 'Create Trader Account'}
             {mode === 'forgot_password' && 'Reset Access Password'}
             {mode === 'verify' && 'Verify Security Token'}
           </h2>
-          <p className="text-xs text-[#8B929C] mt-1.5">
+          <p className="text-xs text-[#666B76] mt-1.5">
             {mode === 'login' && 'Access your AlgoFinex indicator licenses & workstation.'}
             {mode === 'signup' && 'Bind your TradingView username for automated invite scripts.'}
             {mode === 'forgot_password' && 'Enter your registered email to receive an authorization code.'}
@@ -127,14 +127,14 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
 
         {/* Status Banners */}
         {errorMsg && (
-          <div className="mb-5 p-3 rounded-xl bg-[#C87878]/10 border border-[#C87878]/30 text-xs text-[#C87878] flex items-center gap-2">
+          <div className="mb-5 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-center gap-2">
             <AlertCircle className="size-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>
         )}
 
         {successMsg && (
-          <div className="mb-5 p-3 rounded-xl bg-[#0B0E13] border border-[#6FAF8A]/40 text-xs text-[#6FAF8A] flex items-center gap-2">
+          <div className="mb-5 p-3.5 rounded-2xl bg-[#ECFBF6] border border-[#35C99A]/30 text-xs text-[#059669] flex items-center gap-2 font-medium">
             <CheckCircle2 className="size-4 shrink-0" />
             <span>{successMsg}</span>
           </div>
@@ -204,14 +204,14 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
 
           {mode === 'login' && (
             <div className="flex items-center justify-between text-xs pt-1">
-              <label className="flex items-center gap-2 text-[#8B929C] cursor-pointer">
-                <input type="checkbox" className="rounded accent-[#C8A96B] size-3.5" defaultChecked />
+              <label className="flex items-center gap-2 text-[#666B76] cursor-pointer">
+                <input type="checkbox" className="rounded accent-[#4F6BFF] size-3.5" defaultChecked />
                 <span>Remember session</span>
               </label>
               <button
                 type="button"
                 onClick={() => handleModeSwitch('forgot_password')}
-                className="text-[#C8A96B] hover:underline cursor-pointer"
+                className="text-[#4F6BFF] hover:underline cursor-pointer font-medium"
               >
                 Forgot password?
               </button>
@@ -235,13 +235,13 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
         </form>
 
         {/* Footer Navigation Switcher */}
-        <div className="mt-6 pt-5 border-t border-[#20252C] text-center text-xs text-[#8B929C]">
+        <div className="mt-6 pt-5 border-t border-[#EAEAE5] text-center text-xs text-[#666B76]">
           {mode === 'login' && (
             <p>
               Don't have an account yet?{' '}
               <button
                 onClick={() => handleModeSwitch('signup')}
-                className="text-[#C8A96B] font-semibold hover:underline cursor-pointer ml-1"
+                className="text-[#4F6BFF] font-semibold hover:underline cursor-pointer ml-1"
               >
                 Create Account
               </button>
@@ -253,7 +253,7 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
               Already registered?{' '}
               <button
                 onClick={() => handleModeSwitch('login')}
-                className="text-[#C8A96B] font-semibold hover:underline cursor-pointer ml-1"
+                className="text-[#4F6BFF] font-semibold hover:underline cursor-pointer ml-1"
               >
                 Sign In
               </button>
@@ -263,7 +263,7 @@ export const AuthPages: React.FC<AuthPagesProps> = ({
           {(mode === 'forgot_password' || mode === 'verify') && (
             <button
               onClick={() => handleModeSwitch('login')}
-              className="inline-flex items-center gap-1 text-[#8B929C] hover:text-[#F3F4F6] cursor-pointer"
+              className="inline-flex items-center gap-1 text-[#666B76] hover:text-[#17181C] cursor-pointer font-medium"
             >
               <ChevronLeft className="size-3.5" />
               <span>Back to Login</span>

@@ -37,25 +37,25 @@ export const ActiveAccessScreen: React.FC = () => {
     <div className="p-4 sm:p-6 lg:p-8 max-w-[1000px] mx-auto text-left space-y-6">
       
       {/* Header */}
-      <div className="border-b border-[#20252C] pb-5">
+      <div className="border-b border-[#EAEAE5] pb-5">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="size-5 text-[#6FAF8A]" />
-          <h1 className="text-xl sm:text-2xl font-bold text-[#F3F4F6]">
+          <ShieldCheck className="size-5 text-[#35C99A]" />
+          <h1 className="text-xl sm:text-2xl font-extrabold text-[#17181C]">
             Active Script Access &amp; License Provisioning
           </h1>
         </div>
-        <p className="text-xs text-[#8B929C] mt-1">
+        <p className="text-xs sm:text-sm text-[#666B76] mt-1">
           Manage your TradingView account handle and webhook alert integrations.
         </p>
       </div>
 
       {/* Main License Card */}
-      <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-7 space-y-6">
+      <div className="bg-white border border-[#EAEAE5] rounded-3xl p-6 sm:p-8 space-y-6 shadow-card">
         
         {/* TradingView Handle Binding */}
         <div>
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-mono uppercase text-[#8B929C] font-semibold">
+            <span className="text-xs font-semibold uppercase text-[#666B76]">
               TradingView Username Binding
             </span>
             <Badge variant="success">WHITELISTED</Badge>
@@ -81,7 +81,7 @@ export const ActiveAccessScreen: React.FC = () => {
                   Save &amp; Sync
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   size="md"
                   onClick={() => setIsEditing(false)}
                 >
@@ -99,21 +99,21 @@ export const ActiveAccessScreen: React.FC = () => {
               </Button>
             )}
           </div>
-          <p className="text-[11px] text-[#6B7380] mt-1.5">
+          <p className="text-[11px] text-[#666B76] mt-2">
             Updating your username triggers automated script provisioning for your new account within 5-10 minutes.
           </p>
         </div>
 
         {/* License Key */}
-        <div className="pt-5 border-t border-[#20252C]">
-          <span className="text-xs font-mono uppercase text-[#8B929C] font-semibold block mb-2">
+        <div className="pt-6 border-t border-[#EAEAE5]">
+          <span className="text-xs font-semibold uppercase text-[#666B76] block mb-2">
             Master License Pass
           </span>
-          <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#0B0E13] border border-[#20252C] font-mono text-xs">
-            <span className="text-[#F3F4F6] font-semibold">{licenseKey}</span>
+          <div className="flex items-center justify-between p-4 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5] text-xs font-mono">
+            <span className="text-[#17181C] font-bold">{licenseKey}</span>
             <button
               onClick={() => handleCopy(licenseKey, 'License Pass')}
-              className="text-[#8B929C] hover:text-[#C8A96B] flex items-center gap-1.5 cursor-pointer transition-colors"
+              className="text-[#666B76] hover:text-[#4F6BFF] flex items-center gap-1.5 cursor-pointer transition-colors font-sans font-medium"
             >
               <Copy className="size-3.5" />
               <span>Copy</span>
@@ -122,24 +122,24 @@ export const ActiveAccessScreen: React.FC = () => {
         </div>
 
         {/* Automated Webhook Alert Endpoint */}
-        <div className="pt-5 border-t border-[#20252C]">
+        <div className="pt-6 border-t border-[#EAEAE5]">
           <div className="flex items-center gap-2 mb-2">
-            <Bell className="size-4 text-[#C8A96B]" />
-            <span className="text-xs font-mono uppercase text-[#8B929C] font-semibold">
+            <Bell className="size-4 text-[#4F6BFF]" />
+            <span className="text-xs font-semibold uppercase text-[#666B76]">
               TradingView Webhook Alert URL
             </span>
           </div>
-          <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#0B0E13] border border-[#20252C] font-mono text-xs">
-            <span className="text-[#8B929C] truncate mr-2">{webhookUrl}</span>
+          <div className="flex items-center justify-between p-4 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5] text-xs font-mono">
+            <span className="text-[#666B76] truncate mr-2">{webhookUrl}</span>
             <button
               onClick={() => handleCopy(webhookUrl, 'Webhook URL')}
-              className="text-[#8B929C] hover:text-[#C8A96B] flex items-center gap-1.5 shrink-0 cursor-pointer transition-colors"
+              className="text-[#666B76] hover:text-[#4F6BFF] flex items-center gap-1.5 shrink-0 cursor-pointer transition-colors font-sans font-medium"
             >
               <Copy className="size-3.5" />
               <span>Copy URL</span>
             </button>
           </div>
-          <p className="text-[11px] text-[#6B7380] mt-1.5">
+          <p className="text-[11px] text-[#666B76] mt-2">
             Paste this URL into your TradingView Alert "Webhook URL" field for instant alert routing to Telegram or Discord.
           </p>
         </div>

@@ -95,13 +95,13 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
   return (
     <div
       data-component="WorkspaceScreen"
-      className="flex-1 flex flex-col h-full min-h-0 bg-[#05080E] text-white select-none overflow-hidden"
+      className="flex-1 flex flex-col h-full min-h-0 bg-[#FAFAF7] text-[#17181C] select-none overflow-hidden"
     >
       {/* 1. UPPER WORKSPACE TOOLBAR / LENS & INDICATORS BAR */}
-      <div className="h-11 border-b border-white/10 px-3 bg-[#060A12] flex items-center justify-between shrink-0 overflow-x-auto gap-2 z-20">
+      <div className="h-11 border-b border-[#EAEAE5] px-4 bg-white flex items-center justify-between shrink-0 overflow-x-auto gap-3 z-20">
         {/* Left: Strata Lenses (Raw, Structure, Liquidity, Trend, Confirmation) */}
         <div className="flex items-center gap-1.5 min-w-max">
-          <span className="text-[10px] font-mono font-semibold uppercase text-slate-500 mr-1 hidden sm:inline">
+          <span className="text-[11px] font-semibold uppercase text-[#666B76] mr-1 hidden sm:inline">
             Strata Lens:
           </span>
           {(['RAW', 'STRUCTURE', 'LIQUIDITY', 'TREND', 'CONFIRMATION'] as LensLayer[]).map(
@@ -109,10 +109,10 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
               <button
                 key={lens}
                 onClick={() => onLensChange(lens)}
-                className={`px-2 py-0.5 text-[11px] font-mono font-medium rounded-md transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                   activeLens === lens
-                    ? 'bg-[#00F090] text-black font-bold shadow-[0_0_8px_#00F090]'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-[#4F6BFF] text-white font-bold shadow-xs'
+                    : 'text-[#666B76] hover:text-[#17181C] hover:bg-[#FAFAF7]'
                 }`}
               >
                 {lens}
@@ -122,25 +122,25 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
         </div>
 
         {/* Right Controls: Indicators Dropdown, Chart Style, Dual Split */}
-        <div className="flex items-center gap-2 min-w-max">
+        <div className="flex items-center gap-2.5 min-w-max">
           {/* Indicators Toggle Popover */}
           <div className="relative">
             <button
               onClick={() => setIsIndicatorsMenuOpen((prev) => !prev)}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0A0E1A] border border-white/10 hover:border-cyan-500/40 text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
+              className="flex items-center gap-2 px-3 py-1 rounded-xl bg-[#FAFAF7] hover:bg-white border border-[#EAEAE5] hover:border-[#4F6BFF]/40 text-xs font-medium text-[#17181C] transition-all cursor-pointer shadow-xs"
             >
-              <SlidersHorizontal className="size-3 text-[#00E5FF]" />
+              <SlidersHorizontal className="size-3.5 text-[#4F6BFF]" />
               <span>Indicators</span>
-              <span className="size-4 rounded-full bg-emerald-500/20 text-[#00F090] text-[9px] flex items-center justify-center font-bold">
+              <span className="size-4 rounded-full bg-[#EEF2FF] text-[#4F6BFF] text-[10px] flex items-center justify-center font-bold">
                 {[showEMA, showOrderBlocks, showLiquidity, showVolume, showRSI].filter(Boolean).length}
               </span>
-              <ChevronDown className="size-3 text-slate-500 ml-0.5" />
+              <ChevronDown className="size-3 text-[#666B76] ml-0.5" />
             </button>
 
             {/* Popover Menu */}
             {isIndicatorsMenuOpen && (
-              <div className="absolute right-0 top-9 w-60 bg-[#0A0E1A] border border-white/15 rounded-xl shadow-2xl p-2 space-y-1 z-50 animate-in fade-in-50 duration-100">
-                <div className="px-2 py-1 text-[10px] font-mono uppercase text-slate-500 font-bold border-b border-white/5 mb-1">
+              <div className="absolute right-0 top-10 w-64 bg-white border border-[#EAEAE5] rounded-2xl shadow-card p-2 space-y-1 z-50 animate-in fade-in-50 duration-100">
+                <div className="px-3 py-1.5 text-[10px] font-semibold uppercase text-[#666B76] border-b border-[#F0F1EE] mb-1">
                   Active Overlays
                 </div>
 
@@ -154,16 +154,16 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
                   <button
                     key={idx}
                     onClick={() => item.setter(!item.state)}
-                    className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-mono text-left hover:bg-white/5 transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs text-left hover:bg-[#FAFAF7] transition-colors cursor-pointer font-medium"
                   >
-                    <span className={item.state ? 'text-white font-medium' : 'text-slate-500'}>
+                    <span className={item.state ? 'text-[#17181C] font-semibold' : 'text-[#666B76]'}>
                       {item.label}
                     </span>
                     <div
                       className={`size-4 rounded flex items-center justify-center border ${
                         item.state
-                          ? 'bg-[#00F090] border-[#00F090] text-black'
-                          : 'border-white/20'
+                          ? 'bg-[#4F6BFF] border-[#4F6BFF] text-white'
+                          : 'border-[#EAEAE5]'
                       }`}
                     >
                       {item.state && <Check className="size-3 stroke-[3]" />}
@@ -175,15 +175,15 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
           </div>
 
           {/* Chart Style (Candles / Line / Area) */}
-          <div className="flex items-center bg-[#0A0E1A] border border-white/10 rounded-lg p-0.5">
+          <div className="flex items-center bg-[#FAFAF7] border border-[#EAEAE5] rounded-xl p-0.5 shadow-xs">
             {(['candles', 'line', 'area'] as ChartType[]).map((type) => (
               <button
                 key={type}
                 onClick={() => setChartType(type)}
-                className={`px-2 py-0.5 text-[10px] font-mono uppercase rounded capitalize transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-xs font-mono uppercase rounded-lg capitalize transition-all cursor-pointer ${
                   chartType === type
-                    ? 'bg-white/15 text-white font-bold'
-                    : 'text-slate-500 hover:text-white'
+                    ? 'bg-[#4F6BFF] text-white font-bold shadow-xs'
+                    : 'text-[#666B76] hover:text-[#17181C]'
                 }`}
               >
                 {type}
@@ -195,10 +195,10 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
           <button
             onClick={() => setIsDualSplit((prev) => !prev)}
             title={isDualSplit ? 'Single Chart Layout' : 'Dual Split Layout'}
-            className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
+            className={`p-1.5 rounded-xl border transition-colors cursor-pointer ${
               isDualSplit
-                ? 'bg-cyan-500/20 text-[#00E5FF] border-cyan-500/40'
-                : 'text-slate-500 hover:text-white border-white/10 bg-[#0A0E1A]'
+                ? 'bg-[#EEF2FF] text-[#4F6BFF] border-[#4F6BFF]/30 shadow-xs'
+                : 'text-[#666B76] hover:text-[#17181C] border-[#EAEAE5] bg-[#FAFAF7]'
             }`}
           >
             {isDualSplit ? <Columns className="size-3.5" /> : <Square className="size-3.5" />}
@@ -207,35 +207,35 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
       </div>
 
       {/* 2. OHLCV LIVE COORDINATE INSPECTION STRIP */}
-      <div className="h-8 border-b border-white/10 px-3 bg-[#080C14] flex items-center justify-between text-xs font-mono shrink-0 overflow-x-auto gap-3">
-        <div className="flex items-center gap-2.5 min-w-max">
-          <div className="flex items-center gap-1.5 font-bold text-white">
+      <div className="h-8 border-b border-[#EAEAE5] px-4 bg-[#FAFAF7] flex items-center justify-between text-xs font-mono shrink-0 overflow-x-auto gap-3">
+        <div className="flex items-center gap-3 min-w-max">
+          <div className="flex items-center gap-2 font-bold text-[#17181C]">
             <span>{selectedInstrument}</span>
-            <span className="text-[10px] px-1 py-0.2 rounded bg-white/5 text-[#00E5FF]">
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-white border border-[#EAEAE5] text-[#4F6BFF]">
               {selectedTimeframe}
             </span>
           </div>
 
-          <span className="text-slate-600">•</span>
+          <span className="text-[#D0D4DD]">•</span>
 
-          <div className="flex items-center gap-3 text-slate-400 text-[11px]">
+          <div className="flex items-center gap-3 text-[#666B76] text-xs">
             <span>
-              O: <strong className="text-white">${displayOpen.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
+              O: <strong className="text-[#17181C]">${displayOpen.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
             </span>
             <span>
-              H: <strong className="text-white">${displayHigh.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
+              H: <strong className="text-[#17181C]">${displayHigh.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
             </span>
             <span>
-              L: <strong className="text-white">${displayLow.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
+              L: <strong className="text-[#17181C]">${displayLow.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
             </span>
             <span>
               C:{' '}
-              <strong className={isBullish ? 'text-[#00F090]' : 'text-[#FF3B69]'}>
+              <strong className={isBullish ? 'text-[#059669]' : 'text-[#FF6B6B]'}>
                 ${displayClose.toLocaleString(undefined, { minimumFractionDigits: 2 })}
               </strong>
             </span>
             <span
-              className={`font-semibold ${isBullish ? 'text-[#00F090]' : 'text-[#FF3B69]'}`}
+              className={`font-semibold ${isBullish ? 'text-[#059669]' : 'text-[#FF6B6B]'}`}
             >
               ({isBullish ? '+' : ''}
               {displayChangePercent}%)
@@ -244,21 +244,21 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
         </div>
 
         {/* Status / Invalidation Badge */}
-        <div className="flex items-center gap-3 min-w-max text-[11px]">
-          <div className="hidden md:flex items-center gap-1.5 text-slate-400">
+        <div className="flex items-center gap-3 min-w-max text-xs">
+          <div className="hidden md:flex items-center gap-1.5 text-[#666B76]">
             <span>Invalidation:</span>
-            <strong className="text-[#FF3B69] font-bold">
+            <strong className="text-[#FF6B6B] font-bold">
               ${(quote.price * 0.985).toFixed(0)}
             </strong>
           </div>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-[#00F090] border border-emerald-500/20 font-semibold">
+          <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#EEF2FF] text-[#4F6BFF] border border-[#4F6BFF]/20 font-bold">
             {activeLens} ACTIVE
           </span>
         </div>
       </div>
 
       {/* 3. MAIN WORKSTATION CENTER: TOOLBAR + CHARTS + RIGHT PANEL */}
-      <div className="flex-1 flex min-h-0 relative overflow-hidden">
+      <div className="flex-1 flex min-h-0 relative overflow-hidden bg-white">
         {/* Left Drawing Toolbar */}
         <DrawingToolbar
           activeTool={activeDrawingTool}
@@ -268,17 +268,17 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
         />
 
         {/* Primary Chart Canvas (Single or Dual) */}
-        <div className="flex-1 flex flex-col md:flex-row min-w-0 h-full relative overflow-hidden">
+        <div className="flex-1 flex flex-col md:flex-row min-w-0 h-full relative overflow-hidden bg-white">
           <React.Suspense
             fallback={
-              <div className="flex-1 flex flex-col items-center justify-center bg-[#070B14] text-[#8B929C] font-mono text-xs gap-3">
-                <div className="w-6 h-6 border-2 border-[#C8A96B] border-t-transparent rounded-full animate-spin" />
-                <span className="tracking-widest text-[11px] text-[#A6AEB8]">INITIALIZING TRADING ENGINE...</span>
+              <div className="flex-1 flex flex-col items-center justify-center bg-white text-[#666B76] text-xs gap-3 font-medium">
+                <div className="w-7 h-7 border-2 border-[#4F6BFF] border-t-transparent rounded-full animate-spin" />
+                <span className="tracking-wider text-xs text-[#17181C]">INITIALIZING TRADING ENGINE...</span>
               </div>
             }
           >
             {/* Primary Chart */}
-            <div className="flex-1 flex flex-col min-w-0 h-full relative">
+            <div className="flex-1 flex flex-col min-w-0 h-full relative bg-white">
               <TradingChart
                 instrument={selectedInstrument}
                 timeframe={selectedTimeframe}
@@ -296,10 +296,10 @@ export const WorkspaceScreen: React.FC<WorkspaceScreenProps> = ({
 
             {/* Secondary Chart (if Dual Split is enabled) */}
             {isDualSplit && (
-              <div className="flex-1 flex flex-col min-w-0 h-full border-t md:border-t-0 md:border-l border-white/10 relative">
-                <div className="h-7 bg-[#070B14] px-3 flex items-center justify-between text-[10px] font-mono text-slate-400 border-b border-white/5">
+              <div className="flex-1 flex flex-col min-w-0 h-full border-t md:border-t-0 md:border-l border-[#EAEAE5] relative bg-white">
+                <div className="h-8 bg-[#FAFAF7] px-3 flex items-center justify-between text-xs font-mono text-[#666B76] border-b border-[#EAEAE5]">
                   <span>ETH/USD · 1H CORRELATION PANE</span>
-                  <span className="text-[#00F090]">SYNCED FEED</span>
+                  <span className="text-[#059669] font-bold">SYNCED FEED</span>
                 </div>
                 <TradingChart
                   instrument="ETH/USD"

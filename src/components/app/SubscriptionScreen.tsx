@@ -43,32 +43,32 @@ export const SubscriptionScreen: React.FC = () => {
     <div className="p-4 sm:p-6 lg:p-8 max-w-[1000px] mx-auto text-left space-y-6">
       
       {/* DEMO NOTICE */}
-      <div className="p-3 rounded-xl bg-[#101318] border border-[#20252C] flex items-center justify-between text-xs font-mono text-[#8B929C]">
-        <div className="flex items-center gap-2">
-          <span className="size-2 rounded-full bg-[#C8A96B]" />
-          <span>SIMULATED SUBSCRIPTION &amp; BILLING DESK — Public Preview Mode</span>
+      <div className="p-4 rounded-2xl bg-[#EEF2FF] border border-[#4F6BFF]/20 flex items-center justify-between text-xs text-[#17181C]">
+        <div className="flex items-center gap-2.5">
+          <span className="size-2 rounded-full bg-[#4F6BFF]" />
+          <span className="font-medium">SIMULATED SUBSCRIPTION &amp; BILLING DESK — Public Preview Mode</span>
         </div>
       </div>
 
       {/* Header */}
-      <div className="border-b border-[#20252C] pb-5">
+      <div className="border-b border-[#EAEAE5] pb-5">
         <div className="flex items-center gap-2">
-          <CreditCard className="size-5 text-[#C8A96B]" />
-          <h1 className="text-xl sm:text-2xl font-bold text-[#F3F4F6]">
+          <CreditCard className="size-5 text-[#4F6BFF]" />
+          <h1 className="text-xl sm:text-2xl font-extrabold text-[#17181C]">
             Subscription &amp; Billing Desk
           </h1>
         </div>
-        <p className="text-xs text-[#8B929C] mt-1">
+        <p className="text-xs sm:text-sm text-[#666B76] mt-1">
           Review active license billing cycle, payment method, and tax receipts.
         </p>
       </div>
 
       {/* Active Subscription Overview Card */}
-      <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-7 space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#20252C] pb-5">
+      <div className="bg-white border border-[#EAEAE5] rounded-3xl p-6 sm:p-8 space-y-6 shadow-card">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#EAEAE5] pb-5">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-[#F3F4F6] capitalize">
+            <div className="flex items-center gap-2.5">
+              <span className="text-xl font-bold text-[#17181C] capitalize">
                 {subscription.plan} AlgoFinex Suite
               </span>
               <Badge variant="success">ACTIVE</Badge>
@@ -76,14 +76,14 @@ export const SubscriptionScreen: React.FC = () => {
                 <Badge variant="danger">CANCELS AT PERIOD END</Badge>
               )}
             </div>
-            <p className="text-xs text-[#8B929C] mt-1 font-mono">
+            <p className="text-xs sm:text-sm text-[#666B76] mt-1 font-sans">
               ${subscription.amount}.00 USD billed annually • Active since April 2025
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <Button
-              variant="secondary"
+              variant="primary"
               size="sm"
               onClick={() => setIsUpgradeModalOpen(true)}
             >
@@ -91,7 +91,7 @@ export const SubscriptionScreen: React.FC = () => {
             </Button>
             {!subscription.cancelAtPeriodEnd && (
               <Button
-                variant="ghost"
+                variant="secondary"
                 size="sm"
                 onClick={() => setIsCancelModalOpen(true)}
               >
@@ -102,24 +102,24 @@ export const SubscriptionScreen: React.FC = () => {
         </div>
 
         {/* Details Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-          <div className="p-3.5 rounded-xl bg-[#0B0E13] border border-[#20252C]">
-            <span className="text-[#8B929C] block">Renewal Date</span>
-            <span className="text-[#F3F4F6] font-semibold mt-1 block">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-medium">
+          <div className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5]">
+            <span className="text-[#666B76] block">Renewal Date</span>
+            <span className="text-[#17181C] font-bold mt-1 block">
               {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
             </span>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-[#0B0E13] border border-[#20252C]">
-            <span className="text-[#8B929C] block">Payment Card</span>
-            <span className="text-[#F3F4F6] font-semibold mt-1 block">
+          <div className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5]">
+            <span className="text-[#666B76] block">Payment Card</span>
+            <span className="text-[#17181C] font-bold mt-1 block">
               Visa ending in •••• {subscription.paymentMethodLast4}
             </span>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-[#0B0E13] border border-[#20252C]">
-            <span className="text-[#8B929C] block">Included Scripts</span>
-            <span className="text-[#6FAF8A] font-semibold mt-1 block">
+          <div className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5]">
+            <span className="text-[#666B76] block">Included Scripts</span>
+            <span className="text-[#059669] font-bold mt-1 block">
               4 Proprietary Algorithms
             </span>
           </div>
@@ -127,36 +127,36 @@ export const SubscriptionScreen: React.FC = () => {
       </div>
 
       {/* Invoice History Table */}
-      <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-7 space-y-4">
-        <h3 className="text-sm font-semibold text-[#F3F4F6]">Invoice &amp; Tax Receipts</h3>
+      <div className="bg-white border border-[#EAEAE5] rounded-3xl p-6 sm:p-8 space-y-4 shadow-card">
+        <h3 className="text-base font-bold text-[#17181C]">Invoice &amp; Tax Receipts</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left font-mono">
+          <table className="w-full text-xs text-left">
             <thead>
-              <tr className="border-b border-[#20252C] text-[#8B929C]">
-                <th className="py-2.5 px-3">Invoice ID</th>
-                <th className="py-2.5 px-3">Date</th>
-                <th className="py-2.5 px-3">Amount</th>
-                <th className="py-2.5 px-3">Status</th>
-                <th className="py-2.5 px-3 text-right">Receipt</th>
+              <tr className="border-b border-[#EAEAE5] text-[#666B76] font-semibold">
+                <th className="py-3 px-3">Invoice ID</th>
+                <th className="py-3 px-3">Date</th>
+                <th className="py-3 px-3">Amount</th>
+                <th className="py-3 px-3">Status</th>
+                <th className="py-3 px-3 text-right">Receipt</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1C2128]">
+            <tbody className="divide-y divide-[#F0F1EE]">
               {subscription.invoiceHistory.map((inv) => (
-                <tr key={inv.id} className="hover:bg-[#141820] transition-colors">
-                  <td className="py-3 px-3 font-semibold text-[#F3F4F6]">{inv.id}</td>
-                  <td className="py-3 px-3 text-[#8B929C]">{inv.date}</td>
-                  <td className="py-3 px-3 text-[#F3F4F6]">${inv.amount}.00 USD</td>
-                  <td className="py-3 px-3">
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-[#6FAF8A]/10 text-[#6FAF8A] border border-[#6FAF8A]/30">
+                <tr key={inv.id} className="hover:bg-[#FAFAF7] transition-colors">
+                  <td className="py-3.5 px-3 font-semibold text-[#17181C] font-mono">{inv.id}</td>
+                  <td className="py-3.5 px-3 text-[#666B76]">{inv.date}</td>
+                  <td className="py-3.5 px-3 text-[#17181C] font-bold font-mono">${inv.amount}.00 USD</td>
+                  <td className="py-3.5 px-3">
+                    <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#ECFBF6] text-[#059669] border border-[#35C99A]/30 font-bold">
                       PAID
                     </span>
                   </td>
-                  <td className="py-3 px-3 text-right">
+                  <td className="py-3.5 px-3 text-right">
                     <button
                       onClick={() => showToast(`Downloaded invoice ${inv.id}`, { type: 'success' })}
-                      className="text-[#8B929C] hover:text-[#C8A96B] inline-flex items-center gap-1 cursor-pointer"
+                      className="text-[#666B76] hover:text-[#4F6BFF] inline-flex items-center gap-1 cursor-pointer font-medium"
                     >
-                      <Download className="size-3" />
+                      <Download className="size-3.5" />
                       <span>PDF</span>
                     </button>
                   </td>
@@ -174,12 +174,12 @@ export const SubscriptionScreen: React.FC = () => {
         title="Cancel Automatic Renewal"
         subtitle="You will retain access until the end of your billing cycle."
       >
-        <p className="text-xs text-[#8B929C] leading-relaxed mb-6">
+        <p className="text-xs text-[#666B76] leading-relaxed mb-6">
           Canceling your renewal will prevent future billing. Your TradingView script invites will remain active until{' '}
-          <strong className="text-[#F3F4F6]">{new Date(subscription.currentPeriodEnd).toLocaleDateString()}</strong>.
+          <strong className="text-[#17181C]">{new Date(subscription.currentPeriodEnd).toLocaleDateString()}</strong>.
         </p>
         <div className="flex gap-3 justify-end">
-          <Button variant="outline" size="sm" onClick={() => setIsCancelModalOpen(false)}>
+          <Button variant="secondary" size="sm" onClick={() => setIsCancelModalOpen(false)}>
             Keep Subscription
           </Button>
           <Button
@@ -203,16 +203,16 @@ export const SubscriptionScreen: React.FC = () => {
           {(['monthly', 'annual', 'lifetime'] as SubscriptionPlan[]).map((plan) => (
             <div
               key={plan}
-              className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition-colors ${
+              className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-colors ${
                 subscription.plan === plan
-                  ? 'bg-[#141820] border-[#C8A96B]'
-                  : 'bg-[#0B0E13] border-[#20252C] hover:border-[#2E3642]'
+                  ? 'bg-[#EEF2FF] border-2 border-[#4F6BFF]'
+                  : 'bg-[#FAFAF7] border-[#EAEAE5] hover:border-[#D0D4DD]'
               }`}
               onClick={() => handlePlanChange(plan)}
             >
               <div>
-                <p className="text-xs font-mono capitalize font-bold text-[#F3F4F6]">{plan} Suite</p>
-                <p className="text-[11px] text-[#8B929C]">
+                <p className="text-xs capitalize font-bold text-[#17181C]">{plan} Suite</p>
+                <p className="text-xs text-[#666B76] mt-0.5">
                   {plan === 'monthly' ? '$79/month' : plan === 'annual' ? '$708/year ($59/mo)' : '$1,490 one-time'}
                 </p>
               </div>

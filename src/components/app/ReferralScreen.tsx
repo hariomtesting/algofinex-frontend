@@ -57,7 +57,7 @@ export const ReferralScreen: React.FC = () => {
 
   if (isLoading || !stats) {
     return (
-      <div className="p-8 text-center text-xs font-mono text-[#8B929C]">
+      <div className="p-8 text-center text-xs font-mono text-[#666B76]">
         Loading partner analytics desk...
       </div>
     );
@@ -67,61 +67,61 @@ export const ReferralScreen: React.FC = () => {
     <div className="p-4 sm:p-6 lg:p-8 max-w-[1200px] mx-auto text-left space-y-6">
       
       {/* Header */}
-      <div className="border-b border-[#20252C] pb-5">
+      <div className="border-b border-[#EAEAE5] pb-5">
         <div className="flex items-center gap-2">
-          <Users className="size-5 text-[#C8A96B]" />
-          <h1 className="text-xl sm:text-2xl font-bold text-[#F3F4F6]">
+          <Users className="size-5 text-[#35C99A]" />
+          <h1 className="text-xl sm:text-2xl font-extrabold text-[#17181C]">
             Partner &amp; Referral Desk
           </h1>
         </div>
-        <p className="text-xs text-[#8B929C] mt-1">
+        <p className="text-xs sm:text-sm text-[#666B76] mt-1">
           25% recurring monthly and annual commission on all active subscribers.
         </p>
       </div>
 
       {/* DEMO NOTICE */}
-      <div className="p-3 rounded-xl bg-[#101318] border border-[#20252C] flex items-center justify-between text-xs font-mono text-[#8B929C]">
-        <div className="flex items-center gap-2">
-          <span className="size-2 rounded-full bg-[#C8A96B]" />
-          <span>SIMULATED PARTNER ANALYTICS — Public Preview Mode</span>
+      <div className="p-4 rounded-2xl bg-[#ECFBF6] border border-[#35C99A]/20 flex items-center justify-between text-xs text-[#059669]">
+        <div className="flex items-center gap-2.5">
+          <span className="size-2 rounded-full bg-[#35C99A]" />
+          <span className="font-medium">SIMULATED PARTNER ANALYTICS — Public Preview Mode</span>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4">
-          <span className="text-[10px] font-mono uppercase text-[#8B929C]">Referred Accounts</span>
-          <p className="text-xl font-mono font-bold text-[#F3F4F6] mt-1">{stats.totalReferred}</p>
-          <span className="text-[11px] font-mono text-[#6FAF8A]">{stats.activeSubscribers} Active</span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="bg-white border border-[#EAEAE5] rounded-2xl p-5 shadow-card">
+          <span className="text-[11px] font-semibold uppercase text-[#666B76]">Referred Accounts</span>
+          <p className="text-2xl font-bold font-mono text-[#17181C] mt-2">{stats.totalReferred}</p>
+          <span className="text-xs text-[#059669] font-medium mt-1 block">{stats.activeSubscribers} Active</span>
         </div>
 
-        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4">
-          <span className="text-[10px] font-mono uppercase text-[#8B929C]">Commission Rate</span>
-          <p className="text-xl font-mono font-bold text-[#C8A96B] mt-1">{stats.commissionRate}%</p>
-          <span className="text-[11px] font-mono text-[#8B929C]">Lifetime Recurring</span>
+        <div className="bg-white border border-[#EAEAE5] rounded-2xl p-5 shadow-card">
+          <span className="text-[11px] font-semibold uppercase text-[#666B76]">Commission Rate</span>
+          <p className="text-2xl font-bold font-mono text-[#4F6BFF] mt-2">{stats.commissionRate}%</p>
+          <span className="text-xs text-[#666B76] mt-1 block">Lifetime Recurring</span>
         </div>
 
-        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4">
-          <span className="text-[10px] font-mono uppercase text-[#8B929C]">Pending Payout</span>
-          <p className="text-xl font-mono font-bold text-[#6FAF8A] mt-1">${stats.pendingPayout}.00</p>
-          <span className="text-[11px] font-mono text-[#8B929C]">Eligible for withdrawal</span>
+        <div className="bg-white border border-[#EAEAE5] rounded-2xl p-5 shadow-card">
+          <span className="text-[11px] font-semibold uppercase text-[#666B76]">Pending Payout</span>
+          <p className="text-2xl font-bold font-mono text-[#059669] mt-2">${stats.pendingPayout}.00</p>
+          <span className="text-xs text-[#666B76] mt-1 block">Eligible for withdrawal</span>
         </div>
 
-        <div className="bg-[#101318] border border-[#20252C] rounded-xl p-4">
-          <span className="text-[10px] font-mono uppercase text-[#8B929C]">Total Revenue Earned</span>
-          <p className="text-xl font-mono font-bold text-[#F3F4F6] mt-1">${stats.totalEarned}.00</p>
-          <span className="text-[11px] font-mono text-[#8B929C]">${stats.paidPayout} Disbursed</span>
+        <div className="bg-white border border-[#EAEAE5] rounded-2xl p-5 shadow-card">
+          <span className="text-[11px] font-semibold uppercase text-[#666B76]">Total Revenue Earned</span>
+          <p className="text-2xl font-bold font-mono text-[#17181C] mt-2">${stats.totalEarned}.00</p>
+          <span className="text-xs text-[#666B76] mt-1 block">${stats.paidPayout} Disbursed</span>
         </div>
       </div>
 
       {/* Referral Link & Code Bar */}
-      <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6 space-y-4">
+      <div className="bg-white border border-[#EAEAE5] rounded-3xl p-6 sm:p-8 space-y-4 shadow-card">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h3 className="text-sm font-semibold text-[#F3F4F6]">
+            <h3 className="text-base font-bold text-[#17181C]">
               Your Dedicated Referral Link
             </h3>
-            <p className="text-xs text-[#8B929C] mt-0.5">
+            <p className="text-xs sm:text-sm text-[#666B76] mt-0.5">
               Visitors are tracked via 60-day browser cookies.
             </p>
           </div>
@@ -136,25 +136,25 @@ export const ReferralScreen: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 pt-2">
-          <div className="md:col-span-8 flex items-center justify-between p-3 rounded-xl bg-[#0B0E13] border border-[#20252C] font-mono text-xs">
-            <span className="text-[#F3F4F6] truncate mr-2">{stats.referralLink}</span>
+          <div className="md:col-span-8 flex items-center justify-between p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5] text-xs font-mono">
+            <span className="text-[#17181C] font-semibold truncate mr-2">{stats.referralLink}</span>
             <button
               onClick={handleCopyLink}
-              className="text-[#8B929C] hover:text-[#C8A96B] flex items-center gap-1 shrink-0 cursor-pointer"
+              className="text-[#666B76] hover:text-[#4F6BFF] flex items-center gap-1.5 shrink-0 cursor-pointer font-sans font-medium"
             >
               <Copy className="size-3.5" />
               <span>Copy Link</span>
             </button>
           </div>
 
-          <div className="md:col-span-4 flex items-center justify-between p-3 rounded-xl bg-[#0B0E13] border border-[#20252C] font-mono text-xs">
+          <div className="md:col-span-4 flex items-center justify-between p-3.5 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5] text-xs font-mono">
             <div>
-              <span className="text-[#8B929C] mr-2">Code:</span>
-              <span className="text-[#C8A96B] font-bold">{stats.referralCode}</span>
+              <span className="text-[#666B76] mr-2">Code:</span>
+              <span className="text-[#4F6BFF] font-bold">{stats.referralCode}</span>
             </div>
             <button
               onClick={handleCopyCode}
-              className="text-[#8B929C] hover:text-[#C8A96B] flex items-center gap-1 cursor-pointer"
+              className="text-[#666B76] hover:text-[#4F6BFF] flex items-center gap-1.5 cursor-pointer font-sans font-medium"
             >
               <Copy className="size-3.5" />
               <span>Copy</span>
@@ -164,34 +164,34 @@ export const ReferralScreen: React.FC = () => {
       </div>
 
       {/* Referral History Table */}
-      <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6 space-y-4">
-        <h3 className="text-sm font-semibold text-[#F3F4F6]">Attribution &amp; Commission History</h3>
+      <div className="bg-white border border-[#EAEAE5] rounded-3xl p-6 sm:p-8 space-y-4 shadow-card">
+        <h3 className="text-base font-bold text-[#17181C]">Attribution &amp; Commission History</h3>
         <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left font-mono">
+          <table className="w-full text-xs text-left">
             <thead>
-              <tr className="border-b border-[#20252C] text-[#8B929C]">
-                <th className="py-2.5 px-3">Date</th>
-                <th className="py-2.5 px-3">Referred User</th>
-                <th className="py-2.5 px-3">Subscribed Plan</th>
-                <th className="py-2.5 px-3">Plan Amount</th>
-                <th className="py-2.5 px-3">Commission (25%)</th>
-                <th className="py-2.5 px-3 text-right">Status</th>
+              <tr className="border-b border-[#EAEAE5] text-[#666B76] font-semibold">
+                <th className="py-3 px-3">Date</th>
+                <th className="py-3 px-3">Referred User</th>
+                <th className="py-3 px-3">Subscribed Plan</th>
+                <th className="py-3 px-3">Plan Amount</th>
+                <th className="py-3 px-3">Commission (25%)</th>
+                <th className="py-3 px-3 text-right">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1C2128]">
+            <tbody className="divide-y divide-[#F0F1EE]">
               {stats.history.map((tx) => (
-                <tr key={tx.id} className="hover:bg-[#141820] transition-colors">
-                  <td className="py-3 px-3 text-[#8B929C]">{tx.date}</td>
-                  <td className="py-3 px-3 font-semibold text-[#F3F4F6]">{tx.referredUser}</td>
-                  <td className="py-3 px-3 text-[#8B929C]">{tx.plan}</td>
-                  <td className="py-3 px-3 text-[#F3F4F6]">${tx.amount}.00</td>
-                  <td className="py-3 px-3 text-[#6FAF8A] font-semibold">${tx.commission.toFixed(2)}</td>
-                  <td className="py-3 px-3 text-right">
+                <tr key={tx.id} className="hover:bg-[#FAFAF7] transition-colors">
+                  <td className="py-3.5 px-3 text-[#666B76]">{tx.date}</td>
+                  <td className="py-3.5 px-3 font-semibold text-[#17181C]">{tx.referredUser}</td>
+                  <td className="py-3.5 px-3 text-[#666B76]">{tx.plan}</td>
+                  <td className="py-3.5 px-3 text-[#17181C] font-mono">${tx.amount}.00</td>
+                  <td className="py-3.5 px-3 text-[#059669] font-bold font-mono">${tx.commission.toFixed(2)}</td>
+                  <td className="py-3.5 px-3 text-right">
                     <span
-                      className={`text-[10px] px-2 py-0.5 rounded border ${
+                      className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold border ${
                         tx.status === 'paid'
-                          ? 'bg-[#6FAF8A]/10 text-[#6FAF8A] border-[#6FAF8A]/30'
-                          : 'bg-[#C8A96B]/10 text-[#C8A96B] border-[#C8A96B]/30'
+                          ? 'bg-[#ECFBF6] text-[#059669] border-[#35C99A]/30'
+                          : 'bg-[#EEF2FF] text-[#4F6BFF] border-[#4F6BFF]/30'
                       }`}
                     >
                       {tx.status.toUpperCase()}
@@ -213,33 +213,33 @@ export const ReferralScreen: React.FC = () => {
       >
         <div className="space-y-4">
           <div>
-            <label className="text-xs font-mono uppercase text-[#8B929C] block mb-1">
+            <label className="text-xs font-semibold uppercase text-[#666B76] block mb-1">
               Payout Amount (USD)
             </label>
             <input
               type="number"
               value={payoutAmount}
               onChange={(e) => setPayoutAmount(e.target.value)}
-              className="w-full bg-[#0B0E13] text-[#F3F4F6] border border-[#20252C] rounded-lg p-2.5 font-mono text-sm"
+              className="w-full bg-[#FAFAF7] text-[#17181C] border border-[#EAEAE5] rounded-xl p-3 font-mono text-sm focus:bg-white focus:outline-none focus:border-[#4F6BFF]"
             />
-            <p className="text-[11px] text-[#6B7380] mt-1">
+            <p className="text-xs text-[#666B76] mt-1.5">
               Minimum payout threshold: $100.00 USD. Current balance: ${stats.pendingPayout}.00.
             </p>
           </div>
 
           <div>
-            <label className="text-xs font-mono uppercase text-[#8B929C] block mb-1">
+            <label className="text-xs font-semibold uppercase text-[#666B76] block mb-1">
               Receiving Address / Bank Info
             </label>
             <input
               type="text"
               defaultValue="0x71C...b9F1 (USDT ERC-20)"
-              className="w-full bg-[#0B0E13] text-[#F3F4F6] border border-[#20252C] rounded-lg p-2.5 font-mono text-xs"
+              className="w-full bg-[#FAFAF7] text-[#17181C] border border-[#EAEAE5] rounded-xl p-3 font-mono text-xs focus:bg-white focus:outline-none focus:border-[#4F6BFF]"
             />
           </div>
 
-          <div className="pt-2 flex justify-end gap-2">
-            <Button variant="outline" size="sm" onClick={() => setIsPayoutModalOpen(false)}>
+          <div className="pt-2 flex justify-end gap-2.5">
+            <Button variant="secondary" size="sm" onClick={() => setIsPayoutModalOpen(false)}>
               Cancel
             </Button>
             <Button

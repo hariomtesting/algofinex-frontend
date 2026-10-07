@@ -8,40 +8,37 @@ interface ClosingCtaSectionProps {
 
 export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onNavigate }) => {
   return (
-    <section className="relative py-20 sm:py-24 bg-[#080A0D] border-t border-[#20252C] overflow-hidden text-center">
-      <div className="relative max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section className="py-20 sm:py-28 bg-[#EEF2FF]/70 border-b border-[#E0E7FF] text-center">
+      <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Brand Glyph Display */}
+        {/* Brand Icon Glyph */}
         <div className="flex justify-center mb-6">
-          <div className="size-14 rounded-2xl bg-[#141820] border border-[#20252C] flex items-center justify-center shadow-xs">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4 18L10 11L14 15L20 7" stroke="#C8A96B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="20" cy="7" r="2.5" fill="#C8A96B" />
+          <div className="size-16 rounded-3xl bg-white border border-[#E0E7FF] flex items-center justify-center shadow-card">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path d="M4 18L10 11L14 15L20 7" stroke="#4F6BFF" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="20" cy="7" r="2.5" fill="#4F6BFF" />
             </svg>
           </div>
         </div>
 
-        {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#141820] border border-[#20252C] text-xs font-mono text-[#8B929C] mb-4">
-          <span className="size-1.5 rounded-full bg-[#C8A96B]" />
-          <span className="tracking-widest uppercase font-semibold text-[11px] text-[#C8A96B]">
-            DISCIPLINED EXECUTION
-          </span>
+        {/* Small Eyebrow */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E0E7FF] text-xs font-semibold text-[#4F6BFF] mb-4 shadow-xs">
+          <span>Disciplined Execution</span>
         </div>
 
         {/* Headline */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#F3F4F6] leading-[1.12]">
-          Read the market with <br />
-          <span className="text-[#C8A96B]">institutional clarity.</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#17181C] tracking-tight leading-[1.15]">
+          Ready to trade with <br className="hidden sm:inline" />
+          <span className="text-[#4F6BFF]">objective clarity?</span>
         </h2>
 
-        {/* Supporting Thought */}
-        <p className="mt-4 text-sm sm:text-base text-[#8B929C] max-w-xl mx-auto leading-relaxed">
-          Step away from subjective guessing, indicator overlap, and emotional chart chasing. Experience how disciplined market structure, multi-timeframe context, and an iron 7-step routine transform your trading.
+        {/* Short Supporting Paragraph */}
+        <p className="mt-4 text-base sm:text-lg text-[#666B76] max-w-xl mx-auto leading-relaxed">
+          Step away from indicator clutter, redraw frustration, and emotional chart-chasing. Trade with clear mathematical structure.
         </p>
 
         {/* Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
           <Button
             variant="primary"
             size="lg"
@@ -57,9 +54,9 @@ export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onNavigate
             size="lg"
             className="w-full sm:w-auto"
             onClick={() => onNavigate ? onNavigate('/session') : undefined}
-            leftIcon={<ShieldCheck className="size-4 text-[#C8A96B]" />}
+            leftIcon={<ShieldCheck className="size-4 text-[#4F6BFF]" />}
           >
-            Try the 3-Day Session
+            Try 3-Day Session
           </Button>
         </div>
 
@@ -67,3 +64,5 @@ export const ClosingCtaSection: React.FC<ClosingCtaSectionProps> = ({ onNavigate
     </section>
   );
 };
+
+export default ClosingCtaSection;

@@ -82,31 +82,31 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 
   return (
     <>
-      <header className="h-13 bg-[#101318] border-b border-[#20252C] px-3 sm:px-5 flex items-center justify-between sticky top-0 z-40 select-none">
+      <header className="h-14 bg-white border-b border-[#EAEAE5] px-3 sm:px-6 flex items-center justify-between sticky top-0 z-40 select-none shadow-xs">
         {/* Left: Brand + Landing Exit */}
         <div className="flex items-center gap-3">
           <button
             onClick={onExitApp}
-            className="flex items-center gap-1.5 text-xs font-mono text-[#8B929C] hover:text-[#F3F4F6] transition-colors p-1.5 -ml-1 rounded-lg hover:bg-white/[0.04] cursor-pointer"
+            className="flex items-center gap-1.5 text-xs font-medium text-[#666B76] hover:text-[#17181C] transition-colors p-1.5 -ml-1 rounded-xl hover:bg-[#FAFAF7] cursor-pointer"
             title="Return to Presentation"
           >
             <ArrowLeft className="size-3.5" />
             <span className="hidden sm:inline">Website</span>
           </button>
 
-          <div className="h-4 w-px bg-[#20252C] hidden sm:block" />
+          <div className="h-4 w-px bg-[#EAEAE5] hidden sm:block" />
 
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="size-6 rounded bg-[#141820] border border-[#20252C] flex items-center justify-center">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M4 18L10 11L14 15L20 7" stroke="#C8A96B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <div className="flex items-center gap-2.5">
+            <div className="size-7 rounded-xl bg-[#4F6BFF] flex items-center justify-center shadow-xs">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                <path d="M4 18L10 11L14 15L20 7" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <span className="font-semibold text-[#F3F4F6] tracking-tight text-sm hidden xs:inline">
-              Algo<span className="text-[#C8A96B] font-medium">Finex</span>
+            <span className="font-bold text-[#17181C] tracking-tight text-sm hidden xs:inline">
+              Algo<span className="text-[#4F6BFF]">Finex</span>
             </span>
-            <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#141820] text-[#C8A96B] border border-[#20252C] uppercase hidden md:inline">
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#EEF2FF] text-[#4F6BFF] border border-[#4F6BFF]/20 uppercase hidden md:inline">
               DESK TERMINAL
             </span>
           </div>
@@ -116,38 +116,38 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
         <div className="flex items-center gap-2 sm:gap-4">
           <button
             onClick={() => setIsSearchOpen(true)}
-            className="flex items-center gap-2 bg-[#0B0E13] hover:bg-[#141820] border border-[#20252C] hover:border-[#C8A96B]/50 rounded-lg px-2.5 py-1 transition-all cursor-pointer shadow-xs group"
+            className="flex items-center gap-2 bg-[#FAFAF7] hover:bg-white border border-[#EAEAE5] hover:border-[#4F6BFF]/40 rounded-xl px-3 py-1.5 transition-all cursor-pointer shadow-xs group"
           >
-            <Search className="size-3 text-[#8B929C] group-hover:text-[#C8A96B] transition-colors" />
-            <span className="text-xs font-mono font-bold text-[#F3F4F6] tracking-tight">
+            <Search className="size-3.5 text-[#666B76] group-hover:text-[#4F6BFF] transition-colors" />
+            <span className="text-xs font-bold text-[#17181C] font-mono tracking-tight">
               {selectedInstrument}
             </span>
-            <div className="hidden sm:flex items-center gap-1.5 pl-1 border-l border-[#20252C] text-[11px] font-mono">
-              <span className="text-[#F3F4F6] font-semibold">
+            <div className="hidden sm:flex items-center gap-1.5 pl-2 border-l border-[#EAEAE5] text-xs font-mono">
+              <span className="text-[#17181C] font-semibold">
                 ${currentQuote.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
               </span>
               <span
-                className={`text-[10px] font-bold ${
-                  isPositive ? 'text-[#6FAF8A]' : 'text-[#C87878]'
+                className={`text-[11px] font-bold ${
+                  isPositive ? 'text-[#059669]' : 'text-[#FF6B6B]'
                 }`}
               >
                 {isPositive ? '+' : ''}
                 {currentQuote.change24h}%
               </span>
             </div>
-            <ChevronDown className="size-3 text-[#6B7380] ml-0.5" />
+            <ChevronDown className="size-3 text-[#666B76] ml-0.5" />
           </button>
 
           {/* Timeframe Selector Strip */}
-          <div className="flex items-center bg-[#0B0E13] border border-[#20252C] rounded-lg p-0.5 shadow-xs">
+          <div className="flex items-center bg-[#FAFAF7] border border-[#EAEAE5] rounded-xl p-0.5 shadow-xs">
             {(['1m', '5m', '15m', '1h', '4h', '1D'] as Timeframe[]).map((tf) => (
               <button
                 key={tf}
                 onClick={() => onTimeframeChange(tf)}
-                className={`px-2 py-0.5 text-[11px] font-mono font-medium rounded-md transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-xs font-mono font-medium rounded-lg transition-all cursor-pointer ${
                   selectedTimeframe === tf
-                    ? 'bg-[#141820] text-[#C8A96B] font-bold border border-[#20252C]'
-                    : 'text-[#8B929C] hover:text-[#F3F4F6]'
+                    ? 'bg-[#4F6BFF] text-white shadow-xs font-bold'
+                    : 'text-[#666B76] hover:text-[#17181C]'
                 }`}
               >
                 {tf}
@@ -158,19 +158,19 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 
         {/* Right: Telemetry & Controls */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-[#C8A96B] bg-[#141820] border border-[#20252C] px-2.5 py-1 rounded-md">
-            <span className="size-1.5 rounded-full bg-[#C8A96B]" />
+          <div className="hidden sm:flex items-center gap-1.5 text-[11px] font-medium text-[#4F6BFF] bg-[#EEF2FF] border border-[#4F6BFF]/20 px-2.5 py-1 rounded-full">
+            <span className="size-1.5 rounded-full bg-[#4F6BFF]" />
             <span>DEMO PREVIEW</span>
           </div>
 
-          <div className="hidden lg:flex items-center gap-1.5 text-[10px] font-mono text-[#6FAF8A] bg-[#141820] border border-[#20252C] px-2.5 py-1 rounded-md">
-            <span className="size-1.5 rounded-full bg-[#6FAF8A]" />
-            <span>PINE V5 ENGINE · SYNCED</span>
+          <div className="hidden lg:flex items-center gap-1.5 text-[11px] font-medium text-[#059669] bg-[#ECFBF6] border border-[#35C99A]/20 px-2.5 py-1 rounded-full">
+            <span className="size-1.5 rounded-full bg-[#35C99A]" />
+            <span>PINE V5 · SYNCED</span>
           </div>
 
           <button
             onClick={toggleFullscreen}
-            className="size-7 rounded-lg hover:bg-white/[0.05] flex items-center justify-center text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer border border-transparent"
+            className="size-8 rounded-xl hover:bg-[#FAFAF7] flex items-center justify-center text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer border border-[#EAEAE5]"
             title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
           >
             {isFullscreen ? <Minimize2 className="size-3.5" /> : <Maximize2 className="size-3.5" />}
@@ -216,20 +216,20 @@ export const DesktopRail: React.FC<DesktopRailProps> = ({
 
   return (
     <aside
-      className={`bg-[#0B0E13] border-r border-[#20252C] flex flex-col justify-between py-3 select-none shrink-0 transition-all duration-200 z-30 ${
-        isCollapsed ? 'w-14' : 'w-48 lg:w-52'
+      className={`bg-white border-r border-[#EAEAE5] flex flex-col justify-between py-4 select-none shrink-0 transition-all duration-200 z-30 shadow-xs ${
+        isCollapsed ? 'w-16' : 'w-52 lg:w-56'
       }`}
     >
       <div>
-        <div className="px-2 mb-3 flex items-center justify-between">
+        <div className="px-3 mb-3 flex items-center justify-between">
           {!isCollapsed && (
-            <span className="text-[10px] font-mono uppercase tracking-wider text-[#6B7380] font-semibold px-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#666B76] px-2">
               Trader Desk
             </span>
           )}
           <button
             onClick={onToggleCollapse}
-            className="size-7 rounded-lg hover:bg-white/[0.05] flex items-center justify-center text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer mx-auto"
+            className="size-7 rounded-lg hover:bg-[#FAFAF7] flex items-center justify-center text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer mx-auto"
             title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
           >
             <ChevronLeft
@@ -238,7 +238,7 @@ export const DesktopRail: React.FC<DesktopRailProps> = ({
           </button>
         </div>
 
-        <nav className="space-y-1 px-1.5">
+        <nav className="space-y-1 px-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -246,20 +246,20 @@ export const DesktopRail: React.FC<DesktopRailProps> = ({
               <button
                 key={item.id}
                 onClick={() => onTabChange(item.id)}
-                className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer relative group ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl text-xs font-medium transition-all cursor-pointer relative group ${
                   isActive
-                    ? 'bg-[#141820] text-[#C8A96B] font-semibold border border-[#20252C]'
-                    : 'text-[#8B929C] hover:text-[#F3F4F6] hover:bg-white/[0.03] border border-transparent'
+                    ? 'bg-[#EEF2FF] text-[#4F6BFF] font-bold shadow-xs'
+                    : 'text-[#666B76] hover:text-[#17181C] hover:bg-[#FAFAF7]'
                 }`}
                 title={isCollapsed ? item.label : undefined}
               >
                 <Icon
-                  className={`size-4 shrink-0 ${isActive ? 'text-[#C8A96B]' : 'text-[#8B929C]'}`}
+                  className={`size-4 shrink-0 ${isActive ? 'text-[#4F6BFF]' : 'text-[#666B76]'}`}
                 />
                 {!isCollapsed && <span className="truncate">{item.label}</span>}
 
                 {isCollapsed && (
-                  <div className="absolute left-14 ml-1 px-2 py-1 bg-[#141820] border border-[#20252C] rounded text-[11px] font-mono text-[#F3F4F6] whitespace-nowrap shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
+                  <div className="absolute left-16 ml-2 px-2.5 py-1 bg-white border border-[#EAEAE5] rounded-xl text-xs font-medium text-[#17181C] whitespace-nowrap shadow-card opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
                     {item.label}
                   </div>
                 )}
@@ -269,14 +269,14 @@ export const DesktopRail: React.FC<DesktopRailProps> = ({
         </nav>
       </div>
 
-      <div className="px-3 pt-3 border-t border-[#20252C] text-[10px] font-mono text-[#6B7380]">
+      <div className="px-4 pt-4 border-t border-[#EAEAE5] text-[11px] text-[#666B76]">
         {!isCollapsed ? (
           <div>
-            <div className="text-[#8B929C] font-semibold">ALGOFINEX v4.2</div>
+            <div className="text-[#17181C] font-semibold">ALGOFINEX v4.2</div>
             <div>Institutional Workstation</div>
           </div>
         ) : (
-          <div className="text-center font-bold text-[#8B929C]">AF</div>
+          <div className="text-center font-bold text-[#4F6BFF]">AF</div>
         )}
       </div>
     </aside>
@@ -301,7 +301,7 @@ export const MobileBottomTabs: React.FC<MobileBottomTabsProps> = ({
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 inset-x-0 bg-[#101318] border-t border-[#20252C] z-40 flex items-center justify-around h-14 select-none px-1">
+    <nav className="md:hidden fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-[#EAEAE5] z-40 flex items-center justify-around h-14 select-none px-1 shadow-card">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -309,8 +309,8 @@ export const MobileBottomTabs: React.FC<MobileBottomTabsProps> = ({
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
-            className={`flex flex-col items-center justify-center flex-1 h-full py-1 text-[10px] font-mono transition-colors cursor-pointer ${
-              isActive ? 'text-[#C8A96B] font-bold' : 'text-[#8B929C]'
+            className={`flex flex-col items-center justify-center flex-1 h-full py-1 text-[11px] font-medium transition-colors cursor-pointer ${
+              isActive ? 'text-[#4F6BFF] font-bold' : 'text-[#666B76]'
             }`}
           >
             <Icon className="size-4 mb-0.5" />
@@ -346,7 +346,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-[#FAFAF7] text-[#17181C] flex flex-col overflow-hidden">
       <AppHeader
         selectedInstrument={selectedInstrument}
         onInstrumentChange={onInstrumentChange}
@@ -365,7 +365,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           />
         </div>
 
-        <main className="flex-1 overflow-y-auto pb-16 md:pb-0 bg-[#080A0D]">
+        <main className="flex-1 overflow-y-auto pb-16 md:pb-0 bg-[#FAFAF7]">
           {children}
         </main>
       </div>

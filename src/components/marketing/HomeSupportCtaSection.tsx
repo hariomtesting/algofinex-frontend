@@ -8,22 +8,22 @@ interface HomeSupportCtaSectionProps {
 
 export const HomeSupportCtaSection: React.FC<HomeSupportCtaSectionProps> = ({ onNavigate }) => {
   return (
-    <section className="py-16 sm:py-20 bg-[#080A0D] border-t border-[#20252C] text-left">
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 sm:py-24 bg-[#FAFAF7] border-b border-[#EAEAE5] text-left">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#141820] border border-[#20252C] text-xs font-mono text-[#C8A96B] mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EEF2FF] border border-[#E0E7FF] text-xs font-semibold text-[#4F6BFF] mb-3">
               <LifeBuoy className="size-3.5" />
-              <span className="uppercase tracking-wider font-semibold">DIRECT ASSISTANCE</span>
+              <span>Direct Assistance</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F3F4F6] tracking-tight">
-              Backed by technical engineers, not chatbots.
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#17181C] tracking-tight">
+              Backed by real engineers, not chatbots.
             </h2>
 
-            <p className="mt-3 text-xs sm:text-sm text-[#8B929C] leading-relaxed max-w-xl">
-              Every client ticket is handled directly by our Pine Script developers and market analysts. Need custom webhook alert JSON schemas or assistance binding your TradingView username? We are here to assist.
+            <p className="mt-3 text-sm sm:text-base text-[#666B76] leading-relaxed max-w-xl">
+              Every client ticket is reviewed directly by our Pine Script developers. Need help connecting your TradingView username or configuring alerts? We respond promptly.
             </p>
           </div>
 
@@ -32,7 +32,7 @@ export const HomeSupportCtaSection: React.FC<HomeSupportCtaSectionProps> = ({ on
               variant="secondary"
               size="lg"
               onClick={() => onNavigate('/support')}
-              leftIcon={<MessageSquare className="size-4 text-[#C8A96B]" />}
+              leftIcon={<MessageSquare className="size-4 text-[#4F6BFF]" />}
               rightIcon={<ArrowRight className="size-4" />}
             >
               Client Support Desk
@@ -42,7 +42,7 @@ export const HomeSupportCtaSection: React.FC<HomeSupportCtaSectionProps> = ({ on
               size="lg"
               onClick={() => onNavigate('/how-it-works')}
             >
-              Documentation
+              How It Works
             </Button>
           </div>
 
@@ -51,3 +51,5 @@ export const HomeSupportCtaSection: React.FC<HomeSupportCtaSectionProps> = ({ on
     </section>
   );
 };
+
+export default HomeSupportCtaSection;

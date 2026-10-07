@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: 'accent' | 'success' | 'danger' | 'neutral' | 'outline';
+  variant?: 'accent' | 'success' | 'danger' | 'neutral' | 'outline' | 'violet' | 'yellow';
   size?: 'sm' | 'md';
 }
 
@@ -12,19 +12,21 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center font-mono font-medium rounded uppercase select-none tracking-wider';
+  const baseStyles = 'inline-flex items-center font-medium rounded-full select-none tracking-tight';
 
   const sizeStyles = {
-    sm: 'text-[10px] px-2 py-0.5 gap-1',
-    md: 'text-xs px-2.5 py-1 gap-1.5',
+    sm: 'text-[11px] px-2.5 py-0.5 gap-1',
+    md: 'text-xs px-3 py-1 gap-1.5',
   };
 
   const variantStyles = {
-    accent: 'bg-[#C8A96B]/12 text-[#C8A96B] border border-[#C8A96B]/30',
-    success: 'bg-[#6FAF8A]/12 text-[#6FAF8A] border border-[#6FAF8A]/30',
-    danger: 'bg-[#C87878]/12 text-[#C87878] border border-[#C87878]/30',
-    neutral: 'bg-[#1E2532] text-[#8B929C] border border-[#20252C]',
-    outline: 'bg-transparent text-[#8B929C] border border-[#20252C]',
+    accent: 'bg-[#EEF2FF] text-[#4F6BFF] border border-[#E0E7FF]',
+    success: 'bg-[#ECFBF6] text-[#059669] border border-[#A7F3D0]',
+    danger: 'bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]',
+    neutral: 'bg-[#F4F5F8] text-[#4B5563] border border-[#E5E7EB]',
+    outline: 'bg-white text-[#4B5563] border border-[#E5E7EB]',
+    violet: 'bg-[#F4F0FF] text-[#7C3AED] border border-[#DDD6FE]',
+    yellow: 'bg-[#FFF8E1] text-[#D97706] border border-[#FDE68A]',
   };
 
   return (
@@ -36,3 +38,5 @@ export const Badge: React.FC<BadgeProps> = ({
     </span>
   );
 };
+
+export default Badge;

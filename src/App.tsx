@@ -41,18 +41,18 @@ const AccountScreen = React.lazy(() => import('./components/app/AccountScreen').
 const SupportDashboardScreen = React.lazy(() => import('./components/app/SupportDashboardScreen').then(m => ({ default: m.SupportDashboardScreen })));
 const SessionScreen = React.lazy(() => import('./components/app/SessionScreen').then(m => ({ default: m.SessionScreen })));
 
-// Institutional Route Loading Fallbacks
+// Route Loading Fallbacks
 const RouteLoadingFallback: React.FC = () => (
-  <div className="min-h-[70vh] flex flex-col items-center justify-center gap-3 font-mono text-xs text-[#8B929C] bg-[#080A0D]">
-    <div className="w-7 h-7 border-2 border-[#C8A96B] border-t-transparent rounded-full animate-spin" />
-    <span className="tracking-widest text-[11px] text-[#A6AEB8]">SYNCHRONIZING TERMINAL MODULE...</span>
+  <div className="min-h-[70vh] flex flex-col items-center justify-center gap-3 font-mono text-xs text-[#666B76] bg-[#FAFAF7]">
+    <div className="w-7 h-7 border-2 border-[#4F6BFF] border-t-transparent rounded-full animate-spin" />
+    <span className="tracking-widest text-[11px] text-[#666B76]">LOADING MODULE...</span>
   </div>
 );
 
 const AppShellFallback: React.FC = () => (
-  <div className="min-h-screen flex flex-col items-center justify-center gap-3 font-mono text-xs text-[#8B929C] bg-[#07090E]">
-    <div className="w-8 h-8 border-2 border-[#C8A96B] border-t-transparent rounded-full animate-spin" />
-    <span className="tracking-widest text-[11px] text-[#C8A96B]">INITIALIZING ALGOFINEX WORKSTATION...</span>
+  <div className="min-h-screen flex flex-col items-center justify-center gap-3 font-mono text-xs text-[#666B76] bg-[#FAFAF7]">
+    <div className="w-8 h-8 border-2 border-[#4F6BFF] border-t-transparent rounded-full animate-spin" />
+    <span className="tracking-widest text-[11px] text-[#4F6BFF]">INITIALIZING ALGOFINEX WORKSTATION...</span>
   </div>
 );
 
@@ -192,7 +192,7 @@ export const App: React.FC = () => {
         </React.Suspense>
       ) : (
         /* 2. PUBLIC MARKETING & DEDICATED EXPERIENCE VIEWS */
-        <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] flex flex-col justify-between selection:bg-[#C8A96B]/20 selection:text-[#C8A96B]">
+        <div className="min-h-screen bg-[#FAFAF7] text-[#17181C] flex flex-col justify-between selection:bg-[#4F6BFF]/20 selection:text-[#4F6BFF]">
           
           {/* Universal Sticky Navbar */}
           <Navbar currentPath={pathname} onNavigate={navigate} />
@@ -283,52 +283,52 @@ export const App: React.FC = () => {
             </React.Suspense>
           </main>
 
-          {/* Persistent Footer */}
-          <footer className="border-t border-[#20252C] bg-[#0B0E13] py-14 px-5 sm:px-8 text-xs font-mono text-[#8B929C]">
+          {/* Clean Modern Footer */}
+          <footer className="border-t border-[#EAEAE5] bg-white py-12 px-5 sm:px-8 text-xs text-[#666B76]">
             <div className="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
                 <div className="flex items-center gap-2">
-                  <div className="size-6 rounded-lg bg-[#141820] border border-[#20252C] flex items-center justify-center">
+                  <div className="size-6 rounded-lg bg-[#F1F4FF] border border-[#E0E7FF] flex items-center justify-center">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <path d="M4 18L10 11L14 15L20 7" stroke="#C8A96B" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M4 18L10 11L14 15L20 7" stroke="#4F6BFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <span className="font-semibold text-[#F3F4F6] tracking-tight text-sm">
-                    Algo<span className="text-[#C8A96B] font-medium">Finex</span>
+                  <span className="font-semibold text-[#17181C] tracking-tight text-sm">
+                    Algo<span className="text-[#4F6BFF] font-semibold">Finex</span>
                   </span>
                 </div>
-                <span className="hidden sm:inline text-[#3B4654]">•</span>
-                <div className="text-[#8B929C] text-[11px]">
-                  Institutional Market Structure &amp; Quantitative Indicator Suite
+                <span className="hidden sm:inline text-[#D8D8D2]">•</span>
+                <div className="text-[#666B76] text-[12px]">
+                  Simple, powerful trading tools designed for clear market structure.
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-6 text-[11px]">
-                <button onClick={() => navigate('/products')} className="text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer">
-                  Indicators
+              <div className="flex flex-wrap items-center justify-center gap-6 text-[12px]">
+                <button onClick={() => navigate('/products')} className="text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer">
+                  Products
                 </button>
-                <button onClick={() => navigate('/pricing')} className="text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer">
+                <button onClick={() => navigate('/pricing')} className="text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer">
                   Pricing
                 </button>
-                <button onClick={() => navigate('/how-it-works')} className="text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer">
+                <button onClick={() => navigate('/how-it-works')} className="text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer">
                   How It Works
                 </button>
-                <button onClick={() => navigate('/session')} className="text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer">
+                <button onClick={() => navigate('/session')} className="text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer">
                   3-Day Session
                 </button>
-                <button onClick={() => navigate('/referral')} className="text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer">
+                <button onClick={() => navigate('/referral')} className="text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer">
                   Referral
                 </button>
-                <button onClick={() => navigate('/support')} className="text-[#8B929C] hover:text-[#F3F4F6] transition-colors cursor-pointer">
+                <button onClick={() => navigate('/support')} className="text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer">
                   Support
                 </button>
-                <button onClick={() => navigate('/app')} className="text-[#C8A96B] font-semibold hover:text-[#D8BB80] transition-colors cursor-pointer">
-                  Launch Terminal
+                <button onClick={() => navigate('/app')} className="text-[#4F6BFF] font-semibold hover:text-[#4059E0] transition-colors cursor-pointer">
+                  Launch Workstation
                 </button>
               </div>
 
-              <div className="text-[#6B7380] text-[10px] text-center md:text-right">
-                &copy; {new Date().getFullYear()} AlgoFinex. Educational market structure analysis. Not financial advice.
+              <div className="text-[#9CA3AF] text-[11px] text-center md:text-right">
+                &copy; {new Date().getFullYear()} AlgoFinex. Educational market analysis. Not financial advice.
               </div>
             </div>
           </footer>

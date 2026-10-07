@@ -20,25 +20,25 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 rounded-lg select-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A96B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080A0D]';
+  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 rounded-xl select-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F6BFF] focus-visible:ring-offset-2 focus-visible:ring-offset-white';
 
   const sizeStyles = {
-    sm: 'text-xs px-3 py-1.5 gap-1.5 min-h-[32px]',
-    md: 'text-sm px-4 py-2 gap-2 min-h-[40px]',
-    lg: 'text-sm sm:text-base px-5 py-2.5 gap-2.5 min-h-[46px]',
+    sm: 'text-xs px-3.5 py-1.5 gap-1.5 min-h-[34px]',
+    md: 'text-sm px-4.5 py-2.5 gap-2 min-h-[42px]',
+    lg: 'text-sm sm:text-base px-6 py-3 gap-2.5 min-h-[48px]',
   };
 
   const variantStyles = {
-    // Primary: Reserved for dominant action / gold accent
-    primary: 'bg-[#C8A96B] hover:bg-[#D8BB80] text-[#080A0D] font-semibold shadow-[0_2px_12px_rgba(200,169,107,0.25)] hover:shadow-[0_2px_16px_rgba(200,169,107,0.35)]',
-    // Secondary: Institutional dark surface
-    secondary: 'bg-[#141820] hover:bg-[#1A202A] text-[#F3F4F6] border border-[#20252C] hover:border-[#2E3642]',
-    // Outline: Minimal border
-    outline: 'bg-transparent hover:bg-white/[0.04] text-[#F3F4F6] border border-[#20252C] hover:border-[#3B4654]',
-    // Ghost: No background or border until hover
-    ghost: 'bg-transparent hover:bg-white/[0.05] text-[#8B929C] hover:text-[#F3F4F6]',
-    // Danger: Muted rose
-    danger: 'bg-[#C87878]/15 hover:bg-[#C87878]/25 text-[#C87878] border border-[#C87878]/30',
+    // Primary: Vibrant electric blue #4F6BFF
+    primary: 'bg-[#4F6BFF] hover:bg-[#4059E0] text-white font-medium shadow-xs hover:-translate-y-0.5 active:translate-y-0',
+    // Secondary: Clean white surface with subtle border
+    secondary: 'bg-white hover:bg-[#F9F9F8] text-[#17181C] border border-[#EAEAE5] hover:border-[#D8D8D2] shadow-xs hover:-translate-y-0.5 active:translate-y-0',
+    // Outline: Soft electric blue border
+    outline: 'bg-transparent hover:bg-[#F1F4FF] text-[#4F6BFF] border border-[#E0E7FF] hover:border-[#C7D2FE]',
+    // Ghost: Subtle hover state
+    ghost: 'bg-transparent hover:bg-[#F1F3F5] text-[#666B76] hover:text-[#17181C]',
+    // Danger: Soft coral
+    danger: 'bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#DC2626] border border-[#FECACA]/60',
   };
 
   return (
@@ -59,3 +59,5 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+export default Button;

@@ -36,9 +36,9 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
   return (
     <aside
       data-component="DrawingToolbar"
-      className="w-10 bg-[#070B14] border-r border-white/10 flex flex-col items-center justify-between py-2 shrink-0 select-none z-20"
+      className="w-12 bg-white border-r border-[#EAEAE5] flex flex-col items-center justify-between py-3 shrink-0 select-none z-20 shadow-xs"
     >
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-col items-center gap-1.5">
         {tools.map((t) => {
           const Icon = t.icon;
           const isActive = activeTool === t.id;
@@ -47,15 +47,15 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
               key={t.id}
               onClick={() => onSelectTool(t.id)}
               title={t.label}
-              className={`size-8 rounded-lg flex items-center justify-center transition-all cursor-pointer relative group ${
+              className={`size-9 rounded-xl flex items-center justify-center transition-all cursor-pointer relative group ${
                 isActive
-                  ? 'bg-emerald-500/15 text-[#00F090] border border-emerald-500/40 shadow-[0_0_10px_rgba(0,240,144,0.3)]'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
+                  ? 'bg-[#EEF2FF] text-[#4F6BFF] border border-[#4F6BFF]/30 shadow-xs'
+                  : 'text-[#666B76] hover:text-[#17181C] hover:bg-[#FAFAF7] border border-transparent'
               }`}
             >
               <Icon className="size-4" />
               {/* Tooltip */}
-              <div className="absolute left-10 ml-1.5 px-2 py-1 bg-[#0A101D] border border-white/15 rounded text-[10px] font-mono font-medium text-white whitespace-nowrap shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
+              <div className="absolute left-12 ml-2 px-2.5 py-1 bg-white border border-[#EAEAE5] rounded-xl text-[11px] font-medium text-[#17181C] whitespace-nowrap shadow-card opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
                 {t.label}
               </div>
             </button>
@@ -63,15 +63,15 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
         })}
       </div>
 
-      <div className="flex flex-col items-center gap-1 border-t border-white/10 pt-2 w-full px-1">
+      <div className="flex flex-col items-center gap-1.5 border-t border-[#EAEAE5] pt-3 w-full px-1.5">
         {onFitChart && (
           <button
             onClick={onFitChart}
             title="Reset Chart View"
-            className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer group relative"
+            className="size-9 rounded-xl flex items-center justify-center text-[#666B76] hover:text-[#17181C] hover:bg-[#FAFAF7] transition-colors cursor-pointer group relative"
           >
-            <Maximize2 className="size-3.5" />
-            <div className="absolute left-10 ml-1.5 px-2 py-1 bg-[#0A101D] border border-white/15 rounded text-[10px] font-mono text-white whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
+            <Maximize2 className="size-4" />
+            <div className="absolute left-12 ml-2 px-2.5 py-1 bg-white border border-[#EAEAE5] rounded-xl text-[11px] font-medium text-[#17181C] whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 shadow-card">
               Reset View
             </div>
           </button>
@@ -80,10 +80,10 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
         <button
           onClick={onClearDrawings}
           title="Clear Active Drawings"
-          className="size-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer group relative"
+          className="size-9 rounded-xl flex items-center justify-center text-[#666B76] hover:text-[#FF6B6B] hover:bg-red-50 transition-colors cursor-pointer group relative"
         >
-          <Trash2 className="size-3.5" />
-          <div className="absolute left-10 ml-1.5 px-2 py-1 bg-[#0A101D] border border-white/15 rounded text-[10px] font-mono text-rose-300 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50">
+          <Trash2 className="size-4" />
+          <div className="absolute left-12 ml-2 px-2.5 py-1 bg-white border border-[#EAEAE5] rounded-xl text-[11px] font-medium text-[#FF6B6B] whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 shadow-card">
             Clear Annotations
           </div>
         </button>

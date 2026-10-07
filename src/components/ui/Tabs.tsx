@@ -24,7 +24,7 @@ export const Tabs: React.FC<TabsProps> = ({
   return (
     <div
       role="tablist"
-      className={`flex items-center gap-1.5 p-1 bg-[#101318] border border-[#20252C] rounded-xl overflow-x-auto select-none ${className}`}
+      className={`flex items-center gap-1.5 p-1 bg-white border border-[#EAEAE5] rounded-2xl shadow-xs overflow-x-auto select-none ${className}`}
     >
       {items.map((tab) => {
         const isActive = tab.id === activeId;
@@ -34,27 +34,33 @@ export const Tabs: React.FC<TabsProps> = ({
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(tab.id)}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all whitespace-nowrap cursor-pointer ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all whitespace-nowrap cursor-pointer ${
               isActive
-                ? 'bg-[#1E2532] text-[#F3F4F6] shadow-xs border border-[#2E3642]'
-                : 'text-[#8B929C] hover:text-[#F3F4F6] hover:bg-white/[0.03] border border-transparent'
+                ? 'bg-[#4F6BFF] text-white shadow-xs font-bold'
+                : 'text-[#666B76] hover:text-[#17181C] hover:bg-[#FAFAF7]'
             }`}
           >
             {tab.icon && <span className="size-3.5 flex items-center">{tab.icon}</span>}
             <span>{tab.label}</span>
             {tab.count !== undefined && (
               <span
-                className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
+                className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
                   isActive
-                    ? 'bg-[#C8A96B]/20 text-[#C8A96B]'
-                    : 'bg-white/[0.06] text-[#8B929C]'
+                    ? 'bg-white/20 text-white'
+                    : 'bg-[#EEF2FF] text-[#4F6BFF]'
                 }`}
               >
                 {tab.count}
               </span>
             )}
             {tab.badge && (
-              <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-[#C8A96B]/15 text-[#C8A96B] border border-[#C8A96B]/30">
+              <span
+                className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${
+                  isActive
+                    ? 'bg-white/20 text-white'
+                    : 'bg-[#EEF2FF] text-[#4F6BFF] border border-[#4F6BFF]/20'
+                }`}
+              >
                 {tab.badge}
               </span>
             )}

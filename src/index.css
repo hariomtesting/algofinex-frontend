@@ -3,23 +3,25 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --bg-primary: #080A0D;
-  --surface-secondary: #101318;
-  --surface-card: #12161E;
-  --surface-elevated: #141820;
-  --border-color: #20252C;
-  --text-primary: #F3F4F6;
-  --text-secondary: #8B929C;
-  --accent-gold: #C8A96B;
-  --signal-success: #6FAF8A;
-  --signal-danger: #C87878;
+  color-scheme: light;
+  --bg-primary: #FAFAF7;
+  --bg-secondary: #F1F4FF;
+  --surface-card: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --border-color: #EAEAE5;
+  --text-primary: #17181C;
+  --text-secondary: #666B76;
+  --accent-blue: #4F6BFF;
+  --accent-violet: #8B5CF6;
+  --accent-coral: #FF6B6B;
+  --accent-mint: #35C99A;
+  --accent-yellow: #F4C95D;
 }
 
 html, body {
-  background-color: #080A0D;
-  color: #F3F4F6;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #FAFAF7;
+  color: #17181C;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
   max-width: 100vw;
   width: 100%;
@@ -27,43 +29,38 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Institutional Financial Grids */
-.bg-financial-grid {
-  background-size: 48px 48px;
+/* Subtle modern fintech grid */
+.bg-subtle-grid {
+  background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
 
 .bg-dot-grid {
   background-size: 24px 24px;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
 }
 
-/* Restrained ambient glow */
-.bg-radial-ambient {
-  background: radial-gradient(circle at 50% 0%, rgba(200, 169, 107, 0.05), rgba(16, 19, 24, 0) 60%);
-}
-
-/* Custom Financial Dark Scrollbar */
+/* Soft modern scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080A0D;
+  background: #FAFAF7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #20252C;
-  border-radius: 3px;
+  background: #D8D8D2;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2E3642;
+  background: #B8B8B0;
 }
 
 /* Focus outline accessibility */
 :focus-visible {
-  outline: 2px solid #C8A96B;
+  outline: 2px solid #4F6BFF;
   outline-offset: 2px;
 }
 

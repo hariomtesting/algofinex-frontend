@@ -62,7 +62,7 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
         <path
           d={pathD}
           fill="none"
-          stroke={isPositive ? '#00F090' : '#FF3B69'}
+          stroke={isPositive ? '#059669' : '#FF6B6B'}
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -73,17 +73,17 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
 
   if (!isOpen) {
     return (
-      <div className="hidden lg:flex flex-col border-l border-white/10 bg-[#070B14] w-10 items-center py-3 select-none">
+      <div className="hidden lg:flex flex-col border-l border-[#EAEAE5] bg-white w-10 items-center py-3 select-none shadow-xs">
         <button
           onClick={onToggleOpen}
-          className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+          className="size-8 rounded-lg flex items-center justify-center text-[#666B76] hover:text-[#17181C] hover:bg-[#FAFAF7] transition-colors cursor-pointer"
           title="Expand Terminal Panel"
         >
           <ChevronRight className="size-4 rotate-180" />
         </button>
-        <div className="mt-8 [writing-mode:vertical-lr] text-[10px] font-mono uppercase text-slate-500 tracking-widest flex items-center gap-2">
+        <div className="mt-8 [writing-mode:vertical-lr] text-[10px] font-mono uppercase text-[#666B76] tracking-widest flex items-center gap-2">
           <span>TERMINAL DOCK</span>
-          <span className="size-1 rounded-full bg-[#00F090]"></span>
+          <span className="size-1.5 rounded-full bg-[#4F6BFF]"></span>
         </div>
       </div>
     );
@@ -92,17 +92,17 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
   return (
     <aside
       data-component="TerminalSidePanel"
-      className="hidden lg:flex w-[340px] xl:w-[380px] bg-[#070B14] border-l border-white/10 flex-col justify-between shrink-0 select-none z-30"
+      className="hidden lg:flex w-[340px] xl:w-[380px] bg-white border-l border-[#EAEAE5] flex-col justify-between shrink-0 select-none z-30 shadow-xs"
     >
       {/* Top Tabs Header */}
-      <div className="h-12 border-b border-white/10 px-2 bg-[#060A12] flex items-center justify-between">
+      <div className="h-12 border-b border-[#EAEAE5] px-2 bg-white flex items-center justify-between">
         <div className="flex items-center gap-1">
           <button
             onClick={() => setActiveTab('watchlist')}
-            className={`px-2.5 py-1 rounded-md text-xs font-mono font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
               activeTab === 'watchlist'
-                ? 'bg-emerald-500/15 text-[#00F090] font-bold border border-emerald-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#EEF2FF] text-[#4F6BFF] font-bold border border-[#4F6BFF]/20 shadow-xs'
+                : 'text-[#666B76] hover:text-[#17181C]'
             }`}
           >
             <ListFilter className="size-3.5" />
@@ -111,10 +111,10 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
 
           <button
             onClick={() => setActiveTab('orderbook')}
-            className={`px-2.5 py-1 rounded-md text-xs font-mono font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
               activeTab === 'orderbook'
-                ? 'bg-cyan-500/15 text-[#00E5FF] font-bold border border-cyan-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#EEF2FF] text-[#4F6BFF] font-bold border border-[#4F6BFF]/20 shadow-xs'
+                : 'text-[#666B76] hover:text-[#17181C]'
             }`}
           >
             <BarChart3 className="size-3.5" />
@@ -123,25 +123,25 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
 
           <button
             onClick={() => setActiveTab('inspector')}
-            className={`px-2.5 py-1 rounded-md text-xs font-mono font-medium flex items-center gap-1.5 transition-colors cursor-pointer relative ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer relative ${
               activeTab === 'inspector'
-                ? 'bg-purple-500/15 text-[#D8B4FE] font-bold border border-purple-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#EEF2FF] text-[#4F6BFF] font-bold border border-[#4F6BFF]/20 shadow-xs'
+                : 'text-[#666B76] hover:text-[#17181C]'
             }`}
           >
             <Layers className="size-3.5" />
             <span>Inspector</span>
             {activeInspectPoint && (
-              <span className="size-1.5 rounded-full bg-[#00F090] animate-pulse" />
+              <span className="size-1.5 rounded-full bg-[#4F6BFF] animate-pulse" />
             )}
           </button>
 
           <button
             onClick={() => setActiveTab('signals')}
-            className={`px-2.5 py-1 rounded-md text-xs font-mono font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer ${
               activeTab === 'signals'
-                ? 'bg-amber-500/15 text-amber-300 font-bold border border-amber-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#EEF2FF] text-[#4F6BFF] font-bold border border-[#4F6BFF]/20 shadow-xs'
+                : 'text-[#666B76] hover:text-[#17181C]'
             }`}
           >
             <BellRing className="size-3.5" />
@@ -151,7 +151,7 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
 
         <button
           onClick={onToggleOpen}
-          className="size-7 rounded-md hover:bg-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-colors cursor-pointer"
+          className="size-7 rounded-lg hover:bg-[#FAFAF7] flex items-center justify-center text-[#666B76] hover:text-[#17181C] transition-colors cursor-pointer"
           title="Collapse Panel"
         >
           <ChevronRight className="size-4" />
@@ -162,8 +162,8 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
       <div className="flex-1 overflow-y-auto">
         {/* TAB 1: WATCHLIST */}
         {activeTab === 'watchlist' && (
-          <div className="divide-y divide-white/5">
-            <div className="p-3 bg-[#0A0E1A] border-b border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400 uppercase">
+          <div className="divide-y divide-[#F0F1EE]">
+            <div className="p-3 bg-[#FAFAF7] border-b border-[#EAEAE5] flex items-center justify-between text-[11px] font-semibold text-[#666B76] uppercase">
               <span>Instrument</span>
               <div className="flex items-center gap-6">
                 <span>Trend</span>
@@ -181,40 +181,40 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
                   onClick={() => onSelectInstrument(item.symbol as Instrument)}
                   className={`w-full p-3 flex items-center justify-between transition-colors text-left cursor-pointer group ${
                     isSelected
-                      ? 'bg-emerald-500/10 border-l-2 border-[#00F090]'
-                      : 'hover:bg-white/5 border-l-2 border-transparent'
+                      ? 'bg-[#EEF2FF] border-l-2 border-[#4F6BFF]'
+                      : 'hover:bg-[#FAFAF7] border-l-2 border-transparent'
                   }`}
                 >
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="font-mono font-bold text-xs text-white group-hover:text-[#00E5FF] transition-colors">
+                      <span className="font-mono font-bold text-xs text-[#17181C] group-hover:text-[#4F6BFF] transition-colors">
                         {item.symbol}
                       </span>
-                      <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-white/5 text-slate-400">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white border border-[#EAEAE5] text-[#666B76]">
                         {item.category}
                       </span>
                     </div>
-                    <div className="text-[10px] text-slate-400 font-sans truncate max-w-[110px]">
+                    <div className="text-[11px] text-[#666B76] truncate max-w-[120px]">
                       {item.name}
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
                     {/* Sparkline */}
-                    <div className="hidden sm:block opacity-75 group-hover:opacity-100 transition-opacity">
+                    <div className="hidden sm:block opacity-80 group-hover:opacity-100 transition-opacity">
                       {renderSparkline(item.sparkline, isPositive)}
                     </div>
 
                     <div className="text-right">
-                      <div className="font-mono font-bold text-xs text-white">
+                      <div className="font-mono font-bold text-xs text-[#17181C]">
                         ${item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                       </div>
                       <div
-                        className={`text-[10px] font-mono font-semibold flex items-center justify-end gap-0.5 ${
-                          isPositive ? 'text-[#00F090]' : 'text-[#FF3B69]'
+                        className={`text-[11px] font-mono font-semibold flex items-center justify-end gap-0.5 ${
+                          isPositive ? 'text-[#059669]' : 'text-[#FF6B6B]'
                         }`}
                       >
-                        {isPositive ? <TrendingUp className="size-2.5" /> : <TrendingDown className="size-2.5" />}
+                        {isPositive ? <TrendingUp className="size-3" /> : <TrendingDown className="size-3" />}
                         <span>
                           {isPositive ? '+' : ''}
                           {item.change24h}%
@@ -230,15 +230,15 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
 
         {/* TAB 2: ORDER BOOK DEPTH */}
         {activeTab === 'orderbook' && (
-          <div className="p-3 space-y-4">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-2 border-b border-white/10">
+          <div className="p-4 space-y-4">
+            <div className="flex items-center justify-between text-xs font-semibold text-[#666B76] pb-2 border-b border-[#EAEAE5]">
               <span>ORDER BOOK ({selectedInstrument})</span>
-              <span className="text-[10px] text-emerald-400">LIVE FEED</span>
+              <span className="text-[11px] text-[#059669] font-medium">LIVE FEED</span>
             </div>
 
-            {/* Asks (Sell Orders - Top, Red) */}
+            {/* Asks (Sell Orders - Top, Coral) */}
             <div className="space-y-1">
-              <div className="text-[10px] font-mono uppercase text-slate-500 flex justify-between px-1">
+              <div className="text-[10px] font-mono uppercase text-[#666B76] flex justify-between px-1">
                 <span>Price (USD)</span>
                 <span>Size</span>
                 <span>Total</span>
@@ -249,31 +249,31 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
                   className="relative flex items-center justify-between px-2 py-1 text-xs font-mono rounded overflow-hidden"
                 >
                   <div
-                    className="absolute top-0 right-0 bottom-0 bg-rose-500/10 pointer-events-none"
+                    className="absolute top-0 right-0 bottom-0 bg-red-100/40 pointer-events-none"
                     style={{ width: `${ask.depthPercent}%` }}
                   />
-                  <span className="text-[#FF3B69] font-semibold relative z-10">
+                  <span className="text-[#FF6B6B] font-semibold relative z-10">
                     ${ask.price.toFixed(2)}
                   </span>
-                  <span className="text-slate-300 relative z-10">{ask.size.toFixed(3)}</span>
-                  <span className="text-slate-500 relative z-10">{ask.total.toFixed(3)}</span>
+                  <span className="text-[#17181C] relative z-10">{ask.size.toFixed(3)}</span>
+                  <span className="text-[#666B76] relative z-10">{ask.total.toFixed(3)}</span>
                 </div>
               ))}
             </div>
 
             {/* Spread Divider */}
-            <div className="bg-[#0A0E1A] border border-white/10 rounded-lg p-2 flex items-center justify-between text-xs font-mono">
+            <div className="bg-[#FAFAF7] border border-[#EAEAE5] rounded-xl p-2.5 flex items-center justify-between text-xs font-mono">
               <div className="flex items-center gap-2">
-                <span className="text-slate-400">Spread:</span>
-                <span className="text-white font-bold">${ORDERBOOK_DATA.spread.toFixed(2)}</span>
-                <span className="text-[10px] text-slate-500">({ORDERBOOK_DATA.spreadPercent}%)</span>
+                <span className="text-[#666B76]">Spread:</span>
+                <span className="text-[#17181C] font-bold">${ORDERBOOK_DATA.spread.toFixed(2)}</span>
+                <span className="text-[10px] text-[#666B76]">({ORDERBOOK_DATA.spreadPercent}%)</span>
               </div>
-              <div className="text-[#00F090] font-bold">
+              <div className="text-[#059669] font-bold">
                 ${ORDERBOOK_DATA.lastPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}
               </div>
             </div>
 
-            {/* Bids (Buy Orders - Bottom, Green) */}
+            {/* Bids (Buy Orders - Bottom, Mint) */}
             <div className="space-y-1">
               {ORDERBOOK_DATA.bids.map((bid, idx) => (
                 <div
@@ -281,14 +281,14 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
                   className="relative flex items-center justify-between px-2 py-1 text-xs font-mono rounded overflow-hidden"
                 >
                   <div
-                    className="absolute top-0 right-0 bottom-0 bg-emerald-500/10 pointer-events-none"
+                    className="absolute top-0 right-0 bottom-0 bg-emerald-100/40 pointer-events-none"
                     style={{ width: `${bid.depthPercent}%` }}
                   />
-                  <span className="text-[#00F090] font-semibold relative z-10">
+                  <span className="text-[#059669] font-semibold relative z-10">
                     ${bid.price.toFixed(2)}
                   </span>
-                  <span className="text-slate-300 relative z-10">{bid.size.toFixed(3)}</span>
-                  <span className="text-slate-500 relative z-10">{bid.total.toFixed(3)}</span>
+                  <span className="text-[#17181C] relative z-10">{bid.size.toFixed(3)}</span>
+                  <span className="text-[#666B76] relative z-10">{bid.total.toFixed(3)}</span>
                 </div>
               ))}
             </div>
@@ -300,65 +300,65 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
           <div className="p-4 space-y-4 text-left">
             {activeInspectPoint ? (
               <div className="space-y-4">
-                <div className="bg-[#0A0E1A] border border-white/10 rounded-xl p-4">
-                  <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 uppercase">
+                <div className="bg-[#FAFAF7] border border-[#EAEAE5] rounded-2xl p-4 shadow-xs">
+                  <div className="flex items-center justify-between text-[11px] font-semibold text-[#666B76] uppercase">
                     <span>Inspected Coordinate</span>
                     <button
                       onClick={onClearInspectPoint}
-                      className="text-slate-500 hover:text-white p-0.5"
+                      className="text-[#666B76] hover:text-[#17181C] p-0.5 cursor-pointer"
                     >
-                      <X className="size-3" />
+                      <X className="size-3.5" />
                     </button>
                   </div>
                   <div className="flex items-baseline justify-between mt-2">
-                    <span className="text-xl font-mono font-bold text-white">
+                    <span className="text-xl font-mono font-bold text-[#17181C]">
                       {activeInspectPoint.price}
                     </span>
-                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-[#00E5FF] border border-cyan-500/30 font-semibold">
+                    <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-[#EEF2FF] text-[#4F6BFF] border border-[#4F6BFF]/20 font-bold">
                       {activeInspectPoint.label}
                     </span>
                   </div>
-                  <div className="text-[11px] font-mono text-slate-400 mt-2 flex items-center gap-1.5">
+                  <div className="text-xs text-[#666B76] mt-2 flex items-center gap-1.5">
                     <span>Time: {activeInspectPoint.time}</span>
                     <span>•</span>
-                    <span className="text-[#00F090] font-medium">LIVE STRATA</span>
+                    <span className="text-[#059669] font-semibold">LIVE STRATA</span>
                   </div>
                 </div>
 
                 <div className="space-y-2 text-xs">
-                  <div className="flex justify-between py-2 border-b border-white/10">
-                    <span className="text-slate-400 font-mono">Strata Layer:</span>
-                    <span className="font-mono font-bold text-white uppercase">{activeInspectPoint.layer}</span>
+                  <div className="flex justify-between py-2 border-b border-[#F0F1EE]">
+                    <span className="text-[#666B76]">Strata Layer:</span>
+                    <span className="font-bold text-[#17181C] uppercase">{activeInspectPoint.layer}</span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-white/10">
-                    <span className="text-slate-400 font-mono">Classification:</span>
-                    <span className="font-mono font-bold text-white">{activeInspectPoint.type}</span>
+                  <div className="flex justify-between py-2 border-b border-[#F0F1EE]">
+                    <span className="text-[#666B76]">Classification:</span>
+                    <span className="font-bold text-[#17181C]">{activeInspectPoint.type}</span>
                   </div>
                   {activeInspectPoint.invalidation && (
-                    <div className="flex justify-between py-2 border-b border-white/10">
-                      <span className="text-slate-400 font-mono">Invalidation Stop:</span>
-                      <span className="font-mono font-bold text-[#FF3B69]">{activeInspectPoint.invalidation}</span>
+                    <div className="flex justify-between py-2 border-b border-[#F0F1EE]">
+                      <span className="text-[#666B76]">Invalidation Stop:</span>
+                      <span className="font-mono font-bold text-[#FF6B6B]">{activeInspectPoint.invalidation}</span>
                     </div>
                   )}
                 </div>
 
                 <div className="space-y-1.5">
-                  <div className="text-[11px] font-mono font-semibold uppercase text-slate-400 flex items-center gap-1.5">
-                    <Info className="size-3.5 text-[#00E5FF]" />
+                  <div className="text-xs font-semibold uppercase text-[#666B76] flex items-center gap-1.5">
+                    <Info className="size-3.5 text-[#4F6BFF]" />
                     <span>Structural Rationale</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed font-sans bg-white/[0.02] p-3 rounded-lg border border-white/5">
+                  <p className="text-xs text-[#17181C] leading-relaxed bg-[#FAFAF7] p-3.5 rounded-xl border border-[#EAEAE5]">
                     {activeInspectPoint.description}
                   </p>
                 </div>
               </div>
             ) : (
               <div className="py-16 text-center space-y-3">
-                <Layers className="size-8 text-slate-600 mx-auto" />
-                <div className="text-xs font-mono font-semibold text-slate-400">
+                <Layers className="size-8 text-[#9CA3AF] mx-auto" />
+                <div className="text-xs font-semibold text-[#17181C]">
                   No Coordinate Selected
                 </div>
-                <p className="text-[11px] text-slate-500 max-w-[240px] mx-auto font-sans">
+                <p className="text-xs text-[#666B76] max-w-[240px] mx-auto leading-relaxed">
                   Click on any candle or structural annotation on the chart to inspect mathematical context and invalidation thresholds.
                 </p>
               </div>
@@ -368,37 +368,37 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
 
         {/* TAB 4: ALGORITHMIC ALERTS */}
         {activeTab === 'signals' && (
-          <div className="p-3 space-y-3">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-2 border-b border-white/10">
+          <div className="p-4 space-y-3">
+            <div className="flex items-center justify-between text-xs font-semibold text-[#666B76] pb-2 border-b border-[#EAEAE5]">
               <span>ALGO SIGNALS STREAM</span>
-              <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="size-2 rounded-full bg-[#059669] animate-pulse" />
             </div>
 
             <div className="space-y-2.5">
               {ALGORITHMIC_ALERTS.map((alert) => (
                 <div
                   key={alert.id}
-                  className="bg-[#0A0E1A] border border-white/10 rounded-xl p-3 space-y-2 hover:border-white/20 transition-colors"
+                  className="bg-white border border-[#EAEAE5] rounded-2xl p-3.5 space-y-2 hover:border-[#D0D4DD] shadow-xs transition-colors text-left"
                 >
-                  <div className="flex items-center justify-between text-[11px] font-mono">
+                  <div className="flex items-center justify-between text-xs font-mono">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-white">{alert.symbol}</span>
-                      <span className="text-slate-500">•</span>
-                      <span className="text-[#00E5FF]">{alert.timeframe}</span>
+                      <span className="font-bold text-[#17181C]">{alert.symbol}</span>
+                      <span className="text-[#D0D4DD]">•</span>
+                      <span className="text-[#4F6BFF] font-semibold">{alert.timeframe}</span>
                     </div>
-                    <span className="text-slate-500 text-[10px]">{alert.time}</span>
+                    <span className="text-[#666B76] text-[11px]">{alert.time}</span>
                   </div>
 
-                  <div className="text-xs font-sans text-slate-300 font-medium">
+                  <div className="text-xs text-[#17181C] font-semibold">
                     {alert.title}
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] font-mono pt-1 border-t border-white/5">
+                  <div className="flex items-center justify-between text-xs font-mono pt-1.5 border-t border-[#F0F1EE]">
                     <div>
-                      <span className="text-slate-500">Trigger: </span>
-                      <span className="text-white font-bold">${alert.price.toLocaleString()}</span>
+                      <span className="text-[#666B76]">Trigger: </span>
+                      <span className="text-[#17181C] font-bold">${alert.price.toLocaleString()}</span>
                     </div>
-                    <div className="text-[#00F090] font-bold">
+                    <div className="text-[#059669] font-bold">
                       Score: {alert.qualityScore}%
                     </div>
                   </div>
@@ -410,9 +410,9 @@ export const TerminalSidePanel: React.FC<TerminalSidePanelProps> = ({
       </div>
 
       {/* Terminal Footer Telemetry */}
-      <div className="p-3 border-t border-white/10 bg-[#060A12] text-[10px] font-mono text-slate-500 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-emerald-400">
-          <ShieldCheck className="size-3" />
+      <div className="p-3 border-t border-[#EAEAE5] bg-[#FAFAF7] text-[11px] font-medium text-[#666B76] flex items-center justify-between">
+        <div className="flex items-center gap-1.5 text-[#059669]">
+          <ShieldCheck className="size-3.5" />
           <span>VELA QUANT v4.2</span>
         </div>
         <span>BUFFER: 100% OK</span>

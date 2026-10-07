@@ -1,6 +1,5 @@
 import React from 'react';
-import { CreditCard, Check, ArrowRight } from 'lucide-react';
-import { Badge } from '../ui/Badge';
+import { Check, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { SubscriptionPlan } from '../../types/api';
 
@@ -14,162 +13,159 @@ export const PrototypePricingSection: React.FC<PrototypePricingSectionProps> = (
     {
       id: 'monthly' as SubscriptionPlan,
       name: 'Monthly Suite',
-      badge: 'FLEXIBLE',
+      badge: 'Flexible',
       price: '$79',
       period: 'per month',
-      description: 'Full TradingView analytical suite for traders who have an existing execution routine and want objective market structure.',
+      description: 'Full TradingView analytical suite for active traders seeking clean market structure.',
       popular: false,
       features: [
         'Complete 4-Layer Indicator Suite',
-        'Market Structure Swing Geometry (HH / HL / BOS)',
-        'Order Block & Fair Value Gap Imbalance Pools',
+        'Market Structure Matrix (HH / HL / BOS)',
+        'Order Block & Liquidity Pool Mapping',
         'Dynamic Momentum Cloud Ribbon',
-        'Bar-close non-repainting execution triggers',
-        'TradingView webhook alert integrations',
+        'Bar-close non-repainting triggers',
+        'TradingView alerts & webhooks',
       ]
     },
     {
       id: 'annual' as SubscriptionPlan,
       name: 'Annual Suite',
-      badge: 'RECOMMENDED CONFLUENCE',
+      badge: 'Most Popular',
       price: '$59',
-      period: 'per month ($708 billed annually)',
-      savings: 'Save $240 / Year',
-      description: 'The definitive operational package: the live 3-Day Cohort calibration plus a full 12-month license to the complete indicator suite.',
+      period: 'per month ($708 / year)',
+      savings: 'Save $240 / year',
+      description: 'Our most complete package: full indicator license plus an included 3-Day Strategy Session.',
       popular: true,
       features: [
         'Everything in Monthly Suite',
-        'Complimentary Seat: 3-Day Execution Masterclass ($299 Value)',
-        'Personal 7-Step Routine Certification',
-        'Direct priority technical and mentor channel',
-        'All future indicator releases & v5 scripts',
-        'TradingView invite-only priority provisioning',
+        'Included 3-Day Strategy Session ($299 Value)',
+        '7-Step Execution Routine Guide',
+        'Priority technical & script support',
+        'All future indicator releases & updates',
+        'Invite-only Pine Script v5 access',
       ]
     },
     {
       id: 'lifetime' as SubscriptionPlan,
       name: 'Lifetime Founder',
-      badge: 'PERMANENT ACCESS',
+      badge: 'Permanent',
       price: '$1,490',
       period: 'one-time payment',
-      description: 'Permanent whitelisting and perpetual updates for institutional desks and long-term operators.',
+      description: 'Perpetual access and future updates for proprietary desks and long-term operators.',
       popular: false,
       features: [
-        'Perpetual Whitelisting for All Current & Future Scripts',
-        'VIP Private Desk with AlgoFinex Developers',
-        'Unlimited TradingView Account Relocations',
-        'Full 3-Day Execution Masterclass & Recordings',
-        'Custom Webhook Integration Consultation',
-        'One-Time Fee — Never Pay Subscriptions Again',
+        'Perpetual license to all current & future scripts',
+        'Included 3-Day Strategy Session pass',
+        'Priority desk support with developers',
+        'Unlimited TradingView account relocations',
+        'Beta access to experimental algorithms',
+        'Zero recurring subscription fees',
       ]
     }
   ];
 
-  const handleSelectPlan = (plan: SubscriptionPlan) => {
-    if (onNavigate) {
-      onNavigate('/checkout', { selectedPlan: plan });
-    }
-  };
-
   return (
-    <section id="pricing" className="relative py-20 sm:py-24 bg-[#080A0D] border-t border-[#20252C] overflow-hidden">
-      <div className="relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
+    <section id="pricing" className="py-20 sm:py-28 bg-[#FAFAF7] border-b border-[#EAEAE5]">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 text-left">
-          <div className="lg:col-span-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#141820] border border-[#20252C] text-xs font-mono text-[#8B929C] mb-4">
-              <CreditCard className="size-3.5 text-[#C8A96B]" />
-              <span className="tracking-widest uppercase text-[11px] font-semibold text-[#C8A96B]">
-                TRANSPARENT TIERS
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#F3F4F6] leading-[1.12]">
-              Transparent pricing.<br />
-              <span className="text-[#C8A96B]">
-                Zero hidden fees or contracts.
-              </span>
-            </h2>
-          </div>
-
-          <div className="lg:col-span-4 flex flex-col justify-end">
-            <p className="text-xs sm:text-sm text-[#8B929C] leading-relaxed mb-4">
-              All tiers grant instant invite-only Pine Script whitelisting for your linked TradingView username. Cancel anytime directly with 1 click.
-            </p>
-          </div>
+        <div className="text-center max-w-xl mx-auto mb-16">
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#4F6BFF] bg-[#EEF2FF] px-3.5 py-1 rounded-full border border-[#E0E7FF] shadow-xs">
+            Simple Pricing
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#17181C] tracking-tight mt-4">
+            Transparent plans. No hidden tiers.
+          </h2>
+          <p className="mt-3 text-base text-[#666B76] leading-relaxed">
+            Choose the membership that matches your trading routine. Cancel anytime.
+          </p>
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 text-left">
-          {plans.map((p) => (
-            <div
-              key={p.id}
-              className={`rounded-2xl p-7 flex flex-col justify-between transition-all duration-200 border ${
-                p.popular
-                  ? 'bg-[#12161E] border-[#C8A96B] shadow-workstation'
-                  : 'bg-[#101318] border-[#20252C] hover:border-[#2E3642]'
-              }`}
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase text-[#8B929C] tracking-wider font-semibold">
-                    {p.name}
-                  </span>
-                  <Badge variant={p.popular ? 'accent' : 'neutral'}>{p.badge}</Badge>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          {plans.map((plan) => {
+            return (
+              <div
+                key={plan.id}
+                className={`rounded-3xl p-8 sm:p-9 flex flex-col justify-between text-left transition-all duration-200 ${
+                  plan.popular
+                    ? 'bg-white border-2 border-[#4F6BFF] shadow-card relative'
+                    : 'bg-white border border-[#EAEAE5] shadow-xs hover:shadow-card-hover'
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <span className="text-lg font-bold text-[#17181C]">
+                      {plan.name}
+                    </span>
+                    <span
+                      className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
+                        plan.popular
+                          ? 'bg-[#4F6BFF] text-white'
+                          : 'bg-[#F4F5F8] text-[#666B76]'
+                      }`}
+                    >
+                      {plan.badge}
+                    </span>
+                  </div>
 
-                <div className="mt-5 flex items-baseline gap-1">
-                  <span className="text-4xl font-extrabold text-[#F3F4F6] font-mono tracking-tight">
-                    {p.price}
-                  </span>
-                  <span className="text-xs text-[#8B929C] font-mono">{p.period}</span>
-                </div>
+                  <div className="flex items-baseline gap-1 mt-2">
+                    <span className="text-4xl sm:text-5xl font-extrabold text-[#17181C] tracking-tight">
+                      {plan.price}
+                    </span>
+                    <span className="text-sm text-[#666B76]">
+                      / {plan.period}
+                    </span>
+                  </div>
 
-                {p.savings && (
-                  <p className="text-xs text-[#6FAF8A] font-mono font-medium mt-1">
-                    {p.savings}
+                  {plan.savings && (
+                    <div className="mt-2 text-xs font-semibold text-[#059669]">
+                      {plan.savings}
+                    </div>
+                  )}
+
+                  <p className="mt-4 text-sm text-[#666B76] leading-relaxed">
+                    {plan.description}
                   </p>
-                )}
 
-                <p className="mt-4 text-xs sm:text-sm text-[#8B929C] leading-relaxed pb-6 border-b border-[#20252C]">
-                  {p.description}
-                </p>
-
-                <div className="mt-6">
-                  <p className="text-[11px] font-mono text-[#8B929C] uppercase tracking-wider mb-3">
-                    Included capabilities:
-                  </p>
-                  <ul className="space-y-2.5">
-                    {p.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#F3F4F6]">
-                        <Check className="size-3.5 text-[#6FAF8A] mt-0.5 shrink-0" />
+                  <div className="mt-8 pt-6 border-t border-[#F0F1EE] space-y-3">
+                    {plan.features.map((feat, idx) => (
+                      <div key={idx} className="flex items-start gap-3 text-sm text-[#17181C]">
+                        <Check className="size-4 text-[#35C99A] shrink-0 mt-0.5" />
                         <span className="leading-snug">{feat}</span>
-                      </li>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-[#F0F1EE]">
+                  <Button
+                    variant={plan.popular ? 'primary' : 'secondary'}
+                    size="lg"
+                    className="w-full"
+                    onClick={() => {
+                      if (onNavigate) {
+                        onNavigate('/checkout', { selectedPlan: plan.id });
+                      }
+                    }}
+                    rightIcon={<ArrowRight className="size-4" />}
+                  >
+                    Select {plan.name}
+                  </Button>
                 </div>
               </div>
+            );
+          })}
+        </div>
 
-              <div className="mt-8 pt-6 border-t border-[#20252C]">
-                <Button
-                  variant={p.popular ? 'primary' : 'secondary'}
-                  size="lg"
-                  className="w-full"
-                  onClick={() => handleSelectPlan(p.id)}
-                  rightIcon={<ArrowRight className="size-4" />}
-                >
-                  Choose {p.name}
-                </Button>
-                <p className="text-[10px] font-mono text-[#6B7380] text-center mt-2.5">
-                  Instant TradingView whitelisting upon checkout.
-                </p>
-              </div>
-            </div>
-          ))}
+        {/* Guarantee Note */}
+        <div className="mt-12 text-center text-xs text-[#666B76]">
+          All plans include instant TradingView invite provisioning &amp; non-repainting v5 scripts.
         </div>
 
       </div>
     </section>
   );
 };
+
+export default PrototypePricingSection;

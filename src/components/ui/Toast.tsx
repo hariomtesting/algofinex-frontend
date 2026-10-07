@@ -49,22 +49,22 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className="pointer-events-auto flex items-start gap-3 p-3.5 rounded-xl bg-[#141820] border border-[#20252C] shadow-workstation text-left animate-in slide-in-from-bottom-2 duration-200"
+            className="pointer-events-auto flex items-start gap-3 p-4 rounded-2xl bg-white border border-[#EAEAE5] shadow-lg text-left animate-in slide-in-from-bottom-2 duration-200"
           >
             <div className="mt-0.5 shrink-0">
-              {toast.type === 'success' && <CheckCircle2 className="size-4 text-[#6FAF8A]" />}
-              {toast.type === 'error' && <AlertCircle className="size-4 text-[#C87878]" />}
-              {toast.type === 'info' && <Info className="size-4 text-[#C8A96B]" />}
+              {toast.type === 'success' && <CheckCircle2 className="size-4 text-[#059669]" />}
+              {toast.type === 'error' && <AlertCircle className="size-4 text-[#DC2626]" />}
+              {toast.type === 'info' && <Info className="size-4 text-[#4F6BFF]" />}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-[#F3F4F6]">{toast.title}</p>
+              <p className="text-xs font-semibold text-[#17181C]">{toast.title}</p>
               {toast.description && (
-                <p className="text-[11px] text-[#8B929C] mt-0.5 leading-snug">{toast.description}</p>
+                <p className="text-[11px] text-[#666B76] mt-0.5 leading-snug">{toast.description}</p>
               )}
             </div>
             <button
               onClick={() => removeToast(toast.id)}
-              className="text-[#6B7380] hover:text-[#F3F4F6] p-0.5 rounded cursor-pointer"
+              className="text-[#9CA3AF] hover:text-[#17181C] p-0.5 rounded cursor-pointer"
             >
               <X className="size-3.5" />
             </button>

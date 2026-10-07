@@ -68,36 +68,36 @@ export const HeroProductTerminal: React.FC = () => {
   }).join(' L ');
 
   return (
-    <div className="relative w-full rounded-xl border border-[#20252C] bg-[#101318] shadow-workstation overflow-hidden transition-all duration-300">
+    <div className="relative w-full rounded-2xl border border-[#EAEAE5] bg-white shadow-card overflow-hidden transition-all duration-200 text-left">
       {/* Terminal Title Bar */}
-      <div className="flex flex-wrap items-center justify-between border-b border-[#20252C] bg-[#141820] px-4 py-2.5 gap-2">
-        {/* Left Window Affordances & Symbol Selector */}
+      <div className="flex flex-wrap items-center justify-between border-b border-[#EAEAE5] bg-[#FAFAF7] px-4 sm:px-5 py-3 gap-2">
+        {/* Left Window Symbol Badge */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
-            <div className="size-2 rounded-full bg-[#3B4654]" />
-            <div className="size-2 rounded-full bg-[#3B4654]" />
-            <div className="size-2 rounded-full bg-[#3B4654]" />
+            <div className="size-2.5 rounded-full bg-[#FF6B6B]/80" />
+            <div className="size-2.5 rounded-full bg-[#F4C95D]/80" />
+            <div className="size-2.5 rounded-full bg-[#35C99A]/80" />
           </div>
 
-          <div className="h-3.5 w-px bg-[#20252C]" />
+          <div className="h-3.5 w-px bg-[#EAEAE5]" />
 
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-semibold text-[#F3F4F6]">BTC/USD</span>
-            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#181E28] text-[#8B929C] border border-[#20252C]">
+            <span className="text-xs font-semibold text-[#17181C]">BTC/USD</span>
+            <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-[#F1F4FF] text-[#4F6BFF]">
               15m
             </span>
-            <span className="text-xs font-mono text-[#6FAF8A] font-medium">+3.42%</span>
+            <span className="text-xs font-medium text-[#35C99A]">+3.42%</span>
           </div>
         </div>
 
         {/* Right: Strata Selector Tabs */}
-        <div className="flex items-center gap-1 bg-[#101318] p-1 rounded-lg border border-[#20252C]">
+        <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-[#EAEAE5]">
           <button
             onClick={() => setActiveMode('TREND')}
-            className={`px-2 py-1 rounded text-[11px] font-mono flex items-center gap-1 transition-colors ${
+            className={`px-2.5 py-1 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
               activeMode === 'TREND'
-                ? 'bg-[#1E2532] text-[#F3F4F6] font-medium'
-                : 'text-[#8B929C] hover:text-[#F3F4F6]'
+                ? 'bg-[#EEF2FF] text-[#4F6BFF] font-semibold'
+                : 'text-[#666B76] hover:text-[#17181C]'
             }`}
           >
             <TrendingUp className="size-3" />
@@ -105,10 +105,10 @@ export const HeroProductTerminal: React.FC = () => {
           </button>
           <button
             onClick={() => setActiveMode('LIQUIDITY')}
-            className={`px-2 py-1 rounded text-[11px] font-mono flex items-center gap-1 transition-colors ${
+            className={`px-2.5 py-1 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
               activeMode === 'LIQUIDITY'
-                ? 'bg-[#1E2532] text-[#F3F4F6] font-medium'
-                : 'text-[#8B929C] hover:text-[#F3F4F6]'
+                ? 'bg-[#F4F0FF] text-[#8B5CF6] font-semibold'
+                : 'text-[#666B76] hover:text-[#17181C]'
             }`}
           >
             <Compass className="size-3" />
@@ -116,10 +116,10 @@ export const HeroProductTerminal: React.FC = () => {
           </button>
           <button
             onClick={() => setActiveMode('STRUCTURE')}
-            className={`px-2 py-1 rounded text-[11px] font-mono flex items-center gap-1 transition-colors ${
+            className={`px-2.5 py-1 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer ${
               activeMode === 'STRUCTURE'
-                ? 'bg-[#1E2532] text-[#F3F4F6] font-medium'
-                : 'text-[#8B929C] hover:text-[#F3F4F6]'
+                ? 'bg-[#ECFBF6] text-[#059669] font-semibold'
+                : 'text-[#666B76] hover:text-[#17181C]'
             }`}
           >
             <Layers className="size-3" />
@@ -129,10 +129,7 @@ export const HeroProductTerminal: React.FC = () => {
       </div>
 
       {/* SVG Interactive Chart Canvas */}
-      <div className="relative w-full bg-[#0B0E13] select-none p-2 sm:p-3">
-        {/* Subtle grid lines */}
-        <div className="absolute inset-0 bg-financial-grid opacity-50 pointer-events-none" />
-
+      <div className="relative w-full bg-white select-none p-3 sm:p-4">
         <svg
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
           className="w-full h-auto cursor-crosshair overflow-visible relative z-10"
@@ -140,37 +137,37 @@ export const HeroProductTerminal: React.FC = () => {
           onMouseLeave={handleMouseLeave}
         >
           <defs>
-            <linearGradient id="cloudGradInstitutional" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#C8A96B" stopOpacity="0.16" />
-              <stop offset="100%" stopColor="#C8A96B" stopOpacity="0.02" />
+            <linearGradient id="cloudGradFintech" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#4F6BFF" stopOpacity="0.14" />
+              <stop offset="100%" stopColor="#4F6BFF" stopOpacity="0.01" />
             </linearGradient>
-            <linearGradient id="bullGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#6FAF8A" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#6FAF8A" stopOpacity="0.04" />
+            <linearGradient id="bullGradMint" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#35C99A" stopOpacity="0.16" />
+              <stop offset="100%" stopColor="#35C99A" stopOpacity="0.02" />
             </linearGradient>
-            <linearGradient id="bearGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#C87878" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#C87878" stopOpacity="0.04" />
+            <linearGradient id="bearGradCoral" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#FF6B6B" stopOpacity="0.16" />
+              <stop offset="100%" stopColor="#FF6B6B" stopOpacity="0.02" />
             </linearGradient>
           </defs>
 
-          {/* Horizontal Reference Price Levels */}
+          {/* Horizontal Reference Price Grid Lines */}
           {[66000, 67000, 68000].map((price) => (
-            <g key={price} opacity="0.3">
+            <g key={price}>
               <line
                 x1="0"
                 y1={getY(price)}
                 x2={chartWidth}
                 y2={getY(price)}
-                stroke="#20252C"
-                strokeDasharray="3 3"
+                stroke="#F0F1EE"
+                strokeDasharray="4 4"
               />
               <text
-                x={chartWidth - 5}
-                y={getY(price) - 3}
-                fill="#6B7380"
-                fontSize="9"
-                fontFamily="JetBrains Mono, monospace"
+                x={chartWidth - 8}
+                y={getY(price) - 4}
+                fill="#9CA3AF"
+                fontSize="10"
+                fontFamily="Inter, sans-serif"
                 textAnchor="end"
               >
                 ${price.toLocaleString()}
@@ -195,18 +192,18 @@ export const HeroProductTerminal: React.FC = () => {
                     y={Math.min(y1, y2)}
                     width={endX - startX}
                     height={height}
-                    fill={isBull ? 'url(#bullGrad)' : 'url(#bearGrad)'}
-                    stroke={isBull ? '#6FAF8A' : '#C87878'}
-                    strokeWidth="1"
-                    strokeDasharray="2 2"
-                    rx="3"
+                    fill={isBull ? 'url(#bullGradMint)' : 'url(#bearGradCoral)'}
+                    stroke={isBull ? '#35C99A' : '#FF6B6B'}
+                    strokeWidth="1.2"
+                    strokeDasharray="3 3"
+                    rx="4"
                   />
                   <text
-                    x={startX + 6}
-                    y={Math.min(y1, y2) + 12}
-                    fill={isBull ? '#6FAF8A' : '#C87878'}
-                    fontSize="8.5"
-                    fontFamily="JetBrains Mono, monospace"
+                    x={startX + 8}
+                    y={Math.min(y1, y2) + 13}
+                    fill={isBull ? '#059669' : '#DC2626'}
+                    fontSize="9"
+                    fontFamily="Inter, sans-serif"
                     fontWeight="600"
                   >
                     {ob.label}
@@ -224,23 +221,23 @@ export const HeroProductTerminal: React.FC = () => {
                   .split(' L ')
                   .reverse()
                   .join(' L ')} Z`}
-                fill="url(#cloudGradInstitutional)"
+                fill="url(#cloudGradFintech)"
               />
-              {/* Fast baseline */}
+              {/* Fast baseline in Electric Blue */}
               <path
                 d={`M ${stepX},${getY(BTC_15M_CANDLES[0].close * 0.998)} L ${ema21Points}`}
                 fill="none"
-                stroke="#C8A96B"
-                strokeWidth="1.6"
-                strokeOpacity="0.85"
+                stroke="#4F6BFF"
+                strokeWidth="2"
+                strokeOpacity="0.9"
               />
               {/* Slow baseline */}
               <path
                 d={`M ${stepX},${getY(BTC_15M_CANDLES[0].close * 0.994)} L ${ema55Points}`}
                 fill="none"
-                stroke="#8B929C"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                stroke="#8B5CF6"
+                strokeWidth="1.5"
+                strokeOpacity="0.7"
                 strokeDasharray="4 2"
               />
             </g>
@@ -255,11 +252,11 @@ export const HeroProductTerminal: React.FC = () => {
             const lowY = getY(c.low);
             const isBull = c.isBullish;
             const candleBodyY = Math.min(openY, closeY);
-            const candleBodyHeight = Math.max(Math.abs(closeY - openY), 2);
-            const color = isBull ? '#6FAF8A' : '#C87878';
+            const candleBodyHeight = Math.max(Math.abs(closeY - openY), 2.5);
+            const color = isBull ? '#35C99A' : '#FF6B6B';
 
             return (
-              <g key={i} className="transition-opacity">
+              <g key={i}>
                 {/* Candle Wick */}
                 <line
                   x1={x}
@@ -267,8 +264,8 @@ export const HeroProductTerminal: React.FC = () => {
                   x2={x}
                   y2={lowY}
                   stroke={color}
-                  strokeWidth="1.2"
-                  strokeOpacity="0.75"
+                  strokeWidth="1.4"
+                  strokeOpacity="0.8"
                 />
                 {/* Candle Body */}
                 <rect
@@ -276,8 +273,8 @@ export const HeroProductTerminal: React.FC = () => {
                   y={candleBodyY}
                   width="8"
                   height={candleBodyHeight}
-                  fill={isBull ? '#6FAF8A' : '#C87878'}
-                  rx="1"
+                  fill={color}
+                  rx="1.5"
                 />
               </g>
             );
@@ -293,23 +290,23 @@ export const HeroProductTerminal: React.FC = () => {
 
               return (
                 <g key={idx}>
-                  {/* Signal glyph */}
-                  <g transform={`translate(${x}, ${isBuy ? y + 16 : y - 16})`}>
+                  {/* Signal badge */}
+                  <g transform={`translate(${x}, ${isBuy ? y + 18 : y - 18})`}>
                     <rect
-                      x="-22"
+                      x="-24"
                       y={isBuy ? 0 : -16}
-                      width="44"
-                      height="16"
-                      rx="3"
-                      fill={isBuy ? '#6FAF8A' : '#C87878'}
+                      width="48"
+                      height="17"
+                      rx="4"
+                      fill={isBuy ? '#35C99A' : '#FF6B6B'}
                     />
                     <text
                       x="0"
-                      y={isBuy ? 11 : -5}
-                      fill="#080A0D"
-                      fontSize="8"
-                      fontWeight="700"
-                      fontFamily="JetBrains Mono, monospace"
+                      y={isBuy ? 12 : -4}
+                      fill="#FFFFFF"
+                      fontSize="9"
+                      fontWeight="600"
+                      fontFamily="Inter, sans-serif"
                       textAnchor="middle"
                     >
                       {sig.label}
@@ -322,16 +319,17 @@ export const HeroProductTerminal: React.FC = () => {
                     y1={invalidationY}
                     x2={x + 70}
                     y2={invalidationY}
-                    stroke="#C87878"
+                    stroke="#FF6B6B"
                     strokeWidth="1.2"
                     strokeDasharray="3 3"
                   />
                   <text
                     x={x + 74}
-                    y={invalidationY + 3}
-                    fill="#C87878"
-                    fontSize="7.5"
-                    fontFamily="JetBrains Mono, monospace"
+                    y={invalidationY + 3.5}
+                    fill="#DC2626"
+                    fontSize="8.5"
+                    fontFamily="Inter, sans-serif"
+                    fontWeight="500"
                   >
                     INV ${sig.invalidation}
                   </text>
@@ -347,42 +345,42 @@ export const HeroProductTerminal: React.FC = () => {
                 y1="0"
                 x2={mousePos.x}
                 y2={chartHeight}
-                stroke="#C8A96B"
-                strokeWidth="0.8"
-                strokeDasharray="2 2"
-                strokeOpacity="0.6"
+                stroke="#4F6BFF"
+                strokeWidth="1"
+                strokeDasharray="3 3"
+                strokeOpacity="0.5"
               />
               <line
                 x1="0"
                 y1={mousePos.y}
                 x2={chartWidth}
                 y2={mousePos.y}
-                stroke="#C8A96B"
-                strokeWidth="0.8"
-                strokeDasharray="2 2"
-                strokeOpacity="0.6"
+                stroke="#4F6BFF"
+                strokeWidth="1"
+                strokeDasharray="3 3"
+                strokeOpacity="0.5"
               />
             </g>
           )}
         </svg>
 
-        {/* Hovered Price / Telemetry Pill */}
+        {/* Hovered Price Tooltip Pill */}
         {activeCandleHover !== null && BTC_15M_CANDLES[activeCandleHover] && (
-          <div className="absolute top-4 left-4 z-20 flex items-center gap-3 bg-[#141820]/90 backdrop-blur-sm border border-[#20252C] px-3 py-1.5 rounded-lg text-[11px] font-mono text-[#F3F4F6] shadow-sm">
+          <div className="absolute top-4 left-4 z-20 flex items-center gap-3 bg-white/95 backdrop-blur-xs border border-[#EAEAE5] px-3.5 py-1.5 rounded-xl text-xs text-[#17181C] shadow-sm">
             <span>
-              O: <span className="text-[#8B929C]">${BTC_15M_CANDLES[activeCandleHover].open}</span>
+              O: <span className="text-[#666B76]">${BTC_15M_CANDLES[activeCandleHover].open}</span>
             </span>
             <span>
-              H: <span className="text-[#8B929C]">${BTC_15M_CANDLES[activeCandleHover].high}</span>
+              H: <span className="text-[#666B76]">${BTC_15M_CANDLES[activeCandleHover].high}</span>
             </span>
             <span>
-              L: <span className="text-[#8B929C]">${BTC_15M_CANDLES[activeCandleHover].low}</span>
+              L: <span className="text-[#666B76]">${BTC_15M_CANDLES[activeCandleHover].low}</span>
             </span>
             <span>
               C:{' '}
               <span
                 className={
-                  BTC_15M_CANDLES[activeCandleHover].isBullish ? 'text-[#6FAF8A]' : 'text-[#C87878]'
+                  BTC_15M_CANDLES[activeCandleHover].isBullish ? 'text-[#059669] font-medium' : 'text-[#DC2626] font-medium'
                 }
               >
                 ${BTC_15M_CANDLES[activeCandleHover].close}
@@ -393,32 +391,32 @@ export const HeroProductTerminal: React.FC = () => {
       </div>
 
       {/* Terminal Telemetry Footer Bar */}
-      <div className="flex flex-wrap items-center justify-between border-t border-[#20252C] bg-[#141820] px-4 py-2 text-[11px] font-mono text-[#8B929C]">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center justify-between border-t border-[#EAEAE5] bg-[#FAFAF7] px-4 sm:px-5 py-2.5 text-xs text-[#666B76]">
+        <div className="flex items-center gap-3">
           <span className="flex items-center gap-1.5">
-            <span className="size-1.5 rounded-full bg-[#6FAF8A]" />
+            <span className="size-2 rounded-full bg-[#35C99A]" />
             <span>Algorithm: {indicatorData.trendContext || 'Momentum Corridor'}</span>
           </span>
-          <span className="text-[#3B4654]">•</span>
+          <span className="text-[#D8D8D2]">•</span>
           <span>Regime: Expansion Validated</span>
         </div>
 
         <div className="flex items-center gap-3">
-          <label className="flex items-center gap-1.5 cursor-pointer">
+          <label className="flex items-center gap-1.5 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={showOrderBlocks}
               onChange={(e) => setShowOrderBlocks(e.target.checked)}
-              className="rounded accent-[#C8A96B] size-3"
+              className="rounded accent-[#4F6BFF] size-3.5 cursor-pointer"
             />
             <span>Imbalances</span>
           </label>
-          <label className="flex items-center gap-1.5 cursor-pointer">
+          <label className="flex items-center gap-1.5 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={showSignals}
               onChange={(e) => setShowSignals(e.target.checked)}
-              className="rounded accent-[#C8A96B] size-3"
+              className="rounded accent-[#4F6BFF] size-3.5 cursor-pointer"
             />
             <span>Signals</span>
           </label>
@@ -427,3 +425,5 @@ export const HeroProductTerminal: React.FC = () => {
     </div>
   );
 };
+
+export default HeroProductTerminal;

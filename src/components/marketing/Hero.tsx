@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HeroProductTerminal } from './HeroProductTerminal';
-import { ShieldCheck, ChevronRight } from 'lucide-react';
+import { ChevronRight, Sparkles } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface HeroProps {
@@ -13,88 +13,77 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     <section
       id="hero"
       aria-label="AlgoFinex Platform Introduction"
-      className="relative pt-28 sm:pt-32 pb-16 sm:pb-20 overflow-hidden bg-[#080A0D] border-b border-[#20252C]"
+      className="relative pt-28 sm:pt-36 pb-20 sm:pb-28 overflow-hidden bg-[#FAFAF7]"
     >
-      {/* Restrained institutional ambient backdrop */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-financial-grid opacity-60" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-radial-ambient opacity-50" />
-      </div>
-
-      <div className="relative max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* Two-column layout: Left Thesis / Right Terminal Prototype */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left Column: Institutional Thesis */}
+      <div className="relative max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Two-column layout: Left Thesis / Right Product Visual */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          {/* Left Column: Focused Value Proposition */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
             className="lg:col-span-5 flex flex-col justify-center text-left"
           >
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#141820] border border-[#20252C] text-xs font-mono text-[#8B929C] mb-4 w-fit">
-              <span className="size-1.5 rounded-full bg-[#C8A96B]" />
-              <span className="uppercase tracking-widest text-[11px] font-medium text-[#C8A96B]">
-                TRADING TECHNOLOGY
-              </span>
-              <span className="text-[#3B4654]">•</span>
-              <span className="text-[11px] text-[#8B929C]">Pine Script v5 Standard</span>
+            {/* Small Colourful Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EEF2FF] border border-[#E0E7FF] text-xs font-medium text-[#4F6BFF] mb-5 w-fit shadow-xs">
+              <Sparkles className="size-3.5 text-[#4F6BFF]" />
+              <span>Modern Quantitative Indicator Suite</span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#F3F4F6] leading-[1.12]">
-              Trade with a <br className="hidden sm:inline" />
-              <span className="text-[#C8A96B]">clearer system.</span>
+            {/* Clear, Controlled Headline */}
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#17181C] leading-[1.12]">
+              Trading tools, <br className="hidden sm:inline" />
+              <span className="text-[#4F6BFF]">without the noise.</span>
             </h1>
 
-            {/* Supporting Text */}
-            <p className="mt-4 text-sm sm:text-base text-[#8B929C] font-normal leading-relaxed max-w-lg">
-              Professional trading tools built to help traders structure, analyse and execute their ideas with greater clarity. Deterministic swing pivots, institutional order imbalances, and strictly non-repainting execution triggers.
+            {/* Short Supporting Paragraph */}
+            <p className="mt-5 text-base sm:text-lg text-[#666B76] font-normal leading-relaxed max-w-lg">
+              Simple, powerful tools designed to help traders read market structure, spot key imbalances, and execute with clarity.
             </p>
 
-            {/* CTAs */}
-            <div className="mt-7 flex flex-wrap items-center gap-3">
+            {/* Clear Primary & Secondary CTAs */}
+            <div className="mt-8 flex flex-wrap items-center gap-3.5">
               <Button
                 variant="primary"
                 size="lg"
                 onClick={() => onNavigate('/products')}
                 rightIcon={<ChevronRight className="size-4" />}
               >
-                Explore Indicators
+                Explore Products
               </Button>
 
               <Button
                 variant="secondary"
                 size="lg"
                 onClick={() => onNavigate('/session')}
-                leftIcon={<ShieldCheck className="size-4 text-[#C8A96B]" />}
               >
-                Try the 3-Day Session
+                Try 3-Day Session
               </Button>
             </div>
 
-            {/* Trust points - Technically credible standards */}
-            <div className="mt-8 pt-6 border-t border-[#20252C] grid grid-cols-3 gap-4">
-              <div>
-                <p className="text-xs font-mono font-medium text-[#F3F4F6]">100%</p>
-                <p className="text-[11px] text-[#8B929C] mt-0.5">Bar-close locked</p>
+            {/* Simple highlights */}
+            <div className="mt-10 pt-6 border-t border-[#EAEAE5] flex flex-wrap items-center gap-6 text-xs text-[#666B76]">
+              <div className="flex items-center gap-1.5">
+                <span className="size-2 rounded-full bg-[#35C99A]" />
+                <span className="font-medium text-[#17181C]">Non-repainting</span>
               </div>
-              <div>
-                <p className="text-xs font-mono font-medium text-[#F3F4F6]">Zero Repaint</p>
-                <p className="text-[11px] text-[#8B929C] mt-0.5">Deterministic logic</p>
+              <div className="flex items-center gap-1.5">
+                <span className="size-2 rounded-full bg-[#4F6BFF]" />
+                <span className="font-medium text-[#17181C]">Bar-close verified</span>
               </div>
-              <div>
-                <p className="text-xs font-mono font-medium text-[#F3F4F6]">All Assets</p>
-                <p className="text-[11px] text-[#8B929C] mt-0.5">Crypto, FX, Indices</p>
+              <div className="flex items-center gap-1.5">
+                <span className="size-2 rounded-full bg-[#8B5CF6]" />
+                <span className="font-medium text-[#17181C]">Pine Script v5</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Realistic Chart Interface */}
+          {/* Right Column: Clean Approchable Product Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.45, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.08, ease: 'easeOut' }}
             className="lg:col-span-7 w-full min-w-0"
           >
             <HeroProductTerminal />
@@ -104,3 +93,5 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     </section>
   );
 };
+
+export default Hero;

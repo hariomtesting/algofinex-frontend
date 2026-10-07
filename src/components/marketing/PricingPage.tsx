@@ -71,44 +71,46 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] pt-24 pb-20">
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#FAFAF7] text-[#17181C] pt-28 pb-24">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto pt-6 pb-12 border-b border-[#20252C]">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#141820] border border-[#20252C] text-xs font-mono text-[#C8A96B] uppercase tracking-wider mb-4">
-            <span className="size-1.5 rounded-full bg-[#C8A96B]" />
+        <div className="text-center max-w-2xl mx-auto pb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2FF] border border-[#4F6BFF]/20 text-xs font-medium text-[#4F6BFF] uppercase tracking-wider mb-4">
+            <span className="size-1.5 rounded-full bg-[#4F6BFF]" />
             <span>TRANSPARENT PRICING</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F3F4F6] tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#17181C] tracking-tight leading-tight">
             Institutional tools. Honest terms.
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-[#8B929C] leading-relaxed">
-            All plans include the complete indicator suite, TradingView script whitelisting, and strict bar-close non-repainting guarantees.
+          <p className="mt-4 text-base sm:text-lg text-[#666B76] leading-relaxed">
+            All plans include the complete indicator suite, TradingView script whitelisting, and strict non-repainting guarantees.
           </p>
 
           {/* Monthly / Annual Toggle */}
-          <div className="mt-8 inline-flex items-center p-1 rounded-xl bg-[#101318] border border-[#20252C]">
+          <div className="mt-8 inline-flex items-center p-1 rounded-2xl bg-white border border-[#EAEAE5] shadow-xs">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-4 py-2 rounded-lg text-xs font-mono transition-all cursor-pointer ${
+              className={`px-5 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                 billingCycle === 'monthly'
-                  ? 'bg-[#1E2532] text-[#F3F4F6] font-medium shadow-xs'
-                  : 'text-[#8B929C] hover:text-[#F3F4F6]'
+                  ? 'bg-[#4F6BFF] text-white shadow-xs'
+                  : 'text-[#666B76] hover:text-[#17181C]'
               }`}
             >
               Monthly Billing
             </button>
             <button
               onClick={() => setBillingCycle('annual')}
-              className={`px-4 py-2 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-5 py-2 rounded-xl text-xs font-medium transition-all flex items-center gap-2 cursor-pointer ${
                 billingCycle === 'annual'
-                  ? 'bg-[#1E2532] text-[#F3F4F6] font-medium shadow-xs'
-                  : 'text-[#8B929C] hover:text-[#F3F4F6]'
+                  ? 'bg-[#4F6BFF] text-white shadow-xs'
+                  : 'text-[#666B76] hover:text-[#17181C]'
               }`}
             >
               <span>Annual Billing</span>
-              <span className="text-[10px] bg-[#C8A96B]/20 text-[#C8A96B] px-1.5 py-0.2 rounded font-bold">
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                billingCycle === 'annual' ? 'bg-white/20 text-white' : 'bg-[#EEF2FF] text-[#4F6BFF]'
+              }`}>
                 SAVE 25%
               </span>
             </button>
@@ -116,50 +118,55 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           {plans.map((p) => (
             <div
               key={p.id}
-              className={`rounded-2xl p-7 flex flex-col justify-between transition-all duration-200 border ${
+              className={`rounded-3xl p-8 flex flex-col justify-between transition-all duration-200 border ${
                 p.popular
-                  ? 'bg-[#12161E] border-[#C8A96B] shadow-workstation'
-                  : 'bg-[#101318] border-[#20252C] hover:border-[#2E3642]'
+                  ? 'bg-white border-2 border-[#4F6BFF] shadow-card-hover relative'
+                  : 'bg-white border border-[#EAEAE5] hover:border-[#D0D4DD] shadow-card'
               }`}
             >
+              {p.popular && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#4F6BFF] text-white text-[11px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                  Most Popular
+                </div>
+              )}
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase text-[#8B929C] tracking-wider font-semibold">
+                  <span className="text-xs font-semibold uppercase text-[#666B76] tracking-wider">
                     {p.name}
                   </span>
                   <Badge variant={p.popular ? 'accent' : 'neutral'}>{p.badge}</Badge>
                 </div>
 
-                <div className="mt-5 flex items-baseline gap-1">
-                  <span className="text-4xl font-extrabold text-[#F3F4F6] font-mono tracking-tight">
+                <div className="mt-6 flex items-baseline gap-1.5">
+                  <span className="text-4xl font-extrabold text-[#17181C] font-mono tracking-tight">
                     {p.price}
                   </span>
-                  <span className="text-xs text-[#8B929C] font-mono">{p.period}</span>
+                  <span className="text-xs text-[#666B76]">{p.period}</span>
                 </div>
 
                 {p.savings && (
-                  <p className="text-xs text-[#6FAF8A] font-mono font-medium mt-1">
+                  <p className="text-xs text-[#059669] font-medium mt-1.5">
                     {p.savings}
                   </p>
                 )}
 
-                <p className="mt-4 text-xs sm:text-sm text-[#8B929C] leading-relaxed pb-6 border-b border-[#20252C]">
+                <p className="mt-4 text-xs sm:text-sm text-[#666B76] leading-relaxed pb-6 border-b border-[#EAEAE5]">
                   {p.description}
                 </p>
 
                 {/* Features List */}
                 <div className="mt-6">
-                  <p className="text-[11px] font-mono text-[#8B929C] uppercase tracking-wider mb-3">
+                  <p className="text-[11px] font-semibold text-[#666B76] uppercase tracking-wider mb-3">
                     Included in this plan:
                   </p>
-                  <ul className="space-y-2.5">
+                  <ul className="space-y-3">
                     {p.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#F3F4F6]">
-                        <Check className="size-3.5 text-[#6FAF8A] mt-0.5 shrink-0" />
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#17181C]">
+                        <Check className="size-4 text-[#35C99A] mt-0.5 shrink-0" />
                         <span className="leading-snug">{feat}</span>
                       </li>
                     ))}
@@ -167,7 +174,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-[#20252C]">
+              <div className="mt-8 pt-6 border-t border-[#EAEAE5]">
                 <Button
                   variant={p.popular ? 'primary' : 'secondary'}
                   size="lg"
@@ -177,7 +184,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
                 >
                   Choose {p.name}
                 </Button>
-                <p className="text-[10px] font-mono text-[#6B7380] text-center mt-2.5">
+                <p className="text-[11px] text-[#666B76] text-center mt-3">
                   Instant TradingView whitelisting upon checkout.
                 </p>
               </div>
@@ -186,19 +193,21 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
         </div>
 
         {/* Guarantee Banner */}
-        <div className="mt-16 p-6 rounded-xl bg-[#101318] border border-[#20252C] flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="size-8 text-[#C8A96B] shrink-0" />
+        <div className="mt-16 p-8 rounded-3xl bg-[#EEF2FF] border border-[#4F6BFF]/20 flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
+          <div className="flex items-center gap-4">
+            <div className="size-12 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-xs border border-[#4F6BFF]/15">
+              <ShieldCheck className="size-6 text-[#4F6BFF]" />
+            </div>
             <div>
-              <h4 className="text-sm font-semibold text-[#F3F4F6]">No-Questions-Asked Refund Window</h4>
-              <p className="text-xs text-[#8B929C] mt-0.5">
+              <h4 className="text-base font-bold text-[#17181C]">No-Questions-Asked Refund Window</h4>
+              <p className="text-xs sm:text-sm text-[#666B76] mt-0.5">
                 If the algorithmic indicator suite does not provide structural clarity for your charts, contact desk within 14 days for a full refund.
               </p>
             </div>
           </div>
           <Button
-            variant="outline"
-            size="sm"
+            variant="secondary"
+            size="md"
             onClick={() => onNavigate('/support')}
           >
             Review Policy

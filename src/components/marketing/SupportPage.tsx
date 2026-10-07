@@ -93,45 +93,45 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
   ];
 
   return (
-    <div className="min-h-screen bg-[#080A0D] text-[#F3F4F6] pt-24 pb-20">
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#FAFAF7] text-[#17181C] pt-28 pb-24">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto pt-6 pb-12 border-b border-[#20252C]">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#141820] border border-[#20252C] text-xs font-mono text-[#C8A96B] uppercase tracking-wider mb-4">
-            <LifeBuoy className="size-3.5 text-[#C8A96B]" />
+        <div className="text-center max-w-2xl mx-auto pb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF2FF] border border-[#4F6BFF]/20 text-xs font-medium text-[#4F6BFF] uppercase tracking-wider mb-4">
+            <LifeBuoy className="size-3.5 text-[#4F6BFF]" />
             <span>ALGOFINEX TECHNICAL DESK</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F3F4F6] tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#17181C] tracking-tight leading-tight">
             Client Support &amp; Help Center
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-[#8B929C] leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-[#666B76] leading-relaxed">
             Direct assistance from our technical engineers. TradingView account binding, indicator sensitivity calibration, and billing inquiries.
           </p>
         </div>
 
         {/* Two-Column: Ticket Submission + Ticket History */}
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 text-left">
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 text-left">
           
           {/* Left Column: Create Ticket Form */}
-          <div className="lg:col-span-7 bg-[#101318] border border-[#20252C] rounded-2xl p-6 sm:p-8">
-            <h3 className="text-lg font-bold text-[#F3F4F6] flex items-center gap-2">
-              <MessageSquare className="size-4 text-[#C8A96B]" />
+          <div className="lg:col-span-7 bg-white border border-[#EAEAE5] shadow-card rounded-3xl p-8">
+            <h3 className="text-lg font-bold text-[#17181C] flex items-center gap-2">
+              <MessageSquare className="size-4 text-[#4F6BFF]" />
               <span>Submit Technical Ticket</span>
             </h3>
-            <p className="text-xs text-[#8B929C] mt-1 mb-6">
+            <p className="text-xs text-[#666B76] mt-1 mb-6">
               Our engineering team responds within 2-4 hours during market trading hours.
             </p>
 
             {ticketSuccess && (
-              <div className="mb-6 p-4 rounded-xl bg-[#0B0E13] border border-[#6FAF8A]/40 text-xs text-[#6FAF8A] flex items-center gap-2">
+              <div className="mb-6 p-4 rounded-2xl bg-[#ECFBF6] border border-[#35C99A]/30 text-xs text-[#059669] flex items-center gap-2 font-medium">
                 <CheckCircle2 className="size-4 shrink-0" />
                 <span>{ticketSuccess}</span>
               </div>
             )}
 
             {ticketError && (
-              <div className="mb-6 p-4 rounded-xl bg-[#C87878]/10 border border-[#C87878]/30 text-xs text-[#C87878] flex items-center gap-2">
+              <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-center gap-2">
                 <AlertCircle className="size-4 shrink-0" />
                 <span>{ticketError}</span>
               </div>
@@ -139,13 +139,13 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
 
             <form onSubmit={handleTicketSubmit} className="space-y-4">
               <div>
-                <label className="text-xs font-mono uppercase text-[#8B929C] block mb-1.5">
+                <label className="text-xs font-semibold uppercase text-[#666B76] block mb-1.5">
                   Category
                 </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value as any)}
-                  className="w-full bg-[#101318] text-[#F3F4F6] text-xs rounded-lg border border-[#20252C] p-2.5 focus:border-[#C8A96B] focus:outline-none font-mono"
+                  className="w-full bg-[#FAFAF7] text-[#17181C] text-xs rounded-xl border border-[#EAEAE5] p-3 focus:border-[#4F6BFF] focus:bg-white focus:outline-none font-medium cursor-pointer"
                 >
                   <option value="tradingview_access">TradingView Script Whitelisting</option>
                   <option value="indicator_settings">Indicator Sensitivity Calibration</option>
@@ -156,13 +156,13 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
               </div>
 
               <div>
-                <label className="text-xs font-mono uppercase text-[#8B929C] block mb-1.5">
+                <label className="text-xs font-semibold uppercase text-[#666B76] block mb-1.5">
                   Priority
                 </label>
                 <select
                   value={priority}
                   onChange={(e) => setPriority(e.target.value as any)}
-                  className="w-full bg-[#101318] text-[#F3F4F6] text-xs rounded-lg border border-[#20252C] p-2.5 focus:border-[#C8A96B] focus:outline-none font-mono"
+                  className="w-full bg-[#FAFAF7] text-[#17181C] text-xs rounded-xl border border-[#EAEAE5] p-3 focus:border-[#4F6BFF] focus:bg-white focus:outline-none font-medium cursor-pointer"
                 >
                   <option value="low">Low — General Question</option>
                   <option value="medium">Medium — Configuration Inquiry</option>
@@ -180,12 +180,12 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
               />
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-mono uppercase text-[#8B929C]">
+                <label className="text-xs font-semibold uppercase text-[#666B76]">
                   Detailed Description
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full bg-[#101318] text-[#F3F4F6] text-xs rounded-lg border border-[#20252C] p-3 focus:border-[#C8A96B] focus:outline-none placeholder:text-[#4B5563]"
+                  className="w-full bg-[#FAFAF7] text-[#17181C] text-xs rounded-xl border border-[#EAEAE5] p-3 focus:border-[#4F6BFF] focus:bg-white focus:outline-none placeholder:text-[#9CA3AF]"
                   placeholder="Include asset class, timeframe, and any error message displayed..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -210,27 +210,27 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
 
           {/* Right Column: Ticket History & Knowledge Quick Links */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6">
-              <h4 className="text-sm font-semibold text-[#F3F4F6] mb-4">
+            <div className="bg-white border border-[#EAEAE5] shadow-card rounded-3xl p-6 sm:p-8">
+              <h4 className="text-sm font-bold text-[#17181C] mb-4">
                 Recent Support Tickets
               </h4>
 
               {isLoadingTickets ? (
                 <div className="space-y-3">
-                  <div className="h-12 bg-[#141820] rounded animate-pulse" />
-                  <div className="h-12 bg-[#141820] rounded animate-pulse" />
+                  <div className="h-12 bg-[#F0F1EE] rounded-xl animate-pulse" />
+                  <div className="h-12 bg-[#F0F1EE] rounded-xl animate-pulse" />
                 </div>
               ) : tickets.length === 0 ? (
-                <p className="text-xs text-[#8B929C]">No support tickets recorded for this profile.</p>
+                <p className="text-xs text-[#666B76]">No support tickets recorded for this profile.</p>
               ) : (
                 <div className="space-y-3">
                   {tickets.map((t) => (
                     <div
                       key={t.id}
-                      className="p-3.5 rounded-xl bg-[#0B0E13] border border-[#20252C] hover:border-[#2E3642] transition-colors"
+                      className="p-4 rounded-2xl bg-[#FAFAF7] border border-[#EAEAE5] hover:border-[#D0D4DD] transition-colors"
                     >
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs font-mono font-bold text-[#F3F4F6]">
+                        <span className="text-xs font-mono font-bold text-[#17181C]">
                           {t.id}
                         </span>
                         <Badge
@@ -245,10 +245,10 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
                           {t.status.replace('_', ' ')}
                         </Badge>
                       </div>
-                      <p className="text-xs text-[#8B929C] mt-1.5 font-medium line-clamp-1">
+                      <p className="text-xs text-[#666B76] mt-1.5 font-medium line-clamp-1">
                         {t.subject}
                       </p>
-                      <div className="flex items-center gap-1.5 text-[10px] text-[#6B7380] font-mono mt-2">
+                      <div className="flex items-center gap-1.5 text-[11px] text-[#9CA3AF] font-mono mt-2">
                         <Clock className="size-3" />
                         <span>{new Date(t.createdAt).toLocaleDateString()}</span>
                       </div>
@@ -259,20 +259,20 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
             </div>
 
             {/* Direct Support Options */}
-            <div className="bg-[#101318] border border-[#20252C] rounded-2xl p-6 text-xs text-[#8B929C] space-y-3">
-              <h4 className="text-sm font-semibold text-[#F3F4F6]">Direct Communication</h4>
+            <div className="bg-white border border-[#EAEAE5] shadow-card rounded-3xl p-6 sm:p-8 text-xs text-[#666B76] space-y-3">
+              <h4 className="text-sm font-bold text-[#17181C]">Direct Communication</h4>
               <p>
-                <strong>Desk Email:</strong> support@algofinex.com
+                <strong className="text-[#17181C]">Desk Email:</strong> support@algofinex.com
               </p>
               <p>
-                <strong>Trading Desk Hours:</strong> Mon – Fri, 08:00 – 22:00 UTC
+                <strong className="text-[#17181C]">Trading Desk Hours:</strong> Mon – Fri, 08:00 – 22:00 UTC
               </p>
             </div>
           </div>
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-16 text-left border-t border-[#20252C] pt-12">
+        <div className="mt-16 text-left border-t border-[#EAEAE5] pt-12">
           <SectionHeading
             eyebrow="FREQUENTLY ASKED"
             title="General Knowledge Base"
@@ -283,13 +283,13 @@ export const SupportPage: React.FC<SupportPageProps> = ({ onNavigate: _onNavigat
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="p-5 rounded-xl bg-[#101318] border border-[#20252C]"
+                className="p-6 rounded-2xl bg-white border border-[#EAEAE5] shadow-xs"
               >
-                <h4 className="text-sm font-semibold text-[#F3F4F6] flex items-center gap-2">
-                  <HelpCircle className="size-4 text-[#C8A96B] shrink-0" />
+                <h4 className="text-sm font-bold text-[#17181C] flex items-center gap-2">
+                  <HelpCircle className="size-4 text-[#4F6BFF] shrink-0" />
                   <span>{faq.q}</span>
                 </h4>
-                <p className="text-xs text-[#8B929C] mt-2 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#666B76] mt-2.5 leading-relaxed">
                   {faq.a}
                 </p>
               </div>
