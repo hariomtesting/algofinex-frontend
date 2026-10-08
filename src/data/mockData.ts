@@ -164,10 +164,9 @@ export const PRICING_TIERS: readonly PricingTier[] = [
     priceDisplay: "[PLACEHOLDER — PRICING TO BE SPECIFIED]",
     priceSubtext: "Commercial terms and licensing details provided upon official release.",
     includedFeatures: [
-      "[PLACEHOLDER — PRICING & TERMS TO BE CONFIRMED]",
-      "TradingView script access",
-      "Setup documentation & user guide",
-      "Direct onboarding support",
+      "Product access with setup guidance",
+      "Product details provided at checkout",
+      "[PLACEHOLDER — SPECIFICATIONS TO BE CONFIRMED]",
     ],
     ctaLabel: "GET ACCESS",
     actionType: "indicator",
@@ -181,10 +180,9 @@ export const PRICING_TIERS: readonly PricingTier[] = [
     priceDisplay: "[PLACEHOLDER — PRICING TO BE SPECIFIED]",
     priceSubtext: "Cohort scheduling and enrollment terms provided upon official release.",
     includedFeatures: [
-      "[PLACEHOLDER — PRICING & TERMS TO BE CONFIRMED]",
       "3-day structured educational curriculum",
-      "Daily execution routines & review habits",
-      "Participant onboarding support",
+      "Product details provided at checkout",
+      "[PLACEHOLDER — SPECIFICATIONS TO BE CONFIRMED]",
     ],
     ctaLabel: "JOIN SESSION",
     actionType: "session",
@@ -200,7 +198,7 @@ export const FAQ_ITEMS: readonly FaqItem[] = [
   {
     id: "faq-2",
     question: "How do I access the indicator?",
-    answer: "Submit your TradingView username at checkout. Script access permissions and setup documentation are provisioned directly to your account.",
+    answer: "Complete your enrollment at checkout. Product access and setup guidance are provided following order confirmation.",
   },
   {
     id: "faq-3",
@@ -210,12 +208,12 @@ export const FAQ_ITEMS: readonly FaqItem[] = [
   {
     id: "faq-4",
     question: "How does checkout work?",
-    answer: "Select your preferred access option, provide your contact details and TradingView username, and complete your order. You will receive an immediate confirmation with next steps.",
+    answer: "Select your preferred access option, provide your details, and complete your order. Product details and onboarding instructions are delivered upon completion.",
   },
   {
     id: "faq-5",
     question: "When will I receive access?",
-    answer: "Once your order is processed, indicator permissions are assigned to your TradingView account and onboarding documentation is delivered to your email.",
+    answer: "Access materials and onboarding instructions are delivered upon order confirmation. Product details provided at checkout.",
   },
   {
     id: "faq-6",

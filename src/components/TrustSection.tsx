@@ -48,11 +48,11 @@ export const TrustSection: React.FC = () => {
                   </div>
                   <h3 className="trust-card-title">Straightforward Access</h3>
                   <p className="trust-card-desc">
-                    Direct script access provisioned to your TradingView account with setup instructions and documentation.
+                    Product access with setup guidance. Clear onboarding information provided upon enrollment.
                   </p>
                   <div className="trust-card-meta">
-                    <span className="meta-label font-mono">PLATFORM</span>
-                    <span className="meta-value font-mono">TradingView Native</span>
+                    <span className="meta-label font-mono">DELIVERY</span>
+                    <span className="meta-value font-mono">Guided Onboarding</span>
                   </div>
                 </div>
 

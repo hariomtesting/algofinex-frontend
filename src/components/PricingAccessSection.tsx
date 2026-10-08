@@ -136,17 +136,17 @@ export const PricingAccessSection: React.FC<PricingAccessSectionProps> = ({
               </p>
             </div>
             <div className="access-journey-step">
-              <span className="access-journey-num font-mono">02 / PROVISIONING</span>
-              <h4 className="access-journey-title">Account Setup</h4>
+              <span className="access-journey-num font-mono">02 / ORDER DETAILS</span>
+              <h4 className="access-journey-title">Account Information</h4>
               <p className="access-journey-desc">
-                Provide your TradingView username so permissions can be granted to your account.
+                Product details and setup instructions are provided at checkout.
               </p>
             </div>
             <div className="access-journey-step">
               <span className="access-journey-num font-mono">03 / ONBOARDING</span>
-              <h4 className="access-journey-title">Verification & Support</h4>
+              <h4 className="access-journey-title">Setup Guidance</h4>
               <p className="access-journey-desc">
-                Add the indicator to your charts with provided documentation and contact support if needed.
+                Receive guided access materials and support for your analytical workspace.
               </p>
             </div>
           </div>
