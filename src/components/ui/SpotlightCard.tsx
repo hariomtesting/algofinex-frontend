@@ -1,70 +1,73 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback } from "react";
 
-interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  className?: string;
-  spotlightColor?: string;
+export interface SpotlightCardProps {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly spotlightColor?: string;
+  readonly spotlightRadius?: number;
+  readonly style?: React.CSSProperties;
 }
 
+/**
+ * SpotlightCard — React Bits Interactive Surface Component (TS + CSS variant)
+ * Soft, cursor-reactive radial luminescence that tracks movement across borders and surfaces.
+ * Performance characteristics:
+ * - Event-driven mouse tracking without requestAnimationFrame or tick loops
+ * - Zero expensive idle rendering or continuous state cycles
+ * - Hardware-accelerated opacity transition on entry and exit
+ */
 export const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
-  className = '',
-  spotlightColor = 'rgba(59, 130, 246, 0.09)',
-  ...props
+  className = "",
+  spotlightColor = "rgba(16, 185, 129, 0.035)",
+  spotlightRadius = 380,
+  style,
 }) => {
-  const divRef = useRef<HTMLDivElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState<number>(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!divRef.current || isFocused) return;
-
-    const div = divRef.current;
-    const rect = div.getBoundingClientRect();
-
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setPosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
     setOpacity(1);
-  };
+  }, []);
 
-  const handleBlur = () => {
-    setIsFocused(false);
+  const handleMouseLeave = useCallback(() => {
     setOpacity(0);
-  };
-
-  const handleMouseEnter = () => {
-    setOpacity(1);
-  };
-
-  const handleMouseLeave = () => {
-    setOpacity(0);
-  };
+  }, []);
 
   return (
     <div
-      ref={divRef}
+      ref={containerRef}
+      className={`spotlight-card-wrapper ${className}`}
       onMouseMove={handleMouseMove}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-xl border border-white/[0.08] bg-surface/80 p-5 transition-colors duration-300 hover:border-white/[0.16] ${className}`}
-      {...props}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        ...style,
+      }}
     >
+      {/* Ambient Cursor Spotlight Layer */}
       <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
+        className="spotlight-radial-overlay"
+        aria-hidden="true"
         style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 1,
           opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
+          transition: "opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1)",
+          background: `radial-gradient(${spotlightRadius}px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
         }}
       />
-      <div className="relative z-10">{children}</div>
+      <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
     </div>
   );
 };
-
-export default SpotlightCard;

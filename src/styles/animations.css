@@ -1,0 +1,35 @@
+/**
+ * AlgoFinex — Motion System
+ * Alive, calm, non-gimmicky.
+ * Premium presentation without reliance on theatrical entrance effects.
+ */
+
+/* Natural, immediate content visibility (never flashes or delays readability) */
+.reveal-init {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Micro-transitions for interactive elements */
+.btn,
+.nav-link,
+.footer-link,
+.feature-typographic-row,
+.session-day-row,
+.why-pillar,
+.product-preview-frame {
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

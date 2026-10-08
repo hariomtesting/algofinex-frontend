@@ -1,132 +1,34 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title>AlgoFinex — Institutional Trading Indicator Suite &amp; Quant Workstation</title>
-    <meta name="description" content="AlgoFinex provides institutional-grade market structure analysis, liquidity pool mapping, and non-repainting TradingView indicators, paired with our 3-Day Live Execution Masterclass." />
-    <meta name="keywords" content="AlgoFinex, TradingView indicators, market structure, liquidity sweeps, order blocks, quant trading, Pine Script v5, Vela workstation, institutional trading, crypto trading terminal" />
-    <meta name="author" content="AlgoFinex Engineering" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="theme-color" content="#FAFAF7" />
-    <link rel="canonical" href="https://algofinex-frontend.pages.dev/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlgoFinex — Trade With Clarity | Systematic Trading Tools & Education</title>
+    <meta
+      name="description"
+      content="AlgoFinex provides professional trading indicators and an intensive 3-Day Session designed for systematic, rules-based decision-making."
+    />
+    <meta name="theme-color" content="#090A0C" />
 
-    <!-- Open Graph / Facebook / LinkedIn / Discord -->
+    <!-- Open Graph / Meta -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://algofinex-frontend.pages.dev/" />
-    <meta property="og:site_name" content="AlgoFinex" />
-    <meta property="og:title" content="AlgoFinex — Modern Trading Indicator Suite &amp; Workstation" />
-    <meta property="og:description" content="Simple, powerful trading tools designed to help traders read the market with greater clarity." />
-    <meta property="og:image" content="https://algofinex-frontend.pages.dev/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="AlgoFinex — Trade With Clarity" />
+    <meta
+      property="og:description"
+      content="Professional trading tools designed for systematic decision-making. TradingView indicator & 3-Day Session."
+    />
 
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@AlgoFinex" />
-    <meta name="twitter:creator" content="@AlgoFinex" />
-    <meta name="twitter:title" content="AlgoFinex — Modern Trading Indicator Suite &amp; Workstation" />
-    <meta name="twitter:description" content="Simple, powerful trading tools designed to help traders read the market with greater clarity." />
-    <meta property="twitter:image" content="https://algofinex-frontend.pages.dev/og-image.png" />
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    
-    <!-- Modern Fintech Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%234F6BFF'/><path d='M8 20L13 14L18 17L24 10' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='24' cy='10' r='2' fill='%2335C99A'/></svg>" />
-
-    <!-- Structured Data: SoftwareApplication & FinancialProduct (Schema.org) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "SoftwareApplication",
-          "@id": "https://algofinex-frontend.pages.dev/#software",
-          "name": "AlgoFinex Quant Workstation",
-          "operatingSystem": "Web, TradingView",
-          "applicationCategory": "FinanceApplication",
-          "description": "Institutional-grade market structure analysis, liquidity sweep mapping, and dynamic trend corridor indicator suite for TradingView.",
-          "offers": {
-            "@type": "Offer",
-            "price": "99.00",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "1420",
-            "bestRating": "5",
-            "worstRating": "1"
-          }
-        },
-        {
-          "@type": "Organization",
-          "@id": "https://algofinex-frontend.pages.dev/#organization",
-          "name": "AlgoFinex",
-          "url": "https://algofinex-frontend.pages.dev/",
-          "logo": "https://algofinex-frontend.pages.dev/favicon.svg",
-          "sameAs": [
-            "https://twitter.com/AlgoFinex",
-            "https://tradingview.com/u/AlgoFinex"
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://algofinex-frontend.pages.dev/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Do AlgoFinex indicators repaint?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. All AlgoFinex signals, Break of Structure (BOS) labels, and Liquidity Pools lock deterministically on the bar-close. Once a candle closes, historical signals never shift, disappear, or recalculate."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I need a paid TradingView subscription to use AlgoFinex?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. AlgoFinex operates seamlessly on free, Essential, Plus, and Premium TradingView accounts without requiring proprietary plan upgrades."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Which assets and markets are supported?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "AlgoFinex works across all liquid global markets including Crypto (BTC, ETH, SOL), Equity Indices (NQ, ES), Forex pairs (EUR/USD, GBP/USD), and Commodities (Gold, Oil)."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-    <!-- Theme Initializer (Prevents Flash of Unstyled Content) -->
-    <script>
-      (function() {
-        try {
-          var saved = localStorage.getItem('algofinex-theme');
-          var theme = saved ? saved : 'light';
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-            document.documentElement.style.colorScheme = 'dark';
-          } else {
-            document.documentElement.classList.remove('dark');
-            document.documentElement.style.colorScheme = 'light';
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <!-- Google Fonts Preconnect & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-background text-text-primary antialiased selection:bg-[#4F6BFF]/20 selection:text-[#4F6BFF] min-h-screen overflow-x-hidden">
-    <div id="root"></div>
+  <body>
+    <div id="app"></div>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
