@@ -55,9 +55,9 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({
             <div className="final-cta-specs font-mono text-xs" aria-hidden="true">
               <span>TRADINGVIEW COMPATIBLE</span>
               <span className="specs-dot">·</span>
-              <span>DIRECT DESK SUPPORT</span>
+              <span>DIRECT SUPPORT</span>
               <span className="specs-dot">·</span>
-              <span>RESTRICTED COHORTS</span>
+              <span>STRUCTURED WORKFLOW</span>
             </div>
           </div>
         </ScrollReveal>

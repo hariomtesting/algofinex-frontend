@@ -20,27 +20,27 @@ const MODES: readonly ModeDetail[] = [
     number: "01",
     label: "VIEW",
     tagline: "Market View",
-    description: "A clean price path and reference baseline designed to help organize market information directly on the chart.",
+    description: "A clean price path and reference baseline designed to help organize chart information clearly.",
     highlightKey: "Baseline Reference",
-    layerType: "Trajectory Spline",
+    layerType: "Price Trajectory",
   },
   {
     id: "context",
     number: "02",
     label: "CONTEXT",
     tagline: "Context",
-    description: "Chart-based references for interpreting changing market conditions with dynamic upper and lower boundaries.",
-    highlightKey: "Reference Envelope",
-    layerType: "Dual Boundary Bands",
+    description: "Visual boundaries providing chart context around current price movement.",
+    highlightKey: "Reference Bounds",
+    layerType: "Dual Boundaries",
   },
   {
     id: "decision",
     number: "03",
     label: "DECISION",
     tagline: "Decision Process",
-    description: "Designed to support a more structured approach to chart analysis and disciplined evaluation points.",
-    highlightKey: "Decision Reference Levels",
-    layerType: "Structural Inflections",
+    description: "Structured reference levels designed to support your personal rules-based chart analysis.",
+    highlightKey: "Reference Levels",
+    layerType: "Key Levels",
   },
 ];
 
@@ -92,7 +92,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
     pointsRef.current = pts;
   }, []);
 
-  // Draw chart based on active mode
+  // Draw chart based on active presentation mode
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -122,7 +122,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       return h - ((price - minP) / range) * h;
     };
 
-    // 1. Gridlines & Axis Coordinates
+    // 1. Gridlines & Clean Neutral Axis Markers
     ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
     ctx.lineWidth = 1;
     for (let i = 1; i <= 4; i++) {
@@ -145,7 +145,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       y: getY(p.price),
     }));
 
-    // 2. Reference Bands (Context & Decision modes)
+    // 2. Reference Bounds (Context & Decision modes)
     if (activeMode === "context" || activeMode === "decision") {
       const bandOffset = 40;
 
@@ -166,7 +166,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       ctx.fillStyle = activeMode === "context" ? "rgba(16, 185, 129, 0.04)" : "rgba(16, 185, 129, 0.018)";
       ctx.fill();
 
-      // Upper Envelope line
+      // Upper Bound line
       ctx.strokeStyle = activeMode === "context" ? "rgba(16, 185, 129, 0.35)" : "rgba(16, 185, 129, 0.16)";
       ctx.lineWidth = 1.25;
       ctx.beginPath();
@@ -179,7 +179,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y - bandOffset);
       ctx.stroke();
 
-      // Lower Envelope line
+      // Lower Bound line
       ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
       ctx.beginPath();
       ctx.moveTo(coords[0].x, coords[0].y + bandOffset);
@@ -192,7 +192,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       ctx.stroke();
     }
 
-    // 3. Reference Decision Markers (Visible in "decision" mode)
+    // 3. Reference Level Markers (Visible in "decision" mode)
     if (activeMode === "decision") {
       const referenceIndexes = [15, 30, 46];
       ctx.strokeStyle = "rgba(16, 185, 129, 0.5)";
@@ -367,8 +367,8 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                 </p>
               </div>
 
-              {/* Mode Switcher Tabs */}
-              <div className="showcase-mode-switcher" role="tablist" aria-label="Product Showcase Mode">
+              {/* Presentation Mode Switcher */}
+              <div className="showcase-mode-switcher" role="tablist" aria-label="Product Presentation Modes">
                 {MODES.map((mode) => {
                   const isActive = activeMode === mode.id;
                   return (
@@ -407,12 +407,12 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                   </div>
 
                   <div className="showcase-mode-indicator">
-                    <span className="font-mono text-xs" style={{ color: "var(--color-text-muted)" }}>ACTIVE LAYER:</span>
+                    <span className="font-mono text-xs" style={{ color: "var(--color-text-muted)" }}>MODE:</span>
                     <span className="showcase-active-layer-tag font-mono text-xs">{currentModeDetail.highlightKey}</span>
                   </div>
 
                   <div className="showcase-topbar-right">
-                    <span className="showcase-disclaimer-tag">TRADINGVIEW EXTENSION</span>
+                    <span className="showcase-disclaimer-tag">TRADINGVIEW OVERLAY</span>
                   </div>
                 </div>
 
@@ -439,7 +439,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                         pointerEvents: "none",
                       }}
                     >
-                      REF LEVEL: {hoverCoord.priceNorm.toFixed(3)}
+                      REF: {hoverCoord.priceNorm.toFixed(3)}
                     </div>
                   )}
                 </div>

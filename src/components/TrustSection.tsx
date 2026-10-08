@@ -48,7 +48,7 @@ export const TrustSection: React.FC = () => {
                   </div>
                   <h3 className="trust-card-title">Straightforward Access</h3>
                   <p className="trust-card-desc">
-                    Direct invite-only script provisioning to your TradingView username with clear onboarding and setup instructions.
+                    Direct script access provisioned to your TradingView account with setup instructions and documentation.
                   </p>
                   <div className="trust-card-meta">
                     <span className="meta-label font-mono">PLATFORM</span>
@@ -63,21 +63,13 @@ export const TrustSection: React.FC = () => {
                   </div>
                   <h3 className="trust-card-title">Direct Support</h3>
                   <p className="trust-card-desc">
-                    Dedicated desk assistance for installation questions, account permissions, and curriculum guidance.
+                    Direct assistance for account configuration, setup questions, and curriculum onboarding.
                   </p>
                   <div className="trust-card-meta">
-                    <span className="meta-label font-mono">DESK</span>
-                    <span className="meta-value font-mono">Responsive Assistance</span>
+                    <span className="meta-label font-mono">ASSISTANCE</span>
+                    <span className="meta-value font-mono">Direct Help</span>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Space reserved for future verified trust material */}
-            <div className="trust-reserved-slot" aria-label="Documentation and community verification notice">
-              <div className="trust-reserved-inner">
-                <span className="font-mono text-xs text-muted">VERIFIED MATERIALS:</span>
-                <span className="font-mono text-xs">Official documentation, installation guides, and direct support desk available to all users.</span>
               </div>
             </div>
           </div>

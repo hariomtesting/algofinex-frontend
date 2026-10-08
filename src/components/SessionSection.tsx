@@ -42,14 +42,9 @@ export const SessionSection: React.FC<SessionSectionProps> = ({ onOpenSession })
                   <span className="btn-arrow" aria-hidden="true">→</span>
                 </button>
               </div>
-
-              <div className="session-desk-guarantee">
-                <span className="desk-dot" aria-hidden="true" />
-                <span className="font-mono text-xs">COHORT CAPACITY CONTROLLED // DESK SUPPORTED</span>
-              </div>
             </div>
 
-            {/* Right Column: Three Substantial Curriculum Stages with Visuals */}
+            {/* Right Column: Three Curriculum Stages with Conceptual Geometry */}
             <div className="session-editorial-sequence" role="list" aria-label="Curriculum stages">
               {SESSION_CONFIG.curriculum.map((item, idx) => (
                 <div key={item.day} className="sequence-editorial-row" role="listitem">
@@ -66,7 +61,7 @@ export const SessionSection: React.FC<SessionSectionProps> = ({ onOpenSession })
 
                   <p className="sequence-description">{item.description}</p>
 
-                  {/* Supporting Minimal Visual Diagram */}
+                  {/* Supporting Conceptual Diagram */}
                   <div className="sequence-stage-visual" aria-hidden="true">
                     {idx === 0 && (
                       <svg viewBox="0 0 380 90" className="stage-mini-svg" fill="none">
@@ -76,7 +71,7 @@ export const SessionSection: React.FC<SessionSectionProps> = ({ onOpenSession })
                         <circle cx="90" cy="45" r="3.5" fill="#ffffff" />
                         <circle cx="190" cy="45" r="3.5" fill="#ffffff" />
                         <circle cx="290" cy="45" r="4.5" fill="#10B981" />
-                        <text x="24" y="16" fill="rgba(16,185,129,0.8)" fontSize="9" fontFamily="'JetBrains Mono', monospace">RISK PARAMETER BOUNDS</text>
+                        <text x="24" y="16" fill="rgba(16,185,129,0.8)" fontSize="9" fontFamily="'JetBrains Mono', monospace">CHART ORIENTATION</text>
                       </svg>
                     )}
                     {idx === 1 && (
@@ -85,14 +80,14 @@ export const SessionSection: React.FC<SessionSectionProps> = ({ onOpenSession })
                         <path d="M 20,40 Q 90,35 160,20 T 280,15 T 360,10" stroke="rgba(16,185,129,0.3)" strokeWidth="1" strokeDasharray="2 2" />
                         <circle cx="160" cy="35" r="3" fill="#10B981" />
                         <circle cx="280" cy="30" r="3" fill="#10B981" />
-                        <text x="24" y="80" fill="rgba(255,255,255,0.4)" fontSize="9" fontFamily="'JetBrains Mono', monospace">ROUTINE EXECUTION PATHWAY</text>
+                        <text x="24" y="80" fill="rgba(255,255,255,0.4)" fontSize="9" fontFamily="'JetBrains Mono', monospace">EXECUTION ROUTINE</text>
                       </svg>
                     )}
                     {idx === 2 && (
                       <svg viewBox="0 0 380 90" className="stage-mini-svg" fill="none">
                         <rect x="20" y="25" width="80" height="40" rx="3" stroke="rgba(255,255,255,0.2)" fill="rgba(255,255,255,0.02)" />
                         <text x="35" y="48" fill="#ffffff" fontSize="9" fontFamily="'JetBrains Mono', monospace">OBSERVE</text>
-                        <line x1="100" y1="45" x2="135" y2="45" stroke="rgba(255,255,255,0.3)" markerEnd="url(#arrow)" />
+                        <line x1="100" y1="45" x2="135" y2="45" stroke="rgba(255,255,255,0.3)" />
                         <rect x="135" y="25" width="80" height="40" rx="3" stroke="rgba(255,255,255,0.2)" fill="rgba(255,255,255,0.02)" />
                         <text x="152" y="48" fill="#ffffff" fontSize="9" fontFamily="'JetBrains Mono', monospace">DECIDE</text>
                         <line x1="215" y1="45" x2="250" y2="45" stroke="rgba(255,255,255,0.3)" />

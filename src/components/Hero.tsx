@@ -59,27 +59,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenIndicator, onOpenSession }) =>
                 Join 3-Day Session
               </button>
             </div>
-
-            {/* Product Launch Metadata Strip */}
-            <div className="hero-meta-bar" aria-label="Product highlights">
-              <div className="hero-meta-item">
-                <span className="hero-meta-label">PLATFORM</span>
-                <span className="hero-meta-val">TradingView Native</span>
-              </div>
-              <div className="hero-meta-sep" aria-hidden="true">/</div>
-              <div className="hero-meta-item">
-                <span className="hero-meta-label">DELIVERY</span>
-                <span className="hero-meta-val">Invite-Only Access</span>
-              </div>
-              <div className="hero-meta-sep" aria-hidden="true">/</div>
-              <div className="hero-meta-item">
-                <span className="hero-meta-label">OBJECTIVE</span>
-                <span className="hero-meta-val">Contextual Clarity</span>
-              </div>
-            </div>
           </div>
 
-          {/* Columns 6-12: The Monumental Product Artifact Canvas */}
+          {/* Columns 6-12: The Elegant Product Teaser Canvas */}
           <div className="hero-col-visual">
             <ScrollReveal distance={10} delay={60}>
               <div className="hero-visual-frame" id="hero-chart-container">

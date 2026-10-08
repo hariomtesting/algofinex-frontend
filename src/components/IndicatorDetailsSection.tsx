@@ -13,22 +13,22 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
       index: "01",
       title: "MARKET VIEW",
       summary: "Visual tools designed to help organize market information directly on the chart.",
-      detail: "Provides a clean price path and reference baseline directly on your TradingView chart, reducing visual clutter and emphasizing underlying market rhythm.",
-      badge: "BASELINE REFERENCE",
+      detail: "Provides a clean price path and reference baseline directly on your TradingView chart, reducing visual clutter and emphasizing underlying price movement.",
+      badge: "MARKET VIEW",
     },
     {
       index: "02",
       title: "CONTEXT",
       summary: "Chart-based references for interpreting changing market conditions.",
-      detail: "Dual reference boundaries create a clear contextual envelope around price action, helping you evaluate whether current moves are within or beyond expected range.",
-      badge: "REFERENCE ENVELOPE",
+      detail: "Dual reference boundaries create a clear contextual framework around price movement, helping you evaluate whether current action is within or beyond regular levels.",
+      badge: "CONTEXT",
     },
     {
       index: "03",
       title: "DECISION PROCESS",
       summary: "Designed to support a more structured approach to chart analysis.",
-      detail: "Identifies structural inflection levels and candidate decision points to support your personal rules-based execution framework.",
-      badge: "STRUCTURAL LEVELS",
+      detail: "Highlights key reference levels to support your personal rules-based execution framework and risk discipline.",
+      badge: "DECISION PROCESS",
     },
   ];
 
@@ -46,7 +46,7 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                 WHAT YOU SEE.
               </h2>
               <p className="indicator-details-lead">
-                Three focused visual layers engineered into the TradingView analytical overlay. Clear geometric reference structures designed to replace noisy indicators.
+                Three focused capabilities engineered into the TradingView analytical overlay. Clear geometric reference structures designed to replace noisy indicators.
               </p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                     <p className="capability-subdesc">{cap.detail}</p>
                   </div>
 
-                  {/* Right Column: High-Impact Visual Diagram & Architectural Schematic */}
+                  {/* Right Column: High-Impact Visual Diagram & Conceptual Geometry */}
                   <div className="capability-right">
                     <div className="capability-visual-artifact" aria-hidden="true">
                       {index === 0 && (
@@ -90,7 +90,7 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                             <line x1="20" y1="40" x2="440" y2="40" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
                             <line x1="20" y1="80" x2="440" y2="80" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
                             <line x1="20" y1="120" x2="440" y2="120" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
-                            
+
                             {/* Vertical divisions */}
                             <line x1="120" y1="20" x2="120" y2="140" stroke="rgba(255,255,255,0.02)" />
                             <line x1="240" y1="20" x2="240" y2="140" stroke="rgba(255,255,255,0.02)" />
@@ -110,7 +110,6 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                             <circle cx="430" cy="45" r="5" fill="#10B981" stroke="#ffffff" strokeWidth="1.5" />
 
                             <text x="32" y="28" fill="rgba(255,255,255,0.4)" fontSize="10" fontFamily="'JetBrains Mono', monospace">REFERENCE BASELINE // CLEAN PATH</text>
-                            <text x="375" y="38" fill="rgba(16,185,129,0.9)" fontSize="10" fontFamily="'JetBrains Mono', monospace">+14.2%</text>
                           </svg>
                         </div>
                       )}
@@ -118,8 +117,8 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                       {index === 1 && (
                         <div className="artifact-schematic artifact-context">
                           <div className="schematic-top-label">
-                            <span className="font-mono text-xs">DIAGRAM // REFERENCE ENVELOPE</span>
-                            <span className="font-mono text-xs text-muted">02 BOUNDS</span>
+                            <span className="font-mono text-xs">DIAGRAM // REFERENCE BOUNDS</span>
+                            <span className="font-mono text-xs text-muted">02 CONTEXT</span>
                           </div>
                           <svg viewBox="0 0 460 160" className="artifact-svg" fill="none">
                             {/* Upper boundary line */}
@@ -147,8 +146,8 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                               stroke="rgba(255,255,255,0.9)"
                               strokeWidth="2"
                             />
-                            <text x="32" y="28" fill="rgba(16,185,129,0.85)" fontSize="10" fontFamily="'JetBrains Mono', monospace">UPPER BOUND // CONTEXT LEVEL</text>
-                            <text x="32" y="148" fill="rgba(255,255,255,0.3)" fontSize="10" fontFamily="'JetBrains Mono', monospace">LOWER BOUND // SUPPORT LEVEL</text>
+                            <text x="32" y="28" fill="rgba(16,185,129,0.85)" fontSize="10" fontFamily="'JetBrains Mono', monospace">UPPER REFERENCE BOUND</text>
+                            <text x="32" y="148" fill="rgba(255,255,255,0.3)" fontSize="10" fontFamily="'JetBrains Mono', monospace">LOWER REFERENCE BOUND</text>
                           </svg>
                         </div>
                       )}
@@ -157,20 +156,20 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                         <div className="artifact-schematic artifact-decision">
                           <div className="schematic-top-label">
                             <span className="font-mono text-xs">DIAGRAM // DECISION PROCESS</span>
-                            <span className="font-mono text-xs text-muted">03 INFLECTION</span>
+                            <span className="font-mono text-xs text-muted">03 LEVELS</span>
                           </div>
                           <svg viewBox="0 0 460 160" className="artifact-svg" fill="none">
                             {/* Lower reference level */}
                             <line x1="30" y1="115" x2="430" y2="115" stroke="rgba(255,255,255,0.15)" strokeWidth="1" strokeDasharray="4 4" />
                             <rect x="30" y="108" width="110" height="14" fill="rgba(255,255,255,0.05)" rx="2" />
-                            <text x="35" y="119" fill="rgba(255,255,255,0.6)" fontSize="9" fontFamily="'JetBrains Mono', monospace">LOWER THRESHOLD</text>
+                            <text x="35" y="119" fill="rgba(255,255,255,0.6)" fontSize="9" fontFamily="'JetBrains Mono', monospace">LOWER LEVEL</text>
 
                             {/* Upper reference level */}
                             <line x1="30" y1="55" x2="430" y2="55" stroke="rgba(16,185,129,0.4)" strokeWidth="1" strokeDasharray="4 4" />
                             <rect x="30" y="48" width="110" height="14" fill="rgba(16,185,129,0.07)" rx="2" />
-                            <text x="35" y="59" fill="rgba(16,185,129,0.9)" fontSize="9" fontFamily="'JetBrains Mono', monospace">UPPER THRESHOLD</text>
+                            <text x="35" y="59" fill="rgba(16,185,129,0.9)" fontSize="9" fontFamily="'JetBrains Mono', monospace">UPPER LEVEL</text>
 
-                            {/* Candidate progression path */}
+                            {/* Progression path */}
                             <path
                               d="M 120,110 L 200,90 L 280,95 L 390,60"
                               stroke="rgba(255,255,255,0.9)"
@@ -178,9 +177,7 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
                             />
                             <circle cx="200" cy="90" r="3.5" fill="#ffffff" />
                             <circle cx="280" cy="95" r="3.5" fill="#ffffff" />
-                            <circle cx="390" cy="60" r="4.5" fill="rgba(16,185,129,0.9)" stroke="#ffffff" strokeWidth="1.5" />
-
-                            <text x="310" y="45" fill="rgba(16,185,129,0.9)" fontSize="10" fontFamily="'JetBrains Mono', monospace">DECISION NODE</text>
+                            <circle cx="390" cy="60" r="4.5" fill="rgba(16, 185, 129, 0.9)" stroke="#ffffff" strokeWidth="1.5" />
                           </svg>
                         </div>
                       )}
@@ -198,7 +195,7 @@ export const IndicatorDetailsSection: React.FC<IndicatorDetailsSectionProps> = (
               id="btn-explore-indicator-details"
               onClick={onExploreClick}
             >
-              <span>Explore Indicator Access</span>
+              <span>Explore Indicator</span>
               <span className="btn-arrow" aria-hidden="true">→</span>
             </button>
           </div>

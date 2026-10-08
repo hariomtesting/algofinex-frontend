@@ -12,21 +12,20 @@ export const ProcessSection: React.FC = () => {
           {/* Section Header */}
           <div className="process-header">
             <div className="section-label">
-              <span>04 / SUGGESTED WORKFLOW</span>
+              <span>04 / TRADING WORKFLOW</span>
             </div>
             <div className="process-header-grid">
               <h2 className="process-title" id="process-title">
-                A STRUCTURED WORKFLOW FOR MARKET ANALYSIS.
+                A STRUCTURED TRADING WORKFLOW.
               </h2>
               <p className="process-lead">
-                A disciplined four-stage analytical sequence designed to help traders approach charts with structure and clear personal risk rules rather than emotional improvisation.
+                A four-stage analytical sequence designed to help traders approach charts with discipline and personal risk rules rather than emotional improvisation.
               </p>
             </div>
           </div>
 
-          {/* Horizontal Progression Pipeline (Desktop horizontal, responsive stack) */}
+          {/* Horizontal Progression Pipeline */}
           <div className="process-pipeline-wrap" role="region" aria-label="Workflow progression">
-            {/* Visual connector rail across the 4 stages */}
             <div className="process-rail-bar" aria-hidden="true">
               <div
                 className="process-rail-progress"
@@ -62,10 +61,10 @@ export const ProcessSection: React.FC = () => {
 
                     <div className="process-step-footer">
                       <span className="process-step-subtext font-mono text-xs">
-                        {idx === 0 && "Contextual Scan"}
-                        {idx === 1 && "Visual Reference"}
+                        {idx === 0 && "Market Context"}
+                        {idx === 1 && "Visual Analysis"}
                         {idx === 2 && "Personal Risk"}
-                        {idx === 3 && "Objective Log"}
+                        {idx === 3 && "Post-Trade Review"}
                       </span>
                     </div>
                   </div>
@@ -74,11 +73,11 @@ export const ProcessSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Framing Disclaimer */}
+          {/* Explicit Framing Note */}
           <div className="process-framing-note">
             <span className="process-note-icon font-mono">i</span>
             <span className="process-note-text">
-              Framed as a trader workflow. AlgoFinex provides chart clarity tools to assist your decision process; you define and apply your own risk rules.
+              Framed as a structured trading workflow. AlgoFinex provides chart clarity tools to assist your analysis; traders establish and apply their own individual risk rules.
             </span>
           </div>
         </ScrollReveal>

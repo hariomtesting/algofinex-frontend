@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback, useState } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 
 interface CurvePoint {
   readonly x: number;
@@ -11,11 +11,10 @@ export interface ChartPreviewProps {
 }
 
 /**
- * ChartPreview — Proprietary Product Visual Artifact
- * Architectural, substantial, layered product visualization for AlgoFinex Indicator.
- * Includes controlled linework, reference envelopes, clean normalized axis references,
- * secondary interface surfaces, and soft edge masking.
- * No fake accounts, no fake profits, no fake signals, no fake brokerage UI.
+ * ChartPreview — Hero Visual Product Teaser
+ * Simple, immediate, elegant product teaser for the AlgoFinex Indicator.
+ * Differentiated from the interactive Product Showcase section.
+ * Contains clean abstract linework and calm reference baseline without unverified claims or fake trading metrics.
  */
 export const ChartPreview: React.FC<ChartPreviewProps> = ({
   label = "ALGOFINEX INDICATOR",
@@ -23,30 +22,28 @@ export const ChartPreview: React.FC<ChartPreviewProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [activeLayer, setActiveLayer] = useState<"all" | "baseline" | "envelope">("all");
 
   const pointsRef = useRef<CurvePoint[]>([]);
   const minPriceRef = useRef<number>(0);
   const maxPriceRef = useRef<number>(0);
-  const dimensionsRef = useRef<{ width: number; height: number }>({ width: 920, height: 520 });
+  const dimensionsRef = useRef<{ width: number; height: number }>({ width: 920, height: 480 });
 
-  // 1. Generate organic, calm market curve
+  // 1. Generate calm, organic curve for the hero teaser
   const generateCurve = useCallback(() => {
-    const count = 56;
+    const count = 48;
     const pts: CurvePoint[] = [];
     let current = 1000;
 
     const deltas: readonly number[] = [
-      -3, -6, -2, 4, -4, -2, 5, 4, -1, 4,
-      8, 11, 14, 17, 13, 9, 18, 22, 26, 23,
-      20, 28, 31, 27, 35, 38, 42, 36, 41, 46,
-      43, 51, 55, 50, 59, 63, 60, 69, 74, 70,
-      77, 82, 86, 83, 91, 96, 100, 97, 104, 109,
-      106, 113, 118, 115, 122, 128
+      -3, -5, -2, 4, -3, -1, 5, 4, -1, 4,
+      7, 10, 13, 16, 12, 8, 16, 20, 24, 21,
+      18, 25, 29, 25, 32, 36, 40, 35, 39, 44,
+      41, 48, 52, 47, 55, 60, 57, 65, 70, 66,
+      73, 78, 82, 80, 87, 92, 96, 102
     ];
 
     for (let i = 0; i < count; i++) {
-      current += deltas[i % deltas.length] * 0.72;
+      current += deltas[i % deltas.length] * 0.7;
       pts.push({
         x: i / (count - 1),
         price: current,
@@ -59,8 +56,7 @@ export const ChartPreview: React.FC<ChartPreviewProps> = ({
       if (p.price < min) min = p.price;
       if (p.price > max) max = p.price;
     }
-    // Generous negative space (32% vertical padding)
-    const pad = (max - min) * 0.32;
+    const pad = (max - min) * 0.35;
     minPriceRef.current = min - pad;
     maxPriceRef.current = max + pad;
     pointsRef.current = pts;
@@ -72,7 +68,7 @@ export const ChartPreview: React.FC<ChartPreviewProps> = ({
     return height - ((price - minPriceRef.current) / range) * height;
   }, []);
 
-  // 2. Render Canvas Linework with Architectural Layering
+  // 2. Render Elegant, Clean Linework (Simple, Immediate, Elegant)
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -86,93 +82,27 @@ export const ChartPreview: React.FC<ChartPreviewProps> = ({
     const pts = pointsRef.current;
     if (pts.length === 0) return;
 
-    // 1. Subtle, architectural reference gridlines & clean axis ticks
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.035)";
+    // Faint horizontal reference lines
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
     ctx.lineWidth = 1;
 
-    const gridSteps = 4;
-    for (let i = 1; i < gridSteps; i++) {
-      const gy = (h / gridSteps) * i;
+    for (let i = 1; i <= 3; i++) {
+      const gy = (h / 4) * i;
       ctx.beginPath();
       ctx.moveTo(32, gy);
-      ctx.lineTo(w - 64, gy);
-      ctx.stroke();
-
-      // Clean, neutral reference tick label on the right
-      ctx.fillStyle = "rgba(255, 255, 255, 0.25)";
-      ctx.font = "9px 'JetBrains Mono', monospace";
-      ctx.textAlign = "right";
-      const tickPct = (1 - i / gridSteps) * 100;
-      ctx.fillText(`+${tickPct.toFixed(0)}%`, w - 24, gy + 3);
-    }
-
-    // Vertical time/stage division hairlines
-    const vSteps = 6;
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
-    for (let j = 1; j < vSteps; j++) {
-      const vx = (w / vSteps) * j;
-      ctx.beginPath();
-      ctx.moveTo(vx, 24);
-      ctx.lineTo(vx, h - 24);
+      ctx.lineTo(w - 32, gy);
       ctx.stroke();
     }
 
     const coords = pts.map((p) => ({
-      x: 32 + p.x * (w - 100),
+      x: 32 + p.x * (w - 64),
       y: getY(p.price, h),
     }));
 
-    // 2. Contextual Reference Envelope (Dynamic Upper & Lower Bounds)
-    if (activeLayer === "all" || activeLayer === "envelope") {
-      const bandOffset = 42;
-
-      // Fill reference channel
-      ctx.beginPath();
-      ctx.moveTo(coords[0].x, coords[0].y - bandOffset);
-      for (let i = 1; i < coords.length; i++) {
-        const xc = (coords[i - 1].x + coords[i].x) / 2;
-        const yc = (coords[i - 1].y + coords[i].y) / 2 - bandOffset;
-        ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y - bandOffset, xc, yc);
-      }
-      ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y - bandOffset);
-
-      // Lower boundary reverse for fill
-      for (let i = coords.length - 1; i >= 0; i--) {
-        ctx.lineTo(coords[i].x, coords[i].y + bandOffset);
-      }
-      ctx.closePath();
-      ctx.fillStyle = "rgba(16, 185, 129, 0.028)";
-      ctx.fill();
-
-      // Upper boundary hairline (emerald reference)
-      ctx.strokeStyle = "rgba(16, 185, 129, 0.24)";
-      ctx.lineWidth = 1.25;
-      ctx.beginPath();
-      ctx.moveTo(coords[0].x, coords[0].y - bandOffset);
-      for (let i = 1; i < coords.length; i++) {
-        const xc = (coords[i - 1].x + coords[i].x) / 2;
-        const yc = (coords[i - 1].y + coords[i].y) / 2 - bandOffset;
-        ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y - bandOffset, xc, yc);
-      }
-      ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y - bandOffset);
-      ctx.stroke();
-
-      // Lower boundary hairline
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-      ctx.beginPath();
-      ctx.moveTo(coords[0].x, coords[0].y + bandOffset);
-      for (let i = 1; i < coords.length; i++) {
-        const xc = (coords[i - 1].x + coords[i].x) / 2;
-        const yc = (coords[i - 1].y + coords[i].y) / 2 + bandOffset;
-        ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y + bandOffset, xc, yc);
-      }
-      ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y + bandOffset);
-      ctx.stroke();
-    }
-
-    // 3. Subtle ambient wash beneath price path
+    // Ambient soft wash beneath price path
     const gradient = ctx.createLinearGradient(0, 0, 0, h);
-    gradient.addColorStop(0, "rgba(255, 255, 255, 0.045)");
+    gradient.addColorStop(0, "rgba(16, 185, 129, 0.04)");
+    gradient.addColorStop(0.5, "rgba(255, 255, 255, 0.02)");
     gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
     ctx.beginPath();
@@ -183,37 +113,49 @@ export const ChartPreview: React.FC<ChartPreviewProps> = ({
       ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y, xc, yc);
     }
     ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y);
-    ctx.lineTo(coords[coords.length - 1].x, h - 20);
-    ctx.lineTo(coords[0].x, h - 20);
+    ctx.lineTo(coords[coords.length - 1].x, h - 24);
+    ctx.lineTo(coords[0].x, h - 24);
     ctx.closePath();
     ctx.fillStyle = gradient;
     ctx.fill();
 
-    // 4. Main Price Spline (High Contrast, Crisp Linework)
-    if (activeLayer === "all" || activeLayer === "baseline") {
-      ctx.strokeStyle = "rgba(243, 244, 246, 0.94)";
-      ctx.lineWidth = 1.85;
-      ctx.beginPath();
-      ctx.moveTo(coords[0].x, coords[0].y);
-      for (let i = 1; i < coords.length; i++) {
-        const xc = (coords[i - 1].x + coords[i].x) / 2;
-        const yc = (coords[i - 1].y + coords[i].y) / 2;
-        ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y, xc, yc);
-      }
-      ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y);
-      ctx.stroke();
-
-      // Subtle active focal head point
-      const lastCoord = coords[coords.length - 1];
-      ctx.beginPath();
-      ctx.arc(lastCoord.x, lastCoord.y, 3.5, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(16, 185, 129, 0.95)";
-      ctx.fill();
-      ctx.strokeStyle = "#FFFFFF";
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
+    // Subtle reference boundary hairlines
+    const bandOffset = 36;
+    ctx.strokeStyle = "rgba(16, 185, 129, 0.2)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(coords[0].x, coords[0].y - bandOffset);
+    for (let i = 1; i < coords.length; i++) {
+      const xc = (coords[i - 1].x + coords[i].x) / 2;
+      const yc = (coords[i - 1].y + coords[i].y) / 2 - bandOffset;
+      ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y - bandOffset, xc, yc);
     }
-  }, [activeLayer, getY]);
+    ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y - bandOffset);
+    ctx.stroke();
+
+    // High Contrast Primary Price Spline
+    ctx.strokeStyle = "rgba(243, 244, 246, 0.95)";
+    ctx.lineWidth = 1.85;
+    ctx.beginPath();
+    ctx.moveTo(coords[0].x, coords[0].y);
+    for (let i = 1; i < coords.length; i++) {
+      const xc = (coords[i - 1].x + coords[i].x) / 2;
+      const yc = (coords[i - 1].y + coords[i].y) / 2;
+      ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y, xc, yc);
+    }
+    ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y);
+    ctx.stroke();
+
+    // Subtle leading focal dot
+    const lastCoord = coords[coords.length - 1];
+    ctx.beginPath();
+    ctx.arc(lastCoord.x, lastCoord.y, 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(16, 185, 129, 0.9)";
+    ctx.fill();
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = 1.25;
+    ctx.stroke();
+  }, [getY]);
 
   // 3. Resize and High-DPI Canvas Setup
   useEffect(() => {
@@ -227,7 +169,7 @@ export const ChartPreview: React.FC<ChartPreviewProps> = ({
       const rect = container.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
       const w = rect.width || 920;
-      const h = rect.height || 520;
+      const h = rect.height || 480;
 
       dimensionsRef.current = { width: w, height: h };
       canvas.width = Math.floor(w * dpr);
@@ -266,65 +208,33 @@ export const ChartPreview: React.FC<ChartPreviewProps> = ({
     <div
       className={`product-preview-frame ${isHeroMain ? "hero-visual-artifact" : ""}`}
       role="img"
-      aria-label="AlgoFinex indicator preview showing clean market path and reference bounds"
+      aria-label="AlgoFinex indicator preview showing clean market path and reference baseline"
     >
-      {/* Top Technical Chrome */}
+      {/* Top Chrome: Simple and restrained */}
       <div className="preview-header">
         <div className="preview-header-left">
           <span className="app-status-dot" aria-hidden="true" />
           <span className="preview-label">{label}</span>
-          <span className="preview-meta-pill">v2.4 // LIVE</span>
-        </div>
-
-        <div className="preview-header-center">
-          <span className="preview-view-tag">CHART REFERENCE ARTIFACT</span>
         </div>
 
         <div className="preview-header-right">
-          <span className="preview-tag">TRADINGVIEW EXTENSION</span>
+          <span className="preview-tag">PRODUCT PREVIEW</span>
         </div>
       </div>
 
-      {/* Main Canvas Canvas Surface */}
+      {/* Main Canvas Teaser */}
       <div className="preview-canvas-wrap" ref={containerRef}>
         <canvas className="preview-canvas" ref={canvasRef} />
-        
-        {/* Soft edge masking overlay for seamless visual integration */}
         <div className="preview-edge-mask" aria-hidden="true" />
       </div>
 
-      {/* Secondary Interactive Surface Dock */}
+      {/* Calm Dock Caption */}
       <div className="preview-footer-dock">
         <div className="preview-dock-meta">
-          <span className="preview-dock-label">REFERENCE LAYERS:</span>
-          <div className="preview-layer-toggles" role="group" aria-label="Toggle visible layers">
-            <button
-              type="button"
-              className={`preview-layer-btn ${activeLayer === "all" ? "active" : ""}`}
-              onClick={() => setActiveLayer("all")}
-            >
-              ALL
-            </button>
-            <button
-              type="button"
-              className={`preview-layer-btn ${activeLayer === "baseline" ? "active" : ""}`}
-              onClick={() => setActiveLayer("baseline")}
-            >
-              BASELINE
-            </button>
-            <button
-              type="button"
-              className={`preview-layer-btn ${activeLayer === "envelope" ? "active" : ""}`}
-              onClick={() => setActiveLayer("envelope")}
-            >
-              ENVELOPE
-            </button>
-          </div>
+          <span className="preview-dock-label">ANALYTICAL OVERLAY</span>
         </div>
-
         <div className="preview-dock-status">
-          <span className="preview-coord-caption">SCALE // NORMALIZED</span>
-          <span className="preview-status-pill">DESK VERIFIED</span>
+          <span className="preview-coord-caption">TRADINGVIEW COMPATIBLE</span>
         </div>
       </div>
     </div>

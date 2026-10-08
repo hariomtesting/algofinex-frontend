@@ -37,7 +37,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenSupport }) => {
                   id="btn-faq-support"
                   onClick={onOpenSupport}
                 >
-                  <span>Contact Support Desk</span>
+                  <span>Contact Support</span>
                   <span className="btn-arrow" aria-hidden="true">→</span>
                 </button>
               </div>

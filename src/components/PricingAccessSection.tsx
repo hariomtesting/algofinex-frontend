@@ -28,7 +28,7 @@ export const PricingAccessSection: React.FC<PricingAccessSectionProps> = ({
                 GET ACCESS.
               </h2>
               <p className="pricing-lead">
-                Direct access to our TradingView analytical tools and guided educational curriculum. Straightforward provisioning with direct desk assistance.
+                Direct access to our TradingView indicator and guided educational curriculum. Clear setup guidance and direct support.
               </p>
             </div>
           </div>
@@ -130,23 +130,23 @@ export const PricingAccessSection: React.FC<PricingAccessSectionProps> = ({
           <div className="access-journey-bar" role="region" aria-label="Access Journey">
             <div className="access-journey-step">
               <span className="access-journey-num font-mono">01 / SELECT OPTION</span>
-              <h4 className="access-journey-title">Choose Indicator or Session</h4>
+              <h4 className="access-journey-title">Select Desired Access</h4>
               <p className="access-journey-desc">
-                Select the standalone AlgoFinex Indicator or enroll in the guided 3-Day educational curriculum.
+                Choose the standalone indicator or the 3-day guided educational session.
               </p>
             </div>
             <div className="access-journey-step">
               <span className="access-journey-num font-mono">02 / PROVISIONING</span>
-              <h4 className="access-journey-title">TradingView Account Binding</h4>
+              <h4 className="access-journey-title">Account Setup</h4>
               <p className="access-journey-desc">
-                Invite-only script access permissions are assigned directly to your TradingView handle with setup guides.
+                Provide your TradingView username so permissions can be granted to your account.
               </p>
             </div>
             <div className="access-journey-step">
               <span className="access-journey-num font-mono">03 / ONBOARDING</span>
-              <h4 className="access-journey-title">Direct Desk Verification</h4>
+              <h4 className="access-journey-title">Verification & Support</h4>
               <p className="access-journey-desc">
-                Confirm indicator loading on your chart and contact our support desk for any configuration assistance.
+                Add the indicator to your charts with provided documentation and contact support if needed.
               </p>
             </div>
           </div>
