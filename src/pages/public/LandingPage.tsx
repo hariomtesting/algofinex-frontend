@@ -51,35 +51,35 @@ export const LandingPage: React.FC = () => {
       />
 
       <main id="main-content" style={{ position: "relative", zIndex: 1 }}>
-        {/* 02: HERO — Trade with clarity */}
+        {/* 02: HERO — Trade with clarity (Product Launch Viewport) */}
         <Hero
           onOpenIndicator={() => navigate(ROUTES.CHECKOUT)}
           onOpenSession={() => navigate(ROUTES.SESSION)}
         />
 
-        {/* 03: PROBLEM / PHILOSOPHY */}
+        {/* 03: BRAND STATEMENT — Editorial philosophy */}
         <PhilosophySection />
 
-        {/* 04: PRODUCT SHOWCASE — Interactive Indicator Artifact */}
+        {/* 04: PRODUCT SHOWCASE — Main feature interactive indicator artifact */}
         <ProductShowcaseSection onExploreClick={() => navigate(ROUTES.CHECKOUT)} />
 
-        {/* 05: WORKFLOW — Structured 4-stage process */}
-        <ProcessSection />
-
-        {/* 06: INDICATOR DETAILS — 3 Capabilities with Visual Artifacts */}
+        {/* 05: PRODUCT ANATOMY — What you see (3 Focused Capabilities) */}
         <IndicatorDetailsSection onExploreClick={() => navigate(ROUTES.INDICATOR)} />
 
-        {/* 07: 3-DAY SESSION — Editorial Curriculum */}
+        {/* 06: WORKFLOW — Horizontal 4-stage progression */}
+        <ProcessSection />
+
+        {/* 07: 3-DAY SESSION — Sticky monumental curriculum */}
         <SessionSection onOpenSession={() => navigate(ROUTES.SESSION)} />
 
-        {/* 08: TRUST / SOCIAL PROOF PLACEHOLDER — Authentic integrity */}
-        <TrustSection />
-
-        {/* 09: PRODUCT ACCESS / PRICING — Clear tiers with backend placeholders */}
+        {/* 08: COMMERCIAL ACCESS & PRICING — Data-driven tiers & onboarding journey */}
         <PricingAccessSection
           onOpenIndicator={() => navigate(ROUTES.CHECKOUT)}
           onOpenSession={() => navigate(ROUTES.SESSION)}
         />
+
+        {/* 09: TRUST — Built with clarity */}
+        <TrustSection />
 
         {/* 10: FAQ — Compact 6 questions */}
         <FaqSection onOpenSupport={() => openModal("support")} />

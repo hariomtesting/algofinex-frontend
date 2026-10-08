@@ -141,6 +141,57 @@ export const SESSION_CONFIG: SessionConfig = {
   ],
 };
 
+export interface PricingTier {
+  readonly id: string;
+  readonly name: string;
+  readonly badge?: string;
+  readonly isPrimary: boolean;
+  readonly description: string;
+  readonly priceDisplay: string;
+  readonly priceSubtext: string;
+  readonly includedFeatures: readonly string[];
+  readonly ctaLabel: string;
+  readonly actionType: "indicator" | "session";
+}
+
+export const PRICING_TIERS: readonly PricingTier[] = [
+  {
+    id: "indicator",
+    name: "ALGOFINEX INDICATOR",
+    badge: "PRIMARY PRODUCT",
+    isPrimary: true,
+    description: "Visual tools designed to provide chart clarity and support a disciplined approach to technical analysis on TradingView.",
+    priceDisplay: "[PLACEHOLDER UNTIL BUSINESS DATA PROVIDED]",
+    priceSubtext: "Commercial terms and official licensing details provided at launch.",
+    includedFeatures: [
+      "[PLACEHOLDER UNTIL BUSINESS DATA PROVIDED]",
+      "Direct TradingView invite-only script permission",
+      "Market view & contextual reference tools",
+      "Complete setup documentation & onboarding guidance",
+      "Direct support desk assistance",
+    ],
+    ctaLabel: "GET ACCESS",
+    actionType: "indicator",
+  },
+  {
+    id: "session",
+    name: "3-DAY SESSION",
+    badge: "GUIDED CURRICULUM",
+    isPrimary: false,
+    description: "A focused guided introduction covering foundational chart orientation, analytical consistency, and daily trading habits.",
+    priceDisplay: "[PLACEHOLDER UNTIL BUSINESS DATA PROVIDED]",
+    priceSubtext: "Upcoming cohort dates and enrollment terms provided at launch.",
+    includedFeatures: [
+      "[PLACEHOLDER UNTIL BUSINESS DATA PROVIDED]",
+      "3-day structured educational curriculum",
+      "Daily execution routines & review habits",
+      "Cohort participant desk support",
+    ],
+    ctaLabel: "JOIN SESSION",
+    actionType: "session",
+  },
+];
+
 export const FAQ_ITEMS: readonly FaqItem[] = [
   {
     id: "faq-1",

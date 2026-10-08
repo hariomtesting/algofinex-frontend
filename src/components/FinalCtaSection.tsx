@@ -15,18 +15,20 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({
       <div className="container">
         <ScrollReveal distance={8}>
           <div className="final-cta-card">
+            {/* Subtle background surface depth */}
             <div className="final-cta-decor" aria-hidden="true" />
+
             <div className="section-label">
-              <span>ALGOFINEX</span>
+              <span>GET STARTED</span>
             </div>
-            
+
             <h2 className="final-cta-title" id="final-cta-heading">
               READY TO EXPLORE<br />
-              <span className="text-gradient">ALGOFINEX?</span>
+              <span className="final-cta-brand-glow">ALGOFINEX?</span>
             </h2>
 
             <p className="final-cta-subhead">
-              Approach market analysis with clarity and disciplined habits.
+              Approach market analysis with clarity, structured habits, and disciplined risk awareness.
             </p>
 
             <div className="final-cta-actions">
@@ -39,6 +41,7 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({
                 <span>Explore Indicator</span>
                 <span className="btn-arrow" aria-hidden="true">→</span>
               </button>
+
               <button
                 type="button"
                 className="btn btn-secondary btn-lg"
@@ -47,6 +50,14 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({
               >
                 <span>Join 3-Day Session</span>
               </button>
+            </div>
+
+            <div className="final-cta-specs font-mono text-xs" aria-hidden="true">
+              <span>TRADINGVIEW COMPATIBLE</span>
+              <span className="specs-dot">·</span>
+              <span>DIRECT DESK SUPPORT</span>
+              <span className="specs-dot">·</span>
+              <span>RESTRICTED COHORTS</span>
             </div>
           </div>
         </ScrollReveal>

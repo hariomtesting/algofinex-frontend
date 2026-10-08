@@ -13,21 +13,25 @@ export interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onOpenIndicator, onOpenSession }) => {
   return (
     <section className="hero-section" id="hero" aria-labelledby="hero-main-title">
+      {/* Background ambient radial depth behind product visual */}
+      <div className="hero-ambient-glow" aria-hidden="true" />
+
       <div className="container hero-container">
         {/* 12-Column Asymmetric Desktop Layout */}
         <div className="hero-grid">
-          {/* Columns 1-5: Editorial Text Anchor */}
+          {/* Columns 1-5: Editorial Product Launch Anchor */}
           <div className="hero-col-text">
             <div className="hero-brand-mark" aria-hidden="true">
+              <span className="brand-dot" />
               <span>{BRAND_CONFIG.name}</span>
             </div>
 
             <h1 className="hero-title" id="hero-main-title">
               <span className="hero-title-line">
-                <BlurText text="TRADE WITH" delay={35} duration={0.32} blurAmount={4} />
+                <BlurText text="TRADE WITH" delay={30} duration={0.32} blurAmount={4} />
               </span>
               <span className="hero-title-line">
-                <BlurText text="CLARITY." delay={75} duration={0.32} blurAmount={4} />
+                <BlurText text="CLARITY." delay={70} duration={0.32} blurAmount={4} />
               </span>
             </h1>
 
@@ -55,17 +59,36 @@ export const Hero: React.FC<HeroProps> = ({ onOpenIndicator, onOpenSession }) =>
                 Join 3-Day Session
               </button>
             </div>
+
+            {/* Product Launch Metadata Strip */}
+            <div className="hero-meta-bar" aria-label="Product highlights">
+              <div className="hero-meta-item">
+                <span className="hero-meta-label">PLATFORM</span>
+                <span className="hero-meta-val">TradingView Native</span>
+              </div>
+              <div className="hero-meta-sep" aria-hidden="true">/</div>
+              <div className="hero-meta-item">
+                <span className="hero-meta-label">DELIVERY</span>
+                <span className="hero-meta-val">Invite-Only Access</span>
+              </div>
+              <div className="hero-meta-sep" aria-hidden="true">/</div>
+              <div className="hero-meta-item">
+                <span className="hero-meta-label">OBJECTIVE</span>
+                <span className="hero-meta-val">Contextual Clarity</span>
+              </div>
+            </div>
           </div>
 
-          {/* Columns 6-12: The ONE Major Visual Object of the Page (7 Columns) */}
+          {/* Columns 6-12: The Monumental Product Artifact Canvas */}
           <div className="hero-col-visual">
-            <ScrollReveal distance={8} delay={60}>
+            <ScrollReveal distance={10} delay={60}>
               <div className="hero-visual-frame" id="hero-chart-container">
                 <SpotlightCard
-                  spotlightColor="rgba(16, 185, 129, 0.04)"
-                  spotlightRadius={480}
+                  spotlightColor="rgba(16, 185, 129, 0.05)"
+                  spotlightRadius={520}
+                  className="hero-spotlight-wrap"
                 >
-                  <ChartPreview label="ALGOFINEX INDICATOR" />
+                  <ChartPreview label="ALGOFINEX INDICATOR" isHeroMain={true} />
                 </SpotlightCard>
               </div>
             </ScrollReveal>

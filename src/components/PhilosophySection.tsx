@@ -8,7 +8,7 @@ export const PhilosophySection: React.FC = () => {
         <ScrollReveal distance={8}>
           <div className="philosophy-wrapper">
             <div className="section-label">
-              <span>01 / PHILOSOPHY</span>
+              <span>01 / BRAND STATEMENT</span>
             </div>
 
             <div className="philosophy-grid">
@@ -26,6 +26,23 @@ export const PhilosophySection: React.FC = () => {
                 <p className="philosophy-sub">
                   AlgoFinex was built on a deliberate conviction: sustainable market decision-making begins by stripping away the noise. We build tools and curriculum designed to provide clear, calm chart references — helping traders cultivate consistency, structured habits, and disciplined risk awareness.
                 </p>
+
+                <div className="philosophy-credo-strip" aria-label="Core Philosophy Pillars">
+                  <div className="credo-pillar">
+                    <span className="credo-num">01</span>
+                    <span className="credo-text">CONTEXT OVER NOISE</span>
+                  </div>
+                  <div className="credo-sep" aria-hidden="true">—</div>
+                  <div className="credo-pillar">
+                    <span className="credo-num">02</span>
+                    <span className="credo-text">STRUCTURE OVER IMPULSE</span>
+                  </div>
+                  <div className="credo-sep" aria-hidden="true">—</div>
+                  <div className="credo-pillar">
+                    <span className="credo-num">03</span>
+                    <span className="credo-text">DISCIPLINE OVER PROMISES</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

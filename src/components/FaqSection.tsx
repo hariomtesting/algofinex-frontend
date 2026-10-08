@@ -24,27 +24,28 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenSupport }) => {
                 <span>08 / QUESTIONS</span>
               </div>
               <h2 className="faq-main-title" id="faq-section-title">
-                Frequently asked questions.
+                FREQUENTLY ASKED QUESTIONS.
               </h2>
               <p className="faq-lead-desc">
-                Everything you need to know about indicator setup, TradingView requirements, and the 3-day curriculum.
+                Everything you need to know regarding TradingView indicator access, installation requirements, and 3-day session participation.
               </p>
               <div className="faq-support-box">
-                <span className="faq-support-caption">Have an unanswered question?</span>
+                <span className="faq-support-caption font-mono text-xs">NEED ASSISTANCE?</span>
                 <button
                   type="button"
                   className="btn btn-secondary btn-sm"
                   id="btn-faq-support"
                   onClick={onOpenSupport}
                 >
-                  Contact Support Desk →
+                  <span>Contact Support Desk</span>
+                  <span className="btn-arrow" aria-hidden="true">→</span>
                 </button>
               </div>
             </div>
 
-            {/* Right Column: Refined Accordion */}
+            {/* Right Column: Clean Large Typography Accordion */}
             <div className="faq-accordion-list" role="region" aria-label="Frequently Asked Questions">
-              {FAQ_ITEMS.map((item) => {
+              {FAQ_ITEMS.slice(0, 6).map((item) => {
                 const isOpen = openId === item.id;
                 return (
                   <div
@@ -72,10 +73,10 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenSupport }) => {
                           strokeLinejoin="round"
                           style={{
                             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                            transition: "transform var(--duration-normal) var(--ease-standard)",
+                            transition: "transform var(--duration-fast) var(--ease-standard)",
                           }}
                         >
-                          <polyline points="6 9 12 15 18 9"></polyline>
+                          <polyline points="6 9 12 15 18 9" />
                         </svg>
                       </span>
                     </button>

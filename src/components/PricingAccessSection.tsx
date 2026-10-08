@@ -1,4 +1,5 @@
 import React from "react";
+import { PRICING_TIERS } from "../data/mockData";
 import { ScrollReveal } from "./ui/ScrollReveal";
 
 export interface PricingAccessSectionProps {
@@ -10,149 +11,142 @@ export const PricingAccessSection: React.FC<PricingAccessSectionProps> = ({
   onOpenIndicator,
   onOpenSession,
 }) => {
+  const primaryTier = PRICING_TIERS.find((t) => t.isPrimary) || PRICING_TIERS[0];
+  const secondaryTier = PRICING_TIERS.find((t) => !t.isPrimary) || PRICING_TIERS[1];
+
   return (
     <section className="section-pricing-access" id="access" aria-labelledby="pricing-access-heading">
       <div className="container">
         <ScrollReveal distance={8}>
+          {/* Header */}
           <div className="pricing-access-header">
             <div className="section-label">
-              <span>07 / PRODUCT ACCESS</span>
+              <span>06 / COMMERCIAL ACCESS</span>
             </div>
             <div className="pricing-header-grid">
               <h2 className="pricing-title" id="pricing-access-heading">
-                GET ALGOFINEX.
+                GET ACCESS.
               </h2>
               <p className="pricing-lead">
-                Direct access to our TradingView analytical tools and educational curriculum. Clear terms with direct account provisioning.
+                Direct access to our TradingView analytical tools and guided educational curriculum. Straightforward provisioning with direct desk assistance.
               </p>
             </div>
           </div>
 
+          {/* Pricing Cards Grid (Asymmetric Prominence: Dominant Primary vs Compact Alternative) */}
           <div className="pricing-cards-grid">
-            {/* Primary Product Card: Indicator Access */}
-            <div className="pricing-card pricing-card-featured">
-              <div className="pricing-card-top">
-                <div className="pricing-badge">INDICATOR ACCESS</div>
-                <h3 className="pricing-plan-name">AlgoFinex Indicator</h3>
-                <p className="pricing-plan-summary">
-                  Visual tools designed to provide chart clarity and support a disciplined approach to technical analysis on TradingView.
-                </p>
-              </div>
-
-              <div className="pricing-rate-box">
-                <div className="pricing-rate-display">
-                  <span className="pricing-tag-placeholder">Pricing available at checkout</span>
+            {/* Primary Product: AlgoFinex Indicator */}
+            {primaryTier && (
+              <div className="pricing-card pricing-card-featured" id="pricing-card-indicator">
+                <div className="pricing-card-top">
+                  <div className="pricing-badge font-mono">{primaryTier.badge}</div>
+                  <h3 className="pricing-plan-name">{primaryTier.name}</h3>
+                  <p className="pricing-plan-summary">{primaryTier.description}</p>
                 </div>
-                <p className="pricing-rate-subtext">
-                  Official license pricing available at checkout. No hidden fees.
-                </p>
-              </div>
 
-              <ul className="pricing-feature-list" aria-label="Indicator features">
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Direct TradingView invite-only script permission</span>
-                </li>
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Market view and contextual reference tools</span>
-                </li>
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Complete configuration and setup documentation</span>
-                </li>
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Direct support for installation and account linking</span>
-                </li>
-              </ul>
-
-              <div className="pricing-action">
-                <button
-                  type="button"
-                  className="btn btn-primary btn-block btn-lg"
-                  id="btn-pricing-indicator"
-                  onClick={onOpenIndicator}
-                >
-                  <span>Explore Indicator Access</span>
-                  <span className="btn-arrow" aria-hidden="true">→</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Educational Companion Card: 3-Day Session */}
-            <div className="pricing-card">
-              <div className="pricing-card-top">
-                <div className="pricing-badge">CURRICULUM</div>
-                <h3 className="pricing-plan-name">3-Day Session</h3>
-                <p className="pricing-plan-summary">
-                  A structured cohort curriculum covering foundational chart orientation, analytical consistency, and daily trading habits.
-                </p>
-              </div>
-
-              <div className="pricing-rate-box">
-                <div className="pricing-rate-display">
-                  <span className="pricing-tag-placeholder">Enrollment details available at checkout</span>
+                <div className="pricing-rate-box">
+                  <div className="pricing-rate-label font-mono text-xs">PRICE</div>
+                  <div className="pricing-rate-display">
+                    <span className="pricing-tag-placeholder font-mono">{primaryTier.priceDisplay}</span>
+                  </div>
+                  <p className="pricing-rate-subtext">{primaryTier.priceSubtext}</p>
                 </div>
-                <p className="pricing-rate-subtext">
-                  Cohort schedule and enrollment details provided at checkout.
-                </p>
-              </div>
 
-              <ul className="pricing-feature-list" aria-label="3-Day Session features">
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Day 01 — Market context &amp; foundational orientation</span>
-                </li>
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Day 02 — Practical execution routines &amp; scenarios</span>
-                </li>
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Day 03 — Process construction &amp; objective review habits</span>
-                </li>
-                <li className="pricing-feature-item">
-                  <span className="feature-check" aria-hidden="true">✓</span>
-                  <span>Dedicated participant workspace &amp; desk support</span>
-                </li>
-              </ul>
+                <div className="pricing-includes-block">
+                  <div className="pricing-includes-label font-mono text-xs">WHAT'S INCLUDED</div>
+                  <ul className="pricing-feature-list" aria-label="Included in Indicator Access">
+                    {primaryTier.includedFeatures.map((feat, idx) => (
+                      <li key={idx} className="pricing-feature-item">
+                        <span className="feature-check" aria-hidden="true">✓</span>
+                        <span className={feat.includes("PLACEHOLDER") ? "feature-placeholder font-mono text-xs" : ""}>
+                          {feat}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <div className="pricing-action">
-                <button
-                  type="button"
-                  className="btn btn-secondary btn-block btn-lg"
-                  id="btn-pricing-session"
-                  onClick={onOpenSession}
-                >
-                  <span>Join 3-Day Session</span>
-                  <span className="btn-arrow" aria-hidden="true">→</span>
-                </button>
+                <div className="pricing-action">
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-block btn-lg"
+                    id="btn-pricing-indicator"
+                    onClick={onOpenIndicator}
+                  >
+                    <span>{primaryTier.ctaLabel}</span>
+                    <span className="btn-arrow" aria-hidden="true">→</span>
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Smaller Alternative: 3-Day Session */}
+            {secondaryTier && (
+              <div className="pricing-card pricing-card-secondary" id="pricing-card-session">
+                <div className="pricing-card-top">
+                  <div className="pricing-badge font-mono">{secondaryTier.badge}</div>
+                  <h3 className="pricing-plan-name">{secondaryTier.name}</h3>
+                  <p className="pricing-plan-summary">{secondaryTier.description}</p>
+                </div>
+
+                <div className="pricing-rate-box">
+                  <div className="pricing-rate-label font-mono text-xs">PRICE</div>
+                  <div className="pricing-rate-display">
+                    <span className="pricing-tag-placeholder font-mono">{secondaryTier.priceDisplay}</span>
+                  </div>
+                  <p className="pricing-rate-subtext">{secondaryTier.priceSubtext}</p>
+                </div>
+
+                <div className="pricing-includes-block">
+                  <div className="pricing-includes-label font-mono text-xs">WHAT'S INCLUDED</div>
+                  <ul className="pricing-feature-list" aria-label="Included in 3-Day Session">
+                    {secondaryTier.includedFeatures.map((feat, idx) => (
+                      <li key={idx} className="pricing-feature-item">
+                        <span className="feature-check" aria-hidden="true">✓</span>
+                        <span className={feat.includes("PLACEHOLDER") ? "feature-placeholder font-mono text-xs" : ""}>
+                          {feat}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pricing-action">
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-block btn-lg"
+                    id="btn-pricing-session"
+                    onClick={onOpenSession}
+                  >
+                    <span>{secondaryTier.ctaLabel}</span>
+                    <span className="btn-arrow" aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Product Access Clarity: What You Buy, What You Get, What Happens Next */}
+          {/* Product Access Clarity Journey Bar */}
           <div className="access-journey-bar" role="region" aria-label="Access Journey">
             <div className="access-journey-step">
-              <span className="access-journey-num">01 / WHAT YOU BUY</span>
-              <h4 className="access-journey-title">Select Your Tool or Session</h4>
+              <span className="access-journey-num font-mono">01 / SELECT OPTION</span>
+              <h4 className="access-journey-title">Choose Indicator or Session</h4>
               <p className="access-journey-desc">
-                Choose the standalone AlgoFinex Indicator or enroll in the guided 3-Day educational curriculum.
+                Select the standalone AlgoFinex Indicator or enroll in the guided 3-Day educational curriculum.
               </p>
             </div>
             <div className="access-journey-step">
-              <span className="access-journey-num">02 / WHAT YOU GET</span>
-              <h4 className="access-journey-title">TradingView Account Access</h4>
+              <span className="access-journey-num font-mono">02 / PROVISIONING</span>
+              <h4 className="access-journey-title">TradingView Account Binding</h4>
               <p className="access-journey-desc">
-                Invite-only script access provisioned to your TradingView handle with comprehensive setup guides.
+                Invite-only script access permissions are assigned directly to your TradingView handle with setup guides.
               </p>
             </div>
             <div className="access-journey-step">
-              <span className="access-journey-num">03 / WHAT HAPPENS NEXT</span>
-              <h4 className="access-journey-title">Onboarding &amp; Support</h4>
+              <span className="access-journey-num font-mono">03 / ONBOARDING</span>
+              <h4 className="access-journey-title">Direct Desk Verification</h4>
               <p className="access-journey-desc">
-                Receive access confirmation by email and contact our support desk for setup verification.
+                Confirm indicator loading on your chart and contact our support desk for any configuration assistance.
               </p>
             </div>
           </div>

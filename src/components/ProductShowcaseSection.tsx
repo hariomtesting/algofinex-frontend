@@ -2,37 +2,45 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ScrollReveal } from "./ui/ScrollReveal";
 import { SpotlightCard } from "./ui/SpotlightCard";
 
-type ShowcaseMode = "view" | "interpret" | "decide";
+type ShowcaseMode = "view" | "context" | "decision";
 
 interface ModeDetail {
   readonly id: ShowcaseMode;
+  readonly number: string;
   readonly label: string;
   readonly tagline: string;
   readonly description: string;
   readonly highlightKey: string;
+  readonly layerType: string;
 }
 
 const MODES: readonly ModeDetail[] = [
   {
     id: "view",
-    label: "01 / VIEW",
+    number: "01",
+    label: "VIEW",
     tagline: "Market View",
     description: "A clean price path and reference baseline designed to help organize market information directly on the chart.",
     highlightKey: "Baseline Reference",
+    layerType: "Trajectory Spline",
   },
   {
-    id: "interpret",
-    label: "02 / INTERPRET",
+    id: "context",
+    number: "02",
+    label: "CONTEXT",
     tagline: "Context",
-    description: "Chart-based references for interpreting changing market conditions.",
-    highlightKey: "Reference Bands",
+    description: "Chart-based references for interpreting changing market conditions with dynamic upper and lower boundaries.",
+    highlightKey: "Reference Envelope",
+    layerType: "Dual Boundary Bands",
   },
   {
-    id: "decide",
-    label: "03 / DECIDE",
+    id: "decision",
+    number: "03",
+    label: "DECISION",
     tagline: "Decision Process",
-    description: "Designed to support a more structured approach to chart analysis.",
-    highlightKey: "Chart Reference Markers",
+    description: "Designed to support a more structured approach to chart analysis and disciplined evaluation points.",
+    highlightKey: "Decision Reference Levels",
+    layerType: "Structural Inflections",
   },
 ];
 
@@ -51,17 +59,17 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
   onOpenIndicator,
 }) => {
   const handleAction = onExploreClick || onOpenIndicator || (() => {});
-  const [activeMode, setActiveMode] = useState<ShowcaseMode>("interpret");
+  const [activeMode, setActiveMode] = useState<ShowcaseMode>("context");
   const [hoverCoord, setHoverCoord] = useState<{ x: number; y: number; priceNorm: number } | null>(null);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pointsRef = useRef<Point[]>([]);
-  const dimensionsRef = useRef<{ width: number; height: number }>({ width: 920, height: 480 });
+  const dimensionsRef = useRef<{ width: number; height: number }>({ width: 980, height: 520 });
 
   // Generate reference market curve
   const generateCurve = useCallback(() => {
-    const count = 52;
+    const count = 54;
     const pts: Point[] = [];
     let current = 1000;
 
@@ -70,11 +78,11 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       8, 11, 14, 16, 12, 9, 17, 21, 24, 22,
       19, 26, 30, 27, 34, 38, 41, 36, 40, 45,
       42, 49, 53, 48, 57, 61, 59, 67, 72, 69,
-      76, 80, 84, 82, 89, 94, 98, 102, 100, 105, 110, 114
+      76, 80, 84, 82, 89, 94, 98, 102, 100, 105, 110, 115, 118, 124
     ];
 
     for (let i = 0; i < count; i++) {
-      current += deltas[i % deltas.length] * 0.75;
+      current += deltas[i % deltas.length] * 0.74;
       pts.push({
         x: i / (count - 1),
         price: current,
@@ -104,7 +112,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       if (p.price < min) min = p.price;
       if (p.price > max) max = p.price;
     }
-    const pad = (max - min) * 0.35;
+    const pad = (max - min) * 0.32;
     const minP = min - pad;
     const maxP = max + pad;
 
@@ -114,25 +122,32 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       return h - ((price - minP) / range) * h;
     };
 
-    // 1. Gridlines
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.025)";
+    // 1. Gridlines & Axis Coordinates
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
     ctx.lineWidth = 1;
     for (let i = 1; i <= 4; i++) {
       const gy = (h / 5) * i;
       ctx.beginPath();
-      ctx.moveTo(0, gy);
-      ctx.lineTo(w, gy);
+      ctx.moveTo(32, gy);
+      ctx.lineTo(w - 70, gy);
       ctx.stroke();
+
+      // Right-aligned axis percentage label
+      ctx.fillStyle = "rgba(255, 255, 255, 0.22)";
+      ctx.font = "9px 'JetBrains Mono', monospace";
+      ctx.textAlign = "right";
+      const pctVal = (1 - i / 5) * 100;
+      ctx.fillText(`${pctVal.toFixed(0)}%`, w - 24, gy + 3);
     }
 
     const coords = pts.map((p) => ({
-      x: p.x * w,
+      x: 32 + p.x * (w - 110),
       y: getY(p.price),
     }));
 
-    // 2. Reference Bands (Visible in "interpret" & "decide" modes)
-    if (activeMode === "interpret" || activeMode === "decide") {
-      const bandOffset = 38;
+    // 2. Reference Bands (Context & Decision modes)
+    if (activeMode === "context" || activeMode === "decision") {
+      const bandOffset = 40;
 
       // Fill envelope
       ctx.beginPath();
@@ -148,11 +163,11 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
         ctx.lineTo(coords[i].x, coords[i].y + bandOffset);
       }
       ctx.closePath();
-      ctx.fillStyle = activeMode === "interpret" ? "rgba(16, 185, 129, 0.035)" : "rgba(16, 185, 129, 0.015)";
+      ctx.fillStyle = activeMode === "context" ? "rgba(16, 185, 129, 0.04)" : "rgba(16, 185, 129, 0.018)";
       ctx.fill();
 
       // Upper Envelope line
-      ctx.strokeStyle = activeMode === "interpret" ? "rgba(16, 185, 129, 0.28)" : "rgba(16, 185, 129, 0.12)";
+      ctx.strokeStyle = activeMode === "context" ? "rgba(16, 185, 129, 0.35)" : "rgba(16, 185, 129, 0.16)";
       ctx.lineWidth = 1.25;
       ctx.beginPath();
       ctx.moveTo(coords[0].x, coords[0].y - bandOffset);
@@ -177,10 +192,10 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       ctx.stroke();
     }
 
-    // 3. Reference Markers (Visible in "decide" mode)
-    if (activeMode === "decide") {
-      const referenceIndexes = [14, 28, 44];
-      ctx.strokeStyle = "rgba(16, 185, 129, 0.45)";
+    // 3. Reference Decision Markers (Visible in "decision" mode)
+    if (activeMode === "decision") {
+      const referenceIndexes = [15, 30, 46];
+      ctx.strokeStyle = "rgba(16, 185, 129, 0.5)";
       ctx.lineWidth = 1;
       ctx.setLineDash([4, 4]);
 
@@ -189,18 +204,18 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
           const pt = coords[idx];
           // Horizontal reference axis
           ctx.beginPath();
-          ctx.moveTo(pt.x - 28, pt.y);
-          ctx.lineTo(pt.x + 28, pt.y);
+          ctx.moveTo(pt.x - 32, pt.y);
+          ctx.lineTo(pt.x + 32, pt.y);
           ctx.stroke();
 
           // Circular reference point
           ctx.setLineDash([]);
           ctx.beginPath();
-          ctx.arc(pt.x, pt.y, 3.5, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(16, 185, 129, 0.9)";
+          ctx.arc(pt.x, pt.y, 4, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(16, 185, 129, 0.95)";
           ctx.fill();
-          ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = "#FFFFFF";
+          ctx.lineWidth = 1.25;
           ctx.stroke();
           ctx.setLineDash([4, 4]);
         }
@@ -210,7 +225,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
 
     // 4. Ambient Price Spline Wash
     const gradient = ctx.createLinearGradient(0, 0, 0, h);
-    gradient.addColorStop(0, "rgba(255, 255, 255, 0.04)");
+    gradient.addColorStop(0, "rgba(255, 255, 255, 0.045)");
     gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
     ctx.beginPath();
@@ -221,15 +236,15 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       ctx.quadraticCurveTo(coords[i - 1].x, coords[i - 1].y, xc, yc);
     }
     ctx.lineTo(coords[coords.length - 1].x, coords[coords.length - 1].y);
-    ctx.lineTo(w, h);
-    ctx.lineTo(0, h);
+    ctx.lineTo(coords[coords.length - 1].x, h - 20);
+    ctx.lineTo(coords[0].x, h - 20);
     ctx.closePath();
     ctx.fillStyle = gradient;
     ctx.fill();
 
     // 5. Main Price Spline
-    ctx.strokeStyle = "rgba(243, 244, 246, 0.95)";
-    ctx.lineWidth = 1.85;
+    ctx.strokeStyle = activeMode === "view" ? "#FFFFFF" : "rgba(243, 244, 246, 0.94)";
+    ctx.lineWidth = activeMode === "view" ? 2.2 : 1.85;
     ctx.beginPath();
     ctx.moveTo(coords[0].x, coords[0].y);
     for (let i = 1; i < coords.length; i++) {
@@ -242,7 +257,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
 
     // 6. Interactive Cursor Overlay
     if (hoverCoord) {
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.16)";
       ctx.lineWidth = 1;
       ctx.setLineDash([3, 3]);
 
@@ -261,9 +276,12 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
       ctx.setLineDash([]);
       // Focal point
       ctx.beginPath();
-      ctx.arc(hoverCoord.x, hoverCoord.y, 3.5, 0, Math.PI * 2);
+      ctx.arc(hoverCoord.x, hoverCoord.y, 4, 0, Math.PI * 2);
       ctx.fillStyle = "var(--color-accent)";
       ctx.fill();
+      ctx.strokeStyle = "#FFFFFF";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
     }
   }, [activeMode, hoverCoord]);
 
@@ -278,8 +296,8 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
 
       const rect = container.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
-      const w = rect.width || 920;
-      const h = rect.height || 480;
+      const w = rect.width || 980;
+      const h = rect.height || 520;
 
       dimensionsRef.current = { width: w, height: h };
       canvas.width = Math.floor(w * dpr);
@@ -337,12 +355,12 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
           {/* Header */}
           <div className="showcase-header">
             <div className="section-label">
-              <span>02 / PRODUCT SHOWCASE</span>
+              <span>02 / MAIN FEATURE</span>
             </div>
             <div className="showcase-header-grid">
-              <div>
+              <div className="showcase-title-block">
                 <h2 className="showcase-title" id="showcase-title">
-                  ALGOFINEX INDICATOR
+                  THE ALGOFINEX INDICATOR
                 </h2>
                 <p className="showcase-subtitle">
                   A native TradingView analytical overlay designed to bring calm, visual clarity to market interpretation.
@@ -362,6 +380,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                       className={`showcase-mode-btn ${isActive ? "active" : ""}`}
                       onClick={() => setActiveMode(mode.id)}
                     >
+                      <span className="mode-btn-num">{mode.number}</span>
                       <span className="mode-btn-label">{mode.label}</span>
                       <span className="mode-btn-tagline">{mode.tagline}</span>
                     </button>
@@ -375,7 +394,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
           <div className="showcase-artifact-wrap">
             <SpotlightCard
               spotlightColor="rgba(16, 185, 129, 0.05)"
-              spotlightRadius={540}
+              spotlightRadius={560}
               className="showcase-card"
             >
               <div className="showcase-preview-frame">
@@ -384,6 +403,7 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                   <div className="showcase-status-pill">
                     <span className="app-status-dot" aria-hidden="true" />
                     <span className="showcase-status-text">ALGOFINEX INDICATOR</span>
+                    <span className="showcase-mode-badge font-mono text-xs">{currentModeDetail.number} / {currentModeDetail.label}</span>
                   </div>
 
                   <div className="showcase-mode-indicator">
@@ -391,7 +411,9 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                     <span className="showcase-active-layer-tag font-mono text-xs">{currentModeDetail.highlightKey}</span>
                   </div>
 
-                  <span className="showcase-disclaimer-tag">PRODUCT PREVIEW</span>
+                  <div className="showcase-topbar-right">
+                    <span className="showcase-disclaimer-tag">TRADINGVIEW EXTENSION</span>
+                  </div>
                 </div>
 
                 {/* Canvas Render Area */}
@@ -403,18 +425,21 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                 >
                   <canvas className="showcase-canvas" ref={canvasRef} />
 
+                  {/* Soft edge masking */}
+                  <div className="preview-edge-mask" aria-hidden="true" />
+
                   {/* Dynamic Coordinate Tag */}
                   {hoverCoord && (
                     <div
                       className="showcase-coord-tag font-mono text-xs"
                       style={{
                         position: "absolute",
-                        left: `${Math.min(hoverCoord.x + 12, dimensionsRef.current.width - 120)}px`,
+                        left: `${Math.min(hoverCoord.x + 12, dimensionsRef.current.width - 140)}px`,
                         top: `${Math.max(hoverCoord.y - 28, 12)}px`,
                         pointerEvents: "none",
                       }}
                     >
-                      REF POINT {hoverCoord.priceNorm.toFixed(3)}
+                      REF LEVEL: {hoverCoord.priceNorm.toFixed(3)}
                     </div>
                   )}
                 </div>
@@ -422,14 +447,18 @@ export const ProductShowcaseSection: React.FC<ProductShowcaseSectionProps> = ({
                 {/* Artifact Bottom Details */}
                 <div className="showcase-bottom-meta">
                   <div className="showcase-mode-desc">
-                    <span className="showcase-desc-title">{currentModeDetail.tagline}</span>
+                    <div className="showcase-desc-header">
+                      <span className="showcase-mode-pill font-mono">{currentModeDetail.number}</span>
+                      <span className="showcase-desc-title">{currentModeDetail.tagline}</span>
+                      <span className="showcase-layer-caption">Layer: {currentModeDetail.layerType}</span>
+                    </div>
                     <p className="showcase-desc-text">{currentModeDetail.description}</p>
                   </div>
 
                   <div className="showcase-action">
                     <button
                       type="button"
-                      className="btn btn-primary btn-sm"
+                      className="btn btn-primary"
                       onClick={handleAction}
                     >
                       <span>Explore Indicator</span>
